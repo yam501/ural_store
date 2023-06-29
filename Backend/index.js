@@ -6,11 +6,16 @@ const express = require('express')
 const sequelize = require('./db')
 //Инициализация бд
 const models = require('./models/models')
+//Импорт cors
+const cors = require('cors')
 
 //Инициализация порта
 const PORT = process.env.PORT || 5000
 //Объект приложения
 const app = express()
+app.use(cors())
+//Это чтобы приложение могло парсить json формат
+app.use(express.json())
 
 //Запуск сервера
 const start = async () => {
