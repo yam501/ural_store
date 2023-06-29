@@ -1,10 +1,12 @@
-// const sequelize = require('../db')
-// const { DataTypes } = require('sequelize')
+const sequelize = require('../db')
+const { DataTypes } = require('sequelize')
+
+//Описание таблиц
 
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: false },
-    number: { type: DataTypes.STRING, allowNull: false },
+    number: { type: DataTypes.STRING, allowNull: false, unique: true},
     defualt_adress: { type: DataTypes.STRING, allowNull: true },
     
 })
@@ -19,8 +21,8 @@ const Basket_Product = sequelize.define('basket_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     id_basket: { type: DataTypes.INTEGER, allowNull: false },
     id_product: { type: DataTypes.INTEGER, allowNull: false },
-    count: { type: DataTypes.INTEGER, allowNull: false },
-    more_or_less: {type: DataTypes.BOOL, allowNull: false }
+    count: { type: DataTypes.DOUBLE, allowNull: false },
+    more_or_less: {type: DataTypes.BOOLEAN, allowNull: false }
 })
 
 const Order = sequelize.define('order', {
@@ -34,22 +36,22 @@ const Order_Product = sequelize.define('order_product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     id_order: { type: DataTypes.INTEGER, allowNull: false },
     id_product: { type: DataTypes.INTEGER, allowNull: false },
-    count: { type: DataTypes.INTEGER, allowNull: false },
-    more_or_less: {type: DataTypes.BOOL, allowNull: false }
+    count: { type: DataTypes.DOUBLE, allowNull: false },
+    more_or_less: {type: DataTypes.BOOLEAN, allowNull: false }
 })
 
-const Assortment = sequelize.define('order_product', {
+const Assortment = sequelize.define('assortment', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     type: { type: DataTypes.STRING, allowNull: false},
     name: { type: DataTypes.STRING, allowNull: false },
-    available: {type: DataTypes.BOOL, allowNull: false },
+    available: {type: DataTypes.BOOLEAN, allowNull: false },
     cost_per_one: {type: DataTypes.DOUBLE, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: true },
 
 })
 
 
-
+//Описание связей
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
