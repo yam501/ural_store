@@ -7,10 +7,16 @@ class OrderController {
     }
 
     async getOrderByUserID(req, res) {
+        const {id_user} = req.params
+        const order = await Order.findOne({where:{id_user}})
+        return res.json(order)
 
     }
 
     async getOrderByOrderID(req, res) {
+        const {id} = req.params
+        const order = await Order.findOne({where:{id}})
+        return res.json(order)
 
     }
 

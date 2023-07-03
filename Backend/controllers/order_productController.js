@@ -7,6 +7,9 @@ class OrderProductController {
     }
 
     async getOrderProductByOrderID(req, res) {
+        const {id_order} = req.params
+        const orderProduct = await Order_Product.findOne({where:{id_order}})
+        return res.json(orderProduct)
 
     }
 

@@ -8,10 +8,15 @@ class BasketController {
     }
 
     async getBasketByUserID(req, res) {
-
+        const {id_user} = req.params
+        const basket = await Basket.findOne({where:{id_user}})
+        return res.json(basket)
     }
 
     async getBasketByBasketID(req, res) {
+        const {id} = req.params
+        const basket = await Basket.findOne({where:{id}})
+        return res.json(basket)
 
     }
 

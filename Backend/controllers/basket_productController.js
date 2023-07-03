@@ -8,6 +8,9 @@ class BasketProductController {
     }
 
     async getAllBasketProductsByBasketID(req, res) {
+        const {id_basket} = req.params
+        const basketProduct = await Basket_Product.findOne({where:{id_basket}})
+        return res.json(basketProduct)
 
     }
 

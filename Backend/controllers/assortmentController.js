@@ -7,10 +7,16 @@ class AssortmentController {
     }
 
     async getOneByName(req, res) {
+        const {name} = req.params
+        const assortment = await Assortment.findOne({where:{name}})
+        return res.json(assortment)
 
     }
 
     async getAllByType(req, res) {
+        const {type} = req.params
+        const assortment = await Assortment.findAll({where:{type}})
+        return res.json(assortment)
 
     }
 
