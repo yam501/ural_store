@@ -1,14 +1,38 @@
 class AssortmentController {
-    async get(req, res) {
+    async create(req, res) {
+        
+    }
+
+    async getOneByName(req, res) {
 
     }
 
-    async getByName(req, res) {
+    async getAllByType(req, res) {
 
     }
 
-    async set(req, res) {
+    async deleteOneByName(req, res) {
 
+    }
+
+    async changeNameByName(req, res) {
+
+    }
+
+    async changeAvailableByName(req, res) {
+
+    }
+
+    async changeCostPerOneByName(req, res) {
+
+    }
+
+    async changeDescriptionByName(req, res) {
+
+    }
+
+    async changeImageByName(req, res) {
+        
     }
 }
 
