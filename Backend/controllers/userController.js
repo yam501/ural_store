@@ -1,20 +1,35 @@
+const { where } = require('sequelize')
 const ApiError = require('../error/ApiError')
+const {User} = require('../models/models')
 
 class UserRouter {
-    async registration(req, res) {
+    async createUser(req, res) {
 
     }
 
-    async login(req, res) {
+    async getUserByNumber(req, res) {
+        const {number} = req.params
+        const user = await User.findOne({where:{number}})
+        return res.json(user)
+    }
+
+    async getUserByUserID(req, res) {
+        const {id} = req.params
+        const user = await User.findOne({where:{id}})
+        return res.json(user)
 
     }
 
-    async check(req, res, next) {
-        const {id} = req.query
-        if (!id) {
-            return next(ApiError.badRequest('Не задан ID'))
-        }
-        res.json(id)
+    async changeDefaultAdressByNumber(req, res) {
+
+    }
+
+    async changeNumberByNumber(req, res) {
+
+    }
+
+    async changeNameByNumber(req, res) {
+
     }
 }
 
