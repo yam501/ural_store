@@ -8,18 +8,23 @@ const sequelize = require('./db')
 const models = require('./models/models')
 //Импорт cors
 const cors = require('cors')
-
 const router = require('./routes/index')
-
 //Инициализация порта
 const PORT = process.env.PORT || 5000
 //Объект приложения
 const app = express()
+//Инициализация еррорхендлера
+const errorHandler = require('./middleware/ErrorHandlingMiddleware')
+
+
 app.use(cors())
 //Это чтобы приложение могло парсить json формат
 app.use(express.json())
-
 app.use('/api', router)
+
+//Обработка ошибок, последний Middleware
+//!!!РЕГИСТРИРУЕТСЯ ОБЯЗАТЕЛЬНО В САМОМ КОНЦЕ!!!
+app.use(errorHandler)
 
 //Запуск сервера
 const start = async () => {
