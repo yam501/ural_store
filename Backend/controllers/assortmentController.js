@@ -1,3 +1,6 @@
+const ApiError = require('../error/ApiError')
+const {Assortment} = require('../models/models')
+
 class AssortmentController {
     async create(req, res) {
         

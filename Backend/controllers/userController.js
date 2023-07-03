@@ -1,4 +1,5 @@
 const ApiError = require('../error/ApiError')
+const {User} = require('../models/models')
 
 class UserRouter {
     async createUser(req, res) {
