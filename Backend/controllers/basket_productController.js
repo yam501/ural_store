@@ -1,13 +1,21 @@
 class BasketProductController {
-    async getByBasketID(req, res) {
+    async createBasketProduct(req, res) {
 
     }
 
-    async set(req, res) {
+    async getAllBasketProductsByBasketID(req, res) {
 
     }
 
-    async deleteByBasketID(req, res) {
+    async deleteAllBasketProductsByBasketID(req, res) {
+
+    }
+
+    async changeMoreOrLessByBasketID(req, res) {
+
+    }
+
+    async changeCountByBasketID(req, res) {
 
     }
 }

@@ -3,12 +3,20 @@ class BasketController {
 
     }
 
-    async getBasket(req, res) {
+    async getBasketByUserID(req, res) {
 
     }
 
-    async getID(req, res) {
+    async getBasketByBasketID(req, res) {
 
+    }
+
+    async changeSumByBasketID(req, res) {
+
+    }
+
+    async changeSumByUserID(req, res) {
+        
     }
 }
 

@@ -1,13 +1,21 @@
 class OrderProductController {
-    async getByOrderID(req, res) {
+    async createOrderProduct(req, res) {
 
     }
 
-    async set(req, res) {
+    async getOrderProductByOrderID(req, res) {
 
     }
 
-    async deleteByOrderID(req, res) {
+    async deleteOrderProductByOrderId(req, res) {
+
+    }
+
+    async changeCountByOrderID(req, res) {
+
+    }
+
+    async changeMoreOrLessByOrderID(req, res) {
 
     }
 }
