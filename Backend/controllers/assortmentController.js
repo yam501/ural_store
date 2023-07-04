@@ -7,8 +7,8 @@ class AssortmentController {
             const {type, name, available, cost_per_one, description} = req.body
             const assortment = await Assortment.create({type, name, available, cost_per_one, description})
             return res.json(assortment)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {N
+            next(ApiError.badRequest(er.message))
         }
     }
 
@@ -17,8 +17,8 @@ class AssortmentController {
             const {name} = req.body
             const assortment = await Assortment.findOne({where:{name: name}})
             return res.json(assortment)
-        } catch(error) {
-            next(ApiError.badRequest(error.message))
+        } catch(e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
@@ -27,8 +27,8 @@ class AssortmentController {
             const {type} = req.body
             const assortment = await Assortment.findAll({where:{type: type}})
             return res.json(assortment)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
 
     }
@@ -38,58 +38,58 @@ class AssortmentController {
             const {name} = req.body
             const deleted = await Assortment.destroy({where:{name: name}})
             return res.json(deleted)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
     async changeNameByName(req, res, next) {
         try {
-            const {old_name, new_name} = req.body
-            const updated = await Assortment.update({name: new_name}, {where: {name: old_name}})
+            const {oldName, newName} = req.body
+            const updated = await Assortment.update({name: newName}, {where: {name: oldName}})
             return res.json(updated)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
-    }
+    }ss
 
     async changeAvailableByName(req, res, next) {
         try {
-            const {available, name} = req.body
+            const {name, available} = req.body
             const updated = await Assortment.update({available: available}, {where: {name: name}})
             return res.json(updated) 
-        } catch (error) {
-           next(ApiError.badRequest(error.message)) 
+        } catch (e) {
+           next(ApiError.badRequest(e.message)) 
         }
     }
 
     async changeCostPerOneByName(req, res, next) {
         try {
-            const {cost_per_one, name} = req.body
+            const {name, cost_per_one} = req.body
             const updated = await Assortment.update({cost_per_one: cost_per_one}, {where: {name: name}})
             return res.json(updated)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
     async changeDescriptionByName(req, res, next) {
         try {
-            const {description, name} = req.body
+            const {name, description} = req.body
             const updated = await Assortment.update({description: description}, {where: {name: name}})
             return res.json(updated)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
     async changeImageByName(req, res, next) {
         try {
-            const {image, name} = req.body
+            const {name, image} = req.body
             const updated = await Assortment.update({image: image}, {where: {name: name}})
             return res.json(updated)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }        
     }
 }

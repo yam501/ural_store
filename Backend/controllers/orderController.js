@@ -9,7 +9,7 @@ class OrderController {
             return res.json(order)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
 
@@ -21,7 +21,7 @@ class OrderController {
             const order = await Order.findOne({where:{id_user: id_user}})
             return res.json(order)
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
         }
 
     }
@@ -32,7 +32,7 @@ class OrderController {
             const order = await Order.findOne({where:{id: id}})
             return res.json(order)
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
         }
 
     }
@@ -44,7 +44,7 @@ class OrderController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
     }
@@ -56,7 +56,7 @@ class OrderController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
     }
@@ -69,7 +69,7 @@ class OrderController {
             
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            nnext(ApiError.badRequest(e.message))
             
         }
     }
@@ -81,7 +81,7 @@ class OrderController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
     }
@@ -90,7 +90,7 @@ class OrderController {
 // try {
 
 // } catch (e){
-    // next(ApiError.badRequest(error.message))
+    // next(ApiError.badRequest(e.message))
     
 // }
 

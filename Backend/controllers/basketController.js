@@ -6,10 +6,10 @@ class BasketController {
     async createBasket(req, res, next) {
         try {
             const {id_user, aprox_sum} = req.body
-            const created = await Basket.create({id_user, aprox_sum})
-            return res.json(created)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+            const basket = await Basket.create({id_user, aprox_sum})
+            return res.json(basket)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
@@ -18,8 +18,8 @@ class BasketController {
             const {id_user} = req.body
             const basket = await Basket.findOne({where:{id_user: id_user}})
             return res.json(basket)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(er.message))
         }
     }
 
@@ -28,8 +28,8 @@ class BasketController {
             const {id} = req.body
             const basket = await Basket.findOne({where:{id: id}})
             return res.json(basket)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
 
     }
@@ -39,8 +39,8 @@ class BasketController {
             const {aprox_sum, id} = req.body
             const updated = await Basket.update({aprox_sum: aprox_sum}, {where: {id: id}})
             return res.json(updated)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
@@ -49,8 +49,8 @@ class BasketController {
             const {aprox_sum, id} = req.body
             const updated = await Basket.update({aprox_sum: aprox_sum}, {where: {id: id}})
             return res.json(updated)
-        } catch (error) {
-            next(ApiError.badRequest(error.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 }

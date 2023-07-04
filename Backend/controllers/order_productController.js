@@ -9,7 +9,7 @@ class OrderProductController {
             return res.json(orderProduct)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
 
@@ -21,7 +21,7 @@ class OrderProductController {
             const orderProduct = await Order_Product.findOne({where:{id_order}})
             return res.json(orderProduct)
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
         }
 
     }
@@ -33,7 +33,7 @@ class OrderProductController {
             return res.json(deleted)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
 
@@ -46,7 +46,7 @@ class OrderProductController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }
 
@@ -59,7 +59,7 @@ class OrderProductController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(error.message))
+            next(ApiError.badRequest(e.message))
             
         }        
 
