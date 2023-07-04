@@ -1,9 +1,8 @@
-// const { where } = require('sequelize')
 const ApiError = require('../error/ApiError')
 const {User} = require('../models/models')
 
 class UserRouter {
-    async createUser(req, res) {
+    async createUser(req, res, next) {
 
     }
 
@@ -32,15 +31,15 @@ class UserRouter {
 
     }
 
-    async changeDefaultAdressByNumber(req, res) {
+    async changeDefaultAdressByNumber(req, res, next) {
 
     }
 
-    async changeNumberByNumber(req, res) {
+    async changeNumberByNumber(req, res, next) {
 
     }
 
-    async changeNameByNumber(req, res) {
+    async changeNameByNumber(req, res, next) {
         try {
             const {number, name} = req.body
             const user = await User.update({name: name} , {where:{number}})
