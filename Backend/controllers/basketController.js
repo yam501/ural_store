@@ -4,13 +4,19 @@ const {Basket} = require('../models/models')
 
 class BasketController {
     async createBasket(req, res, next) {
-
+        try {
+            const {id_user, aprox_sum} = req.body
+            const created = await Basket.create({id_user, aprox_sum})
+            return res.json(created)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 
     async getBasketByUserID(req, res, next) {
         try {
             const {id_user} = req.body
-            const basket = await Basket.findOne({where:{id_user}})
+            const basket = await Basket.findOne({where:{id_user: id_user}})
             return res.json(basket)
         } catch (error) {
             next(ApiError.badRequest(error.message))
@@ -20,7 +26,7 @@ class BasketController {
     async getBasketByBasketID(req, res, next) {
         try {
             const {id} = req.body
-            const basket = await Basket.findOne({where:{id}})
+            const basket = await Basket.findOne({where:{id: id}})
             return res.json(basket)
         } catch (error) {
             next(ApiError.badRequest(error.message))
@@ -29,11 +35,23 @@ class BasketController {
     }
 
     async changeSumByBasketID(req, res, next) {
-
+        try {
+            const {aprox_sum, id} = req.body
+            const updated = await Basket.update({aprox_sum: aprox_sum}, {where: {id: id}})
+            return res.json(updated)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 
     async changeSumByUserID(req, res, next) {
-        
+        try {
+            const {aprox_sum, id} = req.body
+            const updated = await Basket.update({aprox_sum: aprox_sum}, {where: {id: id}})
+            return res.json(updated)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 }
 
