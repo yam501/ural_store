@@ -9,7 +9,7 @@ class BasketController {
 
     async getBasketByUserID(req, res, next) {
         try {
-            const {id_user} = req.params
+            const {id_user} = req.body
             const basket = await Basket.findOne({where:{id_user}})
             return res.json(basket)
         } catch (error) {
@@ -19,7 +19,7 @@ class BasketController {
 
     async getBasketByBasketID(req, res, next) {
         try {
-            const {id} = req.params
+            const {id} = req.body
             const basket = await Basket.findOne({where:{id}})
             return res.json(basket)
         } catch (error) {

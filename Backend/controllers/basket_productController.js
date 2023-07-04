@@ -9,7 +9,7 @@ class BasketProductController {
 
     async getAllBasketProductsByBasketID(req, res, next) {
         try {
-            const {id_basket} = req.params
+            const {id_basket} = req.body
             const basketProduct = await Basket_Product.findOne({where:{id_basket}})
             return res.json(basketProduct)
         } catch (error) {

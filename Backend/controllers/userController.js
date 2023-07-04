@@ -10,7 +10,7 @@ class UserRouter {
 
     async getUserByNumber(req, res, next) {
         try {
-            const {number} = req.params
+            const {number} = req.body
             const user = await User.findOne({where:{number}})
             return res.json(user)
 
@@ -22,7 +22,7 @@ class UserRouter {
 
     async getUserByUserID(req, res, next) {
         try {
-            const {id} = req.params
+            const {id} = req.body
             const user = await User.findOne({where:{id}})
             return res.json(user)
         } catch (e){

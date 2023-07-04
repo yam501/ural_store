@@ -14,7 +14,7 @@ class AssortmentController {
 
     async getOneByName(req, res, next) {
         try {
-            const {name} = req.params
+            const {name} = req.body
             const assortment = await Assortment.findOne({where:{name}})
             return res.json(assortment)
         } catch(error) {
@@ -24,7 +24,7 @@ class AssortmentController {
 
     async getAllByType(req, res, next) {
         try {
-            const {type} = req.params
+            const {type} = req.body
             const assortment = await Assortment.findAll({where:{type}})
             return res.json(assortment)
         } catch (error) {
@@ -34,11 +34,17 @@ class AssortmentController {
     }
 
     async deleteOneByName(req, res, next) {
-
+        try {
+            const {name} = req.body
+            const deleted = await Assortment.destroy({where:{name}})
+            return res.json(deleted)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 
     async changeNameByName(req, res, next) {
-
+        
     }
 
     async changeAvailableByName(req, res, next) {

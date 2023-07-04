@@ -4,9 +4,9 @@ const basket_productController = require('../controllers/basket_productControlle
 
 router.post('/createBasketProduct', basket_productController.createBasketProduct)
 
-router.get('/getAllBasketProductsByBasketID/:id_basket', basket_productController.getAllBasketProductsByBasketID)
+router.get('/getAllBasketProductsByBasketID', basket_productController.getAllBasketProductsByBasketID)
 
-router.delete('/DeleteAllBasketProductsByBasketID/:id_basket', basket_productController.deleteAllBasketProductsByBasketID)
+router.delete('/DeleteAllBasketProductsByBasketID', basket_productController.deleteAllBasketProductsByBasketID)
 
 router.put('/changeMoreOrLessByBasketID', basket_productController.changeMoreOrLessByBasketID)
 router.put('/changeCountByBasketID', basket_productController.changeCountByBasketID)

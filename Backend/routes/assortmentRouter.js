@@ -4,10 +4,10 @@ const assortmentController = require('../controllers/assortmentController')
 
 router.post('/createProduct', assortmentController.create)
 
-router.get('/getProductByName/:name', assortmentController.getOneByName)
-router.get('/getAllProductsByType/:type', assortmentController.getAllByType)
+router.get('/getProductByName', assortmentController.getOneByName)
+router.get('/getAllProductsByType', assortmentController.getAllByType)
 
-router.delete('/deleteProductByName/:name', assortmentController.deleteOneByName)
+router.delete('/deleteProductByName', assortmentController.deleteOneByName)
 
 router.put('/changeProductNameByName', assortmentController.changeNameByName)
 router.put('/changeProductAvailableByName', assortmentController.changeAvailableByName)

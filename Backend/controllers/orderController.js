@@ -8,7 +8,7 @@ class OrderController {
 
     async getOrderByUserID(req, res, next) {
         try {
-            const {id_user} = req.params
+            const {id_user} = req.body
             const order = await Order.findOne({where:{id_user}})
             return res.json(order)
         } catch (error) {
@@ -19,7 +19,7 @@ class OrderController {
 
     async getOrderByOrderID(req, res, next) {
         try {
-            const {id} = req.params
+            const {id} = req.body
             const order = await Order.findOne({where:{id}})
             return res.json(order)
         } catch (error) {
