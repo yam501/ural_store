@@ -2,45 +2,58 @@ const ApiError = require('../error/ApiError')
 const {Assortment} = require('../models/models')
 
 class AssortmentController {
-    async create(req, res) {
-        
+    async create(req, res, next) {
+        try {
+            const {type, name, available, cost_per_one, description} = req.body
+            const assortment = await Assortment.create({type, name, available, cost_per_one, description})
+            return res.json(assortment)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 
-    async getOneByName(req, res) {
-        const {name} = req.params
-        const assortment = await Assortment.findOne({where:{name}})
-        return res.json(assortment)
-
+    async getOneByName(req, res, next) {
+        try {
+            const {name} = req.params
+            const assortment = await Assortment.findOne({where:{name}})
+            return res.json(assortment)
+        } catch(error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 
-    async getAllByType(req, res) {
-        const {type} = req.params
-        const assortment = await Assortment.findAll({where:{type}})
-        return res.json(assortment)
-
-    }
-
-    async deleteOneByName(req, res) {
-
-    }
-
-    async changeNameByName(req, res) {
-
-    }
-
-    async changeAvailableByName(req, res) {
-
-    }
-
-    async changeCostPerOneByName(req, res) {
+    async getAllByType(req, res, next) {
+        try {
+            const {type} = req.params
+            const assortment = await Assortment.findAll({where:{type}})
+            return res.json(assortment)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
 
     }
 
-    async changeDescriptionByName(req, res) {
+    async deleteOneByName(req, res, next) {
 
     }
 
-    async changeImageByName(req, res) {
+    async changeNameByName(req, res, next) {
+
+    }
+
+    async changeAvailableByName(req, res, next) {
+
+    }
+
+    async changeCostPerOneByName(req, res, next) {
+
+    }
+
+    async changeDescriptionByName(req, res, next) {
+
+    }
+
+    async changeImageByName(req, res, next) {
         
     }
 }

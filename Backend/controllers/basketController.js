@@ -3,28 +3,36 @@ const {Basket} = require('../models/models')
 
 
 class BasketController {
-    async createBasket(req, res) {
+    async createBasket(req, res, next) {
 
     }
 
-    async getBasketByUserID(req, res) {
-        const {id_user} = req.params
-        const basket = await Basket.findOne({where:{id_user}})
-        return res.json(basket)
+    async getBasketByUserID(req, res, next) {
+        try {
+            const {id_user} = req.params
+            const basket = await Basket.findOne({where:{id_user}})
+            return res.json(basket)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
     }
 
-    async getBasketByBasketID(req, res) {
-        const {id} = req.params
-        const basket = await Basket.findOne({where:{id}})
-        return res.json(basket)
+    async getBasketByBasketID(req, res, next) {
+        try {
+            const {id} = req.params
+            const basket = await Basket.findOne({where:{id}})
+            return res.json(basket)
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
+        }
 
     }
 
-    async changeSumByBasketID(req, res) {
+    async changeSumByBasketID(req, res, next) {
 
     }
 
-    async changeSumByUserID(req, res) {
+    async changeSumByUserID(req, res, next) {
         
     }
 }
