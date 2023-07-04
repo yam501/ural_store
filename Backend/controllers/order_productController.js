@@ -20,7 +20,7 @@ class OrderProductController {
             const {id_order} = req.body
             const orderProduct = await Order_Product.findOne({where:{id_order}})
             return res.json(orderProduct)
-        } catch (error) {
+        } catch (e) {
             next(ApiError.badRequest(e.message))
         }
 

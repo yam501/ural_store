@@ -7,8 +7,8 @@ class AssortmentController {
             const {type, name, available, cost_per_one, description} = req.body
             const assortment = await Assortment.create({type, name, available, cost_per_one, description})
             return res.json(assortment)
-        } catch (e) {N
-            next(ApiError.badRequest(er.message))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
@@ -51,7 +51,7 @@ class AssortmentController {
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
-    }ss
+    }
 
     async changeAvailableByName(req, res, next) {
         try {

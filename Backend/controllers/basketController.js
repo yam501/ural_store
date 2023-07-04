@@ -19,7 +19,7 @@ class BasketController {
             const basket = await Basket.findOne({where:{id_user: id_user}})
             return res.json(basket)
         } catch (e) {
-            next(ApiError.badRequest(er.message))
+            next(ApiError.badRequest(e.message))
         }
     }
 

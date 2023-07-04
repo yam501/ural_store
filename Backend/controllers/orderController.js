@@ -20,7 +20,7 @@ class OrderController {
             const {id_user} = req.body
             const order = await Order.findOne({where:{id_user: id_user}})
             return res.json(order)
-        } catch (error) {
+        } catch (e) {
             next(ApiError.badRequest(e.message))
         }
 
@@ -31,7 +31,7 @@ class OrderController {
             const {id} = req.body
             const order = await Order.findOne({where:{id: id}})
             return res.json(order)
-        } catch (error) {
+        } catch (e) {
             next(ApiError.badRequest(e.message))
         }
 
@@ -69,7 +69,7 @@ class OrderController {
             
 
         } catch (e){
-            nnext(ApiError.badRequest(e.message))
+            next(ApiError.badRequest(e.message))
             
         }
     }
