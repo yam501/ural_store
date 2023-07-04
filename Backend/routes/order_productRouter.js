@@ -4,11 +4,11 @@ const orderProductController = require('../controllers/order_productController')
 
 router.post('/createOrderProduct', orderProductController.createOrderProduct)
 
-router.get('/getOrderProductByOrderID/:id_order', orderProductController.getOrderProductByOrderID)
+router.get('/getOrderProductByOrderID', orderProductController.getOrderProductByOrderID)
 
-router.delete('/deleteOrderProductByOrderId/:id_order', orderProductController.deleteOrderProductByOrderId)
+router.delete('/deleteOrderProductByOrderId', orderProductController.deleteOrderProductByOrderId)
 
-router.put('/changeCountByOrderID/:id_order', orderProductController.changeCountByOrderID)
-router.put('/changeMoreOrLessByOrderID/:id_order', orderProductController.changeMoreOrLessByOrderID)
+router.put('/changeCountByOrderID', orderProductController.changeCountByOrderID)
+router.put('/changeMoreOrLessByOrderID', orderProductController.changeMoreOrLessByOrderID)
 
 module.exports = router

@@ -4,12 +4,12 @@ const orderController = require('../controllers/orderController')
 
 router.post('/createOrder', orderController.createOrder)
 
-router.get('/getOrderByUserID/:id_user', orderController.getOrderByUserID)
-router.get('/getOrderByOrderID/:id', orderController.getOrderByOrderID)
+router.get('/getOrderByUserID', orderController.getOrderByUserID)
+router.get('/getOrderByOrderID', orderController.getOrderByOrderID)
 
-router.put('/changeAdressByUserID/:id_user', orderController.changeAdressByUserID)
-router.put('/changeAdressByOrderID/:id', orderController.changeAdressByOrderID)
-router.put('/changeSumByUserID/:id_user', orderController.changeSumByUserID)
-router.put('/changeSumByOrderID/:id', orderController.changeSumByOrderID)
+router.put('/changeAdressByUserID', orderController.changeAdressByUserID)
+router.put('/changeAdressByOrderID', orderController.changeAdressByOrderID)
+router.put('/changeSumByUserID', orderController.changeSumByUserID)
+router.put('/changeSumByOrderID', orderController.changeSumByOrderID)
 
 module.exports = router
