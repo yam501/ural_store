@@ -41,8 +41,27 @@ class UserRouter {
     }
 
     async changeNameByNumber(req, res) {
+        try {
+            const {number, name} = req.body
+            const user = await User.update({name: name} , {where:{number}})
+            return res.json(user)
+        } catch (e){
+            next(ApiError.badRequest(e.message))
+        }
 
     }
 }
 
+
+// Изменяем имя пользователя с `userId = 2`
+// await User.update(
+//     {
+//       firstName: 'John',
+//     },
+//     {
+//       where: {
+//         userId: 2,
+//       },
+//     }
+//   )
 module.exports = new UserRouter()
