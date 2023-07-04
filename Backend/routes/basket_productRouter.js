@@ -8,7 +8,7 @@ router.get('/getAllBasketProductsByBasketID/:id_basket', basket_productControlle
 
 router.delete('/DeleteAllBasketProductsByBasketID/:id_basket', basket_productController.deleteAllBasketProductsByBasketID)
 
-router.put('/changeMoreOrLessByBasketID/:id_basket', basket_productController.changeMoreOrLessByBasketID)
-router.put('/changeCountByBasketID/:id_basket', basket_productController.changeCountByBasketID)
+router.put('/changeMoreOrLessByBasketID', basket_productController.changeMoreOrLessByBasketID)
+router.put('/changeCountByBasketID', basket_productController.changeCountByBasketID)
 
 module.exports = router
