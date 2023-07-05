@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Routes, Route, Redirect} from 'react-router-dom'
 import { authRoutes, publicRoutes } from '../routes';
 import { STORE_ROUTE } from '../utils/consts';
+import { Context } from '..';
 function AppRouter() {
-    const isAuth = false;
+    const {user} = useContext(Context)
+
     return (
         <Routes>
-            {isAuth && authRoutes.map(({path, element}) =>
+            {user.isAuth && authRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )} 
             {publicRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
+            
         </Routes>
     );
   }
 
 export default AppRouter;
+
