@@ -4,26 +4,24 @@ const {Order} = require('../models/models')
 class OrderController {
     async createOrder(req, res, next) {
         try {
-            const {id_user, adress, aprox_sum} = req.body
-            const order = await Order.create({id_user, adress, aprox_sum})
+            const {userId, adress, aprox_sum} = req.body
+            const order = await Order.create({userId, adress, aprox_sum})
             return res.json(order)
 
         } catch (e){
             next(ApiError.badRequest(e.message))
-            
         }
-
     }
 
     async getOrderByUserID(req, res, next) {
         try {
-            const {id_user} = req.body
-            const order = await Order.findOne({where:{id_user: id_user}})
+            const {userId} = req.body
+            const order = await Order.findOne({where:{userId: userId}})
             return res.json(order)
+
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
-
     }
 
     async getOrderByOrderID(req, res, next) {
@@ -31,21 +29,20 @@ class OrderController {
             const {id} = req.body
             const order = await Order.findOne({where:{id: id}})
             return res.json(order)
+
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
-
     }
 
     async changeAdressByUserID(req, res, next) {
         try {
-            const {id_user, adress} = req.body
-            const updated = await Order.update({adress: adress} , {where:{id_user: id_user}})
+            const {userId, adress} = req.body
+            const updated = await Order.update({adress: adress} , {where:{userId: userId}})
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(e.message))
-            
+            next(ApiError.badRequest(e.message))    
         }
     }
 
@@ -56,21 +53,17 @@ class OrderController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(e.message))
-            
+            next(ApiError.badRequest(e.message))      
         }
     }
 
     async changeSumByUserID(req, res, next) {
         try {
-            const {id_user, aprox_sum} = req.body
-            const updated = await Order.update({aprox_sum: aprox_sum} , {where:{id_user: id_user}})
-            return res.json(updated)
-            
-
+            const {userId, aprox_sum} = req.body
+            const updated = await Order.update({aprox_sum: aprox_sum} , {where:{userId: userId}})
+            return res.json(updated)        
         } catch (e){
-            next(ApiError.badRequest(e.message))
-            
+            next(ApiError.badRequest(e.message))           
         }
     }
 
@@ -81,17 +74,9 @@ class OrderController {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(e.message))
-            
+            next(ApiError.badRequest(e.message))            
         }
     }
 }
-
-// try {
-
-// } catch (e){
-    // next(ApiError.badRequest(e.message))
-    
-// }
 
 module.exports = new OrderController()

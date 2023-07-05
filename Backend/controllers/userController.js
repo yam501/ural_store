@@ -7,11 +7,10 @@ class UserRouter {
             const {name, number, defualt_adress} = req.body
             const user = await User.create({name, number, defualt_adress})
             return res.json(user)
+            
         } catch (e){
             next(ApiError.badRequest(e.message))
-
         }
-
     }
 
 
@@ -24,7 +23,6 @@ class UserRouter {
         } catch (e){
             next(ApiError.badRequest(e.message))
         }
-        
     }
 
     async getUserByUserID(req, res, next) {
@@ -32,11 +30,10 @@ class UserRouter {
             const {id} = req.body
             const user = await User.findOne({where:{id: id}})
             return res.json(user)
+
         } catch (e){
             next(ApiError.badRequest(e.message))
         }
-
-
     }
 
     async changeDefaultAdressByNumber(req, res, next) {
@@ -47,9 +44,7 @@ class UserRouter {
 
         } catch (e){
             next(ApiError.badRequest(e.message))
-            
         }
-
     }
 
     async changeNumberByNumber(req, res, next) {
@@ -59,10 +54,8 @@ class UserRouter {
             return res.json(updated)
 
         } catch (e){
-            next(ApiError.badRequest(e.message))
-            
+            next(ApiError.badRequest(e.message)) 
         }
-
     }
 
     async changeNameByNumber(req, res, next) {
@@ -70,10 +63,10 @@ class UserRouter {
             const {number, name} = req.body
             const user = await User.update({name: name} , {where:{number: number}})
             return res.json(user)
+
         } catch (e){
             next(ApiError.badRequest(e.message))
         }
-
     }
 }
 
