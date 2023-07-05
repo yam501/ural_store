@@ -1,25 +1,22 @@
-//Подключение к окружению
-require('dotenv').config()
-//Подключение фреймворка
-const express = require('express')
-//Подключение к бд
-const sequelize = require('./db')
-//Инициализация бд
-const models = require('./models/models')
-//Импорт cors
-const cors = require('cors')
+require('dotenv').config() //Подключение к окружению
+const express = require('express') //Подключение фреймворка
+const sequelize = require('./db')  //Подключение к бд
+const models = require('./models/models') //Инициализация бд
+const cors = require('cors') //Импорт cors
+const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
-//Инициализация порта
-const PORT = process.env.PORT || 5000
-//Объект приложения
-const app = express()
-//Инициализация еррорхендлера
-const errorHandler = require('./middleware/ErrorHandlingMiddleware')
+const PORT = process.env.PORT || 5000 //Инициализация порта
+const app = express() //Объект приложения
+const errorHandler = require('./middleware/ErrorHandlingMiddleware') //Инициализация еррорхендлера
+const path = require('path')
+
+
 
 
 app.use(cors())
-//Это чтобы приложение могло парсить json формат
-app.use(express.json())
+app.use(express.json())  //Это чтобы приложение могло парсить json формат
+app.use(express.static(path.resolve(__dirname, 'static')))
+app.use(fileUpload({}))
 app.use('/api', router)
 
 //Обработка ошибок, последний Middleware
