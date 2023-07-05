@@ -1,4 +1,5 @@
 import React from 'react';
+
 // Страница магазины
 
 function Store() {

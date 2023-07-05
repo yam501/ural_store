@@ -10,23 +10,23 @@ import { ADMIN_ROUTE, AUTH_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE,
 export const authRoutes = [
     {
         path: ADMIN_ROUTE,
-        Component: Admin
+        element: <Admin/>
     },
     {
         path: ORDER_ROUTE,
-        Component: Order
+        element: <Order/>
     },
     {
         path: BASKET_ROUTE,
-        Component: Basket
+        element: <Basket/>
     },
     {
         path: HISTORYORDER_ROUTE,
-        Component: HistoryOrder
+        element: <HistoryOrder/>
     },
     {
         path: USER_ROUTE,
-        Component: User
+        element: <User/>
     }
 
 ]
@@ -34,14 +34,14 @@ export const authRoutes = [
 export const publicRoutes = [
     {
         path: STORE_ROUTE,
-        Component: Store
+        element: <Store/>
     },
     {
         path: AUTH_ROUTE,
-        Component: Auth
+        element: <Auth/>
     },
     {
         path: REGISTRATION_ROUTE,
-        COmponent: Auth
+        element: <Auth/>
     }
 ]

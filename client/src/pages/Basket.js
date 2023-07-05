@@ -1,4 +1,5 @@
 import React from 'react';
+
 // Страница корзины 
 
 function Basket() {
@@ -6,7 +7,7 @@ function Basket() {
         <div className="Basket">
           <header className="Basket-header">
             <p>
-              Авторизация
+              не Авторизация
             </p>
           </header>
         </div>
