@@ -5,8 +5,8 @@ const {Basket_Product} = require('../models/models')
 class BasketProductController {
     async createBasketProduct(req, res, next) {
         try {
-            const {id_basket, id_product, count, more_or_less} = req.body
-            const basketProduct = await Basket_Product.create({id_basket, id_product, count, more_or_less})
+            const {basketId, assortmentId, count, more_or_less} = req.body
+            const basketProduct = await Basket_Product.create({basketId, assortmentId, count, more_or_less})
             return res.json(basketProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -15,8 +15,8 @@ class BasketProductController {
 
     async getAllBasketProductsByBasketID(req, res, next) {
         try {
-            const {id_basket} = req.body
-            const basketProduct = await Basket_Product.findOne({where:{id_basket: id_basket}})
+            const {basketId} = req.body
+            const basketProduct = await Basket_Product.findOne({where:{basketId: basketId}})
             return res.json(basketProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -26,8 +26,8 @@ class BasketProductController {
 
     async deleteAllBasketProductsByBasketID(req, res, next) {
         try {
-            const {id_basket} = req.body
-            const deleted = await Basket_Product.destroy({where: {id_basket: id_basket}})
+            const {basketId} = req.body
+            const deleted = await Basket_Product.destroy({where: {basketId: basketId}})
             return res.json(deleted)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -36,8 +36,8 @@ class BasketProductController {
 
     async changeMoreOrLessByBasketID(req, res, next) {
         try {
-            const {id_basket, more_or_less} = req.body
-            const updated = await Basket_Product.update({more_or_less: more_or_less}, {where: {id_basket: id_basket}})
+            const {basketId, more_or_less} = req.body
+            const updated = await Basket_Product.update({more_or_less: more_or_less}, {where: {basketId: basketId}})
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -46,8 +46,8 @@ class BasketProductController {
 
     async changeCountByBasketID(req, res, next) {
         try {
-            const {id_basket, count} = req.body
-            const updated = await Basket_Product.update({count: count}, {where: {id_basket: id_basket}})
+            const {basketId, count} = req.body
+            const updated = await Basket_Product.update({count: count}, {where: {basketId: basketId}})
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))

@@ -4,8 +4,8 @@ const {Order_Product} = require('../models/models')
 class OrderProductController {
     async createOrderProduct(req, res, next) {
         try {
-            const {id_order, id_product, count, more_or_less} = req.body
-            const orderProduct = await Order_Product.create({id_order, id_product, count, more_or_less})
+            const {orderId, assortmentId, count, more_or_less} = req.body
+            const orderProduct = await Order_Product.create({orderId, assortmentId, count, more_or_less})
             return res.json(orderProduct)
 
         } catch (e){
@@ -17,8 +17,8 @@ class OrderProductController {
 
     async getOrderProductByOrderID(req, res, next) {
         try {
-            const {id_order} = req.body
-            const orderProduct = await Order_Product.findOne({where:{id_order}})
+            const {orderId} = req.body
+            const orderProduct = await Order_Product.findOne({where:{orderId:orderId}})
             return res.json(orderProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -28,8 +28,8 @@ class OrderProductController {
 
     async deleteOrderProductByOrderId(req, res, next) {
         try {
-            const {id_order} = req.body
-            const deleted = await Assortment.destroy({where:{id_order:id_order}})
+            const {orderId} = req.body
+            const deleted = await Assortment.destroy({where:{orderId:orderId}})
             return res.json(deleted)
 
         } catch (e){
@@ -41,8 +41,8 @@ class OrderProductController {
 
     async changeCountByOrderID(req, res, next) {
         try {
-            const {id_order, count} = req.body
-            const updated = await Order.update({count: count} , {where:{id_order: id_order}})
+            const {orderId, count} = req.body
+            const updated = await Order.update({count: count} , {where:{orderId: orderId}})
             return res.json(updated)
 
         } catch (e){
@@ -54,8 +54,8 @@ class OrderProductController {
 
     async changeMoreOrLessByOrderID(req, res, next) {
         try {
-            const {id_order, more_or_less} = req.body
-            const updated = await Order.update({more_or_less: more_or_less} , {where:{id_order: id_order}})
+            const {orderId, more_or_less} = req.body
+            const updated = await Order.update({more_or_less: more_or_less} , {where:{orderId: orderId}})
             return res.json(updated)
 
         } catch (e){
@@ -65,13 +65,5 @@ class OrderProductController {
 
     }
 }
-
-
-// try {
-
-// } catch (e){
-    // next(ApiError.badRequest(error.message))
-    
-// }
 
 module.exports = new OrderProductController()
