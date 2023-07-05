@@ -12,7 +12,6 @@ const path = require('path')
 
 
 
-
 app.use(cors())
 app.use(express.json())  //Это чтобы приложение могло парсить json формат
 app.use(express.static(path.resolve(__dirname, 'static')))
