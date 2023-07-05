@@ -21,6 +21,7 @@ const Basket_Product = sequelize.define('basket_product', {
     basketId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
+    cost_per_one: {type: DataTypes.DOUBLE, allowNull: false },
     more_or_less: {type: DataTypes.BOOLEAN, allowNull: false }
 })
 
@@ -35,7 +36,6 @@ const Completed_Orders = sequelize.define('complited_orders', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false },
     adress: { type: DataTypes.STRING, allowNull: false },
-    aprox_sum: {type: DataTypes.DOUBLE, allowNull: false },
     complited_sum: {type: DataTypes.DOUBLE, allowNull: false },
     order_time: {type: DataTypes.TIME, allowNull: false },
     complited_time: {type: DataTypes.TIME, allowNull: false }

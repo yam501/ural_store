@@ -4,8 +4,8 @@ const {Completed_Orders} = require('../models/models')
 class CompletedOrdersController {
     async createComplitedOrder(req, res, next) {
         try {
-            const {userId, adress, aprox_sum, complited_sum, order_time, complited_time} = req.body
-            const complited_order = await Completed_Orders.create({userId, adress, aprox_sum, complited_sum, order_time, complited_time})
+            const {userId, adress, complited_sum, order_time, complited_time} = req.body
+            const complited_order = await Completed_Orders.create({userId, adress, complited_sum, order_time, complited_time})
             return res.json(complited_order)
             
         } catch (e){

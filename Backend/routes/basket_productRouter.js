@@ -6,9 +6,10 @@ router.post('/createBasketProduct', basket_productController.createBasketProduct
 
 router.get('/getAllBasketProductsByBasketID', basket_productController.getAllBasketProductsByBasketID)
 
-router.delete('/DeleteAllBasketProductsByBasketID', basket_productController.deleteAllBasketProductsByBasketID)
+router.delete('/deleteAllBasketProductsByBasketID', basket_productController.deleteAllBasketProductsByBasketID)
+router.delete('/deleteOneBasketProductByBasketIDAndAssortmentID', basket_productController.deleteOneBasketProductByBasketIDAndAssortmentID)
 
-router.put('/changeMoreOrLessByBasketID', basket_productController.changeMoreOrLessByBasketID)
-router.put('/changeCountByBasketID', basket_productController.changeCountByBasketID)
+router.put('/changeMoreOrLessByBasketIDAndAssortmentID', basket_productController.changeMoreOrLessByBasketIDAndAssortmentID)
+router.put('/changeCountByBasketIDAndAssortmentID', basket_productController.changeCountByBasketIDAndAssortmentID)
 
 module.exports = router

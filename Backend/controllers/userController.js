@@ -1,13 +1,14 @@
 const ApiError = require('../error/ApiError')
-const {User} = require('../models/models')
+const {User, Basket} = require('../models/models')
 
 class UserRouter {
     async createUser(req, res, next) {
         try {
             const {name, number, defualt_adress} = req.body
             const user = await User.create({name, number, defualt_adress})
+            await Basket.create({userId: user['id'], aprox_sum: 0})
             return res.json(user)
-            
+
         } catch (e){
             next(ApiError.badRequest(e.message))
         }

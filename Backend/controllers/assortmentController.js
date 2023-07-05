@@ -1,5 +1,7 @@
 const ApiError = require('../error/ApiError')
-const {Assortment} = require('../models/models')
+const {Assortment, Basket_Product, Basket} = require('../models/models')
+const basketController = require('./basketController')
+
 
 class AssortmentController {
     async create(req, res, next) {
@@ -36,7 +38,11 @@ class AssortmentController {
     async deleteOneByName(req, res, next) {
         try {
             const {name} = req.body
+            const product = await Assortment.findOne({where: {name: name}})
             const deleted = await Assortment.destroy({where:{name: name}})
+            await Basket_Product.destroy({where: {assortmentId: product['id']}})
+            const updatedBaskets = await Basket.findAll()
+            updatedBaskets.forEach(element => basketController.updateSum(element['id']))
             return res.json(deleted)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -57,6 +63,12 @@ class AssortmentController {
         try {
             const {name, available} = req.body
             const updated = await Assortment.update({available: available}, {where: {name: name}})
+            if (!available){
+                const product = await Assortment.findOne({where: {name: name}})
+                await Basket_Product.destroy({where: {assortmentId: product['id']}})
+                const baskets = await Basket.findAll()
+                baskets.forEach(element => basketController.updateSum(element['id']))
+            }
             return res.json(updated) 
         } catch (e) {
            next(ApiError.badRequest(e.message)) 
@@ -66,7 +78,11 @@ class AssortmentController {
     async changeCostPerOneByName(req, res, next) {
         try {
             const {name, cost_per_one} = req.body
+            const product = await Assortment.findOne({where: {name: name}})
             const updated = await Assortment.update({cost_per_one: cost_per_one}, {where: {name: name}})
+            await Basket_Product.update({cost_per_one: cost_per_one}, {where: {assortmentId: product['id']}})
+            const baskets = await Basket.findAll()
+            baskets.forEach(element => basketController.updateSum(element['id']))
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))

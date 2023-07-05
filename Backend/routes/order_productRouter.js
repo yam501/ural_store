@@ -8,7 +8,4 @@ router.get('/getOrderProductByOrderID', orderProductController.getOrderProductBy
 
 router.delete('/deleteOrderProductByOrderId', orderProductController.deleteOrderProductByOrderId)
 
-router.put('/changeCountByOrderID', orderProductController.changeCountByOrderID)
-router.put('/changeMoreOrLessByOrderID', orderProductController.changeMoreOrLessByOrderID)
-
 module.exports = router

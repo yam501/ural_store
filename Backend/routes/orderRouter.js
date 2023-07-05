@@ -9,7 +9,5 @@ router.get('/getOrderByOrderID', orderController.getOrderByOrderID)
 
 router.put('/changeAdressByUserID', orderController.changeAdressByUserID)
 router.put('/changeAdressByOrderID', orderController.changeAdressByOrderID)
-router.put('/changeSumByUserID', orderController.changeSumByUserID)
-router.put('/changeSumByOrderID', orderController.changeSumByOrderID)
 
 module.exports = router

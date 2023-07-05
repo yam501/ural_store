@@ -38,32 +38,6 @@ class OrderProductController {
         }
 
     }
-
-    async changeCountByOrderID(req, res, next) {
-        try {
-            const {orderId, count} = req.body
-            const updated = await Order.update({count: count} , {where:{orderId: orderId}})
-            return res.json(updated)
-
-        } catch (e){
-            next(ApiError.badRequest(e.message))
-            
-        }
-
-    }
-
-    async changeMoreOrLessByOrderID(req, res, next) {
-        try {
-            const {orderId, more_or_less} = req.body
-            const updated = await Order.update({more_or_less: more_or_less} , {where:{orderId: orderId}})
-            return res.json(updated)
-
-        } catch (e){
-            next(ApiError.badRequest(e.message))
-            
-        }        
-
-    }
 }
 
 module.exports = new OrderProductController()
