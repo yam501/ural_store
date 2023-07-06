@@ -6,7 +6,7 @@ const AuthButton = () => {
     return (
         <Button  
         className='btnAuth'
-        ><AuthIcon className='btnIcon'/><spna className='btnText'>Войти</spna></Button>
+        ><AuthIcon className='btnIcon'/><span className='btnText'>Войти</span></Button>
     );
 };
 
