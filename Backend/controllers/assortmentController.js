@@ -6,8 +6,11 @@ const basketController = require('./basketController')
 class AssortmentController {
     async create(req, res, next) {
         try {
-            const {type, name, available, cost_per_one, description} = req.body
-            const assortment = await Assortment.create({type, name, available, cost_per_one, description})
+            const {type, name, available, cost_per_one, description, composition} = req.body
+            const {img} = req.files
+            let fileName = name + ".jpg"
+            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const assortment = await Assortment.create({type, name, available, cost_per_one, description, composition, image: fileName})
             return res.json(assortment)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -98,6 +101,17 @@ class AssortmentController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async changeCompositionByName(req, res, next) {
+        try {
+            const {name, composition} = req.body
+            const updated = await Assortment.update({composition: composition}, {where: {name: name}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
 
     async changeImageByName(req, res, next) {
         try {
