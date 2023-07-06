@@ -13,6 +13,7 @@ router.put('/changeProductNameByName', assortmentController.changeNameByName)
 router.put('/changeProductAvailableByName', assortmentController.changeAvailableByName)
 router.put('/changeProductCostPerOneByName', assortmentController.changeCostPerOneByName)
 router.put('/changeProductDescriptionByName', assortmentController.changeDescriptionByName)
+router.put('/changeProductCompositionByName',  assortmentController.changeCompositionByName)
 router.put('/changeProductImageByName', assortmentController.changeImageByName)
 
 module.exports = router

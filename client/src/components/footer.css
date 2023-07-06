@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.footer_wrapper {
+    position: static;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 230px;
+    background-image: url("../images/footer-bg.svg");
+
+}
+
+.footer-text-left {
+    font-size: 36px;
+    font-family: 'Montserrat';
+    color: white;
+    float: left;
+    opacity: 90%;
+}
+
+.footer-content-right {
+    margin-top: 20px;
+    float: right;
+    color: white;
+    opacity: 90%;
+}
+
+.footer-phone-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tgButton {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 30px;
+    min-width: 50px; 
+    min-height: 50px;
+    border-radius: 50%;
+    border: 0;
+}
+
+.tgButton:hover{
+    background-color:white;
+    
+}
+
+.tgButton:hover .tgIcon{
+    fill: #f0326b;
+}
+
+.numb {
+    font-family: 'Inter';
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+}
+
+.numbText {
+
+    font-family: 'Montserrat';
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.numb,
+.numbText {
+    display: inline-block;
+    width: 100%;
+}
+
+.prava{
+    color:white;
+    font-family: "Montserrat";
+    font-size: 20;
+    margin-top: 170px;
+    margin-bottom: auto;
+    opacity: 90%;
+}
