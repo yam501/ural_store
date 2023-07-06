@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 
 const AuthButton = () => {
     return (
-        <Button  
-        className='btnAuth'
-        ><AuthIcon className='btnIcon'/><spna className='btnText'>Войти</spna></Button>
+        <Button className='btnAuth'>
+            < AuthIcon className='btnIcon' /><spna className='btnText'>Войти</spna>
+        </Button >
     );
 };
 
