@@ -29,10 +29,8 @@
 
 
 .btnText {
-    position: relative;
-    z-index: 3;
     padding-left: 13px;
-    padding-right: 5px;
+    padding-right: 25px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
@@ -41,20 +39,10 @@
 }
 
 
-.btnAuth:hover, .btnAuth:focus, .btnBasket:hover {
+.btnAuth:hover, .btnBasket:hover {
     background-color: #ED789A;
     opacity: 60%;
 }
-
-.btnAuth:focus .btnText {
-    color: #fff;
-}
-
-.btnAuth:focus .btnIconFill {
-    fill: #F64579;
-    fill-opacity: 100%;
-}
-
 
 .btnAuth:hover .btnText {
     color: #fff;
@@ -103,3 +91,36 @@
     stroke: #fff;
     stroke-opacity: 1;
 }
+
+.authWindow {
+    background-color: #E9E9E9;
+    
+}
+
+.modal-content {
+    width: 400px;   
+}
+
+.close-button {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .close-button::before,
+  .close-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 2px;
+    background-color: #E9E9E9;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  .close-button::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  

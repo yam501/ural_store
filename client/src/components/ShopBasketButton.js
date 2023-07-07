@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 const ShopBasketButton = () => {
     return (
-        <Button  
+        <button  
         className='btnBasket'
         >
             <div className='btnBasketIconBox'>
@@ -14,7 +14,7 @@ const ShopBasketButton = () => {
                 </svg>
             </div>
 
-        </Button>
+        </button>
     );
 };
 
