@@ -7,7 +7,7 @@ function Order() {
         <div className="Order">
           <header className="Order-header">
             <p>
-              Авторизация
+              Заказ
             </p>
           </header>
         </div>

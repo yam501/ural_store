@@ -6,7 +6,7 @@ function User() {
         <div className="User">
           <header className="User-header">
             <p>
-              Авторизация
+              Личный кабинет
             </p>
           </header>
         </div>

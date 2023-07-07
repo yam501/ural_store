@@ -6,7 +6,7 @@ function Admin() {
       <div className="Admin">
         <header className="Admin-header">
           <p>
-            Авторизация
+            Админ
           </p>
         </header>
       </div>
