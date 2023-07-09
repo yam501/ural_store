@@ -2,8 +2,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 const ShopBasketButton = () => {
     return (
-        <button  
-        className='btnBasket'
+        <Button 
+        className='ms-3 d-flex justify-content-center align-items-center rounded-circle btnBasket '
         >
             <div className='btnBasketIconBox'>
                 <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +14,7 @@ const ShopBasketButton = () => {
                 </svg>
             </div>
 
-        </button>
+        </Button>
     );
 };
 
