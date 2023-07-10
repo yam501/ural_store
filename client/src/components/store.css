@@ -158,4 +158,45 @@
     background-image: url("../images/meat-bg.png");
     width: auto;
     height: 950px;
+
+}
+
+.salad-bg {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/salad-bg.png");
+    width: auto;
+    height: 950px;
+
+}
+
+.veg-bg {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/veg-bg.png");
+    width: auto;
+    height: 950px;
+
+}
+
+.bakery-bg {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/bakery-bg.png");
+    width: auto;
+    height: 950px;
+
+}
+
+.dairy-bg {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/dairy-bg.png");
+    width: auto;
+    height: 950px;
+
 }

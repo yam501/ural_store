@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/esm/Button';
 const SocialContent = () => {
 
     return (
-        <Nav className='nav flex-colum'>
+        <Nav className='nav row-cols-1'>
             <span className='textSocial'>Мы в социальных сетях</span>
             <Button className="tgButton " variant="outline-danger">
                 <svg width="24" height="22" viewBox="2 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">

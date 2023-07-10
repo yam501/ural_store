@@ -32,8 +32,8 @@ function Store() {
           если что все страницы в папке pages, все компоненты в папке components\
         </Nav>
       </Nav>
-      <Nav className="nav justify-content-center" >
-        <Nav id="salad_section">
+      <Nav className='salad-bg' >
+        <Nav className="nav justify-content-center" id="salad_section">
           <SaladSection />
         </Nav>
         <Nav className="nav justify-content-center">
@@ -41,8 +41,8 @@ function Store() {
         </Nav>
         <Nav>продукты</Nav>
       </Nav>
-      <Nav className="nav justify-content-center" >
-        <Nav id="veg_section">
+      <Nav className='veg-bg'>
+        <Nav className="nav justify-content-center"  id="veg_section">
           <VegSection />
         </Nav>
         <Nav className="nav justify-content-center">
@@ -50,8 +50,8 @@ function Store() {
         </Nav>
         <Nav>продукты</Nav>
       </Nav>
-      <Nav className="nav justify-content-center" >
-        <Nav id="bakery_section">
+      <Nav className='bakery-bg' >
+        <Nav className="nav justify-content-center" id="bakery_section">
           <BakerySection />
         </Nav>
         <Nav className="nav justify-content-center">
@@ -60,8 +60,8 @@ function Store() {
         <Nav>
       </Nav>
       </Nav>
-      <Nav className="nav justify-content-center" >
-        <Nav id="dairy_section">
+      <Nav className='dairy-bg' >
+        <Nav className="nav justify-content-center" id="dairy_section">
           <DairySection />
         </Nav>
         <Nav className="nav justify-content-center">
