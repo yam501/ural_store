@@ -1,19 +1,20 @@
 const Router = require('express')
 const router = new Router()
-const assortmentController = require('../controllers/assortmentController') 
+const assortmentController = require('../controllers/assortmentController')
+const checkRole = require('../middleware/CheckRoleMiddleware')
 
-router.post('/createProduct', assortmentController.create)
+router.post('/createProduct', checkRole('ADMIN'), assortmentController.create)
 
 router.get('/getProductByName', assortmentController.getOneByName)
 router.get('/getAllProductsByType', assortmentController.getAllByType)
 
-router.delete('/deleteProductByName', assortmentController.deleteOneByName)
+router.delete('/deleteProductByName', checkRole('ADMIN'), assortmentController.deleteOneByName)
 
-router.put('/changeProductNameByName', assortmentController.changeNameByName)
-router.put('/changeProductAvailableByName', assortmentController.changeAvailableByName)
-router.put('/changeProductCostPerOneByName', assortmentController.changeCostPerOneByName)
-router.put('/changeProductDescriptionByName', assortmentController.changeDescriptionByName)
-router.put('/changeProductCompositionByName',  assortmentController.changeCompositionByName)
-router.put('/changeProductImageByName', assortmentController.changeImageByName)
+router.put('/changeProductNameByName', checkRole('ADMIN'), assortmentController.changeNameByName)
+router.put('/changeProductAvailableByName', checkRole('ADMIN'), assortmentController.changeAvailableByName)
+router.put('/changeProductCostPerOneByName', checkRole('ADMIN'), assortmentController.changeCostPerOneByName)
+router.put('/changeProductDescriptionByName', checkRole('ADMIN'), assortmentController.changeDescriptionByName)
+router.put('/changeProductCompositionByName', checkRole('ADMIN'),  assortmentController.changeCompositionByName)
+router.put('/changeProductImageByName', checkRole('ADMIN'), assortmentController.changeImageByName)
 
 module.exports = router
