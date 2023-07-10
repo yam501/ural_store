@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .navbar {
+    position: static;
+    left: 0;
+    top: 0;
     min-height: 64px;
     height: 5.2vw;
     background: #962A4A;
@@ -24,7 +27,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255);
 }
 
 @media (max-width:1199px) {

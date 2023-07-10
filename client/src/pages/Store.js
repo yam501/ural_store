@@ -1,34 +1,75 @@
 import React from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Nav from 'react-bootstrap/Nav'
-import Camera from './Camera';
-import Otdel from './Otdel';
-import Widget from './Widget';
+import Camera from '../components/Camera';
+import MeatSection from '../components/MeatSection';
+import Widget from '../components/Widget';
 // Страница магазины
 
-import './store.css';
+import '../components/store.css';
+import Sections from '../components/Sections';
+import SaladSection from '../components/SaladSection';
+import VegSection from '../components/VegSection';
+import BakerySection from '../components/BakerySection';
+import DairySection from '../components/DairySection';
+
 
 function Store() {
+
   return (
     <Container>
-      <Nav className="nav justify-content-center">
-        <Otdel />
+
+      <Sections />
+      <Nav className='meat-bg' >
+        <Nav className="nav justify-content-center" id="meet_section">
+          <MeatSection />
+        </Nav>
+        <Nav className="nav justify-content-center">
+          <Camera />
+        </Nav>
+        <Nav>
+          тут надо сделать товары, прокрутку для них Widget -прототип, как его связать с бд не ебу Илья Данил надеюсь на вас :)
+          если что все страницы в папке pages, все компоненты в папке components\
+        </Nav>
       </Nav>
-      <Nav className="nav justify-content-center">
-        <Camera />
+      <Nav className="nav justify-content-center" >
+        <Nav id="salad_section">
+          <SaladSection />
+        </Nav>
+        <Nav className="nav justify-content-center">
+          <Camera />
+        </Nav>
+        <Nav>продукты</Nav>
       </Nav>
-      <Container className="nav justify-content-center">
-        <Nav className="nav-item" >
-          <Widget />
+      <Nav className="nav justify-content-center" >
+        <Nav id="veg_section">
+          <VegSection />
         </Nav>
-        <Nav className="nav-item">
-          <Widget />
+        <Nav className="nav justify-content-center">
+          <Camera />
         </Nav>
-        <Nav className="nav-item">
-          <Widget />
+        <Nav>продукты</Nav>
+      </Nav>
+      <Nav className="nav justify-content-center" >
+        <Nav id="bakery_section">
+          <BakerySection />
         </Nav>
-      </Container>
-    </Container>
+        <Nav className="nav justify-content-center">
+          <Camera />
+        </Nav>
+        <Nav>
+      </Nav>
+      </Nav>
+      <Nav className="nav justify-content-center" >
+        <Nav id="dairy_section">
+          <DairySection />
+        </Nav>
+        <Nav className="nav justify-content-center">
+          <Camera />
+        </Nav>
+        продукты
+      </Nav>
+    </Container >
   );
 }
 

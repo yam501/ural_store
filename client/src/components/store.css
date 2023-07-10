@@ -4,17 +4,18 @@
 .Camera {
     display: flex;
     background-color: gray;
-    width: 1600px;
+    width: 1000px;
     height: 500px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5vh;
 }
 
 .header_otdel {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1586px;
+    width: 1100px;
     height: 100px;
     color: rgb(0, 0, 0);
     margin-top: 5vh;
@@ -22,39 +23,44 @@
     border-width: 100vh black;
     border-top: 2px solid #0000007a;
     border-bottom: 2px solid #0000007a;
+
 }
 
-.showcase_meat{
+.showcase {
     font-family: 'Montserrat';
     font-size: 30px;
     border-bottom: 2px;
 }
 
-.widget_content{
+.widget_content {
     display: block;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 300px;
+    width: 300px;
+    height: 250px;
+    border: solid 2px;
+    margin-left: 5vh;
 }
 
-.widget_name{
+.widget_name {
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Montserrat';
     font-size: 30px;
-    margin-top: 5vh;
-    margin-bottom: 3vh;
+    margin-top: 8vh;
+    margin-bottom: 6vh;
 }
 
 .quantity_inner * {
-    box-sizing: border-box;    
-}    
+    box-sizing: border-box;
+}
+
 .quantity_inner {
     display: flex;
     justify-content: center;
-}        
+}
+
 .quantity_inner .bt_minus,
 .quantity_inner .bt_plus,
 .quantity_inner .quantity {
@@ -68,6 +74,7 @@
     cursor: pointer;
 
 }
+
 .quantity_inner .quantity {
     width: 50px;
     text-align: center;
@@ -76,19 +83,80 @@
     font-family: 'Inter';
     font-size: 24px;
 }
+
 .quantity_inner .bt_minus svg,
 .quantity_inner .bt_plus svg {
     stroke: #ffffff;
     stroke-width: 4;
     transition: 0.5s;
     margin: 4px;
-}    
+}
+
 .quantity_inner .bt_minus:hover svg,
 .quantity_inner .bt_plus:hover svg {
     stroke: #ff75aa;
 }
-.quantity{
+
+.quantity {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+.quantity_inner .bt_minus,
+.quantity_inner .bt_plus,
+.quantity_inner .quantity:active {
+    background-color: #a5a5a5 !important;
+}
+
+.sections {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff !important;
+    width: auto !important;
+    transition: transform .1s linear;
+    margin-top: 2vh;
+}
+
+
+
+.button-section {
+    background-color: #EEEEEE;
+    border: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 250px;
+    height: 45px;
+    border-radius: 29vh;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 18px;
+    align-content: center;
+    color: #962A4A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-section:hover {
+    background-color: #FF709A;
+    color: #ffffff;
+}
+
+.button-section:active {
+    background-color: #962A4A !important;
+    opacity: 90%;
+}
+
+
+.meat-bg {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/meat-bg.png");
+    width: auto;
+    height: 950px;
+
 }
