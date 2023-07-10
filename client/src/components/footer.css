@@ -6,10 +6,9 @@
     position: static;
     bottom: 0;
     left: 0;
-    width: 100vw;
+    width: auto;
     height: 230px;
     background-image: url("../images/footer-bg.svg");
-
 }
 
 .footer-text-left {
@@ -17,7 +16,8 @@
     font-family: 'Montserrat';
     color: white;
     float: left;
-    opacity: 90%;
+    opacity: 95%;
+    font-size: 600;
 }
 
 .footer-content-right {
