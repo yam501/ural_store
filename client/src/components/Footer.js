@@ -16,16 +16,13 @@ const Footer = () => {
 
     return (
 
-        <Navbar className='footer_wrapper'>
+        <Navbar className='justify-content-center footer_wrapper'>
             <Container className='row '>
-                <Nav className='col-sm-2'></Nav>
-                <Nav className='col-sm-4 justify-content-center '>
+                <Nav className='col-sm-3 justify-content-center '>
                     <span className="footer-text-left ">Уральский</span>
                 </Nav>
-                <Nav className='col-sm-2'></Nav>
-                <Nav className='col-sm-4 justify-content-center prava'> © 2023 Уральский. Все права защищены.</Nav>
-                <Nav className='col-sm-2'></Nav>
-                <Nav className='col-sm-4 footer-content-right'>
+                <Nav className='col-sm-6 justify-content-center footer-content-center'> © 2023 Уральский. Все права защищены.</Nav>
+                <Nav className='col-sm-1 justify-content-center footer-content-right'>
                     <Nav className='footer-social-content'>
                         <SocialContent />
                     </Nav>
