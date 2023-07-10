@@ -3,9 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 .footer_wrapper {
-    position: static;
-    bottom: 0;
-    left: 0;
+    position: relative;
+    width: auto;
     height: 230px;
     background-image: url("../images/footer-bg.svg");
 }
@@ -16,7 +15,8 @@
     color: white;
     float: left;
     opacity: 95%;
-    font-size: 600;
+    font-weight: 600;
+    margin-right: 80px;
 }
 
 .footer-content-right {
@@ -27,20 +27,14 @@
     float: right;
     color: white;
     opacity: 90%;
-    
+
 }
 
 .footer-phone-content {
-    display: block;
-    flex-direction: column;
-    justify-content: center;
     width: 170px;
 }
 
-.footer-social-content{
-    display: block;
-    flex-direction: column;
-    justify-content: center;
+.footer-social-content {
     width: 250px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -48,43 +42,46 @@
 
 .tgButton {
     background-color: white;
-    width: 50px; 
+    width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 0;
     margin-top: 0.5vh;
 }
-.tgButton:active{
+
+.tgButton:active {
     background-color: #ffffff !important;
 }
 
-.tgButton:hover{
-    background-color:white;
+.tgButton:hover {
+    background-color: white;
 }
 
-.tgButton:hover .tgIcon{
+.tgButton:hover .tgIcon {
     fill: #f0326b;
 }
 
-.textSocial{
+.textSocial {
     font-family: 'Montserrat';
-    font-size: 20px;
     color: white;
+    font-weight: 500;
+    font-size: 18px;
     text-decoration: none;
 }
 
 .numb {
     font-family: 'Inter';
-    font-size: 16px;
     color: white;
+    font-weight: 500;
+    font-size: 18px;
     text-decoration: none;
     width: 100%;
 }
 
 .numbText {
-
     font-family: 'Montserrat';
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 500;
     color: white;
     text-decoration: none;
 }
@@ -95,11 +92,240 @@
     width: 100%;
 }
 
-.prava{
-    color:white;
+.footer-content-center {
+    justify-content: center;
+    color: white;
     font-family: "Montserrat";
-    font-size: 20;
+    font-size: 18px;
+    font-weight: 500;
     margin-top: 170px;
     margin-bottom: auto;
     opacity: 90%;
+    margin-right: 100px;
+}
+
+
+
+@media (min-width: 1200px) and (max-width: 1599) {
+    .footer-text-left {
+        font-size: 30px;
+        font-family: 'Montserrat';
+        color: white;
+        float: left;
+        opacity: 95%;
+        margin-left: 80px;
+    }
+
+    .footer-content-right {
+        display: block;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+        float: right;
+        color: white;
+        opacity: 90%;
+        margin-right: 100px;
+    
+    }
+
+    .textSocial {
+        font-family: 'Montserrat';
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .numb {
+        font-family: 'Inter';
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .numbText {
+
+        font-family: 'Montserrat';
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-content-center {
+        color: white;
+        font-family: "Montserrat";
+        font-size: 16px;
+        margin-top: 170px;
+        margin-bottom: auto;
+        opacity: 90%;
+        margin-right: 0 !important;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .footer-text-left {
+        font-size: 24px;
+        font-family: 'Montserrat';
+        color: white;
+        float: left;
+        opacity: 95%;
+        font-size: 600;
+        margin-left: 100px;
+    }
+
+    .footer-content-right {
+        display: block;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+        float: right;
+        color: white;
+        opacity: 90%;
+        margin-right: 200px;
+    }
+
+    .textSocial {
+        font-family: 'Montserrat';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .numb {
+        font-family: 'Inter';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .numbText {
+
+        font-family: 'Montserrat';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-content-center {
+        color: white;
+        font-family: "Montserrat";
+        font-size: 14px;
+        margin-top: 170px;
+        margin-bottom: auto;
+        opacity: 90%;
+        margin-right: 70px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer-text-left {
+        font-size: 24px;
+        font-family: 'Montserrat';
+        color: white;
+        float: left;
+        opacity: 95%;
+        margin-left: 110px;
+    }
+
+    .footer-content-right {
+        display: block;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+        float: right;
+        color: white;
+        opacity: 90%;
+        margin-right: 100px;
+    }
+
+    .textSocial {
+        font-family: 'Montserrat';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .numb {
+        font-family: 'Inter';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .numbText {
+
+        font-family: 'Montserrat';
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-content-center {
+        color: white;
+        font-family: "Montserrat";
+        font-size: 12px;
+        margin-top: 170px;
+        margin-bottom: auto;
+        opacity: 90%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-text-left {
+        font-size: 24px;
+        font-family: 'Montserrat';
+        color: white;
+        float: left;
+        opacity: 95%;
+
+    }
+
+    .footer-content-right {
+        display: block;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+        float: right;
+        color: white;
+        opacity: 90%;
+        margin-right: 30px;
+    }
+
+    .textSocial {
+        font-family: 'Montserrat';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .numb {
+        font-family: 'Inter';
+        font-size: 12px;
+        color: white;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .numbText {
+
+        font-family: 'Montserrat';
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-content-center {
+        color: white;
+        font-family: "Montserrat";
+        font-size: 10px;
+        margin-top: 170px;
+        margin-bottom: auto;
+        opacity: 90%;
+    }
 }
