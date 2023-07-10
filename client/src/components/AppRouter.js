@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import {Routes, Route, Redirect} from 'react-router-dom'
 import { authRoutes, publicRoutes } from '../routes';
-import { STORE_ROUTE } from '../utils/consts';
 import { Context } from '..';
 function AppRouter() {
     const {user} = useContext(Context)

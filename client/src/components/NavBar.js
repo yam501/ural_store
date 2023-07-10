@@ -7,15 +7,14 @@ import AuthButton from './AuthButton';
 import './navBar.css';
 import AdressBox from './AdressBox';
 import ShopBasketButton from './ShopBasketButton';
-import BurgerMenu from './BurgerMenu';
+import BurgerMenu from './BurgerMenu'; 
 import ShopLogo from './ShopLogo';
 
 const NavBar = () => {
     const {user} = useContext(Context)
     return (
-    <Navbar className='d-flex navbar'>
-
-        <Container className=''>
+    <Navbar className='d-flex navbar navbar-expand-lg'>
+        <Container className='z-2'>
           <div className='d-flex align-items-center navBarBtnsBox'>
             <BurgerMenu/>
             <ShopLogo/>
