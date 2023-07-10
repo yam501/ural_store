@@ -5,15 +5,29 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Context } from '..';
 import AuthButton from './AuthButton';
 import './navBar.css';
+import AdressBox from './AdressBox';
+import ShopBasketButton from './ShopBasketButton';
+import BurgerMenu from './BurgerMenu';
+import ShopLogo from './ShopLogo';
+
 const NavBar = () => {
     const {user} = useContext(Context)
     return (
-    <Navbar className='navbar' data-bs-theme="dark">
-        <Container>
-          <Nav className="me-auto">
+    <Navbar className='navbar'>
+        <Container className='container'>
+          <div className='d-flex justify-content-between align-items-center navBarBtnsBox'>
+            <BurgerMenu/>
+            <ShopLogo/>
+          </div>
+          <Nav className="ms-auto d-flex align-items-center">
+          <div className='d-flex justify-content-between align-items-center navBtnsBox'>
+            <AdressBox/>
             <AuthButton />
+            <ShopBasketButton/>
+          </div>
           </Nav>
         </Container>
+        
       </Navbar>
     );
 };

@@ -6,7 +6,7 @@ function HistoryOrder() {
         <div className="HistoryOrder">
           <header className="HistoryOrder-header">
             <p>
-              Авторизация
+              История заказов
             </p>
           </header>
         </div>

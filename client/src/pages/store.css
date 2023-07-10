@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.Camera {
+    display: flex;
+    background-color: gray;
+    width: 1600px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_otdel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1586px;
+    height: 100px;
+    color: rgb(0, 0, 0);
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    border-width: 100vh black;
+    border-top: 2px solid #0000007a;
+    border-bottom: 2px solid #0000007a;
+}
+
+.showcase_meat{
+    font-family: 'Montserrat';
+    font-size: 30px;
+    border-bottom: 2px;
+}
+
+.widget_content{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 300px;
+}
+
+.widget_name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-size: 30px;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+}
+
+.quantity_inner * {
+    box-sizing: border-box;    
+}    
+.quantity_inner {
+    display: flex;
+    justify-content: center;
+}        
+.quantity_inner .bt_minus,
+.quantity_inner .bt_plus,
+.quantity_inner .quantity {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 10px 2px;
+    border-radius: 10px;
+    border: 0;
+    background: #a5a5a5;
+    cursor: pointer;
+
+}
+.quantity_inner .quantity {
+    width: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: #ffffff;
+    font-family: 'Inter';
+    font-size: 24px;
+}
+.quantity_inner .bt_minus svg,
+.quantity_inner .bt_plus svg {
+    stroke: #ffffff;
+    stroke-width: 4;
+    transition: 0.5s;
+    margin: 4px;
+}    
+.quantity_inner .bt_minus:hover svg,
+.quantity_inner .bt_plus:hover svg {
+    stroke: #ff75aa;
+}
+.quantity{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

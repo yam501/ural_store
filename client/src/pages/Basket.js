@@ -7,7 +7,7 @@ function Basket() {
         <div className="Basket">
           <header className="Basket-header">
             <p>
-              не Авторизация
+              Корзина
             </p>
           </header>
         </div>
