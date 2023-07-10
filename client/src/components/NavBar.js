@@ -13,21 +13,23 @@ import ShopLogo from './ShopLogo';
 const NavBar = () => {
     const {user} = useContext(Context)
     return (
-    <Navbar className='navbar'>
-        <Container className='container'>
-          <div className='d-flex justify-content-between align-items-center navBarBtnsBox'>
+    <Navbar className='d-flex navbar'>
+
+        <Container className=''>
+          <div className='d-flex align-items-center navBarBtnsBox'>
             <BurgerMenu/>
             <ShopLogo/>
           </div>
+        </Container>
+        <Container className='container'>
           <Nav className="ms-auto d-flex align-items-center">
-          <div className='d-flex justify-content-between align-items-center navBtnsBox'>
+          <div className='d-flex align-items-center navBtnsBox'>
             <AdressBox/>
             <AuthButton />
             <ShopBasketButton/>
           </div>
           </Nav>
         </Container>
-        
       </Navbar>
     );
 };

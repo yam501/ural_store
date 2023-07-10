@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import ShopMenu from './ShopMenu';
 const BurgerMenu = () => {
     const [open, setOpen] = useState(false)
 
@@ -13,22 +14,14 @@ const BurgerMenu = () => {
 
 
     return (
-        <div 
-        className={`me-3 burgerMenu`}
-        onClick={openMenu}
-        >
-          <span></span>
-          <Offcanvas show={open}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen. Like, text, images, lists, etc.
-            </Offcanvas.Body>
-          </Offcanvas>
+        <div>
+          <div 
+          className={`me-3 burgerMenu ${open ? 'open' : ''}`}
+          onClick={openMenu}
+          >
+            <span></span>
+          </div>
         </div>
-  
     );
 };
 
