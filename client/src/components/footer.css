@@ -38,6 +38,10 @@
 }
 
 .footer-social-content{
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    width: 250px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -48,8 +52,11 @@
     height: 50px;
     border-radius: 50%;
     border: 0;
+    margin-top: 0.5vh;
 }
-
+.tgButton:active{
+    background-color: #ffffff !important;
+}
 
 .tgButton:hover{
     background-color:white;
@@ -57,6 +64,13 @@
 
 .tgButton:hover .tgIcon{
     fill: #f0326b;
+}
+
+.textSocial{
+    font-family: 'Montserrat';
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
 }
 
 .numb {
