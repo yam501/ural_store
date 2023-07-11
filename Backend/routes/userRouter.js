@@ -14,7 +14,7 @@ router.get('/getUserByUserID', userController.getUserByUserID)
 
 router.put('/sendCode', userController.sendCode)
 router.put('/checkCode', userController.checkCode)
-router.put('/changeDefaultAdressByNumber', userController.changeDefaultAdressByNumber)
+router.put('/changeDefaultAddressByNumber', userController.changeDefaultAddressByNumber)
 router.put('/changeNumberByNumber', userController.changeNumberByNumber)
 router.put('/changeNameByNumber', userController.changeNameByNumber)
 

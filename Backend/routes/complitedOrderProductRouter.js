@@ -1,6 +1,6 @@
 const Router = require('express')
 const router = new Router()
-const complitedOrderProductController = require('../controllers/comlited_order_productController')
+const complitedOrderProductController = require('../controllers/complitedOrderProductController')
 
 router.post('/createComplitedOrderProduct', complitedOrderProductController.createComplitedOrderProduct)
 

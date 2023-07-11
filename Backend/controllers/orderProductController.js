@@ -1,11 +1,11 @@
 const ApiError = require('../error/ApiError')
-const {Order_Product} = require('../models/models')
+const {OrderProduct, Assortment} = require('../models/models')
 
 class OrderProductController {
     async createOrderProduct(req, res, next) {
         try {
-            const {orderId, assortmentId, count, more_or_less} = req.body
-            const orderProduct = await Order_Product.create({orderId, assortmentId, count, more_or_less})
+            const {orderId, assortmentId, count, moreOrLess} = req.body
+            const orderProduct = await OrderProduct.create({orderId, assortmentId, count, moreOrLess})
             return res.json(orderProduct)
 
         } catch (e){
@@ -18,7 +18,7 @@ class OrderProductController {
     async getOrderProductByOrderID(req, res, next) {
         try {
             const {orderId} = req.body
-            const orderProduct = await Order_Product.findAll({where:{orderId:orderId}})
+            const orderProduct = await OrderProduct.findAll({where:{orderId:orderId}})
             return res.json(orderProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))

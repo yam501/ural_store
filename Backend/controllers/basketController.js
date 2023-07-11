@@ -1,13 +1,13 @@
 const ApiError = require('../error/ApiError')
-const {Basket, Basket_Product, Assortment} = require('../models/models')
+const {Basket, BasketProduct, Assortment} = require('../models/models')
 
 
 class BasketController {
     async createBasket(req, res, next) {
         try {
             const {userId} = req.body
-            const aprox_sum = 0
-            const basket = await Basket.create({userId, aprox_sum})
+            const aproxSum = 0
+            const basket = await Basket.create({userId, aproxSum})
             return res.json(basket)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -36,10 +36,10 @@ class BasketController {
     }
 
     async updateSum(id) {
-        const basketProducts = await Basket_Product.findAll({where: {basketId: id}})
-        let new_sum = 0
-        basketProducts.forEach(element => new_sum += element['count'] * element['cost_per_one'])
-        await Basket.update({aprox_sum: new_sum}, {where: {id: id}})
+        const basketProducts = await BasketProduct.findAll({where: {basketId: id}})
+        let newSum = 0
+        basketProducts.forEach(element => newSum += element['count'] * element['costPerOne'])
+        await Basket.update({aproxSum: newSum}, {where: {id: id}})
     }
 }
 
