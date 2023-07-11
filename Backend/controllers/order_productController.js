@@ -18,7 +18,7 @@ class OrderProductController {
     async getOrderProductByOrderID(req, res, next) {
         try {
             const {orderId} = req.body
-            const orderProduct = await Order_Product.findOne({where:{orderId:orderId}})
+            const orderProduct = await Order_Product.findAll({where:{orderId:orderId}})
             return res.json(orderProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))

@@ -20,7 +20,7 @@ class BasketProductController {
     async getAllBasketProductsByBasketID(req, res, next) {
         try {
             const {basketId} = req.body
-            const basketProduct = await Basket_Product.findOne({where:{basketId: basketId}})
+            const basketProduct = await Basket_Product.findAll({where:{basketId: basketId}})
             return res.json(basketProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))
