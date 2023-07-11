@@ -4,17 +4,18 @@ const bcrypt = require('bcrypt')
 const {User, Basket} = require('../models/models')
 const nodemailer = require('nodemailer')
 
+
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: '89221449094dg@gmail.com',
-        pass: 'Dan-Revda2003'
+        pass: 'legxbdjmletzkzmo'
     }
 })
 
-const generateJwt = (id, number, role) => {
+const generateJwt = (id, number, role, is_activated) => {
     return jwt.sign(
-        {id, number, role},
+        {id, number, role, is_activated},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     )
@@ -32,6 +33,21 @@ const generateCode = (length) => {
     return result;
 }
 
+async function sendCode(number) {
+    try {
+        let code = generateCode(5)
+        await transporter.sendMail({
+            from: '"Gnom" <89221449094dg@gmail.com>',
+            to: number,
+            subject: 'Код для доступа к сайту Уральский',
+            text: `Ваш код: ${code}`
+        })
+        await User.update({activated_code: code}, {where: {number: number}})
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 class UserController {
     async checkCode(req, res, next) {
         try {
@@ -39,9 +55,11 @@ class UserController {
             const user = await User.findOne({where: {number: number}})
             if (user['activated_code'] == code) {
                 await User.update({is_activated: true}, {where: {number: number}})
-                return res.json({message: "Авторизован"})
+                const token = generateJwt(user.id, user.number, user.role, true)
+                return res.json({token})
             }
-            return res.json({message: "Не авторизован"})
+            const token = generateJwt(user.id, user.number, user.role, user.is_activated)
+            return res.json({token})
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
@@ -50,6 +68,10 @@ class UserController {
     async sendCode(req, res, next) {
         try {
             const {number} = req.body
+            const user = await User.findOne({where: {number: number}})
+            if (!user) {
+                return res.json({message: "Пользователь не найден"})
+            }
             let code = generateCode(5)
             await transporter.sendMail({
                 from: '"Gnom" <89221449094dg@gmail.com>',
@@ -57,26 +79,14 @@ class UserController {
                 subject: 'Код для доступа к сайту Уральский',
                 text: `Ваш код: ${code}`
             })
-            await User.update({actived_code: code}, {where: {number: number}})
+            await User.update({activated_code: code}, {where: {number: number}})
+            return res.json({message: "Код отправлен"})
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
-    async sendCode(number) {
-        try {
-            let code = generateCode(5)
-            await transporter.sendMail({
-                from: '"Gnom" <89221449094dg@gmail.com>',
-                to: number,
-                subject: 'Код для доступа к сайту Уральский',
-                text: `Ваш код: ${code}`
-            })
-            await User.update({actived_code: code}, {where: {number: number}})
-        } catch (e) {
-            next(ApiError.badRequest(e.message))
-        }
-    }
+    
 
     async registration(req, res, next) {
         try {
@@ -90,9 +100,9 @@ class UserController {
             }
             const hashPassword = await bcrypt.hash(password, 5)
             const user = await User.create({name, number, defualt_adress, password: hashPassword})
-            const basket = await Basket.create({userId: user.id, aprox_sum: 0})
-            const token = generateJwt(user.id, user.number, user.role)
-            this.sendCode(number)
+            await Basket.create({userId: user.id, aprox_sum: 0})
+            const token = generateJwt(user.id, user.number, user.role, user.is_activated)
+            sendCode(number)
             return res.json({token})
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -110,7 +120,7 @@ class UserController {
             if (!comparePassword) {
                 return next(ApiError.badRequest('Неверный пароль'))
             }
-            const token = generateJwt(user.id, user.number, user.role)
+            const token = generateJwt(user.id, user.number, user.role, user.is_activated)
             return res.json({token})
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -119,7 +129,7 @@ class UserController {
 
     async check(req, res, next) {
         try {
-            const token = generateJwt(req.user.id, req.user.number, req.user.role)
+            const token = generateJwt(req.user.id, req.user.number, req.user.role, req.user.is_activated)
             return res.json({token})
         } catch (e) {
             next(ApiError.badRequest(e.message))

@@ -8,9 +8,9 @@ class AssortmentController {
     async create(req, res, next) {
         try {
             const {type, name, available, cost_per_one, description, composition} = req.body
-            const {img} = req.files
+            const {image} = req.files
             let fileName = name + ".jpg"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            image.mv(path.resolve(__dirname, '..', 'static', fileName))
             const assortment = await Assortment.create({type, name, available, cost_per_one, description, composition, image: fileName})
             return res.json(assortment)
         } catch (e) {
