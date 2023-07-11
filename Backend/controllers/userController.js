@@ -154,7 +154,7 @@ class UserController {
         try {
             const {number} = req.body
             const user = await User.findOne({where:{number: number}})
-            return res.json(user)
+            return res.json({"id": user.id, "name": user.name, "number": user.number, "defaultAddress": user.defaultAddress})
 
         } catch (e){
             next(ApiError.badRequest(e.message))
@@ -165,7 +165,7 @@ class UserController {
         try {
             const {id} = req.body
             const user = await User.findOne({where:{id: id}})
-            return res.json(user)
+            return res.json({"id": user.id, "name": user.name, "number": user.number, "defaultAddress": user.defaultAddress})
 
         } catch (e){
             next(ApiError.badRequest(e.message))
