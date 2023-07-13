@@ -276,13 +276,14 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 480px) and (max-width: 766px) {
     .footer-text-left {
         font-size: 24px;
         font-family: 'Montserrat';
         color: white;
         float: left;
         opacity: 95%;
+        margin-left: 50px;
 
     }
 
@@ -294,14 +295,15 @@
         float: right;
         color: white;
         opacity: 90%;
-        margin-right: 30px;
+        margin-right: 400px ;
     }
 
     .textSocial {
         font-family: 'Montserrat';
-        font-size: 14px;
+        font-size: 12px;
         color: white;
         text-decoration: none;
+        
     }
 
     .numb {
@@ -310,14 +312,16 @@
         color: white;
         text-decoration: none;
         width: 100%;
+
     }
 
     .numbText {
 
         font-family: 'Montserrat';
-        font-size: 14px;
+        font-size: 12px;
         color: white;
         text-decoration: none;
+        margin-right: 50px;
     }
 
     .footer-content-center {
@@ -327,5 +331,6 @@
         margin-top: 170px;
         margin-bottom: auto;
         opacity: 90%;
+        margin-right: 50px;
     }
 }
