@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
 
 const AuthButton = () => {
-    
    
     const [show, setShow] = useState(false);
 
@@ -21,7 +20,7 @@ const AuthButton = () => {
                     <AuthIcon className='btnIcon'/>
                     <span className='btnText'>Войти</span>
                 </div>
-            </Button>
+            </Button> 
         </div>
     );
 };

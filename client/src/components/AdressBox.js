@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import AdressBoxIcon from './AdressBoxIcon';
 
-const AdressBox = () => {
+const AdressBox = (props) => {
     return (
         <div className="
         rounded-pill
