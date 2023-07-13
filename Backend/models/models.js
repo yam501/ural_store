@@ -7,53 +7,53 @@ const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: false },
     number: { type: DataTypes.STRING, allowNull: false, unique: true},
-    defualt_adress: { type: DataTypes.STRING, allowNull: true },
+    defaultAddress: { type: DataTypes.STRING, allowNull: true },
     password: {type: DataTypes.STRING, allowNull: false},
     role: {type: DataTypes.STRING, allowNull: false, defaultValue: "USER"},
-    is_activated: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    activated_code: {type: DataTypes.STRING, allowNull: false, defaultValue: ''}
+    isActivated: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
+    activatedCode: {type: DataTypes.STRING, allowNull: false, defaultValue: ''}
 })
 
 const Basket = sequelize.define('basket', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    aprox_sum: {type: DataTypes.DOUBLE, allowNull: false },
+    aproxSum: {type: DataTypes.DOUBLE, allowNull: false },
     userId: {type: DataTypes.INTEGER, allowNull: false, unique: true}
 })
 
-const Basket_Product = sequelize.define('basket_product', {
+const BasketProduct = sequelize.define('basketProduct', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     basketId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
-    cost_per_one: {type: DataTypes.DOUBLE, allowNull: false },
-    more_or_less: {type: DataTypes.BOOLEAN, allowNull: false }
+    costPerOne: {type: DataTypes.DOUBLE, allowNull: false },
+    moreOrLess: {type: DataTypes.BOOLEAN, allowNull: false }
 })
 
 const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false, unique: true },
-    adress: { type: DataTypes.STRING, allowNull: false },
-    aprox_sum: {type: DataTypes.DOUBLE, allowNull: false }
+    address: { type: DataTypes.STRING, allowNull: false },
+    aproxSum: {type: DataTypes.DOUBLE, allowNull: false }
 })
 
-const Completed_Orders = sequelize.define('complited_orders', {
+const ComplitedOrders = sequelize.define('complitedOrders', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false },
-    adress: { type: DataTypes.STRING, allowNull: false },
-    complited_sum: {type: DataTypes.DOUBLE, allowNull: false },
-    order_time: {type: DataTypes.TIME, allowNull: false },
-    complited_time: {type: DataTypes.TIME, allowNull: false }
+    address: { type: DataTypes.STRING, allowNull: false },
+    complitedSum: {type: DataTypes.DOUBLE, allowNull: false },
+    orderTime: {type: DataTypes.TIME, allowNull: false },
+    complitedTime: {type: DataTypes.TIME, allowNull: false }
 })
 
-const Order_Product = sequelize.define('order_product', {
+const OrderProduct = sequelize.define('orderProduct', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     orderId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
-    more_or_less: {type: DataTypes.BOOLEAN, allowNull: false }
+    moreOrLess: {type: DataTypes.BOOLEAN, allowNull: false }
 })
 
-const Complited_Order_Product = sequelize.define('complited_order_product', {
+const ComplitedOrderProduct = sequelize.define('complitedOrderProduct', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     complitedOrderId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
@@ -65,7 +65,7 @@ const Assortment = sequelize.define('assortment', {
     type: { type: DataTypes.STRING, allowNull: false},
     name: { type: DataTypes.STRING, allowNull: false },
     available: {type: DataTypes.BOOLEAN, allowNull: false },
-    cost_per_one: {type: DataTypes.DOUBLE, allowNull: false },
+    costPerOne: {type: DataTypes.DOUBLE, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: true },
     composition: { type: DataTypes.STRING, allowNull: true },
     image: {type: DataTypes.STRING, allowNull: true}
@@ -76,27 +76,27 @@ const Assortment = sequelize.define('assortment', {
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
-Basket.hasMany(Basket_Product)
-Basket_Product.belongsTo(Basket)
+Basket.hasMany(BasketProduct)
+BasketProduct.belongsTo(Basket)
 
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Order.hasMany(Order_Product)
-Order_Product.belongsTo(Order)
+Order.hasMany(OrderProduct)
+OrderProduct.belongsTo(Order)
 
-Assortment.hasMany(Basket_Product)
-Basket_Product.belongsTo(Assortment)
+Assortment.hasMany(BasketProduct)
+BasketProduct.belongsTo(Assortment)
 
-Assortment.hasMany(Order_Product)
-Order_Product.belongsTo(Assortment)
+Assortment.hasMany(OrderProduct)
+OrderProduct.belongsTo(Assortment)
 
-User.hasMany(Completed_Orders)
-Completed_Orders.belongsTo(User)
+User.hasMany(ComplitedOrders)
+ComplitedOrders.belongsTo(User)
 
-Completed_Orders.hasMany(Complited_Order_Product)
-Complited_Order_Product.belongsTo(Completed_Orders)
+ComplitedOrders.hasMany(ComplitedOrderProduct)
+ComplitedOrderProduct.belongsTo(ComplitedOrders)
 
 module.exports = {
-    User, Basket, Basket_Product, Order, Order_Product, Assortment, Completed_Orders, Complited_Order_Product
+    User, Basket, BasketProduct, Order, OrderProduct, Assortment, ComplitedOrders, ComplitedOrderProduct
 }

@@ -4,8 +4,8 @@ const {Order} = require('../models/models')
 class OrderController {
     async createOrder(req, res, next) {
         try {
-            const {userId, adress, aprox_sum} = req.body
-            const order = await Order.create({userId, adress, aprox_sum})
+            const {userId, address, aproxSum} = req.body
+            const order = await Order.create({userId, address, aproxSum})
             return res.json(order)
 
         } catch (e){
@@ -35,10 +35,10 @@ class OrderController {
         }
     }
 
-    async changeAdressByUserID(req, res, next) {
+    async changeAddressByUserID(req, res, next) {
         try {
-            const {userId, adress} = req.body
-            const updated = await Order.update({adress: adress} , {where:{userId: userId}})
+            const {userId, address} = req.body
+            const updated = await Order.update({address: address} , {where:{userId: userId}})
             return res.json(updated)
 
         } catch (e){
@@ -46,10 +46,10 @@ class OrderController {
         }
     }
 
-    async changeAdressByOrderID(req, res, next) {
+    async changeAddressByOrderID(req, res, next) {
         try {
-            const {id, adress} = req.body
-            const updated = await Order.update({adress: adress} , {where:{id: id}})
+            const {id, address} = req.body
+            const updated = await Order.update({address: address} , {where:{id: id}})
             return res.json(updated)
 
         } catch (e){

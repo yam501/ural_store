@@ -7,7 +7,7 @@ router.post('/createOrder', orderController.createOrder)
 router.get('/getOrderByUserID', orderController.getOrderByUserID)
 router.get('/getOrderByOrderID', orderController.getOrderByOrderID)
 
-router.put('/changeAdressByUserID', orderController.changeAdressByUserID)
-router.put('/changeAdressByOrderID', orderController.changeAdressByOrderID)
+router.put('/changeAddressByUserID', orderController.changeAddressByUserID)
+router.put('/changeAddressByOrderID', orderController.changeAddressByOrderID)
 
 module.exports = router
