@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import ShopMenu from './ShopMenu';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { NavLink } from 'react-router-dom';
 import { HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
-import PhoneContact from './PhoneContact';
-import SocialContent from './SocialContent';
 import AdressBox from './AdressBox';
 const BurgerMenu = () => {
     const [open, setOpen] = useState(false);
@@ -39,6 +34,8 @@ const BurgerMenu = () => {
           </div>
           <Offcanvas className='border-0 menuBox' show={open} onHide={handleClose}>
             <Offcanvas.Body className='menuBodyBox' >
+            <div className='w-100 d-flex justify-content-center align-items-center'>
+            </div>
             <Container className='container d-flex flex-column justify-content-between menuNav'>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>О нас</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказы</NavLink></div>

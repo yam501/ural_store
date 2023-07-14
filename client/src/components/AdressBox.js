@@ -4,12 +4,13 @@ import AdressBoxIcon from './AdressBoxIcon';
 
 const AdressBox = (props) => {
     return (
-        <div className="
+        <div className={`
         rounded-pill
         d-flex
         justify-content-around
         align-items-center
-        adressBox"
+        ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`}
+
         disabled>
         <div className='d-flex w-100 justify-content-around align-items-center adressBoxContent' >
             <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>
