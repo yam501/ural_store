@@ -33,12 +33,12 @@
     }
 }
 
-.btnAuth:hover, .btnBasket:hover {
+.btnAuth:hover, .btnBasket:hover, .adminBtn:hover {
     background-color: #ED789A;
     opacity: 60%;
 }
 
-.btnAuth:active, .btnBasket:active {
+.btnAuth:active, .btnBasket:active, .adminBtn:active {
     background-color: #ED789A !important;
     opacity: 60% !important;
 }
@@ -47,7 +47,7 @@
     color: #fff;
 }
 
-.btnAuth:hover .btnIconFill {
+.btnAuth:hover .btnIconFill, .adminBtn:hover .btnIconFill {
     fill: #F64579;
     fill-opacity: 100%;
 }
@@ -85,11 +85,11 @@
 }
 
 
-@media (max-width: 1199px) {
+/* @media (max-width: 1199px) {
     .adressBox {
         display: none !important;
     }
-}
+} */
 
 .btnBasket {
     height: 2.6vw;
@@ -260,3 +260,57 @@
     height: 36px;
     background-color: #ff709a;
 }
+
+.btnLogOut {
+    text-align: center;
+    min-height: 29px !important;
+    min-width: 60px !important;
+    width: 5vw !important;
+    height: 2.6vw !important;
+}
+
+
+.btnLogOutText {
+    font-size:calc(14px + 3 * (100vw/1903));
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: rgba(255, 255, 255);
+}
+
+@media (max-width:1199px) {
+    .btnLogOutText {
+        font-size:calc(14px + (3 + 3 * 0.7) * ((100vw - 375px) /1903));
+    }
+}
+
+@media (max-width: 499px) {
+    .btnLogOut {
+        display: none !important;
+    }
+}
+
+.adminBtn {
+    display: none !important;
+    
+}
+
+.btnAdmin {
+    width: 7vw;
+}
+
+@media (max-width:1199px) {
+    .adminBtn {
+        display: block !important;
+        width: 50px;
+        height: 50px;
+        background-color:#962A4A;
+        margin-left: 7px !important;
+        border: 0;
+    }
+    .btnAdmin {
+        display: none !important;
+    }
+}
+
