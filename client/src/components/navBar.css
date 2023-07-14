@@ -84,11 +84,13 @@
     padding-left: 10%;
 }
 
+
 @media (max-width: 1199px) {
     .adressBox {
         display: none !important;
     }
 }
+
 .btnBasket {
     height: 2.6vw;
     width: 2.6vw;
@@ -199,7 +201,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
-    margin-top: 5vw;
+    margin-top: 4vw;
 }
 
 .offcanvas-backdrop {
@@ -250,4 +252,11 @@
     .menuNav {
         margin-top: 30px;
     }
+}
+
+.menuAdressBox {
+    position: static;
+    width: 50%;
+    height: 36px;
+    background-color: #ff709a;
 }
