@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .navbar {
-    position: static;
-    left: 0;
-    top: 0;
     min-height: 64px;
     height: 5.2vw;
     background: #962A4A;
@@ -130,7 +127,6 @@
     position: relative;
     cursor: pointer;
     left: 0;
-    transition: left 295ms ease-in-out;
 }
 
 .burgerMenu::after, .burgerMenu::before {
@@ -188,6 +184,7 @@
 .menuBox {
     z-index: 0;
     background-color:#621B30;
+    opacity: .9;
 }
 
 @media (max-width: 599px) {
@@ -198,7 +195,6 @@
 
 .menuBodyBox {
     z-index: 1;
-    font-size:calc(16px + 4 * (100vw/1903));
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -208,5 +204,50 @@
 
 .offcanvas-backdrop {
     z-index: 0;
+    opacity: 35% !important;
 }
 
+.menuItemMarker {
+    background-color: white;
+    width: 2px;
+    height: 2px;
+    transition: height 200ms ease-in-out;
+}
+
+.menuItem {
+    font-size:calc(16px + 4 * (100vw/1903));
+    width: fit-content;
+    margin-bottom: 2.5vw;
+}
+.menuItem:hover .menuItemMarker {
+    height: calc(16px + 4 * (100vw/1903));
+    transition: height 200ms ease-in-out;
+}
+
+.sepLineMenu {
+    margin: auto;
+    margin-top: 1vw;
+    height: 2px;
+    width: 90%;
+    background-color: white;
+    opacity: .6;
+}
+
+.menuHotLine {
+    font-size: calc(14px + 6 * (100vw/1903));
+}
+
+.menuPhoneNum {
+    font-weight: 400;
+    font-size: calc(14px + 6 * (100vw/1903));   
+}
+
+.menuSocWebText {
+    font-size: calc(14px + 6 * (100vw/1903));   
+}
+
+@media(max-width:999px) {
+    .menuNav {
+        margin-top: 30px;
+    }
+}

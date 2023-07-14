@@ -9,6 +9,7 @@ import AdressBox from './AdressBox';
 import ShopBasketButton from './ShopBasketButton';
 import BurgerMenu from './BurgerMenu'; 
 import ShopLogo from './ShopLogo';
+import LogOutButton from './LogOutButton';
 
 const NavBar = () => {
     const {user} = useContext(Context)
@@ -24,7 +25,11 @@ const NavBar = () => {
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             <AdressBox/>
-            <AuthButton />
+            {
+              user.isAuth ? 
+              <AuthButton /> :
+              <LogOutButton/>
+            }
             <ShopBasketButton/>
           </div>
           </Nav>
