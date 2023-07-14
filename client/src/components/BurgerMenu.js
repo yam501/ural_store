@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-import { HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
+import { ABOUT_US, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
 import AdressBox from './AdressBox';
 const BurgerMenu = () => {
@@ -37,7 +37,7 @@ const BurgerMenu = () => {
             <div className='w-100 d-flex justify-content-center align-items-center'>
             </div>
             <Container className='container d-flex flex-column justify-content-between menuNav'>
-              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>О нас</NavLink></div>
+              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ABOUT_US}>О нас</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказы</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={HISTORYORDER_ROUTE}>История заказов</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>Условия доставки</NavLink></div>
