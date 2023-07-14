@@ -17,7 +17,7 @@ const Footer = () => {
     return (
 
         <Navbar className='justify-content-center footer_wrapper'>
-            <Container className='row '>
+            <Container className='row mobile-content'>
                 <Nav className='col-sm-3 justify-content-center '>
                     <span className="footer-text-left ">Уральский</span>
                 </Nav>
