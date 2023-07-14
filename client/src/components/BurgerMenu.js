@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { NavLink } from 'react-router-dom';
-import { HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
+import { ABOUT_US, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
 const BurgerMenu = () => {
     const [open, setOpen] = useState(false)
@@ -28,7 +28,7 @@ const BurgerMenu = () => {
           <Offcanvas className='menuBox' show={open} onHide={handleClose}>
             <Offcanvas.Body className='menuBodyBox' >
             <Container className='container d-flex flex-column justify-content-between gap-5 menuNav'>
-              <NavLink className='text-white '>О нас</NavLink>
+              <NavLink className='text-white' to={ABOUT_US}>О нас</NavLink>
               <NavLink className='text-white' to={ORDER_ROUTE}>Заказы</NavLink>
               <NavLink className='text-white' to={HISTORYORDER_ROUTE}>История заказов</NavLink>
               <NavLink className='text-white'>Условия доставки</NavLink>
