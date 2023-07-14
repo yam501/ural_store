@@ -10,7 +10,7 @@ const AuthWindow = () => {
       
     const handlePhoneChange = (event) => {
         const input = event.target.value;
-        const regex = /^[+]?[0-9]*$/; // Регулярное выражение для проверки только цифр
+        const regex = /^[+]?[0-9]*$/; 
       
         if (input.startsWith('+79') && regex.test(input)) {
             setPhone(input);

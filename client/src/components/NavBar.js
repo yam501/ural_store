@@ -27,8 +27,8 @@ const NavBar = () => {
             <AdressBox/>
             {
               user.isAuth ? 
-              <AuthButton /> :
-              <LogOutButton/>
+              <LogOutButton/>:
+              <AuthButton/>
             }
             <ShopBasketButton/>
           </div>
