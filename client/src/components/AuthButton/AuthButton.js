@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
+import Accept from './Accept';
 
 const AuthButton = () => {
-   
     const [show, setShow] = useState(false);
-
+    const [accept, setAccept] = useState(false)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     return (
         <div>
             <Button
@@ -20,8 +19,10 @@ const AuthButton = () => {
                     <AuthIcon className='btnIcon'/>
                     <span className='btnText'>Войти</span>
                 </div>
-            </Button> 
-        </div>
+            </Button>
+            <AuthWindow show={show} handleClose={handleClose}/>
+            {/* <Accept show={show} handleClose={handleClose} accept={accept}/> */}
+        </div> 
     );
 };
 

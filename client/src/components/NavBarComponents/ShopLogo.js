@@ -1,5 +1,5 @@
 import React from 'react';
-import { STORE_ROUTE } from '../utils/consts';
+import { STORE_ROUTE } from '../../utils/consts';
 import { NavLink } from 'react-router-dom';
 
 const ShopLogo = () => {
