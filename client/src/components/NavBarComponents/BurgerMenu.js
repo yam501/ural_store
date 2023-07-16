@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-import { ABOUTUS_ROUTE, FEEDBACK_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
+import { ABOUTUS_ROUTE, FEEDBACK_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
 
 const BurgerMenu = () => {

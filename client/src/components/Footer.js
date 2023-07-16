@@ -5,8 +5,8 @@ import { Context } from '..';
 import Nav from 'react-bootstrap/Nav'
 
 import './footer.css';
-import PhoneContact from './PhoneContact';
-import SocialContent from './SocialContent';
+import PhoneContact from './FooterComponents/PhoneContact';
+import SocialContent from './FooterComponents/SocialContent';
 
 
 

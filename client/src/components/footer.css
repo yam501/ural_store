@@ -3,11 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 .footer_wrapper {
-    position: relative;
+    position: absolute;
     left: 0;
     right: 0;
     width: auto;
     height: 230px;
+    background: #962A4A;
     background-image: url("../assets/footer-bg1.png");
 }
 

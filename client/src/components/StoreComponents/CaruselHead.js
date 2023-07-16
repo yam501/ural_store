@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import firstPict from '../assets/meat.jpg'
-import secondPict from '../assets/meat2.jpg'
+import firstPict from '../../assets/meat.jpg'
+import secondPict from '../../assets/meat2.jpg'
 import Nav from 'react-bootstrap/Nav'
 
 import './carousel.css'

@@ -1,16 +1,15 @@
 import React from 'react';
-import Sections from './Sections';
-import SaladSection from './SaladSection';
-import VegSection from './VegSection';
-import BakerySection from './BakerySection';
-import DairySection from './DairySection';
+import Sections from './StoreComponents/Sections';
+import SaladSection from './StoreComponents/SaladSection';
+import VegSection from './StoreComponents/VegSection';
+import BakerySection from './StoreComponents/BakerySection';
+import DairySection from './StoreComponents/DairySection';
 import Nav from 'react-bootstrap/Nav'
-import Camera from './Camera';
-import MeatSection from './MeatSection';
-import Widget from './Widget';
+import Camera from './StoreComponents/Camera';
+import MeatSection from './StoreComponents/MeatSection';
 
 import Container from 'react-bootstrap/esm/Container';
-import CaruselHead from '../components/CaruselHead';
+import CaruselHead from './StoreComponents/CaruselHead';
 import './store.css';
 
 const StoreMain = () => {
