@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.navbar {
+.navbar1 {
     min-height: 64px;
     height: 5.2vw;
     background: #962A4A;
@@ -85,11 +85,11 @@
 }
 
 
-/* @media (max-width: 1199px) {
+@media (max-width: 1199px) {
     .adressBox {
         display: none !important;
     }
-} */
+}
 
 .btnBasket {
     height: 2.6vw;
@@ -312,5 +312,84 @@
     .btnAdmin {
         display: none !important;
     }
+}
+
+.modal-content {
+    width: 23vw;
+    background-color: #E9E9E9;
+    font-size: calc(16px + 4 * (100vw/1903));
+    font-weight: bold;
+    border-radius: 19px;
+}
+
+.formPhoneBox, .formPasswordBox {
+    width: 20vw;
+    font-size: calc(14px + 2 * (100vw/1903));
+    font-weight: bold;
+}
+
+.formPhone, .formPassword {
+    height: 1.6vw;
+
+}
+
+.formAuthBtn {
+    width: 18vw;
+    height: 1.6vw;
+    background-color: #D9D9D9;
+    color: black;
+    font-size: calc(14px + 2 * (100vw/1903));
+    font-weight: bold;
+}
+
+.formAuthBtn:hover {
+    background-color: #c1c1c1 !important;
+    color: black;
+}
+
+.formAuthBtn:active {
+    color: black !important;
+}
+
+.formLinkBox {
+    width: 18vw;
+    font-size: calc(10px + 4 * (100vw/1903));
+    font-weight: bold;
+}
+
+.checkCodeBox {
+    width: 10vw;
+    font-size: calc(18px + 2 * (100vw/1903));
+    font-weight: bold;
+}
+
+.formCheckCode {
+    height: 2vw;
+    
+}
+
+.formCheckCodeBtn {
+    width: 18vw;
+    height: 1.6vw;
+    background-color: #D9D9D9;
+    color: black;
+    font-size: calc(14px + 2 * (100vw/1903));
+    font-weight: bold;
+}
+
+.formCheckCodeBtn:hover {
+    background-color: #c1c1c1 !important;
+    color: black;
+}
+
+.formCheckCodeBtn:active {
+    color: black !important;
+}
+
+.timer {
+    width: 2vw;
+    height: 2vw;
+    font-size: calc(24px + 4 * (100vw/1903));
+    font-weight: bold;
 }
 

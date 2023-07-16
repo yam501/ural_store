@@ -1,11 +1,13 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { BASKET_ROUTE } from '../utils/consts';
+import { BASKET_ROUTE } from '../../utils/consts';
+import { NavLink } from 'react-router-dom';
 const ShopBasketButton = () => {
     return (
-        <Button 
-        className='ms-3 d-flex justify-content-center align-items-center rounded-circle btnBasket'
-        >
+        <NavLink to={BASKET_ROUTE}>
+            <Button 
+            className='ms-3 d-flex justify-content-center align-items-center rounded-circle btnBasket'
+            >
             <div className='btnBasketIconBox' >
                 <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.12808 1.00012H29.1834L26.9877 14.0001H8.32383L6.12808 1.00012Z" className="btnBasketFill" stroke="#FF709A" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -16,6 +18,7 @@ const ShopBasketButton = () => {
             </div>
 
         </Button>
+        </NavLink>
     );
 };
 

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
 import { ABOUTUS_ROUTE, FEEDBACK_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
-import AdressBox from './AdressBox';
+
 const BurgerMenu = () => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
