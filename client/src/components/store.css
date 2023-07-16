@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
+
 .Camera {
     display: flex;
     background-color: gray;
@@ -8,7 +9,6 @@
     height: 500px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5vh;
 }
 
 .header_otdel {
@@ -17,9 +17,9 @@
     align-items: center;
     width: 1100px;
     height: 100px;
-    color: rgb(0, 0, 0);
     margin-top: 5vh;
     margin-bottom: 5vh;
+    color: rgb(0, 0, 0);
     border-width: 100vh black;
     border-top: 2px solid #0000007a;
     border-bottom: 2px solid #0000007a;
@@ -118,23 +118,23 @@
     justify-content: center;
     background-color: #ffffff !important;
     width: auto !important;
+    height: auto !important;
     transition: transform .1s linear;
-    margin-top: 0.2vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
-
-
 
 .button-section {
     background-color: #EEEEEE;
     border: 0;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 250px;
-    height: 45px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 300px;
+    height: 50px;
     border-radius: 29vh;
     font-family: 'Montserrat';
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     align-content: center;
     color: #962A4A;
     display: flex;
@@ -154,51 +154,830 @@
 
 
 .meat-bg {
+    display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/meat-bg.png");
-    width: auto;
-    height: 950px;
+    background-image: url("../assets/meat-bg.png");
+}
 
+.meet-content{
+    margin-top: 50px;
+    height: 300px;
+    width: 500px;
 }
 
 .salad-bg {
     position: relative;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/salad-bg.png");
+    background-image: url("../assets/salad-bg.png");
     width: auto;
-    height: 950px;
+    height: auto;
+}
 
+.salad-content{
+    margin-top: 50px;
+    height: 300px;
+    width: 500px;
 }
 
 .veg-bg {
     position: relative;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/veg-bg.png");
+    background-image: url("../assets/veg-bg.png");
     width: auto;
-    height: 950px;
+    height: auto;
+}
 
+.veg-content{
+    margin-top: 50px;
+    height: 300px;
+    width: 500px;
 }
 
 .bakery-bg {
     position: relative;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/bakery-bg.png");
+    background-image: url("../assets/bakery-bg.png");
     width: auto;
-    height: 950px;
+    height: auto;
 
+}
+
+.bakery-content{
+    margin-top: 50px;
+    height: 300px;
+    width: 500px;
 }
 
 .dairy-bg {
     position: relative;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/dairy-bg.png");
+    background-image: url("../assets/dairy-bg.png");
     width: auto;
-    height: 950px;
+    height: auto;
+}
 
+.dairy-content{
+    margin-top: 50px;
+    height: 300px;
+    width: 1000px;
+}
+
+@media (max-width: 420px){
+    .Camera {
+        display: flex;
+        background-color: gray;
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+    }
+        
+    .button-section {
+        width: 250px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 14px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+    }
+    .meat-bg {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+    }
+    
+    .meet-content{
+        margin-top: 50px;
+        height: 500px;
+        width: 500px;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-content{
+        margin-top: 50px;
+        height: 500px;
+        width: 500px;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-content{
+        margin-top: 50px;
+        height: 500px;
+        width: 500px;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .bakery-content{
+        margin-top: 50px;
+        height: 500px;
+        width: 500px;
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .dairy-content{
+        margin-top: 50px;
+        height: 500px;
+        width: 500px;
+    }
+}
+
+@media (max-width: 575px){
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+    }
+     
+    
+    .button-section {
+        width: 250px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 14px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        border-bottom: 2px;
+    }
+
+    .meat-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 659px) {
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+
+    }
+     
+    
+    .button-section {
+        width: 250px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 14px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        border-bottom: 2px;
+    }
+
+    .meat-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 766px){
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+    }
+     
+    .button-section {
+        width: 200px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 18px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        border-bottom: 2px;
+    }
+
+    .Camera {
+        display: flex;
+        background-color: gray;
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5vh;
+    }
+
+    .meat-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+    }
+     
+    .button-section {
+        width: 250px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 18px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        border-bottom: 2px;
+    }
+
+    .Camera {
+        display: flex;
+        background-color: gray;
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5vh;
+    }
+
+    .meat-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+    }
+     
+    .button-section {
+        width: 250px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 18px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        border-bottom: 2px;
+    }
+
+    .Camera {
+        display: flex;
+        background-color: gray;
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5vh;
+    }
+
+    .meat-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px){
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
+    }
+     
+    .button-section {
+        width: 250px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 18px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_otdel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        border-width: 100vh black;
+        border-top: 2px solid #0000007a;
+        border-bottom: 2px solid #0000007a;
+    
+    }
+    
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        border-bottom: 2px;
+    }
+
+    .Camera {
+        display: flex;
+        background-color: gray;
+        width: auto;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5vh;
+    }
+
+    .meat-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/meat-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .salad-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/salad-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .veg-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/veg-bg.png");
+        width: auto;
+        height: auto;
+    }
+    
+    .bakery-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/bakery-bg.png");
+        width: auto;
+        height: auto;
+    
+    }
+    
+    .dairy-bg {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-image: url("../assets/dairy-bg.png");
+        width: auto;
+        height: auto;
+    }
 }

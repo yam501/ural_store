@@ -1,10 +1,11 @@
 import React from 'react';
+import Nav from 'react-bootstrap/Nav'
 
 const Camera = () => {
     return (
-        <div className='Camera'>
+        <Nav className='Camera'>
             <span style={{color: "white",fontFamily: "Montserrat",fontSize: "40px"}}>Камера</span>
-        </div>
+        </Nav>
     );
 };
 
