@@ -1,12 +1,11 @@
 import AboutUs from "./pages/AboutUs"
 import Admin from "./pages/Admin"
-import Auth from "./pages/Auth"
 import Basket from "./pages/Basket"
 import HistoryOrder from "./pages/HistoryOrder"
 import Order from "./pages/Order"
 import Store from "./pages/Store"
 import User from "./pages/User"
-import { ABOUTUS_ROUTE, ADMIN_ROUTE, AUTH_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, REGISTRATION_ROUTE, STORE_ROUTE, USER_ROUTE } from "./utils/consts"
+import { ABOUTUS_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, STORE_ROUTE, USER_ROUTE } from "./utils/consts"
 
 export const authRoutes = [
     {
@@ -35,14 +34,6 @@ export const publicRoutes = [
     {
         path: STORE_ROUTE,
         element: <Store/>
-    },
-    {
-        path: AUTH_ROUTE,
-        element: <Auth/>
-    },
-    {
-        path: REGISTRATION_ROUTE,
-        element: <Auth/>
     },
     {
         path: ABOUTUS_ROUTE,
