@@ -5,6 +5,7 @@ import AdressBoxIcon from './AdressBoxIcon';
 const AdressBox = (props) => {
     return (
         <div className={`
+        me-3
         rounded-pill
         d-flex
         justify-content-around
