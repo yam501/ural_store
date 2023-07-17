@@ -10,17 +10,19 @@ import ShopBasketButton from './NavBarComponents/ShopBasketButton';
 import BurgerMenu from './NavBarComponents/BurgerMenu'; 
 import ShopLogo from './NavBarComponents/ShopLogo';
 import LogOutButton from './AuthButton/LogOutButton';
+import SearchPanel from './NavBarComponents/SearchPanel';
 
 const NavBar = () => {
     const {user} = useContext(Context)
     return (
     <Navbar className='d-flex navbar1'>
-        <Container className='z-2'>
+        <Container className='z-2 w-25'>
           <div className='d-flex align-items-center navBarBtnsBox'>
             <BurgerMenu/>
             <ShopLogo/>
           </div>
         </Container>
+        {/* <SearchPanel/> */}
         <Container className='container'>
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
