@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
-import { ABOUTUS_ROUTE, FEEDBACK_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../../utils/consts';
+import { ABOUTUS_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
 
 const BurgerMenu = () => {
@@ -41,7 +41,7 @@ const BurgerMenu = () => {
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказы</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={HISTORYORDER_ROUTE}>История заказов</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>Условия доставки</NavLink></div>
-              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={FEEDBACK_ROUTE}>Оставить отзыв</NavLink></div> 
+              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>Оставить отзыв</NavLink></div> 
             </Container>
             <Container>
               <div className='sepLineMenu'></div>

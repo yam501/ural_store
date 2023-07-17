@@ -12,7 +12,7 @@ const CaruselHead = () => {
             <Carousel className='carousel-content'>
                 <Carousel.Item>
                     <img
-                        className='w-100'
+                        className='d-block w-100'
                         src={secondPict}
                         alt='firstPicture'
 
@@ -20,7 +20,7 @@ const CaruselHead = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className='w-100'
+                        className='d-block w-100'
                         src={secondPict}
                         alt='firstPicture'
 
@@ -28,7 +28,7 @@ const CaruselHead = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className='w-100'
+                        className='d-block w-100'
                         src={secondPict}
                         alt='firstPicture'
 
@@ -36,7 +36,7 @@ const CaruselHead = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className='w-100'
+                        className='d-block w-100'
                         src={secondPict}
                         alt='firstPicture'
 

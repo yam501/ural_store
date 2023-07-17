@@ -4,6 +4,7 @@ import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
 import Accept from './Accept';
+import PasswordRecov from '../PasswordRecov';
 
 const AuthButton = () => {
     const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ const AuthButton = () => {
     return (
         <div>
             <Button
-            className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth'
+            className='d-flex justify-content-around align-items-center rounded-pill btnAuth'
             onClick={handleShow}
                 ><div className='d-flex justify-content-around align-items-center w-100'>
                     <AuthIcon className='btnIcon'/>
@@ -22,6 +23,7 @@ const AuthButton = () => {
             </Button>
             <AuthWindow show={show} handleClose={handleClose}/>
             {/* <Accept show={show} handleClose={handleClose} accept={accept}/> */}
+            {/* <PasswordRecov show={show} handleClose={handleClose}/> */}
         </div> 
     );
 };
