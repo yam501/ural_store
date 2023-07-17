@@ -14,10 +14,10 @@ import './store.css';
 
 const StoreMain = () => {
     return (
-        <Container className="nav justify-content-center">
+        <Container>
             <Sections />
             <CaruselHead />
-            <Container className='nav justify-content-center'>
+            <Container className='nav justify-content-center store-content'>
                 <Nav className='meat-bg' >
                     <Nav className="nav justify-content-center" id="meet_section">
                         <MeatSection />
