@@ -11,6 +11,7 @@ import BurgerMenu from './NavBarComponents/BurgerMenu';
 import ShopLogo from './NavBarComponents/ShopLogo';
 import LogOutButton from './AuthButton/LogOutButton';
 import SearchPanel from './NavBarComponents/SearchPanel';
+import FeedB from './FeedB';
 
 const NavBar = () => {
     const {user} = useContext(Context)

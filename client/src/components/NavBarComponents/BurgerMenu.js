@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { NavLink } from 'react-router-dom';
 import { ABOUTUS_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
+import FeedB from '../FeedB';
 
 const BurgerMenu = () => {
     const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ const BurgerMenu = () => {
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказы</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={HISTORYORDER_ROUTE}>История заказов</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>Условия доставки</NavLink></div>
-              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none'>Оставить отзыв</NavLink></div> 
+              <div className='d-flex align-items-center menuItem'><span className='me-3 menuItemMarker'></span><FeedB/></div> 
             </Container>
             <Container>
               <div className='sepLineMenu'></div>
