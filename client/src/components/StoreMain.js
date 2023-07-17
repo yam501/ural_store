@@ -17,6 +17,7 @@ const StoreMain = () => {
         <Container className="nav justify-content-center">
             <Sections />
             <CaruselHead />
+            <Container className='nav justify-content-center'>
                 <Nav className='meat-bg' >
                     <Nav className="nav justify-content-center" id="meet_section">
                         <MeatSection />
@@ -25,7 +26,7 @@ const StoreMain = () => {
                         <Camera />
                     </Nav>
                     <Nav className='meet-content'>
-                        
+
 
 
                     </Nav>
@@ -64,7 +65,7 @@ const StoreMain = () => {
                         <Camera />
                     </Nav>
                     <Nav className='bakery-content'>
-                    
+
 
 
 
@@ -78,12 +79,13 @@ const StoreMain = () => {
                         <Camera />
                     </Nav>
                     <Nav className='dairy-content'>
-                        
 
-                        
+
+
                     </Nav>
                 </Nav>
             </Container>
+        </Container>
     );
 };
 

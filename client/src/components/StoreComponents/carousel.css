@@ -1,5 +1,6 @@
 .carousel-content {
-    min-width: 99.6vw;
+    right: 0;
+    min-width: 100vw !important;
     z-index: 0;
 }
 
