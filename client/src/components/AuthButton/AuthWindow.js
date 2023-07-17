@@ -33,9 +33,7 @@ const AuthWindow = (props) => {
                 className='rounded-4 formPhone'
                 type="text"
                 placeholder="+78888888888"
-                value={phone}
-                maxLength={12}
-                onChange={handlePhoneChange}/>
+                />
             </Form.Group>
   
             <Form.Group className="container formPasswordBox mb-4" >
