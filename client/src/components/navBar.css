@@ -317,6 +317,8 @@
 }
 
 .modal-content {
+    margin: auto;
+    min-width: 300px;
     width: 23vw;
     background-color: #E9E9E9;
     font-size: calc(16px + 4 * (100vw/1903));
@@ -325,19 +327,20 @@
 }
 
 .formPhoneBox, .formPasswordBox {
+    min-width: 240px;
     width: 20vw;
     font-size: calc(14px + 2 * (100vw/1903));
     font-weight: bold;
 }
 
 .formPhone, .formPassword {
-    height: 1.6vw;
-
+    min-height: 1.6vw;
 }
 
 .formAuthBtn {
+    min-width: 155px;
     width: 18vw;
-    height: 1.6vw;
+    min-height: 1.6vw;
     background-color: #D9D9D9;
     color: black;
     font-size: calc(14px + 2 * (100vw/1903));
@@ -354,25 +357,27 @@
 }
 
 .formLinkBox {
+    min-width: 290px;
     width: 18vw;
-    font-size: calc(10px + 4 * (100vw/1903));
+    font-size: calc(12px + 4 * (100vw/1903));
     font-weight: bold;
 }
 
 .checkCodeBox {
+    min-width: 150px;
     width: 10vw;
     font-size: calc(18px + 2 * (100vw/1903));
     font-weight: bold;
 }
 
 .formCheckCode {
-    height: 2vw;
-    
+    min-height: 2vw;
 }
 
 .formCheckCodeBtn {
+    min-width: 155px;
     width: 18vw;
-    height: 1.6vw;
+    min-height: 1.6vw;
     background-color: #D9D9D9;
     color: black;
     font-size: calc(14px + 2 * (100vw/1903));

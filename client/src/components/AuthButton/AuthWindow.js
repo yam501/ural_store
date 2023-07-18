@@ -22,7 +22,7 @@ const AuthWindow = (props) => {
     const [login, setLogin] = useState(true)
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} className={props.reg ? 'd-none' : ''}>
+        <Modal show={props.show} onHide={props.handleClose} className=''>
         <Container className='mt-2 ms-2'>
             {login ? <span>Вход</span> : <span>Регистрация</span>}
         </Container>
@@ -45,10 +45,10 @@ const AuthWindow = (props) => {
            </Button>
            {login ? 
            <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
-           <NavLink onClick={() => setLogin(false)} className='text-decoration-none text-black'>Регистрация</NavLink>
-           <NavLink className='text-decoration-none text-black'>Забыли пароль?</NavLink>
+           <NavLink onClick={() => setLogin(false)} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
+           <NavLink className='ms-3 text-decoration-none text-black text-nowrap'>Забыли пароль?</NavLink>
            </div> :
-           <div className='d-flex justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox'>
+           <div className='d-flex justify-content-center align-items-center text-nowrap me-auto ms-auto mb-2 formLinkBox'>
             Уже есть аккаунт?<NavLink onClick={() => setLogin(true)} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
            </div>
            }

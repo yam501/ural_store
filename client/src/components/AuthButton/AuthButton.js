@@ -8,7 +8,7 @@ import PasswordRecov from '../PasswordRecov';
 
 const AuthButton = () => {
     const [show, setShow] = useState(false);
-    const [accept, setAccept] = useState(false)
+    const [accept, setAccept] = useState(true)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
@@ -21,8 +21,8 @@ const AuthButton = () => {
                     <span className='btnText'>Войти</span>
                 </div>
             </Button>
-            <AuthWindow show={show} handleClose={handleClose}/>
-            {/* <Accept show={show} handleClose={handleClose} accept={accept}/> */}
+            {/* <AuthWindow show={show} handleClose={handleClose}/> */}
+            <Accept show={show} handleClose={handleClose} accept={accept}/>
             {/* <PasswordRecov show={show} handleClose={handleClose}/> */}
         </div> 
     );

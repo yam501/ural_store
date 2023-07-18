@@ -1,6 +1,5 @@
 import AboutUs from "./pages/AboutUs"
 import Admin from "./pages/Admin"
-import Auth from "./pages/Auth"
 import Basket from "./pages/Basket"
 import HistoryOrder from "./pages/HistoryOrder"
 import Order from "./pages/Order"
@@ -35,14 +34,6 @@ export const publicRoutes = [
     {
         path: STORE_ROUTE,
         element: <Store/>
-    },
-    {
-        path: AUTH_ROUTE,
-        element: <Auth/>
-    },
-    {
-        path: REGISTRATION_ROUTE,
-        element: <Auth/>
     },
     {
         path: ABOUTUS_ROUTE,
