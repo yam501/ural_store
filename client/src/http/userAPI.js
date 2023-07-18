@@ -14,3 +14,15 @@ export const check = async() => {
     const response = await $authHost.get('api/user/login')
     return response
 }
+
+
+
+export const checkCode = async(number, code) => {
+    const response = await $host.put('api/user/checkCode', {number, code})
+    return response
+}
+
+export const sendCode = async(number) => {
+    const response = await $host.put('api/user/sendCode',{number})
+    return response
+}
