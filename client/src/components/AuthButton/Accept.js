@@ -1,17 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import { NavLink, useLocation } from 'react-router-dom';
-
-const Accept = (props) => {
+import { checkCode } from '../../http/userAPI';
+import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
+const Accept = observer((props) => {
+    const {user} = useContext(Context)
 
     const [time, setTime] = useState(30);
+    const [code, setCode] = useState('');
+    const isAccept = () => {
+        checkCode(props.number, code);
+        user.setIsAuth(true);
+    }
+    console.log(props.number);
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} className={props.accept ? '' : 'd-none'}>
+        <Modal show={props.show} onHide={props.handleClose} className={props.accept ? 'd-none' : ''}>
         <Container className='mt-2 ms-2 text-center'>
            <span>Подтверждение номера</span>
         </Container>
@@ -21,6 +30,8 @@ const Accept = (props) => {
                 <Form.Control
                 className='rounded-4 formCheckCode'
                 type="text"
+                value={code}
+                onChange={e => setCode(e.target.value)}
                 />
             </Form.Group>
             <div className='d-flex justify-content-center align-items-center me-auto ms-auto mb-2 mt-1 timer'>
@@ -29,12 +40,12 @@ const Accept = (props) => {
             <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
                 Если код не пришел, попробуйте снова через 30 секунд.
            </div>
-            <Button type="submit" className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
+            <Button type="submit" onClick={isAccept} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
                  Подтвердить
            </Button>
         </Form>
     </Modal>
     );
-};
+});
 
 export default Accept;

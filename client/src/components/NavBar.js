@@ -12,8 +12,9 @@ import ShopLogo from './NavBarComponents/ShopLogo';
 import LogOutButton from './AuthButton/LogOutButton';
 import SearchPanel from './NavBarComponents/SearchPanel';
 import FeedB from './FeedB';
+import { observer } from 'mobx-react-lite';
 
-const NavBar = () => {
+const NavBar = observer(() => {
     const {user} = useContext(Context)
     return (
     <Navbar className='d-flex navbar1'>
@@ -39,7 +40,7 @@ const NavBar = () => {
         </Container>
       </Navbar>
     );
-};
+});
 
 
 export default NavBar;

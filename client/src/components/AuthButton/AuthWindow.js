@@ -4,9 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate} from 'react-router-dom';
 import {registration} from "../../http/userAPI";
-
+import { ORDER_ROUTE, STORE_ROUTE } from '../../utils/consts';
+import Accept from './Accept';
+import PasswordRecov from '../PasswordRecov';
 
 const AuthWindow = (props) => {
     const [phone, setPhone] = useState('+79');
@@ -19,30 +21,31 @@ const AuthWindow = (props) => {
             setPhone(input);
         }
     };
-    
-  
-    const [login, setLogin] = useState(true)
+    const [accept, setAccept] = useState(true)
+    const [isLogin, setIsLogin] = useState(true)
 
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
-
+    const navigate = useNavigate()
+ 
     const signIn = async() => { 
 
-        if(login){
+        if(isLogin){
             // const response = await login()
 
         } else{
-
             const response = await registration(number,password)
+            
+            setAccept(!accept)
             console.log(response)
         }
    
     } 
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} className=''>
+        <Modal show={props.show} onHide={props.handleClose} className={accept ? '' : 'd-none'}>
         <Container className='mt-2 ms-2'>
-            {login ? <span>Вход</span> : <span>Регистрация</span>}
+            {isLogin ? <span>Вход</span> : <span>Регистрация</span>}
         </Container>
         <Form>
             <Form.Group className="container formPhoneBox mt-2 mb-2">
@@ -64,19 +67,21 @@ const AuthWindow = (props) => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button onClick={signIn}  className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
+            <Button onClick={signIn} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                 Продолжить
            </Button>
-           {login ? 
+           {isLogin ? 
            <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
-           <NavLink onClick={() => setLogin(false)} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
+           <NavLink onClick={() => setIsLogin(false)} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
            <NavLink className='ms-3 text-decoration-none text-black text-nowrap'>Забыли пароль?</NavLink>
            </div> :
            <div className='d-flex justify-content-center align-items-center text-nowrap me-auto ms-auto mb-2 formLinkBox'>
-            Уже есть аккаунт?<NavLink onClick={() => setLogin(true)} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
+            Уже есть аккаунт?<NavLink onClick={() => setIsLogin(true)} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
            </div>
            }
         </Form>
+        <Accept show={props.show} handleClose={props.handleClose} accept={accept} number={number}/>
+        {/* <PasswordRecov show={props.show} handleClose={props.handleClose}/>  */}
     </Modal>
     );
 };
