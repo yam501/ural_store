@@ -33,16 +33,14 @@ const generateCode = (length) => {
     return result;
 }
 
-async function sendCode(number) {
+async function sendCode(number, code) {
     try {
-        let code = generateCode(5)
         await transporter.sendMail({
             from: '"Gnom" <89221449094dg@gmail.com>',
             to: number,
             subject: 'Код для доступа к сайту Уральский',
             text: `Ваш код: ${code}`
         })
-        await User.update({activatedCode: code}, {where: {number: number}})
     } catch (e) {
         console.log(e)
     }
@@ -101,8 +99,10 @@ class UserController {
             const hashPassword = await bcrypt.hash(password, 5)
             const user = await User.create({name, number, defaultAddress, password: hashPassword})
             await Basket.create({userId: user.id, aproxSum: 0})
+            let code = generateCode(5)
+            await User.update({activatedCode: code}, {where: {number: number}})
             const token = generateJwt(user.id, user.number, user.role, user.isActivated)
-            sendCode(number)
+            sendCode(number, code)
             return res.json({token})
         } catch (e) {
             next(ApiError.badRequest(e.message))
