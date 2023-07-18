@@ -116,12 +116,29 @@ class AssortmentController {
 
     async changeImageByName(req, res, next) {
         try {
-            const {name, image} = req.body
-            const updated = await Assortment.update({image: image}, {where: {name: name}})
+            const {name} = req.body
+            const {image} = req.files
+            let fileName = name + ".jpg"
+            image.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const updated = await Assortment.update({image: fileName}, {where: {name: name}})
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }        
+    }
+
+    async changeAssortment(req, res, next) {
+        try {
+            const {name, available, costPerOne, description, composition} = req.body
+            const {image} = req.files
+            let fileName = name + ".jpg"
+            image.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const updated = await Assortment.update({name: name, available: available, costPerOne: costPerOne, 
+                description: description, composition: composition, image: fileName}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 }
 
