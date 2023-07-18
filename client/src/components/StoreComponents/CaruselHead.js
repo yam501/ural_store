@@ -8,7 +8,7 @@ import './carousel.css'
 
 const CaruselHead = () => {
     return (
-        <Nav>
+        <Nav className='carousel-wrapper'>
             <Carousel className='carousel-content'>
                 <Carousel.Item>
                     <img
