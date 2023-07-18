@@ -1,0 +1,26 @@
+.feedb-wrapper{
+    z-index: 0;
+    background-color:#40121F;  
+    border: 0cm;
+    color: white; 
+}
+
+.feedback-header{
+    height: 100px;
+}
+
+.select{
+    border: 1px gray !important;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+
+.input{
+    border: 1px gray !important;
+    box-shadow: none !important;
+}
+
+.textarea{
+    border: 1px gray !important;
+    box-shadow: none !important;
+}
