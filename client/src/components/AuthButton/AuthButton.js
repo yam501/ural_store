@@ -3,12 +3,10 @@ import { useState } from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
-import Accept from './Accept';
-import PasswordRecov from '../PasswordRecov';
+
 
 const AuthButton = () => {
     const [show, setShow] = useState(false);
-    const [accept, setAccept] = useState(true)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
@@ -21,9 +19,7 @@ const AuthButton = () => {
                     <span className='btnText'>Войти</span>
                 </div>
             </Button>
-            {/* <AuthWindow show={show} handleClose={handleClose}/> */}
-            <Accept show={show} handleClose={handleClose} accept={accept}/>
-            {/* <PasswordRecov show={show} handleClose={handleClose}/> */}
+            <AuthWindow show={show} handleClose={handleClose}/>
         </div> 
     );
 };
