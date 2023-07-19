@@ -5,13 +5,19 @@ const { DataTypes } = require('sequelize')
 
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: true },
     number: { type: DataTypes.STRING, allowNull: false, unique: true},
     defaultAddress: { type: DataTypes.STRING, allowNull: true },
     password: {type: DataTypes.STRING, allowNull: false},
     role: {type: DataTypes.STRING, allowNull: false, defaultValue: "USER"},
     isActivated: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     activatedCode: {type: DataTypes.STRING, allowNull: false, defaultValue: ''}
+})
+
+const Token = sequelize.define('token', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    userId: {type: DataTypes.INTEGER, allowNull: false},
+    refreshToken: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Basket = sequelize.define('basket', {
@@ -76,6 +82,9 @@ const Assortment = sequelize.define('assortment', {
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
+User.hasOne(Token)
+Token.belongsTo(User)
+
 Basket.hasMany(BasketProduct)
 BasketProduct.belongsTo(Basket)
 
@@ -98,5 +107,5 @@ ComplitedOrders.hasMany(ComplitedOrderProduct)
 ComplitedOrderProduct.belongsTo(ComplitedOrders)
 
 module.exports = {
-    User, Basket, BasketProduct, Order, OrderProduct, Assortment, ComplitedOrders, ComplitedOrderProduct
+    User, Token, Basket, BasketProduct, Order, OrderProduct, Assortment, ComplitedOrders, ComplitedOrderProduct
 }
