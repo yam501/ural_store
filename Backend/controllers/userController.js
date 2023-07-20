@@ -68,7 +68,7 @@ class UserController {
                 await User.update({isActivated: true}, {where: {number: number}})
                 const updatedUser = await User.findOne({where: {number: number}})
                 const userDto = new UserDto(updatedUser)
-                const tokens = tokenController({...userDto})
+                const tokens = tokenController.generateTokens({...userDto})
                 await tokenController.saveToken(userDto.id ,tokens.refreshToken)
                 res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
                 return res.json({ ...tokens, user: {...userDto} })
