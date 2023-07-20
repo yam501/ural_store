@@ -40,13 +40,38 @@ class UserController {
         }
     }
 
+    async sendCodeFromUser(req, res, next) {
+        try {
+            const {number} = req.body
+
+            if (!number) {
+                return next(ApiError.badRequest('Некорректный номер телефона'))
+            }
+
+            const code = smsController.generateCode(5)
+            smsController.sendCode(number, code)
+
+            updated = await User.update({activatedCode: code}, {where: {number: number}})
+
+            return res.json({updated})
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async activate(req, res, next) {
         try {
             const {number, code} = req.body
             const user = await User.findOne({where: {number: number}})
             if (user['activatedCode'] == code) {
                 await User.update({isActivated: true}, {where: {number: number}})
-                return res.redirect(process.env.CLIENT_URL)
+                const updatedUser = await User.findOne({where: {number: number}})
+                const userDto = new UserDto(updatedUser)
+                const tokens = tokenController({...userDto})
+                await tokenController.saveToken(userDto.id ,tokens.refreshToken)
+                res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
+                return res.json({ ...tokens, user: {...userDto} })
             }
             throw ApiError.badRequest('Введен неверный активационный код')
 
