@@ -1,7 +1,9 @@
 import { IUser } from "../IUser"
 
-export const AuthResponse = {
-    accessToken: '',
-    refreshToken: '',
-    user: Object.assign({}, IUser)
+export class AuthResponse {
+    constructor() {
+        this.accessToken = ''
+        this.refreshToken = ''
+        this.user = new IUser()
+    }
 } 

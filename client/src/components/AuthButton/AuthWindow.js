@@ -83,7 +83,6 @@ const AuthWindow = (props) => {
                     </div>
                 }
             </Form>
-            {/* <Accept show={props.show} handleClose={props.handleClose}  number={number}/> */}
             {/* <PasswordRecov show={props.show} handleClose={props.handleClose}/>  */}
         </Modal>
     );

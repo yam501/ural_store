@@ -9,7 +9,7 @@ export default class UserStore {
 
     constructor() {
         this._isAuth = false
-        this._user = {...IUser}
+        this._user = new IUser()
         makeAutoObservable(this)
     }
 
@@ -27,7 +27,6 @@ export default class UserStore {
     async login(number, password) {
         try {
             const response = await AuthService.login(number, password);
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
@@ -38,12 +37,10 @@ export default class UserStore {
 
     async registration(number, password) {
         try {
-            console.log(this._user)
             const response = await AuthService.registration(number, password);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
-            console.log(response, this._isAuth)
         } catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -52,10 +49,9 @@ export default class UserStore {
     async logout() {
         try {
             const response = await AuthService.logout();
-
             localStorage.removeItem('token');
             this.setIsAuth(false)
-            this.setUser({...IUser})
+            this.setUser(new IUser())
         } catch (e) {
             console.log(e.response?.data?.message)
         }

@@ -19,7 +19,8 @@ const Accept = observer((props) => {
     }
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} >
+        <Modal show={props.show} >
+        <div className='position-relative ms-auto me-3 acceptCloseBtn' onClick={props.handleClose} ></div>
             <Container className='mt-2 ms-2 text-center'>
                 <span>Подтверждение номера</span>
             </Container>

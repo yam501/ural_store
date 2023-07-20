@@ -1,7 +1,8 @@
-export const IUser =  {
-    number: Number,
-    isActivated: false,
-    id: '',
-    role: ''
+export class IUser {
+    constructor() {
+        this.number = ''
+        this.isActivated = false
+        this.id = '';
+    }
 } 
 
