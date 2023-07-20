@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
 .feedb-wrapper{
     z-index: 0;
     background-color:#40121F;  
@@ -23,4 +25,36 @@
 .textarea{
     border: 1px gray !important;
     box-shadow: none !important;
+}
+
+.button-good{
+    background-color: #51ff7c !important;
+}   
+
+.button-neutral{
+    background-color: #ffe550 !important;
+}
+
+.button-bad{
+    background-color: #fc4a4a !important;
+}
+
+
+.feedb-button{
+    font-family: 'Montserrat';
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: white;
+    border: 0;
+}
+
+.feedb-button:hover{
+    font-family: 'Montserrat';
+    color: black;
+    background-color: white;
+}
+.feedb-button:active{
+    color: white;
+    background-color:#FF709A !important;
 }
