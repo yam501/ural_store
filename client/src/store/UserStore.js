@@ -2,12 +2,19 @@ import {makeAutoObservable} from "mobx";
 import { IUser } from "../models/IUser";
 import AuthService from "../service/AuthService";
 import axios from "axios";
+import { $host } from "../http";
+import jwtDecode from "jwt-decode";
 
 export default class UserStore {
+
     constructor() {
         this._isAuth = false
         this._user = new IUser()
         makeAutoObservable(this)
+    }
+
+    setIsActivated(bool) {
+        this._user.isActivated = bool
     }
 
     setIsAuth(bool) {
@@ -20,9 +27,10 @@ export default class UserStore {
     async login(number, password) {
         try {
             const response = await AuthService.login(number, password);
+            console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
-            this.setUser(response.data.user)
+            this.setUser(response.data._user)
         } catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -31,10 +39,10 @@ export default class UserStore {
     async registration(number, password) {
         try {
             const response = await AuthService.registration(number, password);
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
-            this.setUser(response.data.user)
+            this.setUser(response.data._user)
+            console.log(response, this._isAuth)
         } catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -43,6 +51,7 @@ export default class UserStore {
     async logout() {
         try {
             const response = await AuthService.logout();
+            
             localStorage.removeItem('token');
             this.setIsAuth(false)
             this.setUser(new IUser())
@@ -53,13 +62,29 @@ export default class UserStore {
 
     async checkAuth() {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}api/refresh`, {withCredentials:true})
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/refresh`, {withCredentials:true})
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
-            this.setUser(response.data.user)
+            this.setUser(response.data._user)
         } catch(e) {
             console.log(e.response?.data?.message)
         }
+    }
+
+    async checkCode(number, code) {
+        try {
+            console.log(number)
+            console.log(this._user)
+            return await $host.put(`${process.env.REACT_APP_API_URL}api/user/activate`, {number, code})
+        } catch (e) {
+            <div style={{width:'300px', height: '250px', backgroundColor: 'red'}}>
+                {e.response?.data?.message}
+            </div>
+        }
+    }
+    
+    async sendCode (number) {
+        return await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`,{number})
     }
     // get isAuth() {
     //     return this._isAuth 

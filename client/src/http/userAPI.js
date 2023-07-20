@@ -20,15 +20,3 @@ import jwt_decode from "jwt-decode";
 // }
 
 
-export const checkCode = async(number, code) => {
-    const {data} = await $host.put('api/user/checkCode', {number, code})
-    localStorage.setItem('token', data.token)
-    console.log(jwt_decode(data.token))
-    return jwt_decode(data.token)
-}
-
-export const sendCode = async(number) => {
-    const {data} = await $host.put('api/user/sendCode',{number})
-    localStorage.setItem('token', data.token)
-    return jwt_decode(data.token)
-}

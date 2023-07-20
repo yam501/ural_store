@@ -6,4 +6,4 @@ export class AuthResponse {
         this.refreshToken =  ''
         this.user = new IUser()
     }
-}
+} 

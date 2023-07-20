@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,  } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,9 +13,11 @@ import LogOutButton from './AuthButton/LogOutButton';
 import SearchPanel from './NavBarComponents/SearchPanel';
 import FeedB from './FeedB';
 import { observer } from 'mobx-react-lite';
+import Accept from './AuthButton/Accept';
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
+    
     return (
     <Navbar className='d-flex navbar1'>
         <Container className='z-2 w-25'>
@@ -29,11 +31,7 @@ const NavBar = observer(() => {
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             <AdressBox/>
-            {
-              user.isAuth ? 
-              <LogOutButton/>:
-              <AuthButton/>
-            }
+            <AuthButton/>
             <ShopBasketButton/>
           </div>
           </Nav>

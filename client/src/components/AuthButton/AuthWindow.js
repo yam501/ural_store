@@ -23,31 +23,23 @@ const AuthWindow = (props) => {
             setPhone(input);
         }
     };
-    const [accept, setAccept] = useState(true)
+    
     const [isLogin, setIsLogin] = useState(true)
-
+    // const [accept, setAccept] = useState(true)
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
     const {user} = useContext(Context)
-    // const signIn = async() => { 
-
-    //     if(isLogin){
-    //         // const response = await login()
-    //         user.setUser(user)
-    //         user.setIsAuth(true)
-    //     } else{
-    //         const response = await registration(number,password)
-            
-    //         setAccept(!accept)
-    //         console.log(response)
-    //     }
-
-
-    // } 
+        
+        // setAccept(!accept)
+    const registration = () => {
+        user.registration(number, password);
+        props.updateNum(number)
+    }
+    
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} className={accept ? '' : 'd-none'}>
+        <Modal show={props.show} onHide={props.handleClose} >
         <Container className='mt-2 ms-2'>
             {isLogin ? <span>Вход</span> : <span>Регистрация</span>}
         </Container>
@@ -71,9 +63,9 @@ const AuthWindow = (props) => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-           {isLogin ? 
+           {isLogin ?  
            <div >
-           <Button onClick={() => user.login(number, password)} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
+           <Button onClick={() => user.login(number, password)} type='submit' className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                 Продолжить
            </Button>
             <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
@@ -82,7 +74,7 @@ const AuthWindow = (props) => {
             </div>
            </div> :
            <div >
-           <Button onClick={() => user.registration(number, password)} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
+           <Button onClick={() => registration()} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                 Продолжить
            </Button>
             <div className='d-flex justify-content-center align-items-center text-nowrap me-auto ms-auto mb-2 formLinkBox'>
@@ -91,7 +83,7 @@ const AuthWindow = (props) => {
            </div>
            }
         </Form>
-        <Accept show={props.show} handleClose={props.handleClose} accept={accept} number={number}/>
+        {/* <Accept show={props.show} handleClose={props.handleClose}  number={number}/> */}
         {/* <PasswordRecov show={props.show} handleClose={props.handleClose}/>  */}
     </Modal>
     );

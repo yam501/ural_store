@@ -7,6 +7,8 @@ import CaruselHead from "./components/StoreComponents/CaruselHead";
 import { observer } from "mobx-react-lite";
 import { Context } from ".";
 import { check } from "./http/userAPI";
+import Accept from "./components/AuthButton/Accept";
+import PasswordRecov from "./components/PasswordRecov";
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -22,6 +24,8 @@ const App = observer(() => {
       user.checkAuth()
     }
   }, [])
+  
+
   return (
     <BrowserRouter >
       <NavBar/>

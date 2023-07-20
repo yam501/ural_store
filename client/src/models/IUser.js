@@ -4,4 +4,4 @@ export class IUser {
         this.isActivated = false
         this.id = ''
     }
-}
+} 

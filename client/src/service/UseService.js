@@ -5,3 +5,4 @@ export default class UseService {
         return new Promise(() => $host.get('/users'))//ИЛЮХА ДОЛЖЕН БУДЕТ СКАЗАТЬ ПУТЬ СУКА
     }
 }
+ 
