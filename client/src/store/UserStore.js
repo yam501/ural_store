@@ -9,7 +9,7 @@ export default class UserStore {
 
     constructor() {
         this._isAuth = false
-        this._user = new IUser()
+        this._user = {...IUser}
         makeAutoObservable(this)
     }
 
@@ -30,7 +30,7 @@ export default class UserStore {
             console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
-            this.setUser(response.data._user)
+            this.setUser(response.data.user)
         } catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -38,10 +38,12 @@ export default class UserStore {
 
     async registration(number, password) {
         try {
+            console.log(this._user)
             const response = await AuthService.registration(number, password);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
-            this.setUser(response.data._user)
+            this.setUser(response.data.user)
+            console.log(this._user)
             console.log(response, this._isAuth)
         } catch (e) {
             console.log(e.response?.data?.message)
@@ -54,7 +56,7 @@ export default class UserStore {
             
             localStorage.removeItem('token');
             this.setIsAuth(false)
-            this.setUser(new IUser())
+            this.setUser({...IUser})
         } catch (e) {
             console.log(e.response?.data?.message)
         }
@@ -65,7 +67,7 @@ export default class UserStore {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/refresh`, {withCredentials:true})
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
-            this.setUser(response.data._user)
+            this.setUser(response.data.user)
         } catch(e) {
             console.log(e.response?.data?.message)
         }
