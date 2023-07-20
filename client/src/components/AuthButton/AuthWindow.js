@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -9,6 +9,8 @@ import {registration} from "../../http/userAPI";
 import { ORDER_ROUTE, STORE_ROUTE } from '../../utils/consts';
 import Accept from './Accept';
 import PasswordRecov from '../PasswordRecov';
+import { Context } from '../..';
+import { Row } from 'react-bootstrap';
 
 const AuthWindow = (props) => {
     const [phone, setPhone] = useState('+79');
@@ -27,20 +29,22 @@ const AuthWindow = (props) => {
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
- 
-    const signIn = async() => { 
+    const {user} = useContext(Context)
+    // const signIn = async() => { 
 
-        if(isLogin){
-            // const response = await login()
-
-        } else{
-            const response = await registration(number,password)
+    //     if(isLogin){
+    //         // const response = await login()
+    //         user.setUser(user)
+    //         user.setIsAuth(true)
+    //     } else{
+    //         const response = await registration(number,password)
             
-            setAccept(!accept)
-            console.log(response)
-        }
-   
-    } 
+    //         setAccept(!accept)
+    //         console.log(response)
+    //     }
+
+
+    // } 
 
     return (
         <Modal show={props.show} onHide={props.handleClose} className={accept ? '' : 'd-none'}>
@@ -67,16 +71,23 @@ const AuthWindow = (props) => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button onClick={signIn} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
+           {isLogin ? 
+           <div >
+           <Button onClick={() => user.login(number, password)} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                 Продолжить
            </Button>
-           {isLogin ? 
-           <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
-           <NavLink onClick={() => setIsLogin(false)} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
-           <NavLink className='ms-3 text-decoration-none text-black text-nowrap'>Забыли пароль?</NavLink>
+            <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
+                <NavLink onClick={() => setIsLogin(false)} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
+                <NavLink className='ms-3 text-decoration-none text-black text-nowrap'>Забыли пароль?</NavLink>
+            </div>
            </div> :
-           <div className='d-flex justify-content-center align-items-center text-nowrap me-auto ms-auto mb-2 formLinkBox'>
-            Уже есть аккаунт?<NavLink onClick={() => setIsLogin(true)} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
+           <div >
+           <Button onClick={() => user.registration(number, password)} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
+                Продолжить
+           </Button>
+            <div className='d-flex justify-content-center align-items-center text-nowrap me-auto ms-auto mb-2 formLinkBox'>
+                Уже есть аккаунт?<NavLink onClick={() => setIsLogin(true)} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
+            </div>
            </div>
            }
         </Form>

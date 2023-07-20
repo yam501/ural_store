@@ -1,9 +1,12 @@
 import {makeAutoObservable} from "mobx";
+import { IUser } from "../models/IUser";
+import AuthService from "../service/AuthService";
+import axios from "axios";
 
 export default class UserStore {
     constructor() {
         this._isAuth = false
-        this._user = {}
+        this._user = new IUser()
         makeAutoObservable(this)
     }
 
@@ -14,10 +17,54 @@ export default class UserStore {
         this._user = user
     }
 
-    get isAuth() {
-        return this._isAuth 
+    async login(number, password) {
+        try {
+            const response = await AuthService.login(number, password);
+            localStorage.setItem('token', response.data.accessToken);
+            this.setIsAuth(true)
+            this.setUser(response.data.user)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
     }
-    get user() {
-        return this._user
+
+    async registration(number, password) {
+        try {
+            const response = await AuthService.registration(number, password);
+            console.log(response)
+            localStorage.setItem('token', response.data.accessToken);
+            this.setIsAuth(true)
+            this.setUser(response.data.user)
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
     }
+
+    async logout() {
+        try {
+            const response = await AuthService.logout();
+            localStorage.removeItem('token');
+            this.setIsAuth(false)
+            this.setUser(new IUser())
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async checkAuth() {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}api/refresh`, {withCredentials:true})
+            localStorage.setItem('token', response.data.accessToken);
+            this.setIsAuth(true)
+            this.setUser(response.data.user)
+        } catch(e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+    // get isAuth() {
+    //     return this._isAuth 
+    // }
+    // get user() {
+    //     return this._user
+    // }
 }
