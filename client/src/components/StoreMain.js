@@ -11,11 +11,13 @@ import MeatSection from './StoreComponents/MeatSection';
 import Container from 'react-bootstrap/esm/Container';
 import CaruselHead from './StoreComponents/CaruselHead';
 import './store.css';
+import CarouselSections from './StoreComponents/CarouselSections';
 
 const StoreMain = () => {
     return (
         <Container>
             <Sections />
+            <CarouselSections/>
             <CaruselHead />
             <Container className='nav justify-content-center store-content'>
                 <Nav className='meat-bg' >
