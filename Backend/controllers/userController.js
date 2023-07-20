@@ -1,109 +1,80 @@
 const ApiError = require('../error/ApiError')
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const {User, Basket} = require('../models/models')
-const nodemailer = require('nodemailer')
-
-
-let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: '89221449094dg@gmail.com',
-        pass: 'legxbdjmletzkzmo'
-    }
-})
-
-const generateJwt = (id, number, role, isActivated) => {
-    return jwt.sign(
-        {id, number, role, isActivated},
-        process.env.SECRET_KEY,
-        {expiresIn: '24h'}
-    )
-}
-
-const generateCode = (length) => {
-    let result = ''
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
-}
-
-async function sendCode(number, code) {
-    try {
-        await transporter.sendMail({
-            from: '"Gnom" <89221449094dg@gmail.com>',
-            to: number,
-            subject: 'Код для доступа к сайту Уральский',
-            text: `Ваш код: ${code}`
-        })
-    } catch (e) {
-        console.log(e)
-    }
-}
+const tokenController = require('./tokenController')
+const smsController = require('./smsController')
+const UserDto = require('../dtos/userDto')
 
 class UserController {
-    async checkCode(req, res, next) {
+
+    async registration(req, res, next) {
+        try {
+            const {name, number, defaultAddress, password} = req.body
+
+            if (!number || !password) {
+                return next(ApiError.badRequest('Некорректный номер телефона или пароль'))
+            }
+
+            const candidate = await User.findOne({where: {number: number}})
+
+            if (candidate) {
+                return next(ApiError.badRequest('Пользователь с таким номером телефона уже существует'))
+            }
+
+            const hashPassword = await bcrypt.hash(password, 5)
+            const code = smsController.generateCode(5)
+            const user = await User.create({name, number, defaultAddress, password: hashPassword, activatedCode: code})
+            smsController.sendCode(number, code)
+            
+            const userDto = new UserDto(user)
+            const tokens = tokenController.generateTokens({...userDto})
+            await tokenController.saveToken(userDto.id, tokens.refreshToken)
+
+            await Basket.create({userId: user.id, aproxSum: 0})
+
+            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
+            return res.json({ ...tokens, user: {...userDto} })
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async sendCodeFromUser(req, res, next) {
+        try {
+            const {number} = req.body
+
+            if (!number) {
+                return next(ApiError.badRequest('Некорректный номер телефона'))
+            }
+
+            const code = smsController.generateCode(5)
+            smsController.sendCode(number, code)
+
+            updated = await User.update({activatedCode: code}, {where: {number: number}})
+
+            return res.json({updated})
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async activate(req, res, next) {
         try {
             const {number, code} = req.body
             const user = await User.findOne({where: {number: number}})
             if (user['activatedCode'] == code) {
                 await User.update({isActivated: true}, {where: {number: number}})
-                const token = generateJwt(user.id, user.number, user.role, true)
-                return res.json({token})
+                const updatedUser = await User.findOne({where: {number: number}})
+                const userDto = new UserDto(updatedUser)
+                const tokens = tokenController.generateTokens({...userDto})
+                await tokenController.saveToken(userDto.id ,tokens.refreshToken)
+                res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
+                return res.json({ ...tokens, user: {...userDto} })
             }
-            const token = generateJwt(user.id, user.number, user.role, user.isActivated)
-            return res.json({token})
-        } catch (e) {
-            next(ApiError.badRequest(e.message))
-        }
-    }
+            throw ApiError.badRequest('Введен неверный активационный код')
 
-    async sendCode(req, res, next) {
-        try {
-            const {number} = req.body
-            const user = await User.findOne({where: {number: number}})
-            if (!user) {
-                return res.json({message: "Пользователь не найден"})
-            }
-            let code = generateCode(5)
-            await transporter.sendMail({
-                from: '"Gnom" <89221449094dg@gmail.com>',
-                to: number,
-                subject: 'Код для доступа к сайту Уральский',
-                text: `Ваш код: ${code}`
-            })
-            await User.update({activatedCode: code}, {where: {number: number}})
-            return res.json({message: "Код отправлен"})
-        } catch (e) {
-            next(ApiError.badRequest(e.message))
-        }
-    }
-
-    
-
-    async registration(req, res, next) {
-        try {
-            const {name, number, defaultAddress, password} = req.body
-            if (!number || !password) {
-                return next(ApiError.badRequest('Некорректный номер телефона или пароль'))
-            }
-            const candidate = await User.findOne({where: {number: number}})
-            if (candidate) {
-                return next(ApiError.badRequest('Пользователь с таким номером телефона уже существует'))
-            }
-            const hashPassword = await bcrypt.hash(password, 5)
-            const user = await User.create({name, number, defaultAddress, password: hashPassword})
-            await Basket.create({userId: user.id, aproxSum: 0})
-            let code = generateCode(5)
-            await User.update({activatedCode: code}, {where: {number: number}})
-            const token = generateJwt(user.id, user.number, user.role, user.isActivated)
-            sendCode(number, code)
-            return res.json({token})
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
@@ -114,27 +85,78 @@ class UserController {
             const {number, password} = req.body
             const user = await User.findOne({where: {number: number}})
             if (!user) {
-                return next(ApiError.badRequest('Пользователь с таким номером телефона не найден'))
+                throw ApiError.badRequest('Неверный номер телефона или пароль')
             }
-            let comparePassword = bcrypt.compareSync(password, user.password)
-            if (!comparePassword) {
-                return next(ApiError.badRequest('Неверный пароль'))
+            const isPassEquals = bcrypt.compareSync(password, user.password)
+            if (!isPassEquals) {
+                throw ApiError.badRequest('Неверный номер телефона или пароль')
             }
-            const token = generateJwt(user.id, user.number, user.role, user.isActivated)
-            return res.json({token})
+            const userDto = new UserDto(user)
+            const tokens = tokenController.generateTokens({...userDto})
+            await tokenController.saveToken(userDto.id ,tokens.refreshToken)
+
+
+            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
+            return res.json({ ...tokens, user: {...userDto} })
+
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
-    async check(req, res, next) {
+    async logout(req, res, next) {
         try {
-            const token = generateJwt(req.user.id, req.user.number, req.user.role, req.user.isActivated)
-            return res.json({token})
+            const {refreshToken} = req.cookies
+            const deletedToken = await tokenController.removeToken(refreshToken)
+            res.clearCookie('refreshToken')
+            return res.json(deletedToken)
+
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async refresh(req, res, next) {
+        try {
+            const {refreshToken} = req.cookies
+            if (!refreshToken) {
+                throw ApiError.badRequest('Не авторизован')
+            }
+            const userData = tokenController.validateRefreshToken(refreshToken)
+            const tokenFromDb = tokenController.findToken(refreshToken)
+            if (!userData || !tokenFromDb) {
+                throw ApiError.badRequest('Не авторизован')
+            }
+            const user = await User.findOne({where: {id: userData.id}})
+            const userDto = new UserDto(user)
+            const tokens = tokenController.generateTokens({...userDto})
+
+            await tokenController.saveToken(userDto.id, tokens.refreshToken)
+
+            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
+
+            return res.json({...tokens, user: userDto})
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Для тестов и личного пользования, не в продакшн
     async createUser(req, res, next) {

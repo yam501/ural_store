@@ -9,10 +9,12 @@ const PORT = process.env.PORT || 5000 //Инициализация порта
 const app = express() //Объект приложения
 const errorHandler = require('./middleware/ErrorHandlingMiddleware') //Инициализация еррорхендлера
 const path = require('path')
+const cookieParser = require('cookie-parser')
 
 
 
 app.use(cors())
+app.use(cookieParser())
 app.use(express.json())  //Это чтобы приложение могло парсить json формат
 app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(fileUpload({}))
