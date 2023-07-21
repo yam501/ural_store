@@ -77,6 +77,14 @@ const Assortment = sequelize.define('assortment', {
     image: {type: DataTypes.STRING, allowNull: true}
 })
 
+const Feedback = sequelize.define('feedback', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    typeOfFeedback: { type: DataTypes.STRING, allowNull: false},
+    userEmail: { type: DataTypes.STRING, allowNull: false},
+    userFIO: { type: DataTypes.STRING, allowNull: false},
+    feedbackMessage: { type: DataTypes.STRING, allowNull: false}
+})
+
 
 //Описание связей
 User.hasOne(Basket)
@@ -107,5 +115,5 @@ ComplitedOrders.hasMany(ComplitedOrderProduct)
 ComplitedOrderProduct.belongsTo(ComplitedOrders)
 
 module.exports = {
-    User, Token, Basket, BasketProduct, Order, OrderProduct, Assortment, ComplitedOrders, ComplitedOrderProduct
+    User, Token, Basket, BasketProduct, Order, OrderProduct, Assortment, ComplitedOrders, ComplitedOrderProduct, Feedback
 }
