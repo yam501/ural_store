@@ -5,15 +5,12 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import { check } from '../../http/userAPI';
 import { useLocation } from 'react-router-dom';
+import Accept from './Accept';
 
-const LogOutButton = observer(() => {
+const LogOutButton = observer((props) => {
     const {user} = useContext(Context)
     const [loading, setLoading] = useState(false)
-    const logOut = () => {
-        localStorage.clear()
-        // user.setIsAuth(false)
-        // user.setUser({})
-    }
+
     // useEffect(() => {
     //     check().then(data => {
     //      user.setIsAuth(false)
@@ -38,6 +35,7 @@ const LogOutButton = observer(() => {
             >
             <span className='btnText'>Личный кабинет</span>
             </Button>
+            {/* <Accept show={props.show} handleClose={props.handleClose} number={props.number}/> */}
         </div>
     );
 });

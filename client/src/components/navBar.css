@@ -318,6 +318,7 @@
 
 .modal-content {
     margin: auto;
+    margin-top: 100px;
     min-width: 300px;
     width: 23vw;
     background-color: #E9E9E9;
@@ -413,3 +414,27 @@
     display: none;
 }
 
+.acceptCloseBtn {
+    width: 20px;
+    height: 20px;
+    top: -20px;
+}
+
+.acceptCloseBtn::after, .acceptCloseBtn::before {
+    content: '';
+    background-color: #D9D9D9;
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    cursor: pointer;
+}
+
+.acceptCloseBtn::after {
+    transform: rotate(45deg);
+    bottom: 5;
+}
+
+.acceptCloseBtn::before {
+    transform: rotate(-45deg);
+    top: 10;
+}

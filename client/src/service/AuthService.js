@@ -1,15 +1,17 @@
 import { $authHost, $host } from "../http";
 
-export default class AuthService {
+const AuthService =  {
     async login(number, password){
-        return new Promise(() => $host.post('api/user/login', {number, password}))
-    }
+        return new Promise((resolve) => resolve($authHost.post('api/user/login', {number, password})))
+    },
 
     async registration(number, password){
-        return new Promise(() => $host.post('api/user/registration', {number, password}))
-    }
+        return new Promise((resolve) => resolve($authHost.post('api/user/registration', {number, password})))
+    },
 
     async logout(){
-        return new Promise(() => $authHost.post('api/user/logout'))
+        return new Promise((resolve) => resolve($authHost.post('api/user/logout')))
     }
-}
+} 
+
+export default AuthService;

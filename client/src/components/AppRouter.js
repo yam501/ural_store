@@ -1,22 +1,26 @@
-import React, { useContext } from 'react';
-import {Routes, Route, Redirect} from 'react-router-dom'
+import React, { useContext, useEffect } from 'react';
+import {Routes, Route, redirect, useNavigate, useLocation, Navigate} from 'react-router-dom'
 import { authRoutes, publicRoutes } from '../routes';
 import { Context } from '..';
+import { observer } from 'mobx-react-lite';
+import { STORE_ROUTE } from '../utils/consts';
 function AppRouter() {
     const {user} = useContext(Context)
+    const navigate = useNavigate()
+    const location = useLocation()
 
     return (
         <Routes>
-            {user.isAuth && authRoutes.map(({path, element}) =>
+            {user._isAuth && authRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )} 
             {publicRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
-            
+            <Route path='*' element={<Navigate to={STORE_ROUTE} replace />}/>
         </Routes>
     );
   }
 
-export default AppRouter;
+export default observer(AppRouter);
 

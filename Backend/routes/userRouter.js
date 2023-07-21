@@ -15,7 +15,7 @@ router.get('/refresh', userController.refresh)
 router.get('/getUserByNumber', checkUserNumber, userController.getUserByNumber)
 router.get('/getUserByUserID', checkUserId, userController.getUserByUserID)
 
-//router.put('/sendCode', userController.sendCode)
+router.put('/sendCode', userController.sendCodeFromUser)
 router.put('/activate', userController.activate)
 router.put('/changeDefaultAddressByNumber', userController.changeDefaultAddressByNumber)
 router.put('/changeNumberByNumber', userController.changeNumberByNumber)

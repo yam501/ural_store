@@ -10,46 +10,41 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
 const Accept = observer((props) => {
-    const {user} = useContext(Context)
-    
+    const { user } = useContext(Context)
     const [time, setTime] = useState(30);
     const [code, setCode] = useState('');
-    // const isAccept = () => {
-    //     const decodeJwt = checkCode(props.number, code); 
-    //     const {isActivated} = decodeJwt
-    //     console.log(isActivated)
-    //     if (isActivated) {
-    //         user.setUser(user)
-    //         user.setIsAuth(true)
-    //     }
-    // }
+    const putAccept = () => {
+        user.checkCode(props.number, code);
+        console.log()
+    }
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} className={props.accept ? 'd-none' : ''}>
-        <Container className='mt-2 ms-2 text-center'>
-           <span>Подтверждение номера</span>
-        </Container>
-        <Form>
-            <Form.Group className="container text-center checkCodeBox mt-2 mb-2">
-                <Form.Label className=''>Код</Form.Label>
-                <Form.Control
-                className='rounded-4 formCheckCode'
-                type="text"
-                value={code}
-                onChange={e => setCode(e.target.value)}
-                />
-            </Form.Group>
-            <div className='d-flex justify-content-center align-items-center me-auto ms-auto mb-2 mt-1 timer' >
-                {time}
-            </div>
-            <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
-                Если код не пришел, попробуйте снова через 30 секунд.
-           </div>
-            <Button className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
-                 Подтвердить
-           </Button>
-        </Form>
-    </Modal>
+        <Modal show={props.show} >
+        <div className='position-relative ms-auto me-3 acceptCloseBtn' onClick={props.handleClose} ></div>
+            <Container className='mt-2 ms-2 text-center'>
+                <span>Подтверждение номера</span>
+            </Container>
+            <Form>
+                <Form.Group className="container text-center checkCodeBox mt-2 mb-2">
+                    <Form.Label className=''>Код</Form.Label>
+                    <Form.Control
+                        className='rounded-4 formCheckCode'
+                        type="text"
+                        value={code}
+                        onChange={e => setCode(e.target.value)}
+                    />
+                </Form.Group>
+                <div className='d-flex justify-content-center align-items-center me-auto ms-auto mb-2 mt-1 timer' >
+                    {time}
+                </div>
+                <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
+                    Если код не пришел, попробуйте снова через 30 секунд.
+                </div>
+                <Button onClick={() => putAccept()} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
+                    Подтвердить
+                </Button>
+            </Form>
+        </Modal>
     );
 });
 
