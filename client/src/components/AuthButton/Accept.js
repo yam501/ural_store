@@ -15,11 +15,12 @@ const Accept = observer((props) => {
     const [code, setCode] = useState('');
     const putAccept = () => {
         user.checkCode(props.number, code);
-        console.log()
     }
 
+
+
     return (
-        <Modal show={props.show} >
+        <Modal show={props.show}>
         <div className='position-relative ms-auto me-3 acceptCloseBtn' onClick={props.handleClose} ></div>
             <Container className='mt-2 ms-2 text-center'>
                 <span>Подтверждение номера</span>

@@ -319,12 +319,18 @@
 .modal-content {
     margin: auto;
     margin-top: 100px;
-    min-width: 300px;
+    
     width: 23vw;
     background-color: #E9E9E9;
     font-size: calc(16px + 4 * (100vw/1903));
     font-weight: bold;
     border-radius: 19px;
+}
+
+@media screen and (max-width: 1350px) {
+    .modal-content {
+        width: 300px;
+    }
 }
 
 .formPhoneBox, .formPasswordBox {
