@@ -3,6 +3,7 @@ export class IUser {
         this.number = ''
         this.isActivated = false
         this.id = '';
+        this.role = '';
     }
 } 
 
