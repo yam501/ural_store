@@ -3,9 +3,9 @@ import { Button, Card, Col, Image } from 'react-bootstrap';
 
 const ProductItem = (product) => {
     return (
-        <div style={{marginRight: "80px"}}>
-            <Card  style={{ width: 150, cursor: 'pointer' }} borrder={'light'}>
-                <Image width={150} height={150} src={product.img} />
+        <Col md={3} >
+            <Card className='mb-5' style={{ width: 200, cursor: 'pointer' }} borrder={'light'}>
+                <Image width={200} height={200} src={product.img} />
                 <div className='mt-1 d-flex justify-content-center'>
                     <div className='d-flex align-items-center'>
                         <div>
@@ -33,7 +33,7 @@ const ProductItem = (product) => {
                     </Button>
                 </div>
             </Card>
-        </div>
+        </Col>
     );
 };
 
