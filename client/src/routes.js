@@ -7,11 +7,14 @@ import Store from "./pages/Store"
 import User from "./pages/User"
 import { ABOUTUS_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, STORE_ROUTE, USER_ROUTE } from "./utils/consts"
 
-export const authRoutes = [
+
+export const adminRoutes = [
     {
         path: ADMIN_ROUTE,
         element: <Admin/>
-    },
+    }
+]
+export const authRoutes = [
     {
         path: ORDER_ROUTE,
         element: <Order/>

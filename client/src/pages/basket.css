@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.basket {
+    width: 70vw !important;
+}
+
+.basketItem {
+    border: 1px solid #962A4A;
+
+}
+
+.basketItemImgBox {
+    width: 50vw;
+    height: 50vw;
+}
+
+ .basketItemImg {
+    background-image: url('../assets/basket-chicken.png') !important;
+ }
+
+.basketItemText {
+    margin-right: 50px;
+    font-size: calc(20px + 4 * (100vw/1903));
+    text-align: center;
+    color: black;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.textCount {
+    font-size: calc(16px + 4 * (100vw/1903));
+}

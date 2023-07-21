@@ -8,12 +8,12 @@ const ProductList = () => {
     const { product } = useContext(Context)
 
     return (
-        <div className='owl-carousel-product'>
+        <Row>
             {product.products.map(product =>
-                  <ProductItem key={product.id} product={product}/>
-                  )}
+                <ProductItem key={product.id} product={product} />
+            )}
 
-        </div>
+        </Row>
     );
 };
 
