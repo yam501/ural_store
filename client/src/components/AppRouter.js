@@ -6,8 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { STORE_ROUTE } from '../utils/consts';
 function AppRouter() {
     const {user} = useContext(Context)
-    const navigate = useNavigate()
-    const location = useLocation()
+    
 
     return (
         <Routes>

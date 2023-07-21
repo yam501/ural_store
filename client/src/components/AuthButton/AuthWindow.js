@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, Route, useLocation, useNavigate } from 'react-router-dom';
 import { registration } from "../../http/userAPI";
 import { ORDER_ROUTE, STORE_ROUTE } from '../../utils/consts';
 import Accept from './Accept';
@@ -25,17 +25,21 @@ const AuthWindow = (props) => {
     };
 
     const [isLogin, setIsLogin] = useState(true)
-    // const [accept, setAccept] = useState(true)
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
     const { user } = useContext(Context)
+    const location = useLocation()
 
-    // setAccept(!accept)
     const registration = () => {
         user.registration(number, password);
-        props.updateNum(number)
+        props.updateNum(number, !isLogin)
+
     }
+    const login = () => {
+        user.login(number, password);
+        props.updateNum('', !isLogin)
+    }
+
 
 
     return (
@@ -65,7 +69,7 @@ const AuthWindow = (props) => {
                 </Form.Group>
                 {isLogin ?
                     <div >
-                        <Button onClick={() => user.login(number, password)} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
+                        <Button onClick={() => login()}  className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                             Продолжить
                         </Button>
                         <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
