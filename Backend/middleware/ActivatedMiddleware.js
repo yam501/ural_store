@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
-const tokenController = require('../controllers/tokenController')
 const ApiError = require('../error/ApiError')
-
+const tokenController = require('../controllers/tokenController')
 
 module.exports = function (req, res, next) {
     if (req.method === "OPTIONS") {
@@ -13,12 +12,12 @@ module.exports = function (req, res, next) {
             return next(ApiError.unauthorized())
         }
         const decoded = tokenController.validateAccessToken(token)
-        if (!decoded) {
-            return next(ApiError.unauthorized())
+        if (!decoded || !decoded.isActivated) {
+            return next(ApiError.forbidden())
         }
         req.user = decoded
         next()
     } catch (e) {
-        return next(ApiError.unauthorized())
+        return next(ApiError.forbidden())
     }
 }

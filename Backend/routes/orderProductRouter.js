@@ -1,11 +1,13 @@
 const Router = require('express')
 const router = new Router()
+const activatedMiddleware = require('../middleware/ActivatedMiddleware')
+const authMiddleware = require('../middleware/AuthMiddleware')
 const orderProductController = require('../controllers/orderProductController')
 
-router.post('/createOrderProduct', orderProductController.createOrderProduct)
+router.post('/createOrderProduct', authMiddleware, activatedMiddleware, orderProductController.createOrderProduct)
 
-router.get('/getOrderProductByOrderID', orderProductController.getOrderProductByOrderID)
+router.get('/getOrderProductByOrderID', authMiddleware, activatedMiddleware, orderProductController.getOrderProductByOrderID)
 
-router.delete('/deleteOrderProductByOrderId', orderProductController.deleteOrderProductByOrderId)
+router.delete('/deleteOrderProductByOrderId', authMiddleware, activatedMiddleware, orderProductController.deleteOrderProductByOrderId)
 
 module.exports = router

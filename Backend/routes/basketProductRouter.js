@@ -1,15 +1,17 @@
 const Router = require('express')
 const router = new Router()
+const activatedMiddleware = require('../middleware/ActivatedMiddleware')
+const authMiddleware = require('../middleware/AuthMiddleware')
 const basketProductController = require('../controllers/basketProductController')
 
-router.post('/createBasketProduct', basketProductController.createBasketProduct)
+router.post('/createBasketProduct', authMiddleware, activatedMiddleware, basketProductController.createBasketProduct)
 
-router.get('/getAllBasketProductsByBasketID', basketProductController.getAllBasketProductsByBasketID)
+router.get('/getAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.getAllBasketProductsByBasketID)
 
-router.delete('/deleteAllBasketProductsByBasketID', basketProductController.deleteAllBasketProductsByBasketID)
-router.delete('/deleteOneBasketProductByBasketIDAndAssortmentID', basketProductController.deleteOneBasketProductByBasketIDAndAssortmentID)
+router.delete('/deleteAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.deleteAllBasketProductsByBasketID)
+router.delete('/deleteOneBasketProductByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.deleteOneBasketProductByBasketIDAndAssortmentID)
 
-router.put('/changeMoreOrLessByBasketIDAndAssortmentID', basketProductController.changeMoreOrLessByBasketIDAndAssortmentID)
-router.put('/changeCountByBasketIDAndAssortmentID', basketProductController.changeCountByBasketIDAndAssortmentID)
+router.put('/changeMoreOrLessByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.changeMoreOrLessByBasketIDAndAssortmentID)
+router.put('/changeCountByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.changeCountByBasketIDAndAssortmentID)
 
 module.exports = router

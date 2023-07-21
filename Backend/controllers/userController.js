@@ -161,8 +161,9 @@ class UserController {
     //Для тестов и личного пользования, не в продакшн
     async createUser(req, res, next) {
         try {
-            const {name, number, defaultAddress} = req.body
-            const user = await User.create({name, number, defaultAddress})
+            const {name, number, password} = req.body
+            const hashPassword = await bcrypt.hash(password, 5)
+            const user = await User.create({name, number, password: hashPassword})
             await Basket.create({userId: user['id'], aproxSum: 0})
             return res.json(user)
 

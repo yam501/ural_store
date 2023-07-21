@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const ApiError = require('../error/ApiError')
+const tokenController = require('../controllers/tokenController')
 
 module.exports = function(role) {
     return function (req, res, next) {
@@ -8,16 +10,16 @@ module.exports = function(role) {
         try {
             const token = req.headers.authorization.split(' ')[1] // Bearer asdfdsgksld
             if (!token) {
-                return res.status(401).json({message: "Не авторизован"})
+                return next(ApiError.unauthorized())
             }
-            const decoded = jwt.verify(token, process.env.SECRET_KEY)
-            if (decoded.role !== role) {
-                return res.status(403).json({message: "Нет доступа"})
+            const decoded = tokenController.validateAccessToken(token)
+            if (!decoded || decoded.role !== role) {
+                return next(ApiError.forbidden())
             }
             req.user = decoded
             next()
-        } catch (error) {
-            res.status(401).json({message: "Не авторизован"})
+        } catch (e) {
+            return next(ApiError.forbidden())
         }
     }
 }

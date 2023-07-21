@@ -1,13 +1,16 @@
 const Router = require('express')
 const router = new Router()
+const activatedMiddleware = require('../middleware/ActivatedMiddleware')
+const authMiddleware = require('../middleware/AuthMiddleware')
+const checkRole = require('../middleware/CheckRoleMiddleware')
 const feedbackController = require('../controllers/feedbackController')
 
-router.post('/sendFeedback', feedbackController.sendFeedback)
+router.post('/sendFeedback', authMiddleware, activatedMiddleware, feedbackController.sendFeedback)
 
-router.get('/getFeedbackOfType', feedbackController.getFeedbackOfType)
-router.get('/getAllFeedback', feedbackController.getAllFeedback)
+router.get('/getFeedbackOfType', checkRole('ADMIN'), feedbackController.getFeedbackOfType)
+router.get('/getAllFeedback', checkRole('ADMIN'), feedbackController.getAllFeedback)
 
-router.delete('/destroyFeedback', feedbackController.destroyFeedback)
+router.delete('/destroyFeedback', checkRole('ADMIN'), feedbackController.destroyFeedback)
 
 
 module.exports = router
