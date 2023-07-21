@@ -1,19 +1,26 @@
-import {makeAutoObservable} from "mobx";
+import { makeAutoObservable } from "mobx";
 import { IUser } from "../models/IUser";
 import AuthService from "../service/AuthService";
 import axios from "axios";
+import { $authHost, $host } from "../http";
+import jwtDecode from "jwt-decode";
 
 export default class UserStore {
+
     constructor() {
         this._isAuth = false
         this._user = new IUser()
         makeAutoObservable(this)
     }
 
+    setIsActivated(bool) {
+        this._user.isActivated = bool
+    }
+
     setIsAuth(bool) {
         this._isAuth = bool
     }
-    setUser(user) { 
+    setUser(user) {
         this._user = user
     }
 
@@ -31,7 +38,6 @@ export default class UserStore {
     async registration(number, password) {
         try {
             const response = await AuthService.registration(number, password);
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
@@ -53,13 +59,29 @@ export default class UserStore {
 
     async checkAuth() {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}api/refresh`, {withCredentials:true})
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/refresh`, { withCredentials: true })
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
-        } catch(e) {
+        } catch (e) {
             console.log(e.response?.data?.message)
         }
+    }
+
+    async checkCode(number, code) {
+        try {
+            const response = await $authHost.put(`${process.env.REACT_APP_API_URL}api/user/activate`, { number, code })
+            localStorage.setItem('token', response.data.accessToken);
+            this.setIsAuth(true)
+            this.setUser(response.data.user)
+            return response
+        } catch (e) {
+            console.log(e.response?.data?.message)
+        }
+    }
+
+    async sendCode(number) {
+        return await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
     }
     // get isAuth() {
     //     return this._isAuth 

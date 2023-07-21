@@ -1,27 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
+import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
+import Accept from './Accept';
 
 
-const AuthButton = () => {
+const AuthButton = observer(() => {
+    const { user } = useContext(Context)
+    const [numArr, setNumArr] = useState({
+        number: ''
+    })
+    const updateNum = (number) => {
+        setNumArr({ number: number })
+    }
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShowControl = () => setShow(!show)
+    if (user._isAuth) {
+        return <div className='d-flex align-items-center'>
+            <Button
+                onClick={() => user.logout()}
+                type='submit'
+                className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
+            >
+                <span className='btnLogOutText'>Выйти</span>
+            </Button>
+            <Button className='ms-2 container rounded-circle adminBtn'>
+                <AuthIcon />
+            </Button>
+            <Button
+                className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
+            >
+                <span className='btnText'>Личный кабинет</span>
+            </Button>
+            <Accept show={show} handleClose={handleShowControl} number={numArr.number} />
+        </div>
+    }
     return (
         <div>
             <Button
-            className='d-flex justify-content-around align-items-center rounded-pill btnAuth'
-            onClick={handleShow}
-                ><div className='d-flex justify-content-around align-items-center w-100'>
-                    <AuthIcon className='btnIcon'/>
+                className='d-flex justify-content-around align-items-center rounded-pill btnAuth'
+                onClick={handleShowControl}
+            ><div className='d-flex justify-content-around align-items-center w-100'>
+                    <AuthIcon className='btnIcon' />
                     <span className='btnText'>Войти</span>
                 </div>
             </Button>
-            <AuthWindow show={show} handleClose={handleClose}/>
-        </div> 
+            <AuthWindow show={show} handleClose={handleShowControl} number={numArr} updateNum={updateNum} />
+        </div>
     );
-};
+});
 
 export default AuthButton;

@@ -19,7 +19,7 @@ export const authRoutes = [
     {
         path: BASKET_ROUTE,
         element: <Basket/>
-    },
+    }, 
     {
         path: HISTORYORDER_ROUTE,
         element: <HistoryOrder/>
@@ -28,6 +28,10 @@ export const authRoutes = [
         path: USER_ROUTE,
         element: <User/>
     },
+    {
+        path: '*',
+        element: <STORE_ROUTE/> 
+    }
 ]
 
 export const publicRoutes = [
