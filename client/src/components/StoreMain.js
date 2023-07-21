@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/esm/Container';
 import CaruselHead from './StoreComponents/CaruselHead';
 import './store.css';
 import CarouselSections from './StoreComponents/CarouselSections';
+import ProductList from './ProductList';
 
 const StoreMain = () => {
     return (
@@ -29,7 +30,7 @@ const StoreMain = () => {
                     </Nav>
                     <Nav className='meet-content'>
 
-
+                    <ProductList/>
 
                     </Nav>
                 </Nav>

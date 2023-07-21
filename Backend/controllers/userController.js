@@ -32,7 +32,7 @@ class UserController {
 
             await Basket.create({userId: user.id, aproxSum: 0})
 
-            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000})
+            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.json({ ...tokens, user: {...userDto} })
 
         } catch (e) {
@@ -70,7 +70,7 @@ class UserController {
                 const userDto = new UserDto(updatedUser)
                 const tokens = tokenController.generateTokens({...userDto})
                 await tokenController.saveToken(userDto.id ,tokens.refreshToken)
-                res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000})
+                res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
                 return res.json({ ...tokens, user: {...userDto} })
             }
             throw ApiError.badRequest('Введен неверный активационный код')
@@ -96,7 +96,7 @@ class UserController {
             await tokenController.saveToken(userDto.id ,tokens.refreshToken)
 
 
-            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000})
+            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.json({ ...tokens, user: {...userDto} })
 
         } catch (e) {
@@ -133,7 +133,7 @@ class UserController {
 
             await tokenController.saveToken(userDto.id, tokens.refreshToken)
 
-            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000})
+            res.cookie('refreshToken', tokens.refreshToken, {maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true})
 
             return res.json({...tokens, user: userDto})
 

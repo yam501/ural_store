@@ -1,36 +1,23 @@
-import {makeAutoObservable} from "mobx";
+import { makeAutoObservable } from "mobx";
 
 export default class ProductStore {
     constructor() {
-        this._types = [
-            {id: 1, name: 'Мясо'},
-            {id: 2, name: 'Салаты'},
-            {id: 3, name: 'Выпечка'},
-            {id: 4, name: 'Десерты'}
-        ]
-
         this._products = [
-            {id: 1, name: 'Говядина', weight: '1', price: '400'},
-            {id: 2, name: 'Свинина', weight: '1', price: '400'},
-            {id: 3, name: 'Оливье', weight: '1', price: '400'},
-            {id: 4, name: 'Винегрет', weight: '1', price: '400'},
-            {id: 5, name: 'Московская', weight: '1', price: '400'},
-            {id: 6, name: 'Наполеон', weight: '1', price: '400'},
-            {id: 7, name: 'Красный бархат', weight: '1', price: '400'}
+            { id: 1, type: 'Мясной', name: 'Говядина', available: false, costPerOne: 1, composition: ' ', img: ' ' },
+            { id: 2, type: 'Мясной', name: 'Свинина', abailable: true, costPerOne: 1,  composition: ' ', img: ' ' },
+            { id: 3, type: 'Салаты', name: 'Оливье', available: true, costPerOne: 1, composition: ' ',img: ' ' },
+            { id: 4, type: 'Овощи', name: 'Помидор', available: true, costPerOne: 1, composition: ' ', img: ' ' },
+            { id: 5, type: 'Выпечка', name: 'Московская плюшка', available: true, costPerOne: 1, composition: ' ', img: ' ' },
+            { id: 6, type: 'Молочка', name: 'Молоко', weight: '1', available: true, costPerOne: 1, composition: ' ', img: ' ' },
+            { id: 7, type: 'Выпечка', name: 'Красный бархат', available: true, costPerOne: 1, composition: ' ', img: ' ' }
         ]
         makeAutoObservable(this)
     }
 
-    setTypes(types) {
-        this._isAuth = types
-    }
     setProducts(products) {
-        this.user = products
+        this._products = products
     }
 
-    get types() {
-        return this._types 
-    }
     get products() {
         return this._products
     }
