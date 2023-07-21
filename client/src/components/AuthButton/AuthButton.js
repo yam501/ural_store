@@ -10,18 +10,28 @@ import Accept from './Accept';
 
 const AuthButton = observer(() => {
     const { user } = useContext(Context)
+    const [isShowAuthWin, setIsShowAuthWin] = useState(user._isAuth)
     const [numArr, setNumArr] = useState({
-        number: ''
+        number: '',
+        isShowAccept: true
     })
-    const updateNum = (number) => {
-        setNumArr({ number: number })
+    
+    const updateNum = (number, bool) => {
+        setNumArr({ 
+            number: number, 
+            isShowAccept: bool,
+        })
+    }
+
+    const logout = () => {
+        user.logout()
     }
     const [show, setShow] = useState(false);
     const handleShowControl = () => setShow(!show)
     if (user._isAuth) {
         return <div className='d-flex align-items-center'>
             <Button
-                onClick={() => user.logout()}
+                onClick={() => logout()}
                 type='submit'
                 className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
             >
@@ -35,11 +45,13 @@ const AuthButton = observer(() => {
             >
                 <span className='btnText'>Личный кабинет</span>
             </Button>
-            <Accept show={show} handleClose={handleShowControl} number={numArr.number} />
+            {numArr.isShowAccept ?
+            <Accept show={show} handleClose={handleShowControl} number={numArr.number}/> :
+            ''}
         </div>
     }
     return (
-        <div>
+        <div >
             <Button
                 className='d-flex justify-content-around align-items-center rounded-pill btnAuth'
                 onClick={handleShowControl}
