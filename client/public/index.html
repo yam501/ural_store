@@ -16,7 +16,15 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="owl.carousel.min.js"></script>
-  <script src="owlSlider.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 180,
+        dots: false,
+        heigth: 10,
+      });
+    });</script>
 
 </body>
 
