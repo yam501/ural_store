@@ -1,11 +1,18 @@
-import React from 'react';
-import { Button, Card, Col, Image } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Card, Col, Image, Row } from 'react-bootstrap';
 
-const ProductItem = (product) => {
+const ProductItem = (props) => {
+    const [countProduct, setCountProduct] = useState(1)
+    const plus = () => {
+        setCountProduct(countProduct + 1)
+    }
+    const minus = () => {
+        setCountProduct(countProduct - 1)
+    }
     return (
-        <Col md={3} >
+        <div> 
             <Card className='mb-5' style={{ width: 200, cursor: 'pointer' }} borrder={'light'}>
-                <Image width={200} height={200} src={product.img} />
+                <Image width={199} className='rounded-2' height={150} src={props.product.img} />
                 <div className='mt-1 d-flex justify-content-center'>
                     <div className='d-flex align-items-center'>
                         <div>
@@ -15,7 +22,7 @@ const ProductItem = (product) => {
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
                     <div>
-                        цена за кг
+                       {props.product.costPerOne} цена за кг
                     </div>
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
@@ -24,16 +31,16 @@ const ProductItem = (product) => {
                     </div>
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
-                    <Button>
+                    <Button onClick={() => plus}>
                         +
                     </Button>
-                    <span className='d-flex align-items-center'>0 кг</span>
-                    <Button>
+                    <span className='d-flex align-items-center'>{countProduct} кг</span>
+                    <Button onClick={() => minus}>
                         -
                     </Button>
                 </div>
             </Card>
-        </Col>
+        </div>
     );
 };
 

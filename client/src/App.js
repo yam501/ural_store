@@ -21,11 +21,12 @@ const App = observer(() => {
   // }, [])
   useEffect(() => {
     if (localStorage.getItem('token')) {
+      
       user.checkAuth()
     }
   }, [])
 
-
+  
   return (
     <BrowserRouter >
       <NavBar />

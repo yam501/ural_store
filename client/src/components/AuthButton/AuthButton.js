@@ -6,11 +6,12 @@ import AuthWindow from './AuthWindow';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import Accept from './Accept';
+import { NavLink } from 'react-router-dom';
+import { ADMIN_ROUTE } from '../../utils/consts';
 
 
 const AuthButton = observer(() => {
     const { user } = useContext(Context)
-    const [isShowAuthWin, setIsShowAuthWin] = useState(user._isAuth)
     const [numArr, setNumArr] = useState({
         number: '',
         isShowAccept: true
@@ -40,11 +41,13 @@ const AuthButton = observer(() => {
             <Button className='ms-2 container rounded-circle adminBtn'>
                 <AuthIcon />
             </Button>
+            <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
             <Button
                 className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
             >
                 <span className='btnText'>Личный кабинет</span>
             </Button>
+            </NavLink>
             {numArr.isShowAccept ?
             <Accept show={show} handleClose={handleShowControl} number={numArr.number}/> :
             ''}

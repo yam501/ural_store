@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import {Routes, Route, redirect, useNavigate, useLocation, Navigate} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import { adminRoutes, authRoutes, publicRoutes } from '../routes';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
@@ -9,7 +9,7 @@ function AppRouter() {
 
     return (
         <Routes>
-            {user._isAuth && user._user.role === 'ADMIN' && adminRoutes.map(({path, element}) =>
+            {user._user.role === 'ADMIN' && adminRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )} 
             {user._isAuth && authRoutes.map(({path, element}) =>
@@ -18,7 +18,7 @@ function AppRouter() {
             {publicRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
-            <Route path='*' element={<Navigate to={STORE_ROUTE} replace />}/>
+            <Route path='*' element={<Navigate to={STORE_ROUTE} replace/>}/>
         </Routes>
     );
   }

@@ -8,9 +8,9 @@ const ProductList = () => {
     const { product } = useContext(Context)
 
     return (
-        <Row>
+        <Row className='d-flex'>
             {product.products.map(product =>
-                <ProductItem key={product.id} product={product} />
+                <ProductItem key={product.id} id={product.id} product={product} /> 
             )}
 
         </Row>

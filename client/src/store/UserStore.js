@@ -61,6 +61,7 @@ export default class UserStore {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/refresh`, { withCredentials: true })
             localStorage.setItem('token', response.data.accessToken);
+            console.log(response)
             this.setIsAuth(true)
             this.setUser(response.data.user)
         } catch (e) {
