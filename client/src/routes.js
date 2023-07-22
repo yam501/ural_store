@@ -33,7 +33,7 @@ export const authRoutes = [
     },
     {
         path: '*',
-        element: <STORE_ROUTE/> 
+        element: <Store/> 
     }
 ]
 
