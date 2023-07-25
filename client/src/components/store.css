@@ -1,17 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-.owl-stage {
-    height: 100px;
+body{
+    height: 100%;
 }
 
-.owl-stage-outer {
-    height: 100px;
+.slider{
+    min-width: 0;
 }
 
-.no-js .owl-carousel,
-.owl-carousel.owl-loaded {
-    display: none !important;
+.slider_section_mobile{
+    min-width: 0;
+    display: none;
+}
+
+.store-main{
+    display: flex;
+    flex-direction: column;
+    min-height: 3000px;
 }
 
 .store-content {
@@ -21,114 +27,11 @@
     justify-content: center;
 }
 
-.Camera {
-    display: flex;
-    background-color: gray;
-    width: 1000px;
-    height: 500px;
-    justify-content: center;
-    align-items: center;
-}
-
-.header_otdel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1100px;
-    height: 100px;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    color: rgb(0, 0, 0);
-    border-width: 100vh black;
-    border-top: 2px solid #0000007a;
-    border-bottom: 2px solid #0000007a;
-
-}
 
 .showcase {
     font-family: 'Montserrat';
     font-size: 30px;
-    border-bottom: 2px;
-}
-
-.widget_content {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 250px;
-    border: solid 2px;
-    border-radius: 29px;
-    margin-left: 5vh;
-    margin-bottom: 10vh;
-}
-
-.widget_name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Montserrat';
-    font-size: 30px;
-    margin-top: 8vh;
-    margin-bottom: 6vh;
-}
-
-.quantity_inner * {
-    box-sizing: border-box;
-}
-
-.quantity_inner {
-    display: flex;
-    justify-content: center;
-}
-
-.quantity_inner .bt_minus,
-.quantity_inner .bt_plus,
-.quantity_inner .quantity {
-    height: 50px;
-    width: 50px;
-    padding: 0;
-    margin: 10px 2px;
-    border-radius: 10px;
-    border: 0;
-    background: #a5a5a5;
-    cursor: pointer;
-
-}
-
-.quantity_inner .quantity {
-    width: 50px;
-    text-align: center;
-    font-size: 22px;
-    color: #ffffff;
-    font-family: 'Inter';
-    font-size: 24px;
-}
-
-.quantity_inner .bt_minus svg,
-.quantity_inner .bt_plus svg {
-    stroke: #ffffff;
-    stroke-width: 4;
-    transition: 0.5s;
-    margin: 4px;
-}
-
-.quantity_inner .bt_minus:hover svg,
-.quantity_inner .bt_plus:hover svg {
-    stroke: #ff75aa;
-}
-
-.quantity {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.quantity_inner .bt_minus,
-.quantity_inner .bt_plus,
-.quantity_inner .quantity:active {
-    background-color: #a5a5a5 !important;
+    margin: 15px 0px 15px 0px;
 }
 
 .sections {
@@ -143,9 +46,6 @@
     margin-bottom: 3vh;
 }
 
-.carousel-mobile {
-    display: none;
-}
 
 .button-section {
     background-color: #EEEEEE;
@@ -176,91 +76,22 @@
 }
 
 
-.meat-bg {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
+.meat-section-content {
     background-image: url("../assets/meat-bg.png");
-}
-
-.meet-content {
-    margin-top: 50px;
-    height: 300px;
-    width: 500px;
-}
-
-.salad-bg {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../assets/salad-bg.png");
-    width: auto;
+    width: 100% !important;
     height: auto;
 }
 
-.salad-content {
-    margin-top: 50px;
-    height: 300px;
-    width: 500px;
+.meat-header {
+    font-family: 'Montserrat';
+    font-weight: 500;
 }
 
-.veg-bg {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../assets/veg-bg.png");
-    width: auto;
-    height: auto;
+.products-bg{
+    background-color: rgba(64, 64, 64, 0.5);
 }
 
-.veg-content {
-    margin-top: 50px;
-    height: 300px;
-    width: 500px;
-}
-
-.bakery-bg {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../assets/bakery-bg.png");
-    width: auto;
-    height: auto;
-
-}
-
-.bakery-content {
-    margin-top: 50px;
-    height: 300px;
-    width: 500px;
-}
-
-.dairy-bg {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../assets/dairy-bg.png");
-    width: auto;
-    height: auto;
-}
-
-.dairy-content {
-    margin-top: 50px;
-    height: 300px;
-    width: 1000px;
-}
-
-@media (max-width: 420px) {
-    .Camera {
-        display: flex;
-        background-color: gray;
-        width: auto;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-    }
-
+@media (max-width: 575px)  {
     .sections {
         display: none;
         flex-wrap: wrap;
@@ -268,269 +99,17 @@
         justify-content: center;
         background-color: #ffffff !important;
         margin-top: 0.2vh;
+
     }
 
-
-    .carousel-mobile {
+    .slider_section_mobile{
         display: block;
-    }
-
-    .no-js .owl-carousel,
-    .owl-carousel.owl-loaded {
-        display: block !important;
-    }
-
-    .button-section {
-        width: 250px;
-        margin-top: 20px;
-        background-color: #EEEEEE;
-        border: 0;
-        margin-left: 20px;
-        margin-right: 20px;
-        border-radius: 29vh;
-        font-family: 'Montserrat';
-        font-weight: 600;
-        font-size: 14px;
-        flex-wrap: wrap;
-        align-content: center;
-        color: #962A4A;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .header_otdel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 350px;
-        height: 50px;
-        color: rgb(0, 0, 0);
-        border-width: 100vh black;
-        border-top: 2px solid #0000007a;
-        border-bottom: 2px solid #0000007a;
     }
 
     .showcase {
         font-family: 'Montserrat';
-        font-size: 20px;
-    }
-
-    .meat-bg {
-        display: flex;
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-    }
-
-    .meet-content {
-        margin-top: 50px;
-        height: 500px;
-        width: 500px;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-content {
-        margin-top: 50px;
-        height: 500px;
-        width: 500px;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-content {
-        margin-top: 50px;
-        height: 500px;
-        width: 500px;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .bakery-content {
-        margin-top: 50px;
-        height: 500px;
-        width: 500px;
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .dairy-content {
-        margin-top: 50px;
-        height: 500px;
-        width: 500px;
-    }
-}
-
-@media (max-width: 575px) {
-    .sections {
-        display: none;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        background-color: #ffffff !important;
-        margin-top: 0.2vh;
-    }
-
-    .carousel-mobile {
-        display: block;
-    }
-
-    .no-js .owl-carousel,
-    .owl-carousel.owl-loaded {
-        display: block !important;
-    }
-
-    .owl-stage {
-        height: 100px;
-        margin-top: 20px;
-    }
-
-    .owl-stage-outer {
-        height: 100px;
-    }
-
-    .button-section {
-
-        width: 150px;
-        background-color: #EEEEEE;
-        border: 0;
-        border-radius: 29vh;
-        font-family: 'Montserrat';
-        font-weight: 600;
-        font-size: 12px;
-        flex-wrap: wrap;
-        align-content: center;
-        color: #962A4A;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .header_otdel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 350px;
-        height: 50px;
-        color: rgb(0, 0, 0);
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-        border-width: 100vh black;
-        border-top: 2px solid #0000007a;
-        border-bottom: 2px solid #0000007a;
-
-    }
-
-    .showcase {
-        font-family: 'Montserrat';
-        font-size: 20px;
-        border-bottom: 2px;
-    }
-
-    .meat-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 659px) {
-    .sections {
-        display: none;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        background-color: #ffffff !important;
-        margin-top: 0.2vh;
-
-    }
-
-    .carousel-mobile {
-        display: block;
-    }
-
-    .no-js .owl-carousel,
-    .owl-carousel.owl-loaded {
-        display: block !important;
-    }
-
-    .owl-stage {
-        height: 100px;
-    }
-
-    .owl-stage-outer {
-        height: 100px;
+        font-size: 30px;
+        margin: 15px 0px 15px 0px;
     }
 
     .button-section {
@@ -552,72 +131,47 @@
         align-items: center;
         justify-content: center;
     }
+}
 
-    .header_otdel {
-        display: flex;
-        justify-content: center;
+@media (min-width: 576px) and (max-width: 659px) {
+    .sections {
+        display: none;
+        flex-wrap: wrap;
         align-items: center;
-        width: 350px;
-        height: 50px;
-        color: rgb(0, 0, 0);
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-        border-width: 100vh black;
-        border-top: 2px solid #0000007a;
-        border-bottom: 2px solid #0000007a;
+        justify-content: center;
+        background-color: #ffffff !important;
+        margin-top: 0.2vh;
 
+    }
+
+    .slider_section_mobile{
+        display: block;
     }
 
     .showcase {
         font-family: 'Montserrat';
-        font-size: 20px;
-        border-bottom: 2px;
+        font-size: 30px;
+        margin: 15px 0px 15px 0px;
     }
 
-    .meat-bg {
-        position: relative;
+    .button-section {
+        width: 150px;
+        height: 40px;
+        margin-top: 20px;
+        background-color: #EEEEEE;
+        border: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 29vh;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        font-size: 12px;
+        flex-wrap: wrap;
+        align-content: center;
+        color: #962A4A;
+        display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
     }
 }
 
@@ -629,6 +183,16 @@
         justify-content: center;
         background-color: #ffffff !important;
         margin-top: 0.2vh;
+    }
+
+    .slider_section_mobile{
+        display: none;
+    }
+
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 30px;
+        margin: 15px 0px 15px 0px;
     }
 
     .button-section {
@@ -664,68 +228,6 @@
         border-bottom: 2px solid #0000007a;
 
     }
-
-    .showcase {
-        font-family: 'Montserrat';
-        font-size: 20px;
-        border-bottom: 2px;
-    }
-
-    .Camera {
-        display: flex;
-        background-color: gray;
-        width: auto;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5vh;
-    }
-
-    .meat-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -738,6 +240,16 @@
         margin-top: 0.2vh;
     }
 
+    .slider_section_mobile{
+        display: none;
+    }
+
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 30px;
+        margin: 15px 0px 15px 0px;
+    }
+
     .button-section {
         width: 250px;
         margin-top: 20px;
@@ -757,82 +269,6 @@
         justify-content: center;
     }
 
-    .header_otdel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 600px;
-        height: 50px;
-        color: rgb(0, 0, 0);
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-        border-width: 100vh black;
-        border-top: 2px solid #0000007a;
-        border-bottom: 2px solid #0000007a;
-
-    }
-
-    .showcase {
-        font-family: 'Montserrat';
-        font-size: 20px;
-        border-bottom: 2px;
-    }
-
-    .Camera {
-        display: flex;
-        background-color: gray;
-        width: auto;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5vh;
-    }
-
-    .meat-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
-    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -845,6 +281,16 @@
         margin-top: 0.2vh;
     }
 
+    .slider_section_mobile{
+        display: none;
+    }
+
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 30px;
+        margin: 15px 0px 15px 0px;
+    }
+
     .button-section {
         width: 250px;
         margin-top: 20px;
@@ -864,82 +310,6 @@
         justify-content: center;
     }
 
-    .header_otdel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 600px;
-        height: 50px;
-        color: rgb(0, 0, 0);
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-        border-width: 100vh black;
-        border-top: 2px solid #0000007a;
-        border-bottom: 2px solid #0000007a;
-
-    }
-
-    .showcase {
-        font-family: 'Montserrat';
-        font-size: 20px;
-        border-bottom: 2px;
-    }
-
-    .Camera {
-        display: flex;
-        background-color: gray;
-        width: auto;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5vh;
-    }
-
-    .meat-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
-    }
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
@@ -952,13 +322,14 @@
         margin-top: 0.2vh;
     }
 
-    .carousel-mobile {
+    .slider_section_mobile{
         display: none;
     }
 
-    .no-js .owl-carousel,
-    .owl-carousel.owl-loaded {
-        display: none !important;
+    .showcase {
+        font-family: 'Montserrat';
+        font-size: 30px;
+        margin: 15px 0px 15px 0px;
     }
 
     .button-section {
@@ -980,80 +351,5 @@
         justify-content: center;
     }
 
-    .header_otdel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 600px;
-        height: 50px;
-        color: rgb(0, 0, 0);
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-        border-width: 100vh black;
-        border-top: 2px solid #0000007a;
-        border-bottom: 2px solid #0000007a;
 
-    }
-
-    .showcase {
-        font-family: 'Montserrat';
-        font-size: 20px;
-        border-bottom: 2px;
-    }
-
-    .Camera {
-        display: flex;
-        background-color: gray;
-        width: auto;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5vh;
-    }
-
-    .meat-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/meat-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .salad-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/salad-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .veg-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/veg-bg.png");
-        width: auto;
-        height: auto;
-    }
-
-    .bakery-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/bakery-bg.png");
-        width: auto;
-        height: auto;
-
-    }
-
-    .dairy-bg {
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background-image: url("../assets/dairy-bg.png");
-        width: auto;
-        height: auto;
-    }
 }

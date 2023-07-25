@@ -3,7 +3,7 @@ import { IUser } from "../models/IUser";
 import AuthService from "../service/AuthService";
 import axios from "axios";
 import { $authHost, $host } from "../http";
-import jwtDecode from "jwt-decode";
+
 
 export default class UserStore {
 

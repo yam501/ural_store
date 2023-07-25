@@ -1,14 +1,13 @@
 import React from 'react';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/esm/Button';
 
 
-const Sections = () => {
+const NavSections = () => {
     
     return (
         <Navbar className='sections'>
-            <Button className='button-section' href="#meet_section">Мясной отдел</Button>
+            <Button className='button-section' href="#meat_section">Мясной отдел</Button>
             <Button className='button-section' href="#salad_section">Салаты</Button>
             <Button className='button-section' href="#veg_section">Овощной отдел</Button>
             <Button className='button-section' href="#bakery_section">Выпечка</Button>
@@ -17,4 +16,4 @@ const Sections = () => {
     );
 };
 
-export default Sections;
+export default NavSections;

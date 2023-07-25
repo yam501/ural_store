@@ -2,10 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
+
 .footer_wrapper {
     position: absolute;
     left: 0;
     right: 0;
+    bottom: auto;
     width: auto;
     height: 230px;
     background: #962A4A;
