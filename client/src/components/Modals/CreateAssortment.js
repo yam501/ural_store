@@ -58,7 +58,7 @@ function CreateAssortment({ show, onHide }) {
           <Form.Control className="mt-3" placeholder="Введите название" onChange={e => setName(e.target.value)} />
 
           <Dropdown>
-            <Dropdown.Toggle className="mt-3" >{available} </Dropdown.Toggle>
+            <Dropdown.Toggle className="mt-3" >{(available ? 'Есть' : 'Нет' )}  </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
               <Dropdown.Item onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
