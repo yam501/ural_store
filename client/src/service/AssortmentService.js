@@ -1,4 +1,4 @@
-import { $authHost} from "../http";
+import { $authHost, $host  } from "../http";
 
 const AssortmentService =  {
     async create(formData){
@@ -7,6 +7,10 @@ const AssortmentService =  {
 
     async deleteOneByName(name){
         return new Promise((resolve) => resolve($authHost.post('api/assortment/deleteProductByName', {name})))
+    },
+
+    async getAllByTypeAndAvailable(type, available){
+        return new Promise((resolve) => resolve($host.post('api/assortment/getAllByTypeAndAvailable', {type, available})))
     }
 
     // async logout(){
