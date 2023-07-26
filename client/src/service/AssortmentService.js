@@ -15,11 +15,15 @@ const AssortmentService =  {
 
     async getAllByTypeAndAvailable(type,available){
         return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndAvailable', {type, available})))
+    },
+
+    async getAllByAvailable(available){
+        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByAvailable', {available})))
     }
 
     // async logout(){
     //     return new Promise((resolve) => resolve($authHost.post('api/user/logout')))
-    // }
+    // } 
 } 
 
 export default AssortmentService;

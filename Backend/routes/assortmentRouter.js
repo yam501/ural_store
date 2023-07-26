@@ -8,6 +8,8 @@ router.post('/createProduct', checkRole('ADMIN'), assortmentController.create)
 router.post('/getProductByName', assortmentController.getOneByName)
 router.post('/getAllProductsByType', assortmentController.getAllByType)
 router.post('/getAllProductsByTypeAndAvailable', assortmentController.getAllByTypeAndAvailable)
+router.post('/getAllProductsByAvailable', assortmentController.getAllByAvailable)
+
 
 router.delete('/deleteProductByName', checkRole('ADMIN'), assortmentController.deleteOneByName)
 
