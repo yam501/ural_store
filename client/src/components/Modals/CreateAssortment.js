@@ -6,7 +6,7 @@ import AssortmentService from "../../service/AssortmentService";
 function CreateAssortment({ show, onHide }) {
   const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('Введите название')
-  const [available, setAvailable] = useState('Есть/Нет')
+  const [available, setAvailable] = useState(true)
   const [costPerOne, setCostPerOne] = useState('Введите цену за штуку(кг)')
   const [description, setDescription] = useState('Описание')
   const [composition, setComposition] = useState('Состав')
