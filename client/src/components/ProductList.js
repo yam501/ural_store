@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Row } from 'react-bootstrap';
 import ProductItem from './ProductItem';
 import { Context } from '..';
 
@@ -8,12 +7,11 @@ const ProductList = () => {
     const { product } = useContext(Context)
 
     return (
-        <Row className='d-flex'>
+        <div className="slider mt-5">
             {product.products.map(product =>
-                <ProductItem className='itc-slider-item' key={product.id} id={product.id} product={product} /> 
+                <ProductItem key={product.id} id={product.id} product={product} />
             )}
-
-        </Row>
+        </div>
     );
 };
 

@@ -37,8 +37,8 @@ const Section = () => {
             align-items-center
             bg-black
             text-white'
-            style={{height: '500px'}}
-            id='meat_section'>
+                style={{ height: '500px' }}
+                id='meat_section'>
                 Камера
             </Nav>
             <div className="slider mt-5">

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Card, Image } from 'react-bootstrap';
 
-const ProductItem = (props) => {
+const ProductItem = ({product}) => {
     const [countProduct, setCountProduct] = useState(1)
     const plus = () => {
         setCountProduct(countProduct + 1)
@@ -11,17 +11,17 @@ const ProductItem = (props) => {
     }
     return (
         <Card className='slider__item products-bg mb-5 me-5' style={{ width: 290, cursor: 'pointer' }}   >
-            <Image width={288} height={300} src={props.product.img} style={{border: 0}} />
+            <Image width={288} height={300} src={product.img} style={{border: 0}} />
             <div className='mt-1 d-flex justify-content-center'>
                 <div className='d-flex align-items-center'>
                     <div>
-                        {props.product.name} 
+                        {product.name} 
                     </div>
                 </div>
             </div>
             <div className='mt-1 d-flex justify-content-center'>
                 <div>
-                    {props.product.costPerOne} ₽ цена за кг
+                    {product.costPerOne} ₽ цена за кг
                 </div>
             </div>
             <div className='mt-1 d-flex justify-content-center'>

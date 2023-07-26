@@ -78,7 +78,7 @@ body{
 
 .meat-section-content {
     background-image: url("../assets/meat-bg.png");
-    width: 100% !important;
+    min-width: 0;
     height: auto;
 }
 
