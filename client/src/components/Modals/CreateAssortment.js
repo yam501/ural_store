@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Modal, Button, Dropdown, Form } from "react-bootstrap";
 import AssortmentService from "../../service/AssortmentService";
+import { Context } from "../..";
 
 
 function CreateAssortment({ show, onHide }) {
+  const {product} = useContext(Context)
   const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('Введите название')
   const [available, setAvailable] = useState(true)
@@ -26,6 +28,7 @@ function CreateAssortment({ show, onHide }) {
     formData.append('composition', composition)
     formData.append('image', image)
     AssortmentService.create(formData).then(data => onHide()).then(alert('Товар успешно добавлен'))
+    product.getAll(type)
   }
   // alert('Товар успешно добавлен'),
 
