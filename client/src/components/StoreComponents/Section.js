@@ -6,6 +6,7 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
 import './slickSlider.css'
+import ProductList from '../ProductList';
 
 const Section = () => {
 
@@ -41,11 +42,7 @@ const Section = () => {
                 id='meat_section'>
                 Камера
             </Nav>
-            <div className="slider mt-5">
-                {product.products.map(product =>
-                    <ProductItem key={product.id} id={product.id} product={product} />
-                )}
-            </div>
+            <ProductList/>
         </Nav>
     );
 };
