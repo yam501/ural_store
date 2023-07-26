@@ -6,7 +6,7 @@ const orderProductController = require('../controllers/orderProductController')
 
 router.post('/createOrderProduct', authMiddleware, activatedMiddleware, orderProductController.createOrderProduct)
 
-router.get('/getOrderProductByOrderID', authMiddleware, activatedMiddleware, orderProductController.getOrderProductByOrderID)
+router.post('/getOrderProductByOrderID', authMiddleware, activatedMiddleware, orderProductController.getOrderProductByOrderID)
 
 router.delete('/deleteOrderProductByOrderId', authMiddleware, activatedMiddleware, orderProductController.deleteOrderProductByOrderId)
 

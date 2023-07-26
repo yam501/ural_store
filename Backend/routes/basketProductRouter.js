@@ -6,7 +6,7 @@ const basketProductController = require('../controllers/basketProductController'
 
 router.post('/createBasketProduct', authMiddleware, activatedMiddleware, basketProductController.createBasketProduct)
 
-router.get('/getAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.getAllBasketProductsByBasketID)
+router.post('/getAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.getAllBasketProductsByBasketID)
 
 router.delete('/deleteAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.deleteAllBasketProductsByBasketID)
 router.delete('/deleteOneBasketProductByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.deleteOneBasketProductByBasketIDAndAssortmentID)
