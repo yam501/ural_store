@@ -10,7 +10,7 @@ const AssortmentService =  {
     },
 
     async getAllByTypeAndAvailable(type){
-        return new Promise((resolve) => resolve($authHost.get('api/assortment/getAllByTypeAndAvailable', {type: type, available: true})))
+        return new Promise((resolve) => resolve($authHost.get(`api/assortment/getAllProductsByTypeAndAvailable/${type}/true`)))
     }
 
     // async logout(){
