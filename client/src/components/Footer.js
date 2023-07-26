@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
+import { React } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Context } from '..';
 import Nav from 'react-bootstrap/Nav'
 
 import './footer.css';
@@ -12,8 +11,6 @@ import SocialContent from './FooterComponents/SocialContent';
 
 
 const Footer = () => {
-    const { user } = useContext(Context)
-
     return (
 
         <Navbar className='justify-content-center footer_wrapper'>
