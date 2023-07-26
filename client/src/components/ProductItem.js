@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { Button, Card, Image } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
@@ -78,4 +79,4 @@ const ProductItem = ({product}) => {
     );
 };
 
-export default ProductItem;
+export default observer(ProductItem);

@@ -6,11 +6,7 @@ import AssortmentService from "../service/AssortmentService";
 
 const ProductList = () => {
     const { product } = useContext(Context)
-
-    useEffect(() => {
-        AssortmentService.getAllByTypeAndAvailable('Салаты').then(data => product.setProduct(data))
-    }, []);
-
+    
     return (
         <div className="slider mt-5">
             {product.products.map(product =>

@@ -13,6 +13,7 @@ export default class ProductStore {
 
     async getAll(type) {
         const response = await AssortmentService.getAllByTypeAndAvailable(type);
+        this.setProducts(response.data)
         console.log(response.data)
     }
 
