@@ -36,6 +36,16 @@ class AssortmentController {
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
+    }
+
+    async getAllByTypeAndAvailable(req, res, next) {
+        try {
+            const {type, available} = req.body
+            const assortment = await Assortment.findAll({where:{type: type, available: available}})
+            return res.json(assortment)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
 
     }
 
