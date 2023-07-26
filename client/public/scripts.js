@@ -5,6 +5,7 @@ $(document).ready(function () {
     adaptiveHeight: true,
     slidesToShow: 3,
     slidesToScroll: 1,
+    initialSlide: 2,
     speed: 1000,
     infinite: false,
     /// waitForAnimate:false,
