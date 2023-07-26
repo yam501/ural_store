@@ -9,8 +9,8 @@ const AssortmentService =  {
         return new Promise((resolve) => resolve($authHost.delete('api/assortment/deleteProductByName', {name})))
     },
 
-    async getAllByTypeAndAvailable(type, available){
-        return new Promise((resolve) => resolve($authHost.get('api/assortment/getAllByTypeAndAvailable', {type, available})))
+    async getAllByTypeAndAvailable(type){
+        return new Promise((resolve) => resolve($authHost.get('api/assortment/getAllByTypeAndAvailable', {type: type, available: true})))
     }
 
     // async logout(){
