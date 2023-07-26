@@ -6,7 +6,7 @@ const complitedOrdersController = require('../controllers/complitedOrdersControl
 
 router.post('/createComplitedOrder', authMiddleware, activatedMiddleware, complitedOrdersController.createComplitedOrder)
 
-router.get('/getComplitedOrderByUserID', authMiddleware, activatedMiddleware, complitedOrdersController.getComplitedOrderByUserID)
-router.get('/getComplitedOrderByComplitedOrderID', authMiddleware, activatedMiddleware, complitedOrdersController.getComplitedOrderByComplitedOrderID)
+router.post('/getComplitedOrderByUserID', authMiddleware, activatedMiddleware, complitedOrdersController.getComplitedOrderByUserID)
+router.post('/getComplitedOrderByComplitedOrderID', authMiddleware, activatedMiddleware, complitedOrdersController.getComplitedOrderByComplitedOrderID)
 
 module.exports = router

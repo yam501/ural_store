@@ -9,9 +9,9 @@ router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.post('/logout', authMiddleware, userController.logout)
 
-router.get('/refresh', userController.refresh) // authMiddleware, починить надо но хз как пока
-router.get('/getUserByNumber', authMiddleware, userController.getUserByNumber)
-router.get('/getUserByUserID', authMiddleware, userController.getUserByUserID)
+router.get('/refresh', userController.refresh)
+router.post('/getUserByNumber', authMiddleware, userController.getUserByNumber)
+router.post('/getUserByUserID', authMiddleware, userController.getUserByUserID)
 
 router.put('/sendCode', authMiddleware, userController.sendCodeFromUser)
 router.put('/activate', authMiddleware, userController.activate)

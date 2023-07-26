@@ -6,8 +6,8 @@ const orderController = require('../controllers/orderController')
 
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 
-router.get('/getOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOrderByUserID)
-router.get('/getOrderByOrderID', authMiddleware, activatedMiddleware, orderController.getOrderByOrderID)
+router.post('/getOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOrderByUserID)
+router.post('/getOrderByOrderID', authMiddleware, activatedMiddleware, orderController.getOrderByOrderID)
 
 router.put('/changeAddressByUserID', authMiddleware, activatedMiddleware, orderController.changeAddressByUserID)
 router.put('/changeAddressByOrderID', authMiddleware, activatedMiddleware, orderController.changeAddressByOrderID)
