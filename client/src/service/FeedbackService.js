@@ -6,7 +6,7 @@ const FeedbackService =  {
     },
 
     async getFeedbackOfType(typeOfFeedback){
-        return new Promise((resolve) => resolve($authHost.get('api/feedback/getFeedbackOfType', {typeOfFeedback})))
+        return new Promise((resolve) => resolve($authHost.post('api/feedback/getFeedbackOfType', {typeOfFeedback})))
     },
 
     async getAllFeedback(){
