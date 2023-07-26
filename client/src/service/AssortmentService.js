@@ -6,11 +6,11 @@ const AssortmentService =  {
     },
 
     async deleteOneByName(name){
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/deleteProductByName', {name})))
+        return new Promise((resolve) => resolve($authHost.delete('api/assortment/deleteProductByName', {name})))
     },
 
-    async getAllByTypeAndAvailable(type, available){
-        return new Promise((resolve) => resolve($host.post('api/assortment/getAllByTypeAndAvailable', {type, available})))
+    async getAllByTypeAndAvailable(type){
+        return new Promise((resolve) => resolve($authHost.get(`api/assortment/getAllProductsByTypeAndAvailable/${type}/true`)))
     }
 
     // async logout(){
