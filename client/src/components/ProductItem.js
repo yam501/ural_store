@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Button, Card, Image } from 'react-bootstrap';
 
 const ProductItem = ({product}) => {
+
+
     const [countProduct, setCountProduct] = useState(1)
     const plus = () => {
         setCountProduct(countProduct + 1)

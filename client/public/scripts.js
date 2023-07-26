@@ -9,6 +9,7 @@ $(document).ready(function () {
     infinite: false,
     /// waitForAnimate:false,
     variableWidth: true,
+    centerMode: true,
   });
 });
 $(document).ready(function () {
@@ -16,13 +17,13 @@ $(document).ready(function () {
     arrows: false,
     dots: false,
     adaptiveHeight: true,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     speed: 1000,
     infinite: true,
     initialSlide: 2,
     /// waitForAnimate:false,
-    variableWidth: false,
-
+    variableWidth: true,
+    centerMode: true,
   });
 });
