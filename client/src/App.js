@@ -13,6 +13,8 @@ import ProductStore from "./store/ProductStore";
 
 const App = observer(() => {
   const { user } = useContext(Context)
+  const { product } = useContext(Context)
+  const [loading, setLoading] = useState(true)
   // useEffect(() => {
   //   check().then(data => {
   //     user.setUser(true)
@@ -25,7 +27,8 @@ const App = observer(() => {
       user.checkAuth()
     }
   }, [])
-  
+
+  product.getAllByAvailable(true)
   
   return (
     <BrowserRouter >

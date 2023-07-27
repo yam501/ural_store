@@ -28,7 +28,7 @@ function CreateAssortment({ show, onHide }) {
     formData.append('composition', composition)
     formData.append('image', image)
     AssortmentService.create(formData).then(data => onHide()).then(alert('Товар успешно добавлен'))
-    product.getAll(type)
+    
   }
   // alert('Товар успешно добавлен'),
 

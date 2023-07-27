@@ -74,7 +74,7 @@ const ProductItem = ({product}) => {
             </div>
         </Modal.Body>
       </Modal>
-        </>
+        </div>
 
     );
 };
