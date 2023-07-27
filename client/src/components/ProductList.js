@@ -10,7 +10,7 @@ const ProductList = () => {
     return (
         <div className="slider mt-5">
             {product.products.map(product =>
-                <ProductItem key={product.type && "Мясо"} id={product.id} product={product} />
+                <ProductItem key={product.type} id={product.id} product={product} />
             )}
         </div>
     );

@@ -12,6 +12,7 @@ import PasswordRecov from "./components/PasswordRecov";
 
 const App = observer(() => {
   const { user } = useContext(Context)
+  const { product } = useContext(Context)
   const [loading, setLoading] = useState(true)
   // useEffect(() => {
   //   check().then(data => {
@@ -26,6 +27,7 @@ const App = observer(() => {
     }
   }, [])
 
+  product.getAllByAvailable(true)
   
   return (
     <BrowserRouter >
