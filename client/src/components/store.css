@@ -5,9 +5,6 @@ body{
     height: 100%;
 }
 
-.slider{
-    min-width: 0;
-}
 
 .navSection-carousel{
     display: none !important;
@@ -17,7 +14,9 @@ body{
     display: block;
 }
 
-
+.owl-stage-product{
+    display: block;
+}
 .store-main{
     display: flex;
     flex-direction: column;

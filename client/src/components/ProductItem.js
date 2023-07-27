@@ -17,7 +17,7 @@ const ProductItem = ({product}) => {
         countProduct > 0 && setCountProduct(countProduct - 1)
     }
     return (
-        <>
+        <div>
         <Card className='products-bg mb-5 me-5' style={{ width: 290, cursor: 'pointer' }} >
             <Image onClick={handleShow} width={288} height={300} src={product.img} style={{border: 0}} />
             <div className='mt-1 d-flex justify-content-center'>

@@ -1,18 +1,24 @@
-import React, { useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import ProductItem from './ProductItem';
 import { Context } from '..';
-import AssortmentService from "../service/AssortmentService";
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
+
+import OwlCarousel from 'react-owl-carousel';
 
 const ProductList = () => {
     const { product } = useContext(Context)
     
     return (
-        <div className="owl-carousel product-carousel mt-5">
+        
+
+        <OwlCarousel className="d-flex mt-5">
+             
             {product.products.map(product =>
-                <ProductItem key={product.type} id={product.id} product={product} />
-            )}
-        </div>
+                <ProductItem key={product.type} id={product.id} product={product} />)}
+        </OwlCarousel>
     );
 };
 
