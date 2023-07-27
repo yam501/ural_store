@@ -34,7 +34,7 @@ const ProductItem = ({product}) => {
             </div>
             <div className='mt-1 d-flex justify-content-center'>
                 <div>
-                    цена
+                    {product.costPerOne * countProduct}
                 </div>
             </div>
             <div className='mt-1 d-flex justify-content-center'>

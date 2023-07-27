@@ -14,7 +14,7 @@ const ProductList = () => {
     return (
         
 
-        <OwlCarousel 
+        <OwlCarousel  
         className="mt-5"
         items='3'>
              

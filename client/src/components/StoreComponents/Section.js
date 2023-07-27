@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Nav } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Nav, Button } from 'react-bootstrap';
 
 import ProductItem from '../ProductItem';
 import { Context } from '../..';
@@ -11,7 +11,7 @@ import ProductList from '../ProductList';
 const Section = () => {
 
     const { product } = useContext(Context)
-
+    const [productShow, setProductShow] = useState(false)
     return (
         <Nav className='d-flex justify-content-center meat-section-content'>
             <Nav className='
@@ -42,7 +42,8 @@ const Section = () => {
                 id='meat_section'>
                 Камера
             </Nav>
-            <ProductList/>
+            <Button onClick={() => setProductShow(!productShow)}>Показать товары</Button>
+            {productShow && <ProductList/>}
         </Nav>
     );
 };

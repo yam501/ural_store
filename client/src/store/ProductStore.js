@@ -13,7 +13,6 @@ export default class ProductStore {
 
     async getAllByAvailable(available) {
         const response = await AssortmentService.getAllByAvailable(available);
-        localStorage.setItem('product',response.data)
         console.log(response.data)
         this.setProducts(response.data)
         console.log(this._products)
