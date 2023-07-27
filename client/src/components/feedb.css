@@ -2,6 +2,8 @@
 
 .feedb-wrapper{
     z-index: 0;
+    width: 25vw !important;
+    min-width: 300px;
     background-color:#40121F;  
     border: 0cm;
     color: white; 

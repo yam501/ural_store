@@ -38,9 +38,11 @@ const AuthButton = observer(() => {
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
-            <Button className='ms-2 container rounded-circle adminBtn'>
-                <AuthIcon />
-            </Button>
+            <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
+                <Button className='ms-2 container rounded-circle adminBtn'>
+                    <AuthIcon />
+                </Button>
+            </NavLink>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
             <Button
                 className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
