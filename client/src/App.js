@@ -9,6 +9,7 @@ import { Context } from ".";
 import { check } from "./http/userAPI";
 import Accept from "./components/AuthButton/Accept";
 import PasswordRecov from "./components/PasswordRecov";
+import ProductStore from "./store/ProductStore";
 
 const App = observer(() => {
   const { user } = useContext(Context)

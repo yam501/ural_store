@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 const CarouselSections = () => {
 
     return (
-        <div class="slider_section_mobile">
+        <div class="owl-carousel navSection-carousel">
             <Button className='button-section' href="#meat_section">Мясной отдел</Button>
             <Button className='button-section' href="#salad_section">Салаты</Button>
             <Button className='button-section' href="#veg_section">Овощной отдел</Button>

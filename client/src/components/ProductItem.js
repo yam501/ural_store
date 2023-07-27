@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
+import { Button, Card, Image, Nav } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 const ProductItem = ({product}) => {
 
@@ -17,8 +17,8 @@ const ProductItem = ({product}) => {
         countProduct > 0 && setCountProduct(countProduct - 1)
     }
     return (
-        <div>
-        <Card className='slider__item products-bg mb-5 me-5' style={{ width: 290, cursor: 'pointer' }} >
+        <>
+        <Card className='products-bg mb-5 me-5' style={{ width: 290, cursor: 'pointer' }} >
             <Image onClick={handleShow} width={288} height={300} src={product.img} style={{border: 0}} />
             <div className='mt-1 d-flex justify-content-center'>
                 <div className='d-flex align-items-center'>

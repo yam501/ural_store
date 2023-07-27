@@ -8,7 +8,7 @@ const ProductList = () => {
     const { product } = useContext(Context)
     
     return (
-        <div className="slider mt-5">
+        <div className="owl-carousel product-carousel mt-5">
             {product.products.map(product =>
                 <ProductItem key={product.type} id={product.id} product={product} />
             )}
