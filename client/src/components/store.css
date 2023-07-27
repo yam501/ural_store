@@ -9,10 +9,14 @@ body{
     min-width: 0;
 }
 
-.slider_section_mobile{
-    min-width: 0;
-    display: none;
+.navSection-carousel{
+    display: none !important;
 }
+
+.product-carousel{
+    display: block;
+}
+
 
 .store-main{
     display: flex;
@@ -50,8 +54,8 @@ body{
 .button-section {
     background-color: #EEEEEE;
     border: 0;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
     width: 350px;
     height: 50px;
     border-radius: 29vh;
@@ -102,8 +106,9 @@ body{
 
     }
 
-    .slider_section_mobile{
-        display: block;
+    .navSection-carousel{
+        display: block !important;
+        margin: 0px 0px 20px 0px;
     }
 
     .showcase {
@@ -113,17 +118,17 @@ body{
     }
 
     .button-section {
-        width: 150px;
-        height: 40px;
+        width: 110px;
+        height: 25px;
         margin-top: 20px;
         background-color: #EEEEEE;
         border: 0;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
         border-radius: 29vh;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 12px;
+        font-size: 10px;
         flex-wrap: wrap;
         align-content: center;
         color: #962A4A;
@@ -144,8 +149,9 @@ body{
 
     }
 
-    .slider_section_mobile{
-        display: block;
+    .navSection-carousel{
+        display: block !important;
+        margin: 0px 0px 20px 0px;
     }
 
     .showcase {
@@ -156,7 +162,7 @@ body{
 
     .button-section {
         width: 150px;
-        height: 40px;
+        height: 30px;
         margin-top: 20px;
         background-color: #EEEEEE;
         border: 0;
@@ -175,9 +181,9 @@ body{
     }
 }
 
-@media (min-width: 660px) and (max-width: 766px) {
+@media (min-width: 660px) and (max-width: 767px) {
     .sections {
-        display: flex;
+        display: none;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
@@ -185,8 +191,9 @@ body{
         margin-top: 0.2vh;
     }
 
-    .slider_section_mobile{
-        display: none;
+    .navSection-carousel{
+        display: block !important;
+        margin: 0px 0px 20px 0px;
     }
 
     .showcase {
@@ -196,16 +203,17 @@ body{
     }
 
     .button-section {
-        width: 200px;
+        width: 135px;
+        height: 30px;
         margin-top: 20px;
         background-color: #EEEEEE;
         border: 0;
-        margin-left: 20px;
+        margin-left: 5px;
         margin-right: 20px;
         border-radius: 29vh;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 18px;
+        font-size: 12px;
         flex-wrap: wrap;
         align-content: center;
         color: #962A4A;
@@ -232,7 +240,7 @@ body{
 
 @media (min-width: 768px) and (max-width: 991px) {
     .sections {
-        display: flex;
+        display: none;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
@@ -240,8 +248,9 @@ body{
         margin-top: 0.2vh;
     }
 
-    .slider_section_mobile{
-        display: none;
+    .navSection-carousel{
+        display: block !important;
+        margin: 0px 0px 20px 0px;
     }
 
     .showcase {
@@ -251,16 +260,17 @@ body{
     }
 
     .button-section {
-        width: 250px;
+        width: 150px;
+        height: 30px;
         margin-top: 20px;
         background-color: #EEEEEE;
         border: 0;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
         border-radius: 29vh;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 18px;
+        font-size: 12px;
         flex-wrap: wrap;
         align-content: center;
         color: #962A4A;
@@ -281,7 +291,7 @@ body{
         margin-top: 0.2vh;
     }
 
-    .slider_section_mobile{
+    .navSection-carousel{
         display: none;
     }
 
@@ -292,16 +302,17 @@ body{
     }
 
     .button-section {
-        width: 250px;
+        width: 160px;
+        height: 30px;
         margin-top: 20px;
         background-color: #EEEEEE;
         border: 0;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
         border-radius: 29vh;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 18px;
+        font-size: 14px;
         flex-wrap: wrap;
         align-content: center;
         color: #962A4A;
@@ -322,7 +333,7 @@ body{
         margin-top: 0.2vh;
     }
 
-    .slider_section_mobile{
+    .navSection-carousel{
         display: none;
     }
 
@@ -333,7 +344,8 @@ body{
     }
 
     .button-section {
-        width: 250px;
+        width: 170px;
+        height: 40px;
         margin-top: 20px;
         background-color: #EEEEEE;
         border: 0;
@@ -342,7 +354,7 @@ body{
         border-radius: 29vh;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         flex-wrap: wrap;
         align-content: center;
         color: #962A4A;
