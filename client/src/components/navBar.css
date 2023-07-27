@@ -187,13 +187,14 @@
 
 .menuBox {
     z-index: 0;
+    width: 15vw !important;
     background-color:#621B30;
     opacity: .9;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 1310px) {
     .menuBox {
-        width: 300px !important;
+        width: 200px !important;
     }
 }
 
