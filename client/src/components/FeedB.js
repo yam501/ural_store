@@ -104,7 +104,7 @@ const FeedB = () => {
                 onChange={e => setComment(e.target.value)} />
             </Form.Group>
           </Form>
-          <Button className='mt-3 w-100 feedb-button' type='submit' onClick={() => afterButton()}>
+          <Button className='mt-3 w-100 feedb-button' onClick={() => afterButton()}>
             Отправить
           </Button>
         </Offcanvas.Body>
