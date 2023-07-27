@@ -14,7 +14,9 @@ const ProductList = () => {
     return (
         
 
-        <OwlCarousel className="d-flex mt-5">
+        <OwlCarousel 
+        className="mt-5"
+        items='3'>
              
             {product.products.map(product =>
                 <ProductItem key={product.type} id={product.id} product={product} />)}
