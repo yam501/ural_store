@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Modal, Button, Dropdown, Form } from "react-bootstrap";
 import AssortmentService from "../../service/AssortmentService";
-import { Context } from "../..";
+
 
 
 function CreateAssortment({ show, onHide }) {
-  const {product} = useContext(Context)
+
   const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('Введите название')
   const [available, setAvailable] = useState(true)
@@ -28,7 +28,7 @@ function CreateAssortment({ show, onHide }) {
     formData.append('composition', composition)
     formData.append('image', image)
     AssortmentService.create(formData).then(data => onHide()).then(alert('Товар успешно добавлен'))
-    
+
   }
   // alert('Товар успешно добавлен'),
 
@@ -61,7 +61,7 @@ function CreateAssortment({ show, onHide }) {
           <Form.Control className="mt-3" placeholder="Введите название" onChange={e => setName(e.target.value)} />
 
           <Dropdown>
-            <Dropdown.Toggle className="mt-3" >{(available ? 'Есть' : 'Нет' )}  </Dropdown.Toggle>
+            <Dropdown.Toggle className="mt-3" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
               <Dropdown.Item onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
