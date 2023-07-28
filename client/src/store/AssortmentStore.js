@@ -1,24 +1,24 @@
 import { makeAutoObservable } from "mobx";
 import AssortmentService from "../service/AssortmentService";
 
-export default class ProductStore {
+export default class AssortmentStore {
     constructor() {
-        this._products = []
+        this._assortments = []
         makeAutoObservable(this)
     }
 
-    setProducts(products) {
-        this._products = products
+    setProducts(assortments) {
+        this._assortments = assortments
     }
 
     async getAllByAvailable(available) {
         const response = await AssortmentService.getAllByAvailable(available);
         // console.log(response.data)
         this.setProducts(response.data)
-        // console.log(this._products)
+        // console.log(this._assortments)
     }
 
-    get products() {
-        return this._products
+    get assortments() {
+        return this._assortments
     }
 }
