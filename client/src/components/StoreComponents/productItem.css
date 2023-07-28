@@ -1,0 +1,58 @@
+.btn-show-product{
+    width: calc(100% - 70%);
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-weight: 400;
+    background-color: #962A4A;
+    border: 0;
+    height: 60px;
+    
+}
+
+.btn-show-product:hover{
+    background-color: #FF709A;
+}
+
+.btn-show-product:active{
+    background-color: #FF709A !important;
+}
+
+
+.card-wrapper{
+    margin-bottom: 60px;
+    margin-left: 75px;
+}
+
+.products-bg{
+    background-color: rgba(220, 72, 115, 0.4);
+    /* border: 0; */
+    
+}
+
+.product-img{
+    border-top-left-radius: 1%;
+    border-top-right-radius: 1%;
+}
+.btn-minus{
+    background-color: rgb(255, 255, 255);
+    border: 0;
+    color: black;
+    font-size: 20px;
+    font-family: 'Inter';
+}
+
+.btn-plus{
+    background-color: rgb(255, 255, 255);
+    border: 0;
+    color: black;
+    font-size: 20px;
+    font-family: 'Inter';
+}
+
+.btn-plus:active{
+    background-color: #962A4A !important;
+}
+
+.btn-plus:hover{
+    background-color: #962A4A !important;
+}

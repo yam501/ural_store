@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Nav, Button } from 'react-bootstrap';
 
-import ProductItem from '../ProductItem';
+import ProductItem from './ProductItem';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
 import './slickSlider.css'
 import ProductList from '../ProductList';
 
-const Section = () => {
+const SectionMeat = () => {
 
     const { product } = useContext(Context)
     const [productShow, setProductShow] = useState(false)
@@ -27,7 +27,7 @@ const Section = () => {
             align-items-center
             fs-2
             showcase'>
-                <h className='showcase'>Мясной отдел</h>
+                <h className='showcase'>Витрина мясного отдела</h>
             </Nav>
             <Nav className='d-flex
             mt-2
@@ -42,10 +42,10 @@ const Section = () => {
                 id='meat_section'>
                 Камера
             </Nav>
-            <Button onClick={() => setProductShow(!productShow)}>Показать товары</Button>
+            <Button className='btn-show-product'  onClick={() => setProductShow(!productShow)}>Показать товары</Button>
             {productShow && <ProductList/>}
         </Nav>
     );
 };
 
-export default observer(Section);
+export default observer(SectionMeat);

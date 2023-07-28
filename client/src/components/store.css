@@ -5,6 +5,9 @@ body{
     height: 100%;
 }
 
+*{
+    font-family: 'Montserrat';
+}
 
 .navSection-carousel{
     display: none !important;
@@ -29,7 +32,6 @@ body{
     align-items: center;
     justify-content: center;
 }
-
 
 .showcase {
     font-family: 'Montserrat';
@@ -80,8 +82,8 @@ body{
 
 
 .meat-section-content {
-    background-image: url("../assets/meat-bg.png");
-    min-width: 0;
+    background: url("../assets/meat-bg1.svg") 0 0 / 100% no-repeat;
+    
     height: auto;
 }
 
@@ -90,9 +92,6 @@ body{
     font-weight: 500;
 }
 
-.products-bg{
-    background-color: rgba(64, 64, 64, 0.5);
-}
 
 @media (max-width: 575px)  {
     .sections {

@@ -7,7 +7,8 @@ import CaruselHead from './StoreComponents/CaruselHead';
 import './store.css';
 import CarouselSections from './StoreComponents/CarouselSections';
 
-import Section from './StoreComponents/Section';
+import SectionMeat from './StoreComponents/SectionMeat';
+import SectionSalad from './StoreComponents/SectionSalad';
 
 const StoreMain = () => {
     return (
@@ -15,7 +16,8 @@ const StoreMain = () => {
             <NavSections />
             <CarouselSections/>
             <CaruselHead />
-            <Section/>
+            <SectionMeat/>
+            <SectionSalad/>
         </Container>
     );
 };
