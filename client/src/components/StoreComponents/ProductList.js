@@ -14,7 +14,7 @@ const ProductList = () => {
         
 
         <OwlCarousel  
-        className="mt-5"
+        className="mt-5 "
         items='3'
         nav
         >

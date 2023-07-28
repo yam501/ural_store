@@ -14,7 +14,7 @@ const AdressBox = (props) => {
 
         disabled>
         <div className='d-flex w-100 justify-content-around align-items-center adressBoxContent' >
-            <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>
+            {props.width > 1199 && <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>}
             <span className='text-center wrap adressBoxText'>г. Ревда,ул. Уральская 5</span>
         </div>
 

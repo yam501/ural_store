@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AdressBox from '../AdressButton/AdressBox';
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Button from 'react-bootstrap/Button';
@@ -29,14 +30,14 @@ const BurgerMenu = () => {
         <div>
           <div 
           className={`me-3 burgerMenu ${open ? 'open' : ''}`}
-          onClick={openMenu}
+          onClick={openMenu} 
           >
             <span></span>
           </div>
           <Offcanvas className='border-0 menuBox' show={open} onHide={handleClose}>
+            {width <= 1199 && <AdressBox width={width}/>}
+
             <Offcanvas.Body className='menuBodyBox' >
-            <div className='w-100 d-flex justify-content-center align-items-center'>
-            </div>
             <Container className='container d-flex flex-column justify-content-between menuNav'>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ABOUTUS_ROUTE}>О нас</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказы</NavLink></div>

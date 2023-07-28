@@ -56,3 +56,32 @@
 .btn-plus:hover{
     background-color: #962A4A !important;
 }
+
+.modal-content {
+    width: 23vw !important;
+    height: 35vw;
+    font-size:calc(12px + 4 * (100vw/1903));
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400 !important;
+}
+
+@media(max-width: 1349px) {
+    .modal-content {
+        height: 470px !important;
+        width: 290px !important;
+    }
+}
+
+.productItem_text {
+    font-weight: 600 !important;
+}
+
+.image_box {
+    min-height: 211px;
+    height: 23vw;
+}
+
+.modal-dialog {
+    margin: auto !important;
+}

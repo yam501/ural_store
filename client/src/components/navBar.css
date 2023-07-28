@@ -86,12 +86,28 @@
     padding-left: 10%;
 }
 
+.menuAdressBox {
+    height: 36px !important;
+    margin-top: 5vw;
+
+    background-color: #621B30;
+}
+
+
 
 @media (max-width: 1199px) {
     .adressBox {
         display: none !important;
     }
+    .adressBoxText {
+        font-size:calc(16px + 2 * (100vw/1903)) !important;
+        font-weight: 500 !important;
+        color: #fff;
+        opacity: 1 !important;
+    }
 }
+
+
 
 .btnBasket {
     height: 2.6vw;
@@ -186,7 +202,7 @@
 }
 
 .menuBox {
-    z-index: 0;
+    z-index: 1;
     width: 15vw !important;
     background-color:#621B30;
     opacity: .9;
@@ -207,8 +223,9 @@
     margin-top: 4vw;
 }
 
+
 .offcanvas-backdrop {
-    z-index: 0;
+    z-index: 1;
     opacity: 35% !important;
 }
 
@@ -251,18 +268,12 @@
     font-size: calc(14px + 6 * (100vw/1903));   
 }
 
-@media(max-width:999px) {
+@media(max-width:1199px) {
     .menuNav {
         margin-top: 30px;
     }
 }
 
-.menuAdressBox {
-    position: static;
-    width: 50%;
-    height: 36px;
-    background-color: #ff709a;
-}
 
 .btnLogOut {
     text-align: center;
