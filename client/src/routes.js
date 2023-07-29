@@ -1,6 +1,6 @@
 import AboutUs from "./pages/AboutUs"
 import Admin from "./pages/Admin"
-import Basket from "./pages/Basket"
+import Basket from "./pages/Basket/Basket"
 import HistoryOrder from "./pages/HistoryOrder"
 import Order from "./pages/Order"
 import Store from "./pages/Store"

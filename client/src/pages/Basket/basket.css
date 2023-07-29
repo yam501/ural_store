@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+* {
+    font-family: 'Montserrat';
+}
+.img_box {
+    height: 7vw;
+    width: 7vw;
+}
+
+.product_item {
+    border: 1px solid #962A4A;
+    font-weight: 500;
+    font-size: calc(14px + 4 * (100vw/1903));
+}
+
+.product_item:hover {
+    background-color: rgba(178, 178, 178, 0.2);
+}
+
+.basket_item_cost {
+    width: 2vw;
+}
+
+.basket_page {
+    margin: auto;
+    width: 75vw;
+    box-sizing: border-box;
+}
+
+.order_delive_form {
+    font-size: calc(18px + 4 * (100vw/1903));
+    padding: 2vw;
+    border: 1px solid #5e5e5e
+}
+
+.order_delive_form_btn {
+    font-size: calc(18px + 4 * (100vw/1903));
+    background-color: #F5376E;
+    border: 0;
+    border-radius: 29px;
+    width: 10vw;
+    height: 3vw;
+}
+
+.order_delive_form_btn:active, .order_delive_form_btn:hover {
+    background-color: #ED789A !important;
+}
+

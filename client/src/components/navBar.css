@@ -86,23 +86,11 @@
     padding-left: 10%;
 }
 
-.menuAdressBox {
-    height: 36px !important;
-    margin-top: 5vw;
-    background-color: #008f39;
-}
-
 
 
 @media (max-width: 1199px) {
     .adressBox {
         display: none !important;
-    }
-    .adressBoxText {
-        font-size:calc(16px + 2 * (100vw/1903)) !important;
-        font-weight: 500 !important;
-        color: #fff;
-        opacity: 1 !important;
     }
 }
 
@@ -219,7 +207,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
-    margin-top: 4vw;
+    margin-top: 1vw;
 }
 
 
@@ -245,6 +233,14 @@
     transition: height 200ms ease-in-out;
 }
 
+.menuAdressText {
+    font-size: calc(12px + 6 * (100vw/1903));
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+}
+
 .sepLineMenu {
     margin: auto;
     margin-top: 1vw;
@@ -268,9 +264,7 @@
 }
 
 @media(max-width:1199px) {
-    .menuNav {
-        margin-top: 30px;
-    }
+
 }
 
 
