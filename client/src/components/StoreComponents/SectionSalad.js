@@ -42,7 +42,7 @@ const SectionSalad = () => {
                 id='meat_section'>
                 Камера
             </Nav>
-            <Button className='btn-show-product'  onClick={() => setProductShow(!productShow)}>Показать товары</Button>
+            <Button className='btn-show-product'  onClick={() => setProductShow(!productShow)}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
             {productShow && <ProductList/>}
         </Nav>
     );

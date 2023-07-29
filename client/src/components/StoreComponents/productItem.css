@@ -59,7 +59,7 @@
 
 .modal-content {
     width: 23vw !important;
-    height: 35vw;
+    height: fit-content;
     font-size:calc(12px + 4 * (100vw/1903));
     font-family: 'Montserrat';
     font-style: normal;
@@ -68,7 +68,6 @@
 
 @media(max-width: 1349px) {
     .modal-content {
-        height: 470px !important;
         width: 290px !important;
     }
 }

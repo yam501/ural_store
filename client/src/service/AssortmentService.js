@@ -13,9 +13,9 @@ const AssortmentService =  {
         return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndAvailable', {type, available: true})))
     },
 
-    async getAllByTypeAndAvailable(type,available){
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndAvailable', {type, available})))
-    },
+    // async getAllByTypeAndAvailable(type,available){
+    //     return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndAvailable', {type, available})))
+    // }, 
 
     async getAllByAvailable(available){
         return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByAvailable', {available})))

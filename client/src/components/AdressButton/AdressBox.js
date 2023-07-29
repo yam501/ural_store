@@ -8,7 +8,7 @@ const AdressBox = (props) => {
         me-3
         rounded-pill
         d-flex
-        justify-content-around
+        justify-content-around  
         align-items-center
         ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`}
 

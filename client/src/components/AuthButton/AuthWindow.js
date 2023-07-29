@@ -11,7 +11,6 @@ import Accept from './Accept';
 import PasswordRecov from '../PasswordRecov';
 import { Context } from '../..';
 import { Row } from 'react-bootstrap';
-
 const AuthWindow = (props) => {
     const [phone, setPhone] = useState('+79');
 

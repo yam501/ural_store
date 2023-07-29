@@ -1,4 +1,4 @@
-import React, { useContext,  } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -17,12 +17,21 @@ import Accept from './AuthButton/Accept';
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
-    
+    const [width, setWidth] = useState(window.innerWidth);
+    useEffect(() => {
+      const handleResize = (event) => {
+      setWidth(event.target.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+    })
     return (
     <Navbar className='d-flex navbar1'>
         <Container className='z-2 w-25'>
           <div className='d-flex align-items-center navBarBtnsBox'>
-            <BurgerMenu/>
+            <BurgerMenu width={width}/>
             <ShopLogo/>
           </div>
         </Container>
@@ -30,7 +39,7 @@ const NavBar = observer(() => {
         <Container className='container'>
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
-            <AdressBox/>
+            {width >= 1199 && <AdressBox width={width}/>}
             <AuthButton/>
             <ShopBasketButton/>
           </div>

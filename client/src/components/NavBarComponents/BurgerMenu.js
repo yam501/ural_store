@@ -8,23 +8,14 @@ import { ABOUTUS_ROUTE, ADMIN_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE } from '../
 import Container from 'react-bootstrap/esm/Container';
 import FeedB from '../FeedB';
 
-const BurgerMenu = () => {
+const BurgerMenu = (props) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleShow = () => setOpen(true);
     const openMenu = () => {
       return !open ? setOpen(true) : setOpen(false);
     }
-    const [width, setWidth] = useState(window.innerWidth);
-    useEffect(() => {
-      const handleResize = (event) => {
-      setWidth(event.target.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-    })
+
 
     return (
         <div>
@@ -35,7 +26,7 @@ const BurgerMenu = () => {
             <span></span>
           </div>
           <Offcanvas className='border-0 menuBox' show={open} onHide={handleClose}>
-            {width <= 1199 && <AdressBox width={width}/>}
+            {props.width <= 1199 && <AdressBox width={props.width}/>}
 
             <Offcanvas.Body className='menuBodyBox' >
             <Container className='container d-flex flex-column justify-content-between menuNav'>

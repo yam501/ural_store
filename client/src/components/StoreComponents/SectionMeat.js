@@ -12,6 +12,7 @@ const SectionMeat = () => {
 
     const { product } = useContext(Context)
     const [productShow, setProductShow] = useState(false)
+    
     return (
         <Nav className='d-flex justify-content-center meat-section-content'>
             <Nav className='
@@ -42,7 +43,7 @@ const SectionMeat = () => {
                 id='meat_section'>
                 Камера
             </Nav>
-            <Button className='btn-show-product'  onClick={() => setProductShow(!productShow)}>Показать товары</Button>
+            <Button className='btn-show-product'  onClick={() => setProductShow(!productShow)}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
             {productShow && <ProductList/>}
         </Nav>
     );
