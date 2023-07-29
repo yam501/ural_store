@@ -13,9 +13,17 @@ export default class AssortmentStore {
 
     async getAllByAvailable(available) {
         const response = await AssortmentService.getAllByAvailable(available);
-        // console.log(response.data)
         this.setProducts(response.data)
-        // console.log(this._assortments)
+    }
+
+    async getAllByAvailable(available) {
+        const response = await AssortmentService.getAllByAvailable(available);
+        this.setProducts(response.data)
+    }
+
+    async getAll() {
+        const response = await AssortmentService.getAll();
+        this.setProducts(response.data)
     }
 
     get assortments() {

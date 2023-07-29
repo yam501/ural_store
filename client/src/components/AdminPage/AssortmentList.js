@@ -8,10 +8,10 @@ const AssortmentList = () => {
     const { assortment } = useContext(Context)
     return (
 
-        <div>
+        <div className='w-100'>
              {assortment._assortments.map(item => 
-                <Nav>{item.name}</Nav>
-                // <AssortmentItem assortment={e} />
+                // <Nav>{item.name}</Nav>
+                <AssortmentItem assortment={item} />
             )}
         </div>
 

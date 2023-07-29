@@ -1,25 +1,49 @@
-import React, { useState } from 'react';
-import {Button, Container} from "react-bootstrap"; 
-import CreateAssortment from '../components/Modals/CreateAssortment';
-import EditAssortment from '../components/Modals/EditAssortment' 
+import React, { useContext, useState } from 'react';
+import { Button, Container, Row, Col } from "react-bootstrap";
+import CreateAssortment from '../components/AdminPage/CreateAssortment';
+import EditAssortment from '../components/AdminPage/EditAssortment'
+import { Context } from '..';
+
 
 // Страница администратора
+import "./admin.css"
 
 function Admin() {
+  const { assortment } = useContext(Context)
+
   const [assortmentVisible, setAssortmentVisible] = useState(false)
   const [editAssortmentVisible, setEditAssortmentVisible] = useState(false)
-    return (
-      <Container className="Admin justify-content-center me-auto ms-auto">
-        <Button variant='outline-dark' className='mt-4 p-2 w-25' onClick={() => setAssortmentVisible(true)} > Добавить ассортимент  </Button>
-        <Button variant='outline-dark' className='mt-4 p-2 w-25' > Удалить ассортимент   </Button>
-        <Button variant='outline-dark' className='mt-4 p-2 w-25' onClick={() => setEditAssortmentVisible(true)} > Изменить наличие      </Button>
-        <CreateAssortment show={assortmentVisible} onHide={() => setAssortmentVisible(false)}/>
-        <EditAssortment show={editAssortmentVisible} onHide={() => setEditAssortmentVisible(false)}/>
 
-
-
-      </Container>
-    );
+  const showOnlyAddAssortment = () => {
+    setAssortmentVisible(true)
+    setEditAssortmentVisible(false)
   }
+
+  const showOnlyEditAssortment = () => {
+    setEditAssortmentVisible(true)
+    setAssortmentVisible(false)
+    assortment.getAll()
+  }
+
+
+  return (
+    <div className=" border">
+      <Row>
+        <Col className="d-flex flex-column border justify-content-center align-items-center" sm={2} >
+          <Button variant='outline-dark' className='mt-4 p-3 w-50' onClick={showOnlyAddAssortment} > Добавить ассортимент</Button>
+          <Button variant='outline-dark' className='mt-4 p-3 w-50' onClick={showOnlyEditAssortment} > Изменить ассортимент </Button>
+
+
+
+        </Col>
+        <Col className=" border" sm={8}>
+          <CreateAssortment show={assortmentVisible ? "" : "d-none"} />
+          <EditAssortment show={editAssortmentVisible ? "" : "d-none"} />
+
+        </Col>
+      </Row>
+    </div>
+  );
+}
 
 export default Admin;

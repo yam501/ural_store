@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError')
-const {Assortment, BasketProduct, Basket} = require('../models/models')
+const { Assortment, BasketProduct, Basket } = require('../models/models')
 const basketController = require('./basketController')
 const path = require('path')
 
@@ -7,31 +7,37 @@ const path = require('path')
 class AssortmentController {
     async create(req, res, next) {
         try {
-            const {type, name, available, costPerOne, description, composition} = req.body
-            const {image} = req.files
+            const { type, name, available, costPerOne, description, composition } = req.body
+            const { image } = req.files
             let fileName = name + ".jpg"
             image.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const assortment = await Assortment.create({type, name, available, costPerOne, description, composition, image: fileName})
+            const assortment = await Assortment.create({ type, name, available, costPerOne, description, composition, image: fileName })
+            return res.json(assortment)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+    async getAll(req, res, next) {
+        try {
+            return res.json(await Assortment.findAll())
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+    async getAllByName(req, res, next) {
+        try {
+            const { name } = req.body
+            const assortment = await Assortment.findAll({ where: { name: name } })
             return res.json(assortment)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
-    async getOneByName(req, res, next) {
-        try {
-            const {name} = req.body
-            const assortment = await Assortment.findOne({where:{name: name}})
-            return res.json(assortment)
-        } catch(e) {
-            next(ApiError.badRequest(e.message))
-        }
-    }
-
     async getAllByAvailable(req, res, next) {
         try {
-            const {available} =req.body
-            const assortment = await Assortment.findAll({where:{available}})
+            const { available } = req.body
+            const assortment = await Assortment.findAll({ where: { available } })
             return res.json(assortment)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -40,8 +46,8 @@ class AssortmentController {
 
     async getAllByType(req, res, next) {
         try {
-            const {type} = req.body
-            const assortment = await Assortment.findAll({where:{type: type}})
+            const { type } = req.body
+            const assortment = await Assortment.findAll({ where: { type: type } })
             return res.json(assortment)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -50,8 +56,8 @@ class AssortmentController {
 
     async getAllByTypeAndAvailable(req, res, next) {
         try {
-            const {type, available} = req.body
-            const assortment = await Assortment.findAll({where:{type: type, available: available}})
+            const { type, available } = req.body
+            const assortment = await Assortment.findAll({ where: { type: type, available: available } })
             return res.json(assortment)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -61,10 +67,10 @@ class AssortmentController {
 
     async deleteOneByName(req, res, next) {
         try {
-            const {name} = req.body
-            const product = await Assortment.findOne({where: {name: name}})
-            const deleted = await Assortment.destroy({where:{name: name}})
-            await BasketProduct.destroy({where: {assortmentId: product['id']}})
+            const { name } = req.body
+            const product = await Assortment.findOne({ where: { name: name } })
+            const deleted = await Assortment.destroy({ where: { name: name } })
+            await BasketProduct.destroy({ where: { assortmentId: product['id'] } })
             const updatedBaskets = await Basket.findAll()
             updatedBaskets.forEach(element => basketController.updateSum(element['id']))
             return res.json(deleted)
@@ -75,8 +81,8 @@ class AssortmentController {
 
     async changeNameByName(req, res, next) {
         try {
-            const {oldName, newName} = req.body
-            const updated = await Assortment.update({name: newName}, {where: {name: oldName}})
+            const { oldName, newName } = req.body
+            const updated = await Assortment.update({ name: newName }, { where: { name: oldName } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -85,26 +91,26 @@ class AssortmentController {
 
     async changeAvailableByName(req, res, next) {
         try {
-            const {name, available} = req.body
-            const updated = await Assortment.update({available: available}, {where: {name: name}})
-            if (!available){
-                const product = await Assortment.findOne({where: {name: name}})
-                await BasketProduct.destroy({where: {assortmentId: product['id']}})
+            const { name, available } = req.body
+            const updated = await Assortment.update({ available: available }, { where: { name: name } })
+            if (!available) {
+                const product = await Assortment.findOne({ where: { name: name } })
+                await BasketProduct.destroy({ where: { assortmentId: product['id'] } })
                 const baskets = await Basket.findAll()
                 baskets.forEach(element => basketController.updateSum(element['id']))
             }
-            return res.json(updated) 
+            return res.json(updated)
         } catch (e) {
-           next(ApiError.badRequest(e.message)) 
+            next(ApiError.badRequest(e.message))
         }
     }
 
     async changeCostPerOneByName(req, res, next) {
         try {
-            const {name, costPerOne} = req.body
-            const product = await Assortment.findOne({where: {name: name}})
-            const updated = await Assortment.update({costPerOne: costPerOne}, {where: {name: name}})
-            await BasketProduct.update({costPerOne: costPerOne}, {where: {assortmentId: product['id']}})
+            const { name, costPerOne } = req.body
+            const product = await Assortment.findOne({ where: { name: name } })
+            const updated = await Assortment.update({ costPerOne: costPerOne }, { where: { name: name } })
+            await BasketProduct.update({ costPerOne: costPerOne }, { where: { assortmentId: product['id'] } })
             const baskets = await Basket.findAll()
             baskets.forEach(element => basketController.updateSum(element['id']))
             return res.json(updated)
@@ -115,8 +121,8 @@ class AssortmentController {
 
     async changeDescriptionByName(req, res, next) {
         try {
-            const {name, description} = req.body
-            const updated = await Assortment.update({description: description}, {where: {name: name}})
+            const { name, description } = req.body
+            const updated = await Assortment.update({ description: description }, { where: { name: name } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -125,8 +131,8 @@ class AssortmentController {
 
     async changeCompositionByName(req, res, next) {
         try {
-            const {name, composition} = req.body
-            const updated = await Assortment.update({composition: composition}, {where: {name: name}})
+            const { name, composition } = req.body
+            const updated = await Assortment.update({ composition: composition }, { where: { name: name } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -136,25 +142,27 @@ class AssortmentController {
 
     async changeImageByName(req, res, next) {
         try {
-            const {name} = req.body
-            const {image} = req.files
+            const { name } = req.body
+            const { image } = req.files
             let fileName = name + ".jpg"
             image.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const updated = await Assortment.update({image: fileName}, {where: {name: name}})
+            const updated = await Assortment.update({ image: fileName }, { where: { name: name } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
-        }        
+        }
     }
 
     async changeAssortment(req, res, next) {
         try {
-            const {name, available, costPerOne, description, composition} = req.body
-            const {image} = req.files
+            const { name, available, costPerOne, description, composition } = req.body
+            const { image } = req.files
             let fileName = name + ".jpg"
             image.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const updated = await Assortment.update({name: name, available: available, costPerOne: costPerOne, 
-                description: description, composition: composition, image: fileName}, {where: {id: id}})
+            const updated = await Assortment.update({
+                name: name, available: available, costPerOne: costPerOne,
+                description: description, composition: composition, image: fileName
+            }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))

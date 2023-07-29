@@ -5,13 +5,14 @@ const checkRole = require('../middleware/CheckRoleMiddleware')
 
 router.post('/createProduct', checkRole('ADMIN'), assortmentController.create)
 
-router.post('/getProductByName', assortmentController.getOneByName)
+router.post('/getAll', assortmentController.getAll)
+router.post('/getAllByProductByName', assortmentController.getAllByName)
 router.post('/getAllProductsByType', assortmentController.getAllByType)
-router.post('/getAllProductsByTypeAndAvailable', assortmentController.getAllByTypeAndAvailable)
 router.post('/getAllProductsByAvailable', assortmentController.getAllByAvailable)
+router.post('/getAllProductsByTypeAndAvailable', assortmentController.getAllByTypeAndAvailable)
 
 
-router.delete('/deleteProductByName', checkRole('ADMIN'), assortmentController.deleteOneByName)
+router.post('/deleteProductByName', checkRole('ADMIN'), assortmentController.deleteOneByName)
 
 router.put('/changeProductNameByName', checkRole('ADMIN'), assortmentController.changeNameByName)
 router.put('/changeProductAvailableByName', checkRole('ADMIN'), assortmentController.changeAvailableByName)
