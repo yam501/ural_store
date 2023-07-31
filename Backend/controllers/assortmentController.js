@@ -65,6 +65,17 @@ class AssortmentController {
 
     }
 
+    async getAllByTypeAndName(req, res, next) {
+        try {
+            const { type, name } = req.body
+            const assortment = await Assortment.findAll({ where: { type: type, name: name } })
+            return res.json(assortment)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+
+    }
+
     async deleteOneByName(req, res, next) {
         try {
             const { name } = req.body

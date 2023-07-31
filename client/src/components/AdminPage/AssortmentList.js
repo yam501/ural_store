@@ -4,11 +4,13 @@ import AssortmentItem from './AssortmentItem';
 import { Context } from '../..';
 import { Nav } from 'react-bootstrap';
 
+import "./assortment.css"
+
 const AssortmentList = () => {
     const { assortment } = useContext(Context)
     return (
 
-        <div className='w-100'>
+        <div className='w-100 ' >
              {assortment._assortments.map(item => 
                 // <Nav>{item.name}</Nav>
                 <AssortmentItem assortment={item} />

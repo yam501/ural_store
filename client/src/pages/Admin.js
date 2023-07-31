@@ -7,6 +7,7 @@ import { Context } from '..';
 
 // Страница администратора
 import "./admin.css"
+import { observer } from 'mobx-react-lite';
 
 function Admin() {
   const { assortment } = useContext(Context)
@@ -46,4 +47,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default observer (Admin);
