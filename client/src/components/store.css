@@ -1,26 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body{
+body {
     height: 100%;
 }
 
-*{
+* {
     font-family: 'Montserrat';
 }
 
-.navSection-carousel{
+.navSection-carousel {
     display: none !important;
 }
 
-.product-carousel{
+.product-carousel {
     display: block;
 }
 
-.owl-stage-product{
+.owl-stage-product {
     display: block;
 }
-.store-main{
+
+.store-main {
     display: flex;
     flex-direction: column;
     min-height: 3000px;
@@ -83,17 +84,29 @@ body{
 
 .meat-section-content {
     background: url("../assets/meat-bg1.svg") 0 0 / 100% no-repeat;
-    
-    height: auto;
+    height: 1296px;
+    display: inline-block;
+    vertical-align: top;
 }
 
-.meat-header {
+.salad-section-content {
+    background: url("../assets/salad-bg1.svg") 0 0 / 100% no-repeat;
+    height: 1296px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+
+
+.section-header {
     font-family: 'Montserrat';
     font-weight: 500;
+    height: 100px;
 }
 
 
-@media (max-width: 575px)  {
+@media (max-width: 575px) {
     .sections {
         display: none;
         flex-wrap: wrap;
@@ -104,7 +117,7 @@ body{
 
     }
 
-    .navSection-carousel{
+    .navSection-carousel {
         display: block !important;
         margin: 0px 0px 20px 0px;
     }
@@ -147,7 +160,7 @@ body{
 
     }
 
-    .navSection-carousel{
+    .navSection-carousel {
         display: block !important;
         margin: 0px 0px 20px 0px;
     }
@@ -189,7 +202,7 @@ body{
         margin-top: 0.2vh;
     }
 
-    .navSection-carousel{
+    .navSection-carousel {
         display: block !important;
         margin: 0px 0px 20px 0px;
     }
@@ -246,7 +259,7 @@ body{
         margin-top: 0.2vh;
     }
 
-    .navSection-carousel{
+    .navSection-carousel {
         display: block !important;
         margin: 0px 0px 20px 0px;
     }
@@ -289,7 +302,7 @@ body{
         margin-top: 0.2vh;
     }
 
-    .navSection-carousel{
+    .navSection-carousel {
         display: none;
     }
 
@@ -331,7 +344,7 @@ body{
         margin-top: 0.2vh;
     }
 
-    .navSection-carousel{
+    .navSection-carousel {
         display: none;
     }
 

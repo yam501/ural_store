@@ -5,6 +5,7 @@ import ProductItem from './ProductItem';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
+import 'animate.css';
 import './slickSlider.css'
 import ProductList from './ProductList';
 
@@ -12,14 +13,13 @@ const SectionMeat = () => {
 
     const { product } = useContext(Context)
     const [productShow, setProductShow] = useState(false)
-    
     return (
-        <Nav className='d-flex justify-content-center meat-section-content'>
+        <Nav className='meat-section-content'>
             <Nav className='
             d-flex
             mt-5
-            mb-5
-            meat-header
+            mb-0
+            section-header
             w-100
             border-3
             border-top
@@ -43,8 +43,10 @@ const SectionMeat = () => {
                 id='meat_section'>
                 Камера
             </Nav>
-            <Button className='btn-show-product'  onClick={() => setProductShow(!productShow)}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
-            {productShow && <ProductList/>}
+            <Nav className='d-flex justify-content-center'>
+                <Button className='btn-show-product ' onClick={() => setProductShow(!productShow)}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
+                {productShow && <ProductList />}
+            </Nav>
         </Nav>
     );
 };

@@ -14,9 +14,15 @@ const ProductList = () => {
         
 
         <OwlCarousel  
-        className="mt-5 "
+        className="owl-theme mt-5 "
         items='3'
+        dots={false}
         nav
+        navText={[
+            '<span class="arrow prev">‹</span>',
+            '<span class="arrow next">›</span>'
+          ]}
+        
         >
              
             {product.products.map(product =>

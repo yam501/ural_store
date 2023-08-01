@@ -6,15 +6,16 @@
     background-color: #962A4A;
     border: 0;
     height: 60px;
-    
+    position: relative;
+    top: 0;
 }
 
 .btn-show-product:hover{
-    background-color: #FF709A;
+    background-color: #c04c6f;
 }
 
 .btn-show-product:active{
-    background-color: #FF709A !important;
+    background-color: #c04c6f !important;
 }
 
 
@@ -34,7 +35,7 @@
     border-top-right-radius: 1%;
 }
 .btn-minus{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
     font-size: 20px;
@@ -42,7 +43,7 @@
 }
 
 .btn-plus{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
     font-size: 20px;
@@ -50,12 +51,23 @@
 }
 
 .btn-plus:active{
-    background-color: #962A4A !important;
+    background-color: #962a4a !important;
+    opacity: 70% !important;
 }
 
 .btn-plus:hover{
-    background-color: #962A4A !important;
+    background-color: #da3d6c !important;
 }
+
+.btn-minus:active{
+    background-color: #962A4A !important;
+    opacity: 70% !important;
+}
+
+.btn-minus:hover{
+    background-color: #da3d6c !important;
+}
+
 
 .modal-content {
     width: 23vw !important;
@@ -83,4 +95,32 @@
 
 .modal-dialog {
     margin: auto !important;
+}
+
+.arrow {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 0;
+    top: 40%;
+  }
+
+  .next {
+    right: 0;
+    background: url("../../assets/arrow-right.svg") 0 0 / 100% no-repeat;
+    
+  }
+
+  .prev {
+    left: 0;
+    background: url("../../assets/arrow-left.svg") 0 0 / 100% no-repeat;
+  }
+
+.btn-addToBasket{   
+    background-color:#962A4A;
+    border: 0;
+}
+
+.btn-addToBasket:hover{
+    background-color: #da3d6c !important;
 }
