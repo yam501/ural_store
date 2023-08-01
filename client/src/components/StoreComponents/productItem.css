@@ -26,11 +26,13 @@
 
 .products-bg{
     background-color: rgba(220, 72, 115, 0.4);
+    cursor: default !important;
     /* border: 0; */
     
 }
 
 .product-img{
+    cursor: pointer !important;
     border-top-left-radius: 1%;
     border-top-right-radius: 1%;
 }
