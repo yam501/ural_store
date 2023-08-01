@@ -9,6 +9,9 @@ import CarouselSections from './StoreComponents/CarouselSections';
 
 import SectionMeat from './StoreComponents/SectionMeat';
 import SectionSalad from './StoreComponents/SectionSalad';
+import SectionVeg from './StoreComponents/SectionVeg';
+import SectionBakery from './StoreComponents/SectionBakery';
+import SectionDairy from './StoreComponents/SectionDairy';
 
 const StoreMain = () => {
     return (
@@ -18,6 +21,9 @@ const StoreMain = () => {
             <CaruselHead />
             <SectionMeat/>
             <SectionSalad/>
+            <SectionVeg/>
+            <SectionBakery/>
+            <SectionDairy/>
         </Container>
     );
 };
