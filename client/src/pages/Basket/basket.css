@@ -14,13 +14,22 @@
     font-size: calc(14px + 4 * (100vw/1903));
 }
 
+@media(max-width: 999) {
+    .product_item {
+        width: 100% !important;
+    }
+}
 .product_item:hover {
     background-color: rgba(178, 178, 178, 0.2);
 }
 
 .basket_item_cost {
-    width: 2vw;
+    text-align: center;
+    width: 15%;
+    border: 0;
 }
+
+
 
 .basket_page {
     margin: auto;

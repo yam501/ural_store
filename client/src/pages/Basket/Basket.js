@@ -10,7 +10,7 @@ function Basket() {
     const {product} = useContext(Context)
     return (
       <div className='mb-5 basket_page'>
-        <div className='fs-2 text-center'>
+        <div className='fs-2 text-center'> 
           Корзина
         </div>
         {product.products.map(basketItem => 
