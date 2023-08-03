@@ -1,43 +1,55 @@
 import { $authHost, $host } from "../http";
 
 const BasketService = {
-    async create(formData) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/createProduct', formData)))
+    async createBasket(basket) {
+        return new Promise((resolve) => resolve($authHost.post('api/basket/createBasket', basket)))
     },
 
 
-
-
-    async deleteOneByName(name) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/deleteProductByName', { name })))
+    async getBasketByUserID(userId) {
+        return new Promise((resolve) => resolve($authHost.post('api/basket/getBasketByUserID', {userId})))
     },
 
 
-
-
-    async getAll() {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAll')))
+    async getBasketByBasketID(id) {
+        return new Promise((resolve) => resolve($authHost.post('api/basket/getBasketByBasketID', {id})))
     },
 
-    async getAllByName(name) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllByProductByName', { name })))
+
+    async updateSum(aproxSum, id) {
+        return new Promise((resolve) => resolve($authHost.post('api/basket/updateSum', {aproxSum, id})))
     },
 
-    async getAllByType(type) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByType', { type })))
+
+    async createBasketProduct(basketProduct) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/createBasketProduct', basketProduct)))
     },
 
-    async getAllByAvailable(available) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByAvailable', { available })))
+
+    async getAllBasketProductsByBasketID(id) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getAllBasketProductsByBasketID', { id })))
     },
 
-    async getAllByTypeAndAvailable(type, available) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndAvailable', { type, available })))
+
+    async deleteAllBasketProductsByBasketID(id) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/deleteAllBasketProductsByBasketID', {id})))
     },
 
-    async getAllByTypeAndName(type, name) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndName', { type, name })))
-    }
+
+    async deleteOneBasketProductByBasketIDAndAssortmentID(basketId, assortmentId) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getAllByProductByName', { basketId, assortmentId })))
+    },
+
+
+    async changeMoreOrLessByBasketIDAndAssortmentID(basketId, assortmentId, moreOrLess) {
+        return new Promise((resolve) => resolve($authHost.put('api/basketProduct/changeMoreOrLessByBasketIDAndAssortmentID', { basketId, assortmentId, moreOrLess })))
+    },
+
+
+    async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
+        return new Promise((resolve) => resolve($authHost.put('api/basketProduct/changeCountByBasketIDAndAssortmentID', { basketId, assortmentId, count })))
+    },
+
 }
 
 export default BasketService;

@@ -1,10 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card, Image, Nav } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import './productItem.css'
+import { Context } from '../..';
 
 const ProductItem = ({ product }) => {
+
+    const {basket} = useContext(Context)
 
     const [show, setShow] = useState(false);
 
@@ -17,6 +20,11 @@ const ProductItem = ({ product }) => {
     }
     const minus = () => {
         countProduct > 0 && setCountProduct(countProduct - 1)
+    }
+
+    const addProductInBasket = () => {
+        basket.createBasketProduct()
+        basket.createBasket()
     }
     return (
         <>
@@ -49,7 +57,7 @@ const ProductItem = ({ product }) => {
                     </Button>
                 </div>
                 <Nav className='d-felx justify-content-center mt-2'>
-                    <Button className='btn-addToBasket w-50 mb-2 rounded-5'>
+                    <Button onClick={addProductInBasket} className='btn-addToBasket w-50 mb-2 rounded-5'>
                         В корзину
                     </Button>
                 </Nav>

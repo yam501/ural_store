@@ -14,6 +14,7 @@ import ProductStore from "./store/ProductStore";
 const App = observer(() => {
   const { user } = useContext(Context)
   const { product } = useContext(Context)
+  const {basket} = useContext(Context)
   
   const [loading, setLoading] = useState(true)
   // useEffect(() => {
@@ -30,8 +31,7 @@ const App = observer(() => {
   }, [])
 
   product.getAllByAvailable(true)
-  
-
+  console.log(basket)
   return (
     <BrowserRouter >
       <NavBar />

@@ -8,8 +8,8 @@ router.post('/createBasketProduct', authMiddleware, activatedMiddleware, basketP
 
 router.post('/getAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.getAllBasketProductsByBasketID)
 
-router.delete('/deleteAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.deleteAllBasketProductsByBasketID)
-router.delete('/deleteOneBasketProductByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.deleteOneBasketProductByBasketIDAndAssortmentID)
+router.post('/deleteAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.deleteAllBasketProductsByBasketID)
+router.post('/deleteOneBasketProductByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.deleteOneBasketProductByBasketIDAndAssortmentID)
 
 router.put('/changeMoreOrLessByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.changeMoreOrLessByBasketIDAndAssortmentID)
 router.put('/changeCountByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.changeCountByBasketIDAndAssortmentID)
