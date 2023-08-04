@@ -16,15 +16,15 @@ function EditAssortment(props) {
     const [name, setName] = useState('')
 
     const search = () => {
-        if (name !== '' && type !== 'Любой тип') return assortment.getAllByTypeAndName(type, name)
+        if (name !== '' && type !== 'Любой тип') return assortment.getByTypeAndName(type, name)
         if (name === '' && type !== 'Любой тип') return assortment.getByType(type)
         if (name !== '' && type === 'Любой тип') return assortment.getByName(name)
         return assortment.getAll()
     }
-    assortment.getAll()
+
     const delAssortment = () => {
-        assortment._assortments.forEach(e => {
-            if (e.isDel) AssortmentService.deleteOneByName(e.name)
+        assortment._assortments.forEach(i => {
+            if (i.isDel) AssortmentService.deleteOneByName(i.name)
         });
         assortment.getAll()
     }
@@ -53,7 +53,7 @@ function EditAssortment(props) {
                         <Dropdown.Item key={6} onClick={() => setType('Молочка')}>Молочка</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Button variant="secondary" onClick={search}>Найти</Button>
+                <Button variant="secondary"  onClick={search}  type="submit">Найти</Button>
                 <Button variant="danger" onClick={delAssortment}>Удалить</Button>
             </Stack>
 

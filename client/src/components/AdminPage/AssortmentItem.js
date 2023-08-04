@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useState } from 'react';
-import { Button, Card, Image, Nav, Row, Col, Container, Form } from 'react-bootstrap';
+import { Button, Card, Image, Nav, Row, Col, Container, Form, FormLabel } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import AssortmentService from "../../service/AssortmentService";
 
@@ -20,7 +20,7 @@ const AssortmentItem = (props) => {
   }
 
   return (
-    <div className='big-window'>
+    <div>
       <Row className='p-2 border'>
         <Col className='border-1'>
           {props.assortment.name}
@@ -36,7 +36,7 @@ const AssortmentItem = (props) => {
 
 
         <Col className='border-1'>
-            <Form.Check onChange={changeIsDel}  label="Удалить?"/>
+            <Form.Check onChange={changeIsDel} type='checkbox' cheaked={props.assortment.isDel ? true : false} />
         </Col>
         <Col className='border-1'>
           <Button className='w-100' size='sm' onClick={()=>console.log(props.assortment.isDel)} >Изменить</Button>
@@ -51,4 +51,4 @@ const AssortmentItem = (props) => {
 }
 
 
-export default observer(AssortmentItem);
+export default AssortmentItem;
