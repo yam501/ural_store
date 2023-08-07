@@ -14,7 +14,7 @@ const BasketItem = (props) => {
         <div className='d-flex align-items-center justify-content-between mt-3 mb-3 container product_item'>
             <div className='d-flex align-items-center'>
                 <div className='me-3 fw-bold'>
-                    {props.product.id}
+                    {props.basketProduct.id}
                 </div>
                 <div className='p-1 img_box'>
                     <Image className='w-100 h-100 product-img' src={process.env.REACT_APP_API_URL + props.product.image} style={{ border: 0 }} />
@@ -26,7 +26,7 @@ const BasketItem = (props) => {
             
             <div className='text-center me-3'>
                 <div>
-                    {props.product.costPerOne * countProduct} ₽
+                    {props.basketProduct.costPerOne} ₽
                 </div>
                 <div className='mt-1 d-flex justify-content-center bg-white basket_item_input_box'>
                     <Button className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white' style={{width: '48px',height: '48px'}} onClick={() => minus()}>
