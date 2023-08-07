@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import BasketService from "../service/BasketService";
 import { basketConstructor } from "../models/basketConstructor";
 
-export default class BasketProductStore {
+export default class BasketStore {
     constructor() {
         this._baskets = new basketConstructor()
         makeAutoObservable(this)
@@ -12,10 +12,6 @@ export default class BasketProductStore {
         this._basket = basket
     }
 
-    async createBasket(basket) {
-        const response = await BasketService.createBasket(basket);
-        this.setBaskets(response.data)
-    }
 
     async getBasketByUserID(userId) {
         const response = await BasketService.getBasketByUserID(userId);

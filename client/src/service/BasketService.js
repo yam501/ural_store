@@ -1,11 +1,7 @@
 import { $authHost, $host } from "../http";
 
 const BasketService = {
-    async createBasket(basket) {
-        return new Promise((resolve) => resolve($authHost.post('api/basket/createBasket', basket)))
-    },
-
-
+    
     async getBasketByUserID(userId) {
         return new Promise((resolve) => resolve($authHost.post('api/basket/getBasketByUserID', {userId})))
     },
