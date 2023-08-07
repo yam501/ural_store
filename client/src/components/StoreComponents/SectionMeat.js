@@ -5,8 +5,6 @@ import ProductItem from './ProductItem';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
-
-import './slickSlider.css'
 import ProductList from './ProductList';
 
 const SectionMeat = () => {

@@ -12,23 +12,18 @@ import SocialContent from './FooterComponents/SocialContent';
 
 const Footer = () => {
     return (
-
-        <Navbar className='justify-content-center footer_wrapper'>
-            <Container className='row mobile-content'>
-                <Nav className='col-sm-3 justify-content-center '>
-                    <span className="footer-text-left ">Уральский</span>
-                </Nav>
-                <Nav className='col-sm-6 justify-content-center footer-content-center'> © 2023 Уральский. Все права защищены.</Nav>
-                <Nav className='col-sm-1 justify-content-center footer-content-right'>
-                    <Nav className='footer-social-content'>
-                        <SocialContent />
-                    </Nav>
-                    <Nav className='footer-phone-content'>
-                        <PhoneContact />
-                    </Nav>
-                </Nav>
-            </Container>
-        </Navbar>
+        <Nav className='footer-wrapper'>
+            <Nav className='footer-left-content'>
+                Уральский
+            </Nav>
+            <Nav className='footer-center-content'>
+                © 2023 Уральский. Все права защищены.
+            </Nav>
+            <Nav className='footer-right-content'>
+                <SocialContent />
+                <PhoneContact />
+            </Nav>
+        </Nav>
     );
 };
 
