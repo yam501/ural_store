@@ -26,7 +26,7 @@ const SectionSalad = () => {
             align-items-center
             fs-2
             showcase'>
-                <h className='showcase'>Витрина овощного отдела</h>
+                <h id='veg_section' className='showcase'>Витрина овощного отдела</h>
             </Nav>
             <Nav className='d-flex
             mt-2
@@ -38,7 +38,7 @@ const SectionSalad = () => {
             bg-black
             text-white'
                 style={{ height: '500px' }}
-                id='veg_section'>
+                >
                 Камера
             </Nav>
             <Nav className='d-flex justify-content-center'>

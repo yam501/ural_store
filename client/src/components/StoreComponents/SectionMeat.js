@@ -26,7 +26,7 @@ const SectionMeat = () => {
             align-items-center
             fs-2
             showcase'>
-                <h className='showcase'>Витрина мясного отдела</h>
+                <h id='meat_section' className='showcase'>Витрина мясного отдела</h>
             </Nav>
             <Nav className='d-flex
             mt-2
@@ -38,7 +38,7 @@ const SectionMeat = () => {
             bg-black
             text-white'
                 style={{ height: '500px' }}
-                id='meat_section'>
+                >
                 Камера
             </Nav>
             <Nav className='d-flex justify-content-center'>
