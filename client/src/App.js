@@ -31,7 +31,6 @@ const App = observer(() => {
   }, [])
 
   product.getAllByAvailable(true)
-  console.log(basket)
   return (
     <BrowserRouter >
       <NavBar />

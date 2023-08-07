@@ -1,48 +1,18 @@
 import { makeAutoObservable } from "mobx";
 import BasketService from "../service/BasketService";
 import { BasketProduct } from "../models/BasketProduct";
-import { basketConstructor } from "../models/basketConstructor";
 
 export default class BasketProductStore {
     constructor() {
-        this._baskets = new basketConstructor()
         this._basketProduct = new BasketProduct()
         makeAutoObservable(this)
-    }
-
-    setBaskets(basket) {
-        this._basket = basket
     }
 
     setBasketProducts(basketProduct) {
         this._basketProduct = basketProduct
     }
 
-    async createBasket(basket) {
-        const response = await BasketService.createBasket(basket);
-        this.setBaskets(response.data)
-    }
-
-    async getBasketByUserID(userId) {
-        const response = await BasketService.getBasketByUserID(userId);
-        // console.log(response.data)
-        this.setBaskets(response)
-        // console.log(this._products)
-    }
-
-    async getBasketByBasketID(id) {
-        const response = await BasketService.getBasketByBasketID(id);
-        // console.log(response.data)
-        this.setBaskets(response.data)
-        // console.log(this._products)
-    }
-
-    async updateSum(aproxSum, id) {
-        const response = await BasketService.updateSum(aproxSum, id);
-        // console.log(response.data)
-        this.setBaskets(response.data)
-        // console.log(this._products)
-    }
+    
 
     async createBasketProduct() {
         const response = await BasketService.createBasketProduct(new BasketProduct());
@@ -85,9 +55,6 @@ export default class BasketProductStore {
         // console.log(this._products)
     }
 
-    get basket() {
-        return this._baskets
-    }
 
     get basketProduct() {
         return this._products

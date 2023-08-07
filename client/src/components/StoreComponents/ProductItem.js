@@ -22,10 +22,7 @@ const ProductItem = ({ product }) => {
         countProduct > 0 && setCountProduct(countProduct - 1)
     }
 
-    const addProductInBasket = () => {
-        basket.createBasketProduct()
-        basket.createBasket()
-    }
+
     return (
         <>
             <Card className='animate__animated animate__fadeInDown card-wrapper products-bg' style={{ width: 300, cursor: 'pointer' }} >
@@ -57,7 +54,7 @@ const ProductItem = ({ product }) => {
                     </Button>
                 </div>
                 <Nav className='d-felx justify-content-center mt-2'>
-                    <Button onClick={addProductInBasket} className='btn-addToBasket w-50 mb-2 rounded-5'>
+                    <Button  className='btn-addToBasket w-50 mb-2 rounded-5'>
                         В корзину
                     </Button>
                 </Nav>
