@@ -1,15 +1,21 @@
 const ApiError = require('../error/ApiError')
-const {BasketProduct, Assortment} = require('../models/models')
+const { BasketProduct, Assortment } = require('../models/models')
 const basketController = require('./basketController')
 
 
 class BasketProductController {
     async createBasketProduct(req, res, next) {
         try {
-            const {basketId, assortmentId, count, moreOrLess} = req.body
-            const product = await Assortment.findOne({where: {id: assortmentId}})
+            const { basketId, assortmentId, count, moreOrLess } = req.body
+            const product = await Assortment.findOne({ where: { id: assortmentId } })
             const costPerOne = product['costPerOne']
-            const basketProduct = await BasketProduct.create({basketId, assortmentId, count, costPerOne, moreOrLess})
+            const basketProductOld = await BasketProduct.findOne({ where: { basketId: basketId, assortmentId: assortmentId } })
+            if (basketProductOld) {
+                await BasketProduct.update({ count: count + basketProductOld.count }, { where: { basketId: basketId, assortmentId: assortmentId } })
+                basketController.updateSum(basketId)
+                return res.json(1)
+            }
+            const basketProduct = await BasketProduct.create({ basketId, assortmentId, count, costPerOne, moreOrLess })
             basketController.updateSum(basketId)
             return res.json(basketProduct)
         } catch (e) {
@@ -19,8 +25,8 @@ class BasketProductController {
 
     async getAllBasketProductsByBasketID(req, res, next) {
         try {
-            const {basketId} = req.body
-            const basketProduct = await BasketProduct.findAll({where:{basketId: basketId}})
+            const { basketId } = req.body
+            const basketProduct = await BasketProduct.findAll({ where: { basketId: basketId } })
             return res.json(basketProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -30,8 +36,8 @@ class BasketProductController {
 
     async deleteAllBasketProductsByBasketID(req, res, next) {
         try {
-            const {basketId} = req.body
-            const deleted = await BasketProduct.destroy({where: {basketId: basketId}})
+            const { basketId } = req.body
+            const deleted = await BasketProduct.destroy({ where: { basketId: basketId } })
             basketController.updateSum(basketId)
             return res.json(deleted)
         } catch (e) {
@@ -41,8 +47,8 @@ class BasketProductController {
 
     async deleteOneBasketProductByBasketIDAndAssortmentID(req, res, next) {
         try {
-            const {basketId, assortmentId} = req.body
-            const deleted = await BasketProduct.destroy({where: {basketId: basketId, assortmentId: assortmentId}})
+            const { basketId, assortmentId } = req.body
+            const deleted = await BasketProduct.destroy({ where: { basketId: basketId, assortmentId: assortmentId } })
             basketController.updateSum(basketId)
             return res.json(deleted)
         } catch (error) {
@@ -52,8 +58,8 @@ class BasketProductController {
 
     async changeMoreOrLessByBasketIDAndAssortmentID(req, res, next) {
         try {
-            const {basketId, assortmentId, moreOrLess} = req.body
-            const updated = await BasketProduct.update({moreOrLess: moreOrLess}, {where: {basketId: basketId, assortmentId: assortmentId}})
+            const { basketId, assortmentId, moreOrLess } = req.body
+            const updated = await BasketProduct.update({ moreOrLess: moreOrLess }, { where: { basketId: basketId, assortmentId: assortmentId } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -62,8 +68,8 @@ class BasketProductController {
 
     async changeCountByBasketIDAndAssortmentID(req, res, next) {
         try {
-            const {basketId, assortmentId, count} = req.body
-            const updated = await BasketProduct.update({count: count}, {where: {basketId: basketId, assortmentId: assortmentId}})
+            const { basketId, assortmentId, count } = req.body
+            const updated = await BasketProduct.update({ count: count }, { where: { basketId: basketId, assortmentId: assortmentId } })
             basketController.updateSum(basketId)
             return res.json(updated)
         } catch (e) {

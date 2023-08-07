@@ -12,28 +12,12 @@ export default class BasketStore {
         this._basket = basket
     }
 
-
     async getBasketByUserID(userId) {
         const response = await BasketService.getBasketByUserID(userId);
         // console.log(response.data)
         this.setBaskets(response)
         // console.log(this._products)
     }
-
-    async getBasketByBasketID(id) {
-        const response = await BasketService.getBasketByBasketID(id);
-        // console.log(response.data)
-        this.setBaskets(response.data)
-        // console.log(this._products)
-    }
-
-    async updateSum(aproxSum, id) {
-        const response = await BasketService.updateSum(aproxSum, id);
-        // console.log(response.data)
-        this.setBaskets(response.data)
-        // console.log(this._products)
-    }
-
    
     get basket() {
         return this._baskets

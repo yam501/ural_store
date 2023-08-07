@@ -7,8 +7,8 @@ import { Context } from '../..';
 
 const ProductItem = ({ product }) => {
 
-    const {basket} = useContext(Context)
-
+    const {basketProduct} = useContext(Context)
+    const {user} = useContext(Context)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -22,7 +22,9 @@ const ProductItem = ({ product }) => {
         countProduct > 0 && setCountProduct(countProduct - 1)
     }
 
-
+    const addProductInBasket = () => {
+        basketProduct.createBasketProduct(user._user.id, product.id, product.costPerOne * countProduct, countProduct, false)
+    }
     return (
         <>
             <Card className='animate__animated animate__fadeInDown card-wrapper products-bg' style={{ width: 300, cursor: 'pointer' }} >
@@ -54,7 +56,7 @@ const ProductItem = ({ product }) => {
                     </Button>
                 </div>
                 <Nav className='d-felx justify-content-center mt-2'>
-                    <Button  className='btn-addToBasket w-50 mb-2 rounded-5'>
+                    <Button onClick={addProductInBasket} className='btn-addToBasket w-50 mb-2 rounded-5'>
                         В корзину
                     </Button>
                 </Nav>
