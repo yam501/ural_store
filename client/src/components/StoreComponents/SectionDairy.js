@@ -12,7 +12,7 @@ const SectionSalad = () => {
     const { product } = useContext(Context)
     const [productShow, setProductShow] = useState(false)
     return (
-        <Nav className='dairy-section-content'>
+        <Nav className='dairy-section-content mb-5'>
             <Nav className='
             d-flex
             mt-5
@@ -26,7 +26,7 @@ const SectionSalad = () => {
             align-items-center
             fs-2
             showcase'>
-                <h className='showcase'>Витрина молочного отдела</h>
+                <h id='dairy_section' className='showcase'>Витрина молочного отдела</h>
             </Nav>
             <Nav className='d-flex
             mt-2
@@ -38,7 +38,7 @@ const SectionSalad = () => {
             bg-black
             text-white'
                 style={{ height: '500px' }}
-                id='meat_section'>
+                >
                 Камера
             </Nav>
             <Nav className='d-flex justify-content-center'>

@@ -96,6 +96,26 @@ body {
     vertical-align: top;
 }
 
+.veg-section-content {
+    background: url("../assets/veg-bg1.svg") 0 0 / 100% no-repeat;
+    height: 1296px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bakery-section-content {
+    background: url("../assets/bakery-bg1.svg") 0 0 / 100% no-repeat;
+    height: 1296px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.dairy-section-content {
+    background: url("../assets/dairy-bg1.svg") 0 0 / 100% no-repeat;
+    height: 1296px;
+    display: inline-block;
+    vertical-align: top;
+}
 
 
 
@@ -251,7 +271,7 @@ body {
 
 @media (min-width: 768px) and (max-width: 991px) {
     .sections {
-        display: none;
+        display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
@@ -260,7 +280,7 @@ body {
     }
 
     .navSection-carousel {
-        display: block !important;
+        display: none !important;
         margin: 0px 0px 20px 0px;
     }
 
@@ -271,7 +291,7 @@ body {
     }
 
     .button-section {
-        width: 150px;
+        width: 125px;
         height: 30px;
         margin-top: 20px;
         background-color: #EEEEEE;
@@ -281,7 +301,7 @@ body {
         border-radius: 29vh;
         font-family: 'Montserrat';
         font-weight: 600;
-        font-size: 12px;
+        font-size: 10px;
         flex-wrap: wrap;
         align-content: center;
         color: #962A4A;
@@ -303,7 +323,7 @@ body {
     }
 
     .navSection-carousel {
-        display: none;
+        display: none !important;
     }
 
     .showcase {

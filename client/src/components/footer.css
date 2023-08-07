@@ -308,6 +308,16 @@
         font-size: 14px;
     }
 
+    .footer-right-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        position: absolute;
+        left: 0;
+        margin-left: calc(100% - 40%);
+    }
+
     .textSocial {
         font-family: 'Montserrat';
         color: white;
@@ -359,6 +369,7 @@
         left: 0;
         margin-left: calc(100% - 40%);
     }
+
     .textSocial {
         font-family: 'Montserrat';
         color: white;
