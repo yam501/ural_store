@@ -13,7 +13,7 @@ class BasketProductController {
             if (basketProductOld) {
                 await BasketProduct.update({ count: count + basketProductOld.count }, { where: { basketId: basketId, assortmentId: assortmentId } })
                 basketController.updateSum(basketId)
-                return res.json(1)
+                return res.json(await BasketProduct.findOne({ where: { basketId: basketId, assortmentId: assortmentId } }))
             }
             const basketProduct = await BasketProduct.create({ basketId, assortmentId, count, costPerOne, moreOrLess })
             basketController.updateSum(basketId)
