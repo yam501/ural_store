@@ -38,7 +38,7 @@ const SectionSalad = () => {
             bg-black
             text-white'
                 style={{ height: '500px' }}
-                id='meat_section'>
+                id='veg_section'>
                 Камера
             </Nav>
             <Nav className='d-flex justify-content-center'>
