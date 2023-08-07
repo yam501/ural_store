@@ -7,13 +7,13 @@ const BasketProductService = {
     },
 
 
-    async getAllBasketProductsByBasketID(id) {
-        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getAllBasketProductsByBasketID', { id })))
+    async getAllBasketProductsByBasketID(basketId) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getAllBasketProductsByBasketID', { basketId })))
     },
 
 
-    async deleteAllBasketProductsByBasketID(id) {
-        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/deleteAllBasketProductsByBasketID', {id})))
+    async deleteAllBasketProductsByBasketID(basketId) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/deleteAllBasketProductsByBasketID', {basketId})))
     },
 
 

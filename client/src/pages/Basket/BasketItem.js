@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Image, Button, Form} from 'react-bootstrap';
 import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
 const BasketItem = (props) => {
     const [countProduct, setCountProduct] = useState(1)
     const plus = () => {
@@ -44,4 +45,4 @@ const BasketItem = (props) => {
     );
 };
 
-export default BasketItem;
+export default observer(BasketItem);

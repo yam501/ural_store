@@ -15,6 +15,7 @@ const App = observer(() => {
   const { user } = useContext(Context)
   const { product } = useContext(Context)
   const {basket} = useContext(Context)
+  const {basketProduct} = useContext(Context)
   
   const [loading, setLoading] = useState(true)
   // useEffect(() => {
@@ -29,7 +30,6 @@ const App = observer(() => {
       user.checkAuth()
     }
   }, [])
-
   product.getAllByAvailable(true)
   return (
     <BrowserRouter >

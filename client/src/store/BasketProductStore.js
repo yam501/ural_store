@@ -5,10 +5,15 @@ import { BasketProduct } from "../models/BasketProduct";
 export default class BasketProductStore {
     constructor() {
         this._basketProducts = []
+        this._basketProduct = new BasketProduct()
         makeAutoObservable(this)
     }
 
     setBasketProducts(basketProduct) {
+        this._basketProducts = basketProduct
+    }
+
+    setBasketProduct(basketProduct) {
         this._basketProduct = basketProduct
     }
 
@@ -16,15 +21,12 @@ export default class BasketProductStore {
 
     async createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess) {
         const response = await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess);
-        
-        this.setBasketProducts(response.data)
-        console.log(this._basketProduct)
+        this.setBasketProduct(response.data)
         // console.log(this._products)
     }
 
     async getAllBasketProductsByBasketID(id) {
         const response = await BasketProductService.getAllBasketProductsByBasketID(id);
-        // console.log(response.data)
         this.setBasketProducts(response.data)
         // console.log(this._products)
     }
@@ -59,6 +61,6 @@ export default class BasketProductStore {
 
 
     get basketProduct() {
-        return this._products
+        return this._basketProducts
     }
 }

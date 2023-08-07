@@ -16,14 +16,16 @@ const ProductItem = ({ product }) => {
 
     const [countProduct, setCountProduct] = useState(1)
     const plus = () => {
-        countProduct >= 0 && setCountProduct(countProduct + 1)
+        countProduct >= 1 && setCountProduct(countProduct + 1)
     }
     const minus = () => {
-        countProduct > 0 && setCountProduct(countProduct - 1)
+        countProduct > 1 && setCountProduct(countProduct - 1)
     }
 
     const addProductInBasket = () => {
         basketProduct.createBasketProduct(user._user.id, product.id, product.costPerOne * countProduct, countProduct, false)
+        basketProduct.getAllBasketProductsByBasketID(user._user.id)
+        
     }
     return (
         <>
