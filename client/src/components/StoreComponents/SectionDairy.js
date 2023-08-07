@@ -12,7 +12,7 @@ const SectionSalad = () => {
     const { product } = useContext(Context)
     const [productShow, setProductShow] = useState(false)
     return (
-        <Nav className='dairy-section-content'>
+        <Nav className='dairy-section-content mb-5'>
             <Nav className='
             d-flex
             mt-5
