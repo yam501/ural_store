@@ -72,7 +72,7 @@ const Assortment = sequelize.define('assortment', {
     name: { type: DataTypes.STRING, allowNull: false },
     available: {type: DataTypes.BOOLEAN, allowNull: false },
     costPerOne: {type: DataTypes.DOUBLE, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: true },
+    isDel: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     composition: { type: DataTypes.STRING, allowNull: true },
     image: {type: DataTypes.STRING, allowNull: true}
 })
