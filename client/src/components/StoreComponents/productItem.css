@@ -21,20 +21,21 @@
 
 .card-wrapper{
     margin-bottom: 60px;
-    margin-left: 75px;
+    width: 300px;
+    cursor: 'pointer';
 }
 
 .products-bg{
     background-color: rgba(220, 72, 115, 0.4);
-    cursor: default !important;
-    /* border: 0; */
-    
+    cursor: default !important;    
 }
 
 .product-img{
     cursor: pointer !important;
     border-top-left-radius: 1%;
     border-top-right-radius: 1%;
+    width: 288px;
+    height: 300px;
 }
 .btn-minus{
     background-color: rgb(210, 210, 210);
@@ -126,3 +127,17 @@
 .btn-addToBasket:hover{
     background-color: #da3d6c !important;
 }
+
+@media (max-width: 575px){
+    .card-wrapper{
+        margin-bottom: 60px;
+        width: 230px;
+        cursor: 'pointer';
+
+    }
+    .product-img{
+        height: 250px;
+    }
+}
+
+

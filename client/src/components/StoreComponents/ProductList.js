@@ -10,21 +10,71 @@ import OwlCarousel from 'react-owl-carousel';
 
 const ProductList = () => {
     const { product } = useContext(Context)
-    return (
-        
 
-        <OwlCarousel  
-        className="owl-theme mt-5 "
-        items='3'
-        dots={false}
-        nav
-        navText={[
-            '<span class="arrow prev">‹</span>',
-            '<span class="arrow next">›</span>'
-          ]}
-        
+    const options = {
+        responsive: {
+            0: {
+                items: 1,
+                nav: false,
+                stagePadding: 20,
+                margin: 50,
+                center: true,
+            },
+            350: {
+                items: 1,
+                nav: false,
+                stagePadding: 50,
+                margin: 20,
+                center: true,
+            },
+            450: {
+                items: 1,
+                nav: false,
+                stagePadding: 80,
+                margin: 10, 
+            },
+            700: {
+                items: 1,
+                nav: false,
+                stagePadding: 150,
+                margin: 120,
+                center: true,
+            },
+
+            800: {
+                items: 2,
+                nav: false,
+                stagePadding: 50,
+                margin: 80,
+            },
+            1000: {
+                items: 2,   
+                stagePadding: 150,
+                margin: 235,
+            },
+            1400: {
+                items: 3,
+                stagePadding: 120,
+                margin: 165,
+            },
+        },
+    }
+
+    return (
+
+
+        <OwlCarousel
+            className="owl-theme mt-5 "
+            dots={false}
+            nav
+            navText={[
+                '<span class="arrow prev">‹</span>',
+                '<span class="arrow next">›</span>'
+            ]}
+            responsive={options.responsive}
+
         >
-             
+
             {product.products.map(product =>
                 <ProductItem key={product.type} id={product.id} product={product} />)}
         </OwlCarousel>
