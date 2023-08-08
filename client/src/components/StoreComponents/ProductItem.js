@@ -28,8 +28,8 @@ const ProductItem = ({ product }) => {
     }
     return (
         <>
-            <Card className='animate__animated animate__fadeInDown card-wrapper products-bg' style={{ width: 300, cursor: 'pointer' }} >
-                <Image className='product-img' onClick={handleShow} width={288} height={300} src={process.env.REACT_APP_API_URL + product.image} style={{ border: 0 }} />
+            <Card className='animate__animated animate__fadeInDown card-wrapper products-bg'>
+                <Image className='product-img' onClick={handleShow} src={process.env.REACT_APP_API_URL + product.image}/>
                 <div className='mt-1 d-flex justify-content-center'>
                     <div className='d-flex align-items-center'>
                         <div>
