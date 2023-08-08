@@ -5,7 +5,7 @@ import { BasketProduct } from "../models/BasketProduct";
 export default class BasketProductStore {
     constructor() {
         this._basketProducts = []
-        this._basketProduct = new BasketProduct()
+        this._basketProduct = new BasketProduct() 
         makeAutoObservable(this)
     }
 

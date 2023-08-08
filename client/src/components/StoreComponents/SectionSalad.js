@@ -6,11 +6,11 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
 import ProductList from './ProductList';
+import ShowProductsBtn from './ShowProductsBtn';
 
 const SectionSalad = () => {
 
-    const { product } = useContext(Context)
-    const [productShow, setProductShow] = useState(false)
+
     return (
         <Nav className='salad-section-content'>
             <Nav className='
@@ -41,10 +41,7 @@ const SectionSalad = () => {
                 >
                 Камера
             </Nav>
-            <Nav className='d-flex justify-content-center'>
-                <Button className='btn-show-product ' onClick={() => setProductShow(!productShow)}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
-                {productShow && <ProductList />}
-            </Nav>
+            <ShowProductsBtn type={'Салаты'}/>
         </Nav>
     );
 };

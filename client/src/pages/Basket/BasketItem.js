@@ -14,7 +14,7 @@ const BasketItem = (props) => {
     return (
         <div className='d-flex align-items-center justify-content-between mt-3 mb-3 container product_item'>
             <div className='d-flex align-items-center'>
-                <div className='me-3 fw-bold'>
+                <div className='me-3 fw-bold'> 
                     {props.basketProduct.id}
                 </div>
                 <div className='p-1 img_box'>

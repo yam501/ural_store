@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import NavSections from './StoreComponents/NavSections';
 
 
@@ -12,14 +12,16 @@ import SectionSalad from './StoreComponents/SectionSalad';
 import SectionVeg from './StoreComponents/SectionVeg';
 import SectionBakery from './StoreComponents/SectionBakery';
 import SectionDairy from './StoreComponents/SectionDairy';
+import { Context } from '..';
 
 const StoreMain = () => {
+
     return (
         <Container className='store-main'>
             <NavSections />
             <CarouselSections/>
             <CaruselHead />
-            <SectionMeat/>
+            <SectionMeat />
             <SectionSalad/>
             <SectionVeg/>
             <SectionBakery/>

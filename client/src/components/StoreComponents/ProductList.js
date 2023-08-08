@@ -8,8 +8,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import OwlCarousel from 'react-owl-carousel';
 
-const ProductList = () => {
-    const { product } = useContext(Context)
+const ProductList = ({product}) => {
     return (
         
 
@@ -25,7 +24,7 @@ const ProductList = () => {
         
         >
              
-            {product.products.map(product =>
+            {product.map(product =>
                 <ProductItem key={product.type} id={product.id} product={product} />)}
         </OwlCarousel>
     );

@@ -9,12 +9,11 @@ export default class BasketStore {
     }
 
     setBaskets(basket) {
-        this._basket = basket
+        this._baskets = basket
     }
 
     async getBasketByUserID(userId) {
         const response = await BasketService.getBasketByUserID(userId);
-        console.log(response.data)
         this.setBaskets(response.data)
         // console.log(this._products)
     }

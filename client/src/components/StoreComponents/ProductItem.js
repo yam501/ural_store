@@ -8,6 +8,7 @@ import { Context } from '../..';
 const ProductItem = ({ product }) => {
 
     const {basketProduct} = useContext(Context)
+    const {basket} = useContext(Context)
     const {user} = useContext(Context)
     const [show, setShow] = useState(false);
 
@@ -24,8 +25,6 @@ const ProductItem = ({ product }) => {
 
     const addProductInBasket = () => {
         basketProduct.createBasketProduct(user._user.id, product.id, product.costPerOne * countProduct, countProduct, false)
-        basketProduct.getAllBasketProductsByBasketID(user._user.id)
-        
     }
     return (
         <>

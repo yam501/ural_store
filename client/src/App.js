@@ -31,6 +31,8 @@ const App = observer(() => {
     }
   }, [])
   product.getAllByAvailable(true)
+  // basket.getBasketByUserID(user._user.id)
+
   return (
     <BrowserRouter >
       <NavBar />

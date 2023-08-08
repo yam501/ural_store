@@ -13,6 +13,8 @@ function Basket() {
     const {product} = useContext(Context)
     const {user} = useContext(Context)
     basketProduct.getAllBasketProductsByBasketID(user._user.id);
+    
+
     return (
       <div className='mb-5 basket_page'>
         <div className='fs-2 text-center'> 
@@ -24,10 +26,10 @@ function Basket() {
 
         <div className='w-100 mt-5 d-flex justify-content-between align-items-center order_delive_form'>
             <div>
-              Сумма заказа:{basket.basket.aproxSum}  ₽ 
+              Сумма заказа: {basket.basket.aproxSum}  ₽ 
             </div>
             <div>
-              <Button className='order_delive_form_btn'>
+              <Button className='order_delive_form_btn'> 
                 Заказать
               </Button>
             </div>

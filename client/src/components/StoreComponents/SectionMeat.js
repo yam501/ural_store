@@ -4,13 +4,11 @@ import { Nav, Button } from 'react-bootstrap';
 import ProductItem from './ProductItem';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
+import ShowProductsBtn from './ShowProductsBtn';
 
-import ProductList from './ProductList';
 
-const SectionMeat = () => {
+const SectionMeat = ({productShow, setProductShow}) => {
 
-    const { product } = useContext(Context)
-    const [productShow, setProductShow] = useState(false)
     return (
         <Nav className='meat-section-content'>
             <Nav className='
@@ -26,7 +24,7 @@ const SectionMeat = () => {
             align-items-center
             fs-2
             showcase'>
-                <h id='meat_section' className='showcase'>Витрина мясного отдела</h>
+                <h id='meat_section' className='text-center showcase'>Витрина мясного отдела</h>
             </Nav>
             <Nav className='d-flex
             mt-2
@@ -41,10 +39,7 @@ const SectionMeat = () => {
                 >
                 Камера
             </Nav>
-            <Nav className='d-flex justify-content-center'>
-                <Button className='btn-show-product ' onClick={() => setProductShow(!productShow)}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
-                {productShow && <ProductList />}
-            </Nav>
+            <ShowProductsBtn type={'Мясо'}/>
         </Nav>
     );
 };
