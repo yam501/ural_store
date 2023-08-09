@@ -4,8 +4,9 @@ import Basket from "./pages/Basket/Basket"
 import HistoryOrder from "./pages/HistoryOrder"
 import Order from "./pages/Order"
 import Store from "./pages/Store"
+import Terms from "./pages/Terms"
 import User from "./pages/User"
-import { ABOUTUS_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, STORE_ROUTE, USER_ROUTE } from "./utils/consts"
+import { ABOUTUS_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, STORE_ROUTE, TERMS_ROUTE, USER_ROUTE } from "./utils/consts"
 
 
 export const adminRoutes = [
@@ -45,5 +46,9 @@ export const publicRoutes = [
     {
         path: ABOUTUS_ROUTE,
         element: <AboutUs/>
-    }
+    },
+    {
+        path: TERMS_ROUTE,
+        element: <Terms/>
+    },
 ]

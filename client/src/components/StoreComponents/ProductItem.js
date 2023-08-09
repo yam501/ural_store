@@ -31,31 +31,39 @@ const ProductItem = ({ product }) => {
                 <Image className='product-img' onClick={handleShow} src={process.env.REACT_APP_API_URL + product.image}/>
                 <div className='mt-1 d-flex justify-content-center'>
                     <div className='d-flex align-items-center'>
-                        <div>
+                        <div className='info-text'>
                             {product.name}
                         </div>
                     </div>
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
-                    <div>
+                    <div className='info-text'>
                         {product.costPerOne} ₽ цена за кг
                     </div>
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
-                    <div>
+                    <div className='info-text'>
                         {product.costPerOne * countProduct} ₽
                     </div>
                 </div>
                 <div className='mt-1 d-flex justify-content-center mb-2'>
-                    <Button className=' d-flex justify-content-center align-items-center btn-minus rounded-circle me-4 ms-4' style={{width: '48px',height: '48px'}} onClick={() => minus()}>
+                    <Button className=' d-flex justify-content-center align-items-center btn-minus rounded-circle me-4 ms-4'  onClick={() => minus()}>
                         -
                     </Button>
-                    <span className='d-flex align-items-center justify-content-center'>{countProduct} кг</span>
-                    <Button className='d-flex justify-content-center align-items-center btn-plus rounded-circle ms-4 me-4' style={{width: '48px',height: '48px'}} onClick={() => plus()}>
+                    <span className='d-flex align-items-center info-text justify-content-center'>{countProduct} кг</span>
+                    <Button className='d-flex justify-content-center align-items-center btn-plus rounded-circle ms-4 me-4'  onClick={() => plus()}>
                         +
                     </Button>
                 </div>
+<<<<<<< HEAD
                 <AddProductToBasketBtn product={product} countProduct={countProduct}/>
+=======
+                <Nav className='d-felx justify-content-center mt-2'>
+                    <Button onClick={addProductInBasket} className='btn-addToBasket  w-50 mb-2 rounded-5'>
+                        В корзину
+                    </Button>
+                </Nav>
+>>>>>>> fb5ee0bc43615756121ba13ed8a7d2288f857e1d
             </Card>
             <Modal show={show} onHide={handleClose}>
         <Modal.Body className='w-100 h-100 d-flex flex-column justify-content-between'>
@@ -63,15 +71,15 @@ const ProductItem = ({ product }) => {
                 <Image className='w-100 h-100 product-img' src={process.env.REACT_APP_API_URL + product.image} />
             </div>
                     <div className='flex-grow-1'>
-                    <div className='mb-1'>{product.name}</div>
-                <div className='mb-1'>{product.costPerOne} ₽ за кг</div>
-                <div className='mb-1 productItem_text'>{countProduct * product.costPerOne} ₽</div>
+                    <div className='mb-1 info-text'>{product.name}</div>
+                <div className='mb-1 info-text'>{product.costPerOne} ₽ за кг</div>
+                <div className='mb-1 productItem_text info-text'>{countProduct * product.costPerOne} ₽</div>
                 <div className='d-flex justify-content-between mb-1'>
-                            <Button className=' d-flex justify-content-center align-items-center btn-minus rounded-circle justify-self-start' style={{width: '48px',height: '48px'}} onClick={() => minus()}>
+                            <Button className=' d-flex justify-content-center align-items-center btn-minus rounded-circle justify-self-start'  onClick={() => minus()}>
                                 -
                             </Button>
-                            <span className='d-flex align-items-center justify-self-center productItem_text'>{countProduct} кг</span>
-                            <Button className='d-flex justify-content-center align-items-center btn-plus rounded-circle justify-self-end' style={{width: '48px',height: '48px'}}  onClick={() => plus()}>
+                            <span className='d-flex align-items-center justify-self-center productItem_text info-text'>{countProduct} кг</span>
+                            <Button className='d-flex justify-content-center align-items-center btn-plus rounded-circle justify-self-end'  onClick={() => plus()}>
                                 +
                             </Button>
                         </div>

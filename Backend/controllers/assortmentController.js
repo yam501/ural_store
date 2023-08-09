@@ -24,6 +24,17 @@ class AssortmentController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async getById(req, res, next) {
+        try {
+            const { id } = req.body
+            const assortment = await Assortment.findOne({ where: { id: id } })
+            return res.json(assortment)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async getAllByName(req, res, next) {
         try {
             const { name } = req.body

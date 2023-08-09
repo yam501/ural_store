@@ -6,6 +6,7 @@ const checkRole = require('../middleware/CheckRoleMiddleware')
 router.post('/createProduct', checkRole('ADMIN'), assortmentController.create)
 
 router.post('/getAll', assortmentController.getAll)
+router.post('/getOne', assortmentController.getById)
 router.post('/getAllByProductByName', assortmentController.getAllByName)
 router.post('/getAllProductsByType', assortmentController.getAllByType)
 router.post('/getAllProductsByAvailable', assortmentController.getAllByAvailable)
