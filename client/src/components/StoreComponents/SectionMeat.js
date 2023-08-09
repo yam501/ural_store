@@ -14,7 +14,7 @@ const SectionMeat = ({productShow, setProductShow}) => {
             <Nav className='
             d-flex
             mt-5
-            mb-0
+            mb-5
             section-header
             w-100
             border-3

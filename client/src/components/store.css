@@ -37,7 +37,6 @@ body {
 .showcase {
     font-family: 'Montserrat';
     font-size: 30px;
-    margin: 15px 0px 15px 0px;
 }
 
 .sections {
@@ -209,8 +208,6 @@ body {
 
 
 .section-header {
-    font-family: 'Montserrat';
-    font-weight: 500;
     height: 100px;
 }
 
@@ -231,10 +228,13 @@ body {
         margin: 0px 0px 20px 0px;
     }
 
+    .section-header {
+        height: 55px;
+    }
+
     .showcase {
         font-family: 'Montserrat';
-        font-size: 30px;
-        margin: 15px 0px 15px 0px;
+        font-size: 18px;
     }
 
     .button-section {
@@ -276,8 +276,7 @@ body {
 
     .showcase {
         font-family: 'Montserrat';
-        font-size: 30px;
-        margin: 15px 0px 15px 0px;
+        font-size: 24px;
     }
 
     .button-section {
@@ -319,7 +318,6 @@ body {
     .showcase {
         font-family: 'Montserrat';
         font-size: 30px;
-        margin: 15px 0px 15px 0px;
     }
 
     .button-section {
@@ -376,7 +374,6 @@ body {
     .showcase {
         font-family: 'Montserrat';
         font-size: 30px;
-        margin: 15px 0px 15px 0px;
     }
 
     .button-section {
@@ -418,7 +415,6 @@ body {
     .showcase {
         font-family: 'Montserrat';
         font-size: 30px;
-        margin: 15px 0px 15px 0px;
     }
 
     .button-section {
@@ -460,7 +456,6 @@ body {
     .showcase {
         font-family: 'Montserrat';
         font-size: 30px;
-        margin: 15px 0px 15px 0px;
     }
 
     .button-section {

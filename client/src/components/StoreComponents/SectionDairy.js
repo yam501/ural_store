@@ -25,7 +25,7 @@ const SectionSalad = () => {
             align-items-center
             fs-2
             showcase'>
-                <h id='dairy_section' className='showcase'>Витрина молочного отдела</h>
+                <h id='dairy_section' className='text-center showcase'>Витрина молочного отдела</h>
             </Nav>
             <Nav className='d-flex
             mt-2
