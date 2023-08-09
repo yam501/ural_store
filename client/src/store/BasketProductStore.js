@@ -5,7 +5,7 @@ import { BasketProduct } from "../models/BasketProduct";
 export default class BasketProductStore {
     constructor() {
         this._basketProducts = []
-        this._basketProduct = new BasketProduct() 
+       
         makeAutoObservable(this)
     }
 
@@ -13,22 +13,20 @@ export default class BasketProductStore {
         this._basketProducts = basketProduct
     }
 
-    setBasketProduct(basketProduct) {
-        this._basketProduct = basketProduct
-    }
+
 
     
 
     async createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess) {
-        const response = await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess);
-        this.setBasketProduct(response.data)
+        return await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess);
         // console.log(this._products)
     }
 
-    async getAllBasketProductsByBasketID(id) {
-        const response = await BasketProductService.getAllBasketProductsByBasketID(id);
+    async getAllBasketProductsByBasketID(basketId) {
+        const response = await BasketProductService.getAllBasketProductsByBasketID(basketId);
+        console.log(response.data)
         this.setBasketProducts(response.data)
-        // console.log(this._products)
+        console.log(this._basketProducts)
     }
 
     async deleteAllBasketProductsByBasketID(id) {
@@ -55,7 +53,7 @@ export default class BasketProductStore {
     async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
         const response = await BasketProductService.changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count);
         // console.log(response.data)
-        this.setBasketProducts(response.data)
+        // this.setBasketProducts(response.data)
         // console.log(this._products)
     }
 

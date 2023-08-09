@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import { BASKET_ROUTE } from '../../utils/consts';
 import { NavLink } from 'react-router-dom';
+import { Context } from '../..';
 const ShopBasketButton = () => {
+    const {basketProduct} = useContext(Context)
+    const {user} = useContext(Context)
+    const gandone = () => {
+        basketProduct.getAllBasketProductsByBasketID(user._user.id)
+    }
     return (
         <NavLink to={BASKET_ROUTE}>
             <Button 
             className='ms-3 d-flex justify-content-center align-items-center rounded-circle btnBasket'
+            onClick={gandone}
             >
             <div className='btnBasketIconBox' >
                 <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">

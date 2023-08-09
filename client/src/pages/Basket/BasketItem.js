@@ -3,12 +3,15 @@ import { Image, Button, Form} from 'react-bootstrap';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 const BasketItem = (props) => {
+
     const [countProduct, setCountProduct] = useState(1)
     const plus = () => {
         countProduct >= 1 && setCountProduct(countProduct + 1)
+        props.changeCount.changeCountByBasketIDAndAssortmentID(props.basketProduct.basketId, props.basketProduct.assortmentId, countProduct)
     }
     const minus = () => {
         countProduct > 1 && setCountProduct(countProduct - 1)
+        props.changeCount.changeCountByBasketIDAndAssortmentID(props.basketProduct.basketId, props.basketProduct.assortmentId, countProduct)
     }
 
     return (
@@ -18,10 +21,10 @@ const BasketItem = (props) => {
                     {props.basketProduct.id}
                 </div>
                 <div className='p-1 img_box'>
-                    <Image className='w-100 h-100 product-img' src={process.env.REACT_APP_API_URL + props.product.image} style={{ border: 0 }} />
+                    <Image className='w-100 h-100 product-img' src={process.env.REACT_APP_API_URL + .image} style={{ border: 0 }} />
                 </div>
                 <div className='mt-3 ms-3 align-self-start'>
-                    <p>{`${props.product.name}. ${props.product.description}`}</p>
+                    <p>{.name}</p>
                 </div>
             </div>
             

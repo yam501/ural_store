@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import './basket.css'
 import BasketItem from './BasketItem';
@@ -12,7 +12,9 @@ function Basket() {
     const {basket} = useContext(Context)
     const {product} = useContext(Context)
     const {user} = useContext(Context)
-    basketProduct.getAllBasketProductsByBasketID(user._user.id);
+    // basketProduct.getAllBasketProductsByBasketID(user._user.id);
+    
+    
     
 
     return (
@@ -20,8 +22,8 @@ function Basket() {
         <div className='fs-2 text-center'> 
           Корзина
         </div>
-        {basketProduct.basketProduct.map((basketItem, i) => 
-          <BasketItem basketProduct={basketItem} product={product._products[i]}/>
+        {basketProduct.basketProduct.map((basketItem) => 
+          <BasketItem changeCount={basketProduct} basketProduct={basketItem} product={product.products}/>
         )}
 
         <div className='w-100 mt-5 d-flex justify-content-between align-items-center order_delive_form'>

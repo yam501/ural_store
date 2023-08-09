@@ -4,10 +4,11 @@ import { Button, Card, Image, Nav } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import './productItem.css'
 import { Context } from '../..';
+import AddProductToBasketBtn from './AddProductToBasketBtn';
 
 const ProductItem = ({ product }) => {
 
-    const {basketProduct} = useContext(Context)
+    
     const {basket} = useContext(Context)
     const {user} = useContext(Context)
     const [show, setShow] = useState(false);
@@ -23,9 +24,7 @@ const ProductItem = ({ product }) => {
         countProduct > 1 && setCountProduct(countProduct - 1)
     }
 
-    const addProductInBasket = () => {
-        basketProduct.createBasketProduct(user._user.id, product.id, product.costPerOne * countProduct, countProduct, false)
-    }
+
     return (
         <>
             <Card className='animate__animated animate__fadeInDown card-wrapper products-bg'>
@@ -56,11 +55,7 @@ const ProductItem = ({ product }) => {
                         +
                     </Button>
                 </div>
-                <Nav className='d-felx justify-content-center mt-2'>
-                    <Button onClick={addProductInBasket} className='btn-addToBasket w-50 mb-2 rounded-5'>
-                        В корзину
-                    </Button>
-                </Nav>
+                <AddProductToBasketBtn product={product} countProduct={countProduct}/>
             </Card>
             <Modal show={show} onHide={handleClose}>
         <Modal.Body className='w-100 h-100 d-flex flex-column justify-content-between'>
