@@ -1,5 +1,10 @@
-.btn-show-product{
-    width: calc(100% - 70%);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+
+
+.btn-show-product {
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 60%);
     font-family: 'Montserrat';
     font-size: 20px;
     font-weight: 400;
@@ -10,64 +15,73 @@
     top: 0;
 }
 
-.btn-show-product:hover{
+
+.btn-show-product:hover {
     background-color: #c04c6f;
 }
 
-.btn-show-product:active{
+.btn-show-product:active {
     background-color: #c04c6f !important;
 }
 
 
-.card-wrapper{
+.card-wrapper {
     margin-bottom: 60px;
     width: 300px;
     cursor: 'pointer';
+    border: 0;
 }
 
-.products-bg{
-    background-color: rgba(220, 72, 115, 0.4);
-    cursor: default !important;    
+.products-bg {
+    background-color: rgba(220, 72, 115, 0.6);
+    cursor: default !important;
 }
 
-.product-img{
+.product-img {
     cursor: pointer !important;
     border-top-left-radius: 1%;
     border-top-right-radius: 1%;
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
     width: 288px;
     height: 300px;
 }
-.btn-minus{
+
+.btn-minus {
     background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
     font-size: 20px;
     font-family: 'Inter';
+    width: 48px;
+    height: 48px;
 }
 
-.btn-plus{
+.btn-plus {
     background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
     font-size: 20px;
     font-family: 'Inter';
+    width: 48px;
+    height: 48px;
 }
 
-.btn-plus:active{
+.btn-plus:active {
     background-color: #962a4a !important;
     opacity: 70% !important;
 }
 
-.btn-plus:hover{
+.btn-plus:hover {
     background-color: #da3d6c !important;
 }
 
-.btn-minus:active{
+.btn-minus:active {
     background-color: #962A4A !important;
     opacity: 70% !important;
 }
 
-.btn-minus:hover{
+.btn-minus:hover {
     background-color: #da3d6c !important;
 }
 
@@ -75,7 +89,7 @@
 .modal-content {
     width: 23vw !important;
     height: fit-content;
-    font-size:calc(12px + 4 * (100vw/1903));
+    font-size: calc(12px + 4 * (100vw/1903));
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400 !important;
@@ -106,38 +120,182 @@
     height: 50px;
     font-size: 0;
     top: 40%;
-  }
+}
 
-  .next {
+.next {
     right: 0;
     background: url("../../assets/arrow-right.svg") 0 0 / 100% no-repeat;
-    
-  }
 
-  .prev {
+}
+
+.prev {
     left: 0;
     background: url("../../assets/arrow-left.svg") 0 0 / 100% no-repeat;
-  }
+}
 
-.btn-addToBasket{   
-    background-color:#962A4A;
+.btn-addToBasket {
+    background-color: #962A4A;
     border: 0;
 }
 
-.btn-addToBasket:hover{
+.btn-addToBasket:hover {
     background-color: #da3d6c !important;
 }
 
-@media (max-width: 575px){
-    .card-wrapper{
-        margin-bottom: 60px;
-        width: 230px;
-        cursor: 'pointer';
-
-    }
-    .product-img{
-        height: 250px;
-    }
+.info-text {
+    font-size: 18px;
+    font-weight: 400;
 }
 
 
+@media (max-width: 575px) {
+    .btn-show-product {
+        font-size: 12px;
+        height: 30px;
+    }
+
+    .card-wrapper {
+        margin-bottom: 60px;
+        width: 180px;
+        cursor: 'pointer';
+    }
+
+    .product-img {
+        height: 180px;
+    }
+
+    .btn-minus {
+        font-size: 12px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .btn-plus {
+        font-size: 12px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .btn-addToBasket {
+        font-size: 12px;
+    }
+
+    .info-text {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 659px) {
+    .btn-show-product {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .card-wrapper {
+        margin-bottom: 60px;
+        width: 200px;
+        cursor: 'pointer';
+    }
+
+    .product-img {
+        height: 200px;
+    }
+
+    .btn-minus {
+        font-size: 12px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .btn-plus {
+        font-size: 12px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .btn-addToBasket {
+        font-size: 12px;
+    }
+
+    .info-text {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 767px) {
+    .btn-show-product {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .card-wrapper {
+        margin-bottom: 60px;
+        width: 250px;
+        cursor: 'pointer';
+    }
+
+    .product-img {
+        height: 250px;
+    }
+
+    .btn-minus {
+        font-size: 16px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-plus {
+        font-size: 16px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-addToBasket {
+        font-size: 14px;
+    }
+
+    .info-text {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .btn-show-product {
+        font-size: 18px;
+        height: 45px;
+    }
+
+    .card-wrapper {
+        margin-bottom: 60px;
+        width: 250px;
+        cursor: 'pointer';
+    }
+
+    .product-img {
+        height: 250px;
+    }
+
+    .btn-minus {
+        font-size: 18px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-plus {
+        font-size: 18px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-addToBasket {
+        font-size: 16px;
+    }
+
+    .info-text {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {}
