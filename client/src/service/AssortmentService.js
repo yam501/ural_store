@@ -2,7 +2,9 @@ import { $authHost, $host } from "../http";
 
 const AssortmentService = {
     async create(formData) {
+
         return new Promise((resolve) => resolve($authHost.post('api/assortment/createProduct', formData)))
+
     },
 
 
@@ -17,6 +19,10 @@ const AssortmentService = {
 
     async getAll() {
         return new Promise((resolve) => resolve($authHost.post('api/assortment/getAll')))
+    },
+
+    async getById(id){
+        return new Promise((resolve) => resolve($authHost.post('api/assortment/getOne', {id})))
     },
 
     async getAllByName(name) {
