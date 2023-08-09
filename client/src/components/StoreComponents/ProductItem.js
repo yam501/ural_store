@@ -55,15 +55,7 @@ const ProductItem = ({ product }) => {
                         +
                     </Button>
                 </div>
-<<<<<<< HEAD
                 <AddProductToBasketBtn product={product} countProduct={countProduct}/>
-=======
-                <Nav className='d-felx justify-content-center mt-2'>
-                    <Button onClick={addProductInBasket} className='btn-addToBasket  w-50 mb-2 rounded-5'>
-                        В корзину
-                    </Button>
-                </Nav>
->>>>>>> fb5ee0bc43615756121ba13ed8a7d2288f857e1d
             </Card>
             <Modal show={show} onHide={handleClose}>
         <Modal.Body className='w-100 h-100 d-flex flex-column justify-content-between'>
