@@ -13,18 +13,18 @@ const BasketItem = (props) => {
         countProduct > 1 && setCountProduct(countProduct - 1)
         props.changeCount.changeCountByBasketIDAndAssortmentID(props.basketProduct.basketId, props.basketProduct.assortmentId, countProduct)
     }
-
     return (
+    
         <div className='d-flex align-items-center justify-content-between mt-3 mb-3 container product_item'>
             <div className='d-flex align-items-center'>
                 <div className='me-3 fw-bold'> 
                     {props.basketProduct.id}
                 </div>
                 <div className='p-1 img_box'>
-                    <Image className='w-100 h-100 product-img' src={process.env.REACT_APP_API_URL + .image} style={{ border: 0 }} />
+                    <Image className='w-100 h-100 product-img' src={process.env.REACT_APP_API_URL + props.assortment.image} style={{ border: 0 }} />
                 </div>
                 <div className='mt-3 ms-3 align-self-start'>
-                    <p>{.name}</p>
+                    <p>{props.assortment.name}</p>
                 </div>
             </div>
             

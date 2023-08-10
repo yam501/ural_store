@@ -10,11 +10,9 @@ import { observer } from 'mobx-react-lite';
 function Basket() {
     const {basketProduct} = useContext(Context)
     const {basket} = useContext(Context)
-    const {product} = useContext(Context)
+    const {assortment} = useContext(Context)
     const {user} = useContext(Context)
-    // basketProduct.getAllBasketProductsByBasketID(user._user.id);
-    
-    
+    // basketProduct.getAllBasketProductsByBasketID(user._user.id);    
     
 
     return (
@@ -22,8 +20,9 @@ function Basket() {
         <div className='fs-2 text-center'> 
           Корзина
         </div>
-        {basketProduct.basketProduct.map((basketItem) => 
-          <BasketItem changeCount={basketProduct} basketProduct={basketItem} product={product.products}/>
+        {basketProduct.basketProduct.map((basketItem) =>
+          
+          <BasketItem changeCount={basketProduct} basketProduct={basketItem} assortment={assortment.getById(basketItem.assortmentId)}/>
         )}
 
         <div className='w-100 mt-5 d-flex justify-content-between align-items-center order_delive_form'>
