@@ -6,8 +6,12 @@ import { Context } from '../..';
 const ShopBasketButton = () => {
     const {basketProduct} = useContext(Context)
     const {user} = useContext(Context)
+    const {basket} = useContext(Context)
     const gandone = () => {
         basketProduct.getAllBasketProductsByBasketID(user._user.id)
+        basket.getBasketByUserID(user._user.id) 
+
+
     }
     return (
         <NavLink to={BASKET_ROUTE}>
