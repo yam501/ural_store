@@ -15,7 +15,7 @@ class BasketProductController {
                 basketController.updateSum(basketId)
                 return res.json(await BasketProduct.findOne({ where: { basketId: basketId, assortmentId: assortmentId } }))
             }
-            const basketProduct = await BasketProduct.create({ basketId, assortmentId, count, costPerOne, moreOrLess })
+            const basketProduct = await BasketProduct.create({ basketId, assortmentId, count, costPerOne, moreOrLess, name: product.name, image: product.image })
             basketController.updateSum(basketId)
             return res.json(basketProduct)
         } catch (e) {

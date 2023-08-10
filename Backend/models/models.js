@@ -6,24 +6,24 @@ const { DataTypes } = require('sequelize')
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: true },
-    number: { type: DataTypes.STRING, allowNull: false, unique: true},
+    number: { type: DataTypes.STRING, allowNull: false, unique: true },
     defaultAddress: { type: DataTypes.STRING, allowNull: true },
-    password: {type: DataTypes.STRING, allowNull: false},
-    role: {type: DataTypes.STRING, allowNull: false, defaultValue: "USER"},
-    isActivated: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    activatedCode: {type: DataTypes.STRING, allowNull: false, defaultValue: ''}
+    password: { type: DataTypes.STRING, allowNull: false },
+    role: { type: DataTypes.STRING, allowNull: false, defaultValue: "USER" },
+    isActivated: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    activatedCode: { type: DataTypes.STRING, allowNull: false, defaultValue: '' }
 })
 
 const Token = sequelize.define('token', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    userId: {type: DataTypes.INTEGER, allowNull: false},
-    refreshToken: {type: DataTypes.STRING, allowNull: false}
+    userId: { type: DataTypes.INTEGER, allowNull: false },
+    refreshToken: { type: DataTypes.STRING, allowNull: false }
 })
 
 const Basket = sequelize.define('basket', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    aproxSum: {type: DataTypes.DOUBLE, allowNull: false },
-    userId: {type: DataTypes.INTEGER, allowNull: false, unique: true}
+    aproxSum: { type: DataTypes.DOUBLE, allowNull: false },
+    userId: { type: DataTypes.INTEGER, allowNull: false, unique: true }
 })
 
 const BasketProduct = sequelize.define('basketProduct', {
@@ -31,24 +31,27 @@ const BasketProduct = sequelize.define('basketProduct', {
     basketId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
-    costPerOne: {type: DataTypes.DOUBLE, allowNull: false },
-    moreOrLess: {type: DataTypes.BOOLEAN, allowNull: false }
+    costPerOne: { type: DataTypes.DOUBLE, allowNull: false },
+    moreOrLess: { type: DataTypes.BOOLEAN, allowNull: false },
+
+    name: { type: DataTypes.STRING, allowNull: true },
+    image: { type: DataTypes.STRING, allowNull: true }
 })
 
 const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false, unique: true },
     address: { type: DataTypes.STRING, allowNull: false },
-    aproxSum: {type: DataTypes.DOUBLE, allowNull: false }
+    aproxSum: { type: DataTypes.DOUBLE, allowNull: false }
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING, allowNull: false },
-    complitedSum: {type: DataTypes.DOUBLE, allowNull: false },
-    orderTime: {type: DataTypes.TIME, allowNull: false },
-    complitedTime: {type: DataTypes.TIME, allowNull: false }
+    complitedSum: { type: DataTypes.DOUBLE, allowNull: false },
+    orderTime: { type: DataTypes.TIME, allowNull: false },
+    complitedTime: { type: DataTypes.TIME, allowNull: false }
 })
 
 const OrderProduct = sequelize.define('orderProduct', {
@@ -56,7 +59,7 @@ const OrderProduct = sequelize.define('orderProduct', {
     orderId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
-    moreOrLess: {type: DataTypes.BOOLEAN, allowNull: false }
+    moreOrLess: { type: DataTypes.BOOLEAN, allowNull: false }
 })
 
 const ComplitedOrderProduct = sequelize.define('complitedOrderProduct', {
@@ -68,21 +71,21 @@ const ComplitedOrderProduct = sequelize.define('complitedOrderProduct', {
 
 const Assortment = sequelize.define('assortment', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    type: { type: DataTypes.STRING, allowNull: false},
+    type: { type: DataTypes.STRING, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false },
-    available: {type: DataTypes.BOOLEAN, allowNull: false },
-    costPerOne: {type: DataTypes.DOUBLE, allowNull: false },
+    available: { type: DataTypes.BOOLEAN, allowNull: false },
+    costPerOne: { type: DataTypes.DOUBLE, allowNull: false },
     isDel: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     composition: { type: DataTypes.STRING, allowNull: true },
-    image: {type: DataTypes.STRING, allowNull: true}
+    image: { type: DataTypes.STRING, allowNull: true }
 })
 
 const Feedback = sequelize.define('feedback', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    typeOfFeedback: { type: DataTypes.STRING, allowNull: false},
-    userEmail: { type: DataTypes.STRING, allowNull: false},
-    userFIO: { type: DataTypes.STRING, allowNull: false},
-    feedbackMessage: { type: DataTypes.STRING, allowNull: false}
+    typeOfFeedback: { type: DataTypes.STRING, allowNull: false },
+    userEmail: { type: DataTypes.STRING, allowNull: false },
+    userFIO: { type: DataTypes.STRING, allowNull: false },
+    feedbackMessage: { type: DataTypes.STRING, allowNull: false }
 })
 
 
