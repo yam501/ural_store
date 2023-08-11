@@ -17,19 +17,19 @@ function Basket() {
     
     return (
       <div className='mb-5 basket_page'>
-        <div className='fs-2 text-center'> 
+        <div className='text-center page-name'> 
           Корзина
         </div>
         {basketProduct.basketProduct.map((basketItem) =>
           <BasketItem changeCount={basketProduct} basketProduct={basketItem}/>
         )}
 
-        <div className='w-100 mt-5 d-flex justify-content-between align-items-center order_delive_form'>
+        <div className='mt-5 d-flex justify-content-between align-items-center order_delive_form'>
             <div>
               Сумма заказа: {basket.basket.aproxSum}  ₽ 
             </div>
-            <div>
-              <Button className='order_delive_form_btn'> 
+            <div className='w-25'>
+              <Button className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'> 
                 Заказать
               </Button>
             </div>

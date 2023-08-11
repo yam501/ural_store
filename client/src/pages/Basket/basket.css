@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 
 * {
     font-family: 'Montserrat';
 }
+
 .img_box {
     height: 7vw;
     width: 7vw;
@@ -14,11 +15,18 @@
     font-size: calc(14px + 4 * (100vw/1903));
 }
 
-@media(max-width: 999) {
+@media (max-width: 575px) {
+    .product_item {
+        height: 75px;
+    }
+}
+
+@media(max-width: 999px) {
     .product_item {
         width: 100% !important;
     }
 }
+
 .product_item:hover {
     background-color: rgba(178, 178, 178, 0.2);
 }
@@ -26,33 +34,66 @@
 .basket_item_cost {
     text-align: center;
     width: 15%;
+    padding: 0;
     border: 0;
+    font-size: calc(12px + 4 * (100vw/1903));
+    font-weight: 500;
 }
 
+.btn-minus {
+    background-color: rgb(210, 210, 210);
+    border: 0;
+    color: black;
+    font-size: 20px;
+    font-family: 'Inter';
+    width: 48px;
+    height: 48px;
+}
+
+.btn-minus {
+    background-color: rgb(210, 210, 210);
+    border: 0;
+    color: black;
+    font-size: 20px;
+    font-family: 'Inter';
+    width: 48px;
+    height: 48px;
+}
 
 
 .basket_page {
     margin: auto;
-    width: 75vw;
+    width: 100vw;
     box-sizing: border-box;
+    min-height: 600px;
+}
+
+.page-name{
+    font-size: calc(18px + 10 * (100vw/1903));
+    margin-top: calc(100% - 97%);
+    margin-bottom: calc(100% - 97%);
 }
 
 .order_delive_form {
-    font-size: calc(18px + 4 * (100vw/1903));
+    font-size: calc(14px + 4 * (100vw/1903));
+    font-weight: 500;
     padding: 2vw;
-    border: 1px solid #5e5e5e
+    border: 1px solid #962A4A;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .order_delive_form_btn {
-    font-size: calc(18px + 4 * (100vw/1903));
-    background-color: #F5376E;
+    font-size: calc(10px + 8 * (100vw/1903));
+    font-weight: 500;
+    background-color: #962a4a;
     border: 0;
     border-radius: 29px;
     width: 10vw;
     height: 3vw;
 }
 
-.order_delive_form_btn:active, .order_delive_form_btn:hover {
+.order_delive_form_btn:active,
+.order_delive_form_btn:hover {
     background-color: #ED789A !important;
 }
-
