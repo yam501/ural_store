@@ -21,7 +21,7 @@ function Basket() {
           Корзина
         </div>
         {basketProduct.basketProduct.map((basketItem) =>
-          <BasketItem changeCount={basketProduct} basketProduct={basketItem}/>
+          <BasketItem key={basketItem.id} user={user._user} basket={basket} product={basketProduct} basketProduct={basketItem}/>
         )}
 
         <div className='w-100 mt-5 d-flex justify-content-between align-items-center order_delive_form'>

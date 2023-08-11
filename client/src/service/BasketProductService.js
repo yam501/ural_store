@@ -18,7 +18,7 @@ const BasketProductService = {
 
 
     async deleteOneBasketProductByBasketIDAndAssortmentID(basketId, assortmentId) {
-        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getAllByProductByName', { basketId, assortmentId })))
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/deleteOneBasketProductByBasketIDAndAssortmentID', { basketId, assortmentId })))
     },
 
 

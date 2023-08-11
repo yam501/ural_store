@@ -18,6 +18,7 @@ export default class BasketProductStore {
     
 
     async createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess) {
+        console.log(await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess))
         return await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess);
         // console.log(this._products)
     }
@@ -37,9 +38,9 @@ export default class BasketProductStore {
     }
 
     async deleteOneBasketProductByBasketIDAndAssortmentID(basketId, assortmentId) {
-        const response = await BasketProductService.deleteOneBasketProductByBasketIDAndAssortmentID(basketId, assortmentId);
-        // console.log(response.data)
-        this.setBasketProducts(response.data) 
+        return await BasketProductService.deleteOneBasketProductByBasketIDAndAssortmentID(basketId, assortmentId);
+        // console.log(response)
+        // this.setBasketProducts(response.data) 
         // console.log(this._products)
     }
 
@@ -52,9 +53,8 @@ export default class BasketProductStore {
 
     async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
         const response = await BasketProductService.changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count);
-        // console.log(response.data)
-        // this.setBasketProducts(response.data)
-        // console.log(this._products)
+        console.log(response.data[0])
+        return response.data[0]
     }
 
 

@@ -2,32 +2,41 @@ import React, { useContext, useState } from 'react';
 import { Image, Button, Form} from 'react-bootstrap';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-const BasketItem = (props) => {
+const BasketItem = ({product, user, basketProduct, basket, ...props}) => {
 
-    const [countProduct, setCountProduct] = useState(1)
+    const [countProduct, setCountProduct] = useState(basketProduct.count)
     const plus = () => {
+        product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
+        basket.getBasketByUserID(user.id) 
+
         countProduct >= 1 && setCountProduct(countProduct + 1)
-        props.changeCount.changeCountByBasketIDAndAssortmentID(props.basketProduct.basketId, props.basketProduct.assortmentId, countProduct)
+        
     }
     const minus = () => {
-        countProduct > 1 && setCountProduct(countProduct - 1)
-        props.changeCount.changeCountByBasketIDAndAssortmentID(props.basketProduct.basketId, props.basketProduct.assortmentId, countProduct)
+        if (countProduct === 1) {
+            product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
+            product.getAllBasketProductsByBasketID(basketProduct.basketId)
+        } else {
+            product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct-1)
+            countProduct > 1 && setCountProduct(countProduct - 1)
+        }
+        basket.getBasketByUserID(user.id) 
     }
     return (
     
         <div className='d-flex align-items-center justify-content-between mt-3 mb-3 container product_item'>
             <div className='d-flex align-items-center'>
                 <div className='p-1 img_box'>
-                    <Image className='w-100 h-100 product-img' alt='картинка' src={process.env.REACT_APP_API_URL + props.basketProduct.image} style={{ border: 0 }} />
+                    <Image className='w-100 h-100 product-img' alt='картинка' src={process.env.REACT_APP_API_URL + basketProduct.image} style={{ border: 0 }} />
                 </div>
                 <div className='mt-3 ms-3 align-self-start'>
-                    <p>{props.basketProduct.name}</p>
+                    <p>{basketProduct.name}</p>
                 </div>
             </div>
             
             <div className='text-center me-3'>
                 <div>
-                    {props.basketProduct.costPerOne} ₽
+                    {basketProduct.costPerOne} ₽
                 </div>
                 <div className='mt-1 d-flex justify-content-center bg-white basket_item_input_box'>
                     <Button className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white' style={{width: '48px',height: '48px'}} onClick={() => minus()}>

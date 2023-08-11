@@ -9,7 +9,7 @@ import AddProductToBasketBtn from './AddProductToBasketBtn';
 const ProductItem = ({ product }) => {
 
     
-    const {basket} = useContext(Context)
+    const {basketProduct} = useContext(Context)
     const {user} = useContext(Context)
     const [show, setShow] = useState(false);
 
