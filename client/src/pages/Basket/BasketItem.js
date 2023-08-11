@@ -9,7 +9,6 @@ const BasketItem = ({product, user, basketProduct, basket, ...props}) => {
     const plus = () => {
         product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
         basket.getBasketByUserID(user.id) 
-
         countProduct >= 1 && setCountProduct(countProduct + 1)
         
     }
@@ -44,7 +43,8 @@ const BasketItem = ({product, user, basketProduct, basket, ...props}) => {
                         -
                     </Button>
                     <Form.Control value={countProduct} onChange={e => setCountProduct(e.target.value)} className='basket_item_cost'/> 
-                    <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white' onClick={() => plus()}>
+                    <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white' 
+                    onClick={() => plus()}>
                         +
                     </Button>
                 </div>

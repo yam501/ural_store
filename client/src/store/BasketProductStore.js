@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import BasketProductService from "../service/BasketProductService";
 import { BasketProduct } from "../models/BasketProduct";
+import BasketService from "../service/BasketService";
 
 export default class BasketProductStore {
     constructor() {
@@ -18,7 +19,6 @@ export default class BasketProductStore {
     
 
     async createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess) {
-        console.log(await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess))
         return await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess);
         // console.log(this._products)
     }
@@ -48,6 +48,7 @@ export default class BasketProductStore {
         const response = await BasketProductService.changeMoreOrLessByBasketIDAndAssortmentID(basketId, assortmentId, moreOrLess);
         // console.log(response.data)
         this.setBasketProducts(response.data)
+        
         // console.log(this._products)
     }
 

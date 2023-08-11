@@ -10,8 +10,6 @@ const ShopBasketButton = () => {
     const gandone = () => {
         basketProduct.getAllBasketProductsByBasketID(user._user.id)
         basket.getBasketByUserID(user._user.id) 
-
-
     }
     return (
         <NavLink to={BASKET_ROUTE}>

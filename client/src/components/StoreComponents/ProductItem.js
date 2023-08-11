@@ -76,9 +76,7 @@ const ProductItem = ({ product }) => {
                             </Button>
                         </div>
                         <div>
-                            <Button className='w-100 btn-addToBasket rounded-3'>
-                                В корзину
-                            </Button>
+                        <AddProductToBasketBtn product={product} countProduct={countProduct}/>
                         </div>
                     </div>
                     <div className='mt-2 productItem_text'>
