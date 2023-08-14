@@ -37,7 +37,7 @@ function Admin() {
 
 
         </Col>
-        <Col className=" border" sm={8}>
+        <Col className="border admin-content" sm={8}>
           <CreateAssortment show={assortmentVisible ? "" : "d-none"} />
           <EditAssortment show={editAssortmentVisible ? "" : "d-none"} />
 
