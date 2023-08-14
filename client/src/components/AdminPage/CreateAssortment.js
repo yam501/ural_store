@@ -13,20 +13,16 @@ function CreateAssortment(props) {
   const [costPerOne, setCostPerOne] = useState('Введите цену за штуку(кг)')
   const [composition, setComposition] = useState('Состав')
   const [image, setImage] = useState(null)
-
   const [button, setButton] = useState('button-neutral')
-
-  const [validate, setValidate] = useState(false);
+  const [validated, setValidated] = useState(false);
 
   const changeButton = () => {
-   if (type === 'Выберите тип') {
+    if (type === 'Выберите тип') {
       setButton('button-bad')
     } else {
       setButton('button-good')
     }
   }
-
-  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -34,11 +30,11 @@ function CreateAssortment(props) {
       event.preventDefault();
       event.stopPropagation();
 
-    } else{
+    } else {
       console.log('Я ьуь');
       formDataCreate();
     }
- 
+
 
     setValidated(true);
     changeButton()
