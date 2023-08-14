@@ -41,6 +41,7 @@ function CreateAssortment(props) {
  
 
     setValidated(true);
+    changeButton()
   };
 
 
@@ -70,7 +71,7 @@ function CreateAssortment(props) {
 
   return (
 
-    <Form className={props.show} noValidate validated={validated} >
+    <Form className={props.show} noValidate validated={validated} onSubmit={handleSubmit} >
 
 
       <div className="d-flex border p-2 justify-content-center fw-bold fs-4">
@@ -80,7 +81,7 @@ function CreateAssortment(props) {
       <div className="d-flex  border p-2 justify-content-center  flex-column ">
         <Dropdown >
           <Dropdown.Toggle className={button}  >{type} </Dropdown.Toggle>
-          <Dropdown.Menu onClick={changeButton}>
+          <Dropdown.Menu>
             <Dropdown.Item onClick={() => setType('Мясо')} key={1}>Мясо</Dropdown.Item>
             <Dropdown.Item onClick={() => setType('Салаты')} key={2}>Салаты</Dropdown.Item>
             <Dropdown.Item onClick={() => setType('Овощи')} key={3}>Овощи</Dropdown.Item>
@@ -109,7 +110,7 @@ function CreateAssortment(props) {
 
       <div className="d-flex border p-2 justify-content-center">
 
-        {<Button onClick = {handleSubmit} >Добавить</Button>}
+        {<Button type="submit" >Добавить</Button>}
 
       </div>
 
