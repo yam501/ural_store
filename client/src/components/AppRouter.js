@@ -18,7 +18,7 @@ function AppRouter() {
             {publicRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
-            <Route path='*' element={<Navigate to={STORE_ROUTE} replace/>}/>
+            {/* <Route path='*' element={<Navigate to={STORE_ROUTE} replace/>}/> */}
         </Routes>
     );
   }

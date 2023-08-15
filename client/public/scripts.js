@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function(){
     $(".navSection-carousel").owlCarousel({
       loop: true,
       dots: false,
