@@ -30,25 +30,21 @@ export default class AssortmentStore {
 
     async getAll() {
         const response = await AssortmentService.getAll();
-        response.data.map(product => product["isDel"] = false)
         this.setProducts(response.data)
     }
 
     async getByName(name) {
         const response = await AssortmentService.getAllByName(name);
-        response.data.map(product => product["isDel"] = false)
         this.setProducts(response.data)
     }
 
     async getByType(type) {
         const response = await AssortmentService.getAllByType(type);
-        response.data.map(product => product["isDel"] = false)
         this.setProducts(response.data)
     }
 
     async getByTypeAndName(type, name) {
         const response = await AssortmentService.getAllByTypeAndName(type, name);
-        response.data.map(product => product["isDel"] = false)
         this.setProducts(response.data)
     }
 

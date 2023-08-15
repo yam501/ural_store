@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 
 
 
-function CreateAssortment(props) {
+function CreateAssortment() {
 
   const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('Введите название')
@@ -31,8 +31,7 @@ function CreateAssortment(props) {
       event.stopPropagation();
 
     } else {
-      console.log('Я ьуь');
-      formDataCreate();
+      formDataCreate()
     }
 
 
@@ -67,14 +66,14 @@ function CreateAssortment(props) {
 
   return (
 
-    <Form className={props.show} noValidate validated={validated} onSubmit={handleSubmit} >
+    <Form noValidate validated={validated} onSubmit={handleSubmit} >
 
 
-      <div className="d-flex border p-2 justify-content-center fw-bold fs-4">
+      <div className="d-flex p-2 justify-content-center fw-bold fs-4">
         Добавление ассортимента
       </div>
 
-      <div className="d-flex  border p-2 justify-content-center  flex-column ">
+      <div className="d-flex p-2 justify-content-center  flex-column ">
         <Dropdown >
           <Dropdown.Toggle className={button}  >{type} </Dropdown.Toggle>
           <Dropdown.Menu>
@@ -98,13 +97,13 @@ function CreateAssortment(props) {
 
         <Form.Control className="mt-3" placeholder="Введите цену за штуку(кг)" type="number" required onChange={e => setCostPerOne(e.target.value)} />
 
-        <Form.Control className="mt-3" placeholder="Состав" required onChange={e => setComposition(e.target.value)} />
+        <Form.Control className="mt-3"  as='textarea' placeholder="Состав" rows={10} required onChange={e => setComposition(e.target.value)} />
 
         <Form.Control className="mt-3" placeholder="Фото" required type="file" onChange={selectFile} />
 
       </div>
 
-      <div className="d-flex border p-2 justify-content-center">
+      <div className="d-flex p-2 justify-content-center">
 
         {<Button type="submit" >Добавить</Button>}
 

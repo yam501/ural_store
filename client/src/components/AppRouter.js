@@ -18,7 +18,11 @@ function AppRouter() {
             {publicRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
+<<<<<<< HEAD
             <Route path='*' element={<Navigate to={location} replace/>}/>
+=======
+            {/* <Route path='*' element={<Navigate to={STORE_ROUTE} replace/>}/> */}
+>>>>>>> 39b3e47ac80d555aa1bfcd83fac5a3a18db593b2
         </Routes>
     );
   }
