@@ -4,21 +4,21 @@ import AdressBoxIcon from './AdressBoxIcon';
 
 const AdressBox = (props) => {
     return (
-        <div className={`
+        <Button className={`
+        border-0
         me-3
         rounded-pill
         d-flex
         justify-content-around  
         align-items-center
         ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`}
-
-        disabled>
+        >
         <div className='d-flex w-100 justify-content-around align-items-center adressBoxContent' >
             {props.width > 1199 && <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>}
             <span className='text-center wrap adressBoxText'>г. Ревда,ул. Уральская 5</span>
         </div>
 
-        </div>
+        </Button>
     );
 };
 

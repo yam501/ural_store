@@ -54,17 +54,20 @@
     fill-opacity: 100%;
 }
 
-.adressBox {
+.adressBox, .adressBox:active {
     width: 10vw;
     height: 2.6vw;
-    background-color: #ff709a;
+    background-color: #ff709a !important;
     opacity: 70%;
 }
 
 
-.adressBox:disabled {
-    background-color: #ff709a !important;
-    opacity: 70% !important;
+.adressBox:hover {
+    width: 10vw;
+    height: 2.6vw;
+    background-color: #ff709a;
+    opacity: 70%;
+    text-decoration: underline;
 }
 
 .adressBoxText {
