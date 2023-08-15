@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite';
 import Accept from './Accept';
 import { NavLink } from 'react-router-dom';
 import { ADMIN_ROUTE } from '../../utils/consts';
+import AdminPanelBtnIcon from './AdminPanelBtnIcon';
 
 
 const AuthButton = observer(() => {
@@ -29,7 +30,7 @@ const AuthButton = observer(() => {
     }
     const [show, setShow] = useState(false);
     const handleShowControl = () => setShow(!show)
-    if (user._isAuth) {
+    if (user._isAuth && user._user.role === 'ADMIN') {
         return <div className='d-flex align-items-center'>
             <Button
                 onClick={() => logout()}
@@ -39,20 +40,44 @@ const AuthButton = observer(() => {
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
-                <Button className='ms-2 container rounded-circle adminBtn'>
+                <Button className='ms-2 container rounded-circle adminPanBtn'>
                     <AuthIcon />
                 </Button>
             </NavLink>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
-            <Button
-                className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
-            >
-                <span className='btnText'>Личный кабинет</span>
-            </Button>
+                <Button className='ms-2 container rounded-circle adminPanBtn'>
+                    <AdminPanelBtnIcon/>
+                </Button>
             </NavLink>
             {numArr.isShowAccept ?
             <Accept show={show} handleClose={handleShowControl} number={numArr.number}/> :
             ''}
+        </div>
+    } 
+    if (user._isAuth) {
+        return <div className='d-flex align-items-center'>
+        <Button
+            onClick={() => logout()}
+            type='submit'
+            className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
+        >
+            <span className='btnLogOutText'>Выйти</span>
+        </Button>
+        <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
+            <Button className='ms-2 container rounded-circle adminBtn'>
+                <AuthIcon />
+            </Button>
+        </NavLink>
+        <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
+        <Button
+            className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
+        >
+            <span className='btnText'>Личный кабинет</span>
+        </Button>
+        </NavLink>
+        {numArr.isShowAccept ?
+        <Accept show={show} handleClose={handleShowControl} number={numArr.number}/> :
+        ''}
         </div>
     }
     return (

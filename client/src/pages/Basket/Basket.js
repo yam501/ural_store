@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useMemo } from 'react';
 import Button from 'react-bootstrap/Button';
 import './basket.css'
 import BasketItem from './BasketItem';
@@ -19,7 +19,6 @@ function Basket() {
 
   return (
     <div className='mb-5 basket_page'>
-
       <Container className='justify-content-center text-center page-name'>
         {basketProduct.basketProduct.length === 0 ?
           <div className='d-flex justify-content-center align-items-center basket-empty'>
@@ -33,8 +32,8 @@ function Basket() {
           )}
       </Container>
 
-      {basketProduct.basketProduct.length === 0 ? '' :
-        <div className='mt-5 d-flex justify-content-between align-items-center order_delive_form'>
+      {basketProduct.basketProduct.length > 0 &&
+        <div className='mt-4 d-flex justify-content-between align-items-center order_delive_form'>
           <div>
             Сумма заказа: {basket.basket.aproxSum}  ₽
           </div>

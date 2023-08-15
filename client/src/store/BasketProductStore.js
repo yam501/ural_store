@@ -14,10 +14,6 @@ export default class BasketProductStore {
         this._basketProducts = basketProduct
     }
 
-
-
-    
-
     async createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess) {
         return await BasketProductService.createBasketProduct(basketId, assortmentId, costPerOne, count, moreOrLess);
         // console.log(this._products)
@@ -52,6 +48,7 @@ export default class BasketProductStore {
         // console.log(this._products)
     }
 
+    
     async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
         const response = await BasketProductService.changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count);
         console.log(response.data[0])
