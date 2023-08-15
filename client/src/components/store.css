@@ -24,7 +24,6 @@ body {
 .store-main {
     display: flex;
     flex-direction: column;
-    min-height: 3000px;
 }
 
 .store-content {

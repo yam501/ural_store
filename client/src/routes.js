@@ -3,11 +3,10 @@ import Admin from "./pages/Admin"
 import Basket from "./pages/Basket/Basket"
 import HistoryOrder from "./pages/ComplitedOrders/HistoryOrder"
 import Order from "./pages/Order"
+import Profile from "./pages/Profile"
 import Store from "./pages/Store"
 import Terms from "./pages/Terms"
-import User from "./pages/User"
-import { ABOUTUS_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, STORE_ROUTE, TERMS_ROUTE, USER_ROUTE } from "./utils/consts"
-
+import { ABOUTUS_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, PROFILE_ROUTE, STORE_ROUTE, TERMS_ROUTE } from "./utils/consts"
 
 export const adminRoutes = [
     {
@@ -25,12 +24,12 @@ export const authRoutes = [
         element: <Basket/>
     }, 
     {
-        path: HISTORYORDER_ROUTE,
-        element: <HistoryOrder/>
+        path: PROFILE_ROUTE,
+        element: <Profile/>
     },
     {
-        path: USER_ROUTE,
-        element: <User/>
+        path: HISTORYORDER_ROUTE,
+        element: <HistoryOrder/>
     },
     {
         path: '*',

@@ -35,12 +35,12 @@
     }
 }
 
-.btnAuth:hover, .btnBasket:hover, .adminBtn:hover {
+.btnAuth:hover, .btnBasket:hover, .adminBtn:hover, .adminPanBtn:hover, .admin-icon:hover {
     background-color: #ED789A;
     opacity: 60%;
 }
 
-.btnAuth:active, .btnBasket:active, .adminBtn:active {
+.btnAuth:active, .btnBasket:active, .adminBtn:active, .adminPanBtn:active, .admin-icon:hover {
     background-color: #ED789A !important;
     opacity: 60% !important;
 }
@@ -49,22 +49,25 @@
     color: #fff;
 }
 
-.btnAuth:hover .btnIconFill, .adminBtn:hover .btnIconFill {
+.btnAuth:hover .btnIconFill, .adminBtn:hover .btnIconFill, .adminPanBtn:hover .btnIconFill{
     fill: #F64579;
     fill-opacity: 100%;
 }
 
-.adressBox {
+.adressBox, .adressBox:active {
     width: 10vw;
     height: 2.6vw;
-    background-color: #ff709a;
+    background-color: #ff709a !important;
     opacity: 70%;
 }
 
 
-.adressBox:disabled {
-    background-color: #ff709a !important;
-    opacity: 70% !important;
+.adressBox:hover {
+    width: 10vw;
+    height: 2.6vw;
+    background-color: #ff709a;
+    opacity: 70%;
+    text-decoration: underline;
 }
 
 .adressBoxText {
@@ -298,9 +301,17 @@
     }
 }
 
+.adminPanBtn {
+    width: 50px;
+    height: 50px;
+    background-color:#962A4A;
+    margin-left: 7px !important;
+    border: 0;
+}
+
+
 .adminBtn {
     display: none !important;
-    
 }
 
 .btnAdmin {
@@ -448,4 +459,17 @@
 .acceptCloseBtn::before {
     transform: rotate(-45deg);
     top: 10;
+}
+
+.admin-icon{
+    background: url("../assets/admin-panel.svg") 0 0 / 60% no-repeat;
+    background-position: center;
+    width: 48px;
+    height: 48px;
+    border: 0;
+}
+
+.admin-icon:hover{
+    background: url("../assets/admin-panel-hover.svg") 0 0 / 60% no-repeat;
+    background-position: center;
 }

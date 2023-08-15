@@ -4,15 +4,17 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import './basket.css'
 const BasketItem = ({product, user, basketProduct, basket, ...props}) => {
-
+    
     const [countProduct, setCountProduct] = useState(basketProduct.count)
     const plus = () => {
+        basket.getBasketByUserID(user.id) 
         product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
         basket.getBasketByUserID(user.id) 
         countProduct >= 1 && setCountProduct(countProduct + 1)
         
     }
     const minus = () => {
+        basket.getBasketByUserID(user.id) 
         if (countProduct === 1) {
             product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
             product.getAllBasketProductsByBasketID(basketProduct.basketId)
@@ -39,12 +41,13 @@ const BasketItem = ({product, user, basketProduct, basket, ...props}) => {
                     {basketProduct.costPerOne * countProduct} ₽
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
-                    <Button className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white' onClick={() => minus()}>
+                    <Button className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white' 
+                    onClick={minus}>
                         -
                     </Button>
                     <Form.Control value={countProduct} onChange={e => setCountProduct(e.target.value)} className='basket_item_cost'/> 
                     <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white' 
-                    onClick={() => plus()}>
+                    onClick={plus}>
                         +
                     </Button>
                 </div>

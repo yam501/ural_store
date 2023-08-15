@@ -70,6 +70,7 @@
 
 .basket-empty {
     flex-direction: column;
+    min-height: 700px;
 }
 
 .basket-empty-content {
@@ -112,6 +113,7 @@
 }
 
 .page-name {
+    min-height: 900px;
     font-size: calc(18px + 10 * (100vw/1903));
     margin-top: calc(100% - 97%);
     margin-bottom: calc(100% - 97%);
@@ -124,11 +126,6 @@
     border: 1px solid #962A4A;
     margin-right: 5%;
     margin-left: 5%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 250px;
-    right: 0;
 }
 
 .order_delive_form_btn {

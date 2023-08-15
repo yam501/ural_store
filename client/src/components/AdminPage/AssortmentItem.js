@@ -1,54 +1,56 @@
-import { observer } from 'mobx-react-lite';
 import React, { useContext, useState } from 'react';
-import { Button, Card, Image, Nav, Row, Col, Container, Form, FormLabel } from 'react-bootstrap';
-import Modal from 'react-bootstrap/Modal';
-import AssortmentService from "../../service/AssortmentService";
+import { Button, Row, Col, Form } from 'react-bootstrap';
+import AssortmentService from '../../service/AssortmentService';
+import EditModal from "./Modals/EditModal";
 
 import "./assortment.css"
 import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
 
 const AssortmentItem = (props) => {
-  const {assortment} = useContext(Context)
+  const { assortment } = useContext(Context)
+  const [showModal, setShowModal] = useState(false)
 
-  // const delButton = () => {
-  //   AssortmentService.deleteOneByName(props.assortment.name)
-  // }
-
-  const changeIsDel = () =>{
-    if (props.assortment.isDel) return props.assortment.isDel = false
-    return props.assortment.isDel = true
+  const delButton = () => {
+    AssortmentService.deleteOneByName(props.assortment.name)
+    assortment.getAll()
   }
 
+
+  
   return (
-    <div>
-      <Row className='p-2 border'>
-        <Col className='border-1'>
+    <Form>
+
+      <Row className='p-2 m-1'>
+
+        <Col className='border-1 p-2'>
           {props.assortment.name}
         </Col>
-        <Col className='border-1'>
+
+        <Col className='border-1 p-2'>
           {props.assortment.type}
         </Col>
-        <Col className='border-1'>
+
+        <Col className='border-1 p-2'>
           {props.assortment.costPerOne}
         </Col>
 
-
-
-
-        <Col className='border-1'>
-            <Form.Check onChange={changeIsDel} type='checkbox' cheaked={props.assortment.isDel ? true : false} />
+        <Col className='border-1 p-2'>
+          <Button className='w-100' size='sm' variant="secondary" onClick={() => setShowModal(true)} >Изменить</Button>
         </Col>
-        <Col className='border-1'>
-          <Button className='w-100' size='sm' onClick={()=>console.log(props.assortment.isDel)} >Изменить</Button>
-            
+
+        <Col className='border-1 p-2'>
+          <Button className='w-100' size='sm' variant="danger" type='submit' onClick={delButton} >Удалить</Button>
         </Col>
       </Row>
 
-
-    </div>
+      <>
+      <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} />
+      </>
+    </Form>
   )
-
+  
 }
+// <Form.Check onChange={changeIsDel} type='checkbox'  ? true : false} />
 
-
-export default AssortmentItem;
+export default observer( AssortmentItem);
