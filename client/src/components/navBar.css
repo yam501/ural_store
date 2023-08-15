@@ -35,12 +35,12 @@
     }
 }
 
-.btnAuth:hover, .btnBasket:hover, .adminBtn:hover, .adminPanBtn:hover {
+.btnAuth:hover, .btnBasket:hover, .adminBtn:hover, .adminPanBtn:hover, .admin-icon:hover {
     background-color: #ED789A;
     opacity: 60%;
 }
 
-.btnAuth:active, .btnBasket:active, .adminBtn:active, .adminPanBtn:active {
+.btnAuth:active, .btnBasket:active, .adminBtn:active, .adminPanBtn:active, .admin-icon:hover {
     background-color: #ED789A !important;
     opacity: 60% !important;
 }
@@ -49,7 +49,7 @@
     color: #fff;
 }
 
-.btnAuth:hover .btnIconFill, .adminBtn:hover .btnIconFill, .adminPanBtn:hover .btnIconFill {
+.btnAuth:hover .btnIconFill, .adminBtn:hover .btnIconFill, .adminPanBtn:hover .btnIconFill{
     fill: #F64579;
     fill-opacity: 100%;
 }
@@ -456,4 +456,17 @@
 .acceptCloseBtn::before {
     transform: rotate(-45deg);
     top: 10;
+}
+
+.admin-icon{
+    background: url("../assets/admin-panel.svg") 0 0 / 60% no-repeat;
+    background-position: center;
+    width: 48px;
+    height: 48px;
+    border: 0;
+}
+
+.admin-icon:hover{
+    background: url("../assets/admin-panel-hover.svg") 0 0 / 60% no-repeat;
+    background-position: center;
 }

@@ -7,7 +7,7 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import Accept from './Accept';
 import { NavLink } from 'react-router-dom';
-import { ADMIN_ROUTE } from '../../utils/consts';
+import { ADMIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
 import AdminPanelBtnIcon from './AdminPanelBtnIcon';
 
 
@@ -28,8 +28,10 @@ const AuthButton = observer(() => {
     const logout = () => {
         user.logout()
     }
+
     const [show, setShow] = useState(false);
     const handleShowControl = () => setShow(!show)
+    
     if (user._isAuth && user._user.role === 'ADMIN') {
         return <div className='d-flex align-items-center'>
             <Button
@@ -39,14 +41,13 @@ const AuthButton = observer(() => {
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
-            <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
+            <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
                 <Button className='ms-2 container rounded-circle adminPanBtn'>
                     <AuthIcon />
                 </Button>
             </NavLink>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
-                <Button className='ms-2 container rounded-circle adminPanBtn'>
-                    <AdminPanelBtnIcon/>
+                <Button className='ms-2 container rounded-circle admin-icon'>
                 </Button>
             </NavLink>
             {numArr.isShowAccept ?
@@ -63,12 +64,12 @@ const AuthButton = observer(() => {
         >
             <span className='btnLogOutText'>Выйти</span>
         </Button>
-        <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
+        <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
             <Button className='ms-2 container rounded-circle adminBtn'>
                 <AuthIcon />
             </Button>
         </NavLink>
-        <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
+        <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
         <Button
             className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
         >

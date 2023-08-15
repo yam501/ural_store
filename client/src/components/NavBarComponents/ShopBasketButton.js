@@ -25,7 +25,6 @@ const ShopBasketButton = () => {
                 <path d="M5.5542 1L1.5542 1" className="btnBasketFill" stroke="#FF709A" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </div>
-
         </Button>
         </NavLink>
     );

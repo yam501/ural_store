@@ -33,7 +33,7 @@ const BurgerMenu = (props) => {
             <Offcanvas.Body className='menuBodyBox' >
             <Container className='container d-flex flex-column justify-content-between menuNav'>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ABOUTUS_ROUTE}>О нас</NavLink></div>
-              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказы</NavLink></div>
+              <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ORDER_ROUTE}>Заказ</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={HISTORYORDER_ROUTE}>История заказов</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={TERMS_ROUTE} >Условия доставки</NavLink></div>
               <div className='d-flex align-items-center menuItem'><span className='me-3 menuItemMarker'></span><FeedB/></div> 
