@@ -4,16 +4,18 @@ import AssortmentService from "../../service/AssortmentService";
 
 import AssortmentList from "./AssortmentList";
 
+
 import "./assortment.css"
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 
 
-function EditAssortment(props) {
+function EditAssortment() {
     const { assortment } = useContext(Context)
 
-    const [type, setType] = useState('Выберите тип')
+    const [type, setType] = useState('Любой тип')
     const [name, setName] = useState('')
+
 
     const search = () => {
         if (name !== '' && type !== 'Любой тип') return assortment.getByTypeAndName(type, name)
@@ -28,11 +30,14 @@ function EditAssortment(props) {
         });
         assortment.getAll()
     }
+    
+
 
 
     return (
 
-        <div className={`${props.show}`}>
+        <div>
+
 
 
 
@@ -53,41 +58,20 @@ function EditAssortment(props) {
                         <Dropdown.Item key={6} onClick={() => setType('Молочка')}>Молочка</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Button variant="secondary"  onClick={search}  type="submit">Найти</Button>
-                <Button variant="danger" onClick={delAssortment}>Удалить</Button>
+                <Button variant="secondary" onClick={search} type="submit">Найти</Button>
             </Stack>
 
 
-
-            <AssortmentList />
+            <div className="max-size-window border-1 m-2">
+                <AssortmentList />
+            </div>
 
 
         </div>
 
-        // <Modal
-        //     size="lg"
-        //     show={show}
-        //     onHide={onHide}
-        //     aria-labelledby="example-modal-sizes-title-lg"
-        // >
-        //     <Modal.Header closeButton>
-        //         <Modal.Title id="example-modal-sizes-title-lg">
-        //             Large Modal
-        //         </Modal.Title>
-        //     </Modal.Header>
-        //     <Modal.Body>...</Modal.Body>
-        // </Modal>
+
     );
 }
-/*
-Тип          String       notNull
-Название     String       notNull
-Есть/нет     Bool         notNull
-Ценазаштуку  Double       notNull
-Описание     String       NUll
-Состав       String       NULL
-image        String(FILE) NULL
- 
-*/
+
 
 export default observer(EditAssortment);

@@ -1,6 +1,9 @@
-.big-window{
-    /* width: 20px; */
+.max-size-window{
 
+    max-height: 500px; 
+    /* min-height: 100px; */
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 
