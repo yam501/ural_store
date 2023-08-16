@@ -113,7 +113,7 @@
 }
 
 .page-name {
-    min-height: 900px;
+    min-height: 500px;
     font-size: calc(18px + 10 * (100vw/1903));
     margin-top: calc(100% - 97%);
     margin-bottom: calc(100% - 97%);

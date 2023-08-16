@@ -16,15 +16,12 @@ function Basket() {
   const { assortment } = useContext(Context)
   const { user } = useContext(Context)
 
-  // basketProduct.getAllBasketProductsByBasketID(user._user.id);    
-  const [basketShow, setBasketShow] = useState(false)
-  const renderBasketItems = async () => {
-    await basketProduct.getAllBasketProductsByBasketID(user._user.id)
-    setBasketProductsDynamic(basketProduct.basketProduct)
-  }
+  // const [basketAproxSum, setBasketAproxSum] = useState(basket.basket.aproxSum)
+
 
   useEffect(() => {
-    renderBasketItems()
+    basketProduct.getAllBasketProductsByBasketID(user._user.id)
+    basket.getBasketByUserID(user._user.id)
   }, [])
   return (
     <div className='mb-5 basket_page'>
@@ -36,13 +33,13 @@ function Basket() {
               <div className='basket-icon'> </div>
               <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
             </div>
-          </div> : basketProductsDynamic.map((basketItem) =>
+          </div> : basketProduct.basketProduct.map((basketItem) =>
             <BasketItem key={basketItem.id} user={user._user} basket={basket} product={basketProduct} basketProduct={basketItem} />
           )}
       </Container>
 
       {basketProduct.basketProduct.length > 0 &&
-        <div className='mt-4 d-flex justify-content-between align-items-center order_delive_form'>
+        <div className='mt-2 d-flex justify-content-between align-items-center order_delive_form'>
           <div>
             Сумма заказа: {basket.basket.aproxSum} ₽
           </div>
