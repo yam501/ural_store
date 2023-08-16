@@ -13,11 +13,11 @@ class ComplitedOrdersController {
         }
     }
 
-    async getComplitedOrderByUserID(req, res, next) {
+    async getAllComplitedOrdersByUserID(req, res, next) {
         try {
             const {userId} = req.body
-            const complitedOrder = await ComplitedOrders.findOne({where:{userId: userId}})
-            return res.json(complitedOrder)
+            const complitedOrders = await ComplitedOrders.findAll({where:{userId: userId}})
+            return res.json(complitedOrders)
 
         } catch (e) {
             next(ApiError.badRequest(e.message))
