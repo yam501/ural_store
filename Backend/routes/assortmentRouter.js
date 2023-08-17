@@ -22,5 +22,6 @@ router.put('/changeProductCostPerOneByName', checkRole('ADMIN'), assortmentContr
 router.put('/changeProductDescriptionByName', checkRole('ADMIN'), assortmentController.changeDescriptionByName)
 router.put('/changeProductCompositionByName', checkRole('ADMIN'),  assortmentController.changeCompositionByName)
 router.put('/changeProductImageByName', checkRole('ADMIN'), assortmentController.changeImageByName)
+router.put('/changeTypeByName', checkRole('ADMIN'), assortmentController.changeTypeByName)
 
 module.exports = router
