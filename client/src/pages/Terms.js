@@ -3,7 +3,7 @@ import { Container, Nav } from 'react-bootstrap';
 
 const Terms = () => {
     return (
-        <Container>
+        <Container className='page_body'>
             <Nav>
                 Условия доставки
             </Nav>

@@ -19,7 +19,7 @@ function Admin() {
 
 
   return (
-    <div className='w-75 container'>
+    <div className='w-75 container page_body'>
       <Tabs
         as={'div'}
         defaultActiveKey="profile"

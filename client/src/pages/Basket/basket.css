@@ -4,6 +4,21 @@
     font-family: 'Montserrat';
 }
 
+.page_body{
+    flex: 1 1 auto;
+}
+
+
+#root{
+    min-height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+html, body{
+    height: 100% !important;
+}
+
 .img_box {
     height: 7vw;
     width: 7vw;
