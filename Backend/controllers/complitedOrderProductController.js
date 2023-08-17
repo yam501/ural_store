@@ -17,8 +17,8 @@ class ComplitedOrderProductController {
 
     async getComplitedOrderProductByComplitedOrderID(req, res, next) {
         try {
-            const {comlitedOrderId} = req.body
-            const complitedOrderProduct = await ComplitedOrderProduct.findAll({where:{comlitedOrderId: comlitedOrderId}})
+            const {complitedOrderId} = req.body
+            const complitedOrderProduct = await ComplitedOrderProduct.findAll({where:{complitedOrderId: complitedOrderId}})
             return res.json(complitedOrderProduct)
         } catch (e) {
             next(ApiError.badRequest(e.message))

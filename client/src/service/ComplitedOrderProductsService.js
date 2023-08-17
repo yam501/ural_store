@@ -2,7 +2,7 @@ import { $authHost, $host } from "../http";
 
 const ComplitedOrderProductsService = {
     async createComplitedOrderProduct(complitedOrderId, assotmentId, count) {
-        return new Promise((resolve) => resolve($authHost.post('/api/complitedOrderProduct/createComplitedOrderProduct',
+        return new Promise((resolve) => resolve($authHost.post('api/complitedOrderProduct/createComplitedOrderProduct',
             { complitedOrderId, assotmentId, count })))
     },
 

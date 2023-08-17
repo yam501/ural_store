@@ -14,3 +14,11 @@
     margin-top: 3vh;
     margin-bottom: 2vh;
 }
+
+.complitedOrderItem {
+    margin-bottom: 20px;
+    width: 100%;
+    /* max-height: 120px; */
+    border: 1px solid #962A4A;
+    padding: 0 12px;
+}

@@ -50,8 +50,8 @@ const ComplitedOrders = sequelize.define('complitedOrders', {
     userId: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING, allowNull: false },
     complitedSum: { type: DataTypes.DOUBLE, allowNull: false },
-    orderTime: { type: DataTypes.TIME, allowNull: false },
-    complitedTime: { type: DataTypes.TIME, allowNull: false }
+    orderTime: { type: DataTypes.DATE, allowNull: false },
+    complitedTime: { type: DataTypes.DATE, allowNull: false }
 })
 
 const OrderProduct = sequelize.define('orderProduct', {

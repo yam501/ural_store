@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import './historyOrder.css'
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
+import OurDateTime from '../../dateTime/dateTime';
+import ComplitedOrderItem from './ComplitedOrderItem';
 
 // Страница истории заказов
 
@@ -11,12 +13,8 @@ function HistoryOrder() {
   const [complitedOrdersDinamic, setComplitedOrdersDinamic] = useState([])
 
   async function fetchComplitedOrders() {
-    // setTimeout(async () => {
-    //   await complitedOrders.getAllComplitedOrdersByUserId(user._user.id)
-    //   setComplitedOrdersDinamic(complitedOrders._complitedOrders)
-    // }, 5000)
     await complitedOrders.getAllComplitedOrdersByUserId(user._user.id)
-    setComplitedOrdersDinamic(complitedOrders._complitedOrders)
+    setComplitedOrdersDinamic(complitedOrders._complitedOrders ? complitedOrders._complitedOrders : [])
   }
 
   useEffect(() => {
@@ -29,7 +27,9 @@ function HistoryOrder() {
         <h1 className='history-title'>История заказов</h1>
       </header>
       <div className="complitedOrders">
-        {complitedOrdersDinamic.map(complitedOrder => <div>{complitedOrder.address}</div>)}
+        {complitedOrdersDinamic.map(complitedOrder =>
+          <ComplitedOrderItem key={complitedOrder.id} user={user} complitedOrder={complitedOrder}/>
+        )}
       </div>
     </div>
   );
