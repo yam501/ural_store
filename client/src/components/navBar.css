@@ -70,6 +70,10 @@
     text-decoration: underline;
 }
 
+.menuAdressText:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 .adressBoxText {
     font-size:calc(11px + 5 * (100vw/1903));
     font-family: 'Montserrat';
@@ -91,7 +95,7 @@
 
 
 
-@media (max-width: 1199px) {
+@media (max-width: 1299px) {
     .adressBox {
         display: none !important;
     }

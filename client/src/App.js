@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { observer } from "mobx-react-lite";
 import { Context } from ".";
 import { Spinner } from "react-bootstrap";
+import GPS from "./components/YndexMaps/GPS";
 
 const App = observer(() => {
   const { user } = useContext(Context)
@@ -36,6 +37,7 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <NavBar />
+      {/* <GPS/> */}
       <AppRouter />
       <Footer />
     </BrowserRouter>

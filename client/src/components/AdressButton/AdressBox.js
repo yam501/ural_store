@@ -2,19 +2,20 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import AdressBoxIcon from './AdressBoxIcon';
 
-const AdressBox = (props) => {
+const AdressBox = ({...props}) => {
     return (
         <Button className={`
         border-0
+        p-1
         me-3
         rounded-pill
         d-flex
-        justify-content-around  
         align-items-center
-        ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`}
+        ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`} 
+        {...props}
         >
-        <div className='d-flex w-100 justify-content-around align-items-center adressBoxContent' >
-            {props.width > 1199 && <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>}
+        <div className='d-flex w-100 justify-content-between align-items-center adressBoxContent' >
+            {props.width > 1299 && <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>}
             <span className='text-center wrap adressBoxText'>г. Ревда,ул. Уральская 5</span>
         </div>
 
