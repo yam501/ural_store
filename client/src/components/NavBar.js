@@ -14,10 +14,20 @@ import SearchPanel from './NavBarComponents/SearchPanel';
 import FeedB from './FeedB';
 import { observer } from 'mobx-react-lite';
 import Accept from './AuthButton/Accept';
+import GPS from './YndexMaps/GPS';
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
     const [width, setWidth] = useState(window.innerWidth);
+    const [show, setShow] = useState(false)
+    const [adress, setAdress] = useState({
+      adressString: '' 
+    })
+    const findAdress = (adress) => {
+      setAdress({
+        adressString: adress
+      })
+    }
     useEffect(() => {
       const handleResize = (event) => {
       setWidth(event.target.innerWidth);
@@ -39,8 +49,9 @@ const NavBar = observer(() => {
         <Container className='container'>
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
-            {width >= 1199 && <AdressBox width={width}/>}
-            <AuthButton/>
+            {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(!show)} width={width}/>}
+            <GPS findAdress={findAdress} show={show}/>
+            <AuthButton />
             <ShopBasketButton/>
           </div>
           </Nav>

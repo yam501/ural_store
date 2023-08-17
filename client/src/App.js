@@ -13,6 +13,7 @@ const App = observer(() => {
   const { product } = useContext(Context)
   const { basket } = useContext(Context)
   const { basketProduct } = useContext(Context)
+
   const [loading, setLoading] = useState(true)
   // useEffect(() => {
   //   check().then(data => {
@@ -37,7 +38,6 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <NavBar />
-      {/* <GPS/> */}
       <AppRouter />
       <Footer />
     </BrowserRouter>
