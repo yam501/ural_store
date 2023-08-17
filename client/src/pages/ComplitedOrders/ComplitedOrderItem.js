@@ -35,8 +35,10 @@ function ComplitedOrderItem({ user, complitedOrder }) {
                 Итоговая стоимость заказа составила: {complitedOrder.complitedSum}
             </p>
             <div>
-                {complitedOrderProducts.map(complitedOrderProduct =>
-                    <ComplitedOrderProductItem key={complitedOrderProduct.id} complitedOrderProduct={complitedOrderProduct} />
+                {complitedOrderProducts.map(item =>
+                    {
+                        //console.log(complitedOrderProduct.assortmentId)
+                        return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} />}
                 )}
             </div>
         </div>

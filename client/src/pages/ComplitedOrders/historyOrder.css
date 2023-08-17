@@ -22,3 +22,7 @@
     border: 1px solid #962A4A;
     padding: 0 12px;
 }
+
+.complitedOrderProductItem {
+    border: 1px solid green;
+}
