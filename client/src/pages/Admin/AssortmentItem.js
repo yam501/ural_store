@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Row, Col, Form } from 'react-bootstrap';
 import AssortmentService from '../../service/AssortmentService';
-import EditModal from "./Modals/EditModal";
+import EditModal from "./modals/EditModal";
 
 import "./assortment.css"
 import { Context } from '../..';
