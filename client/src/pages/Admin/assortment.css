@@ -10,3 +10,10 @@
 .border-1{
     border: 3px solid #2a2f233b !important;
 }
+
+.dropdown-select:invalid {
+    box-shadow: 0 0 5px 1px red;
+}
+.dropdown-select:valid {
+    box-shadow: 0 0 5px 1px green;
+}

@@ -15,8 +15,8 @@ export default class ComplitedOrderProductsStore {
         return await ComplitedOrderProductsService.createComplitedOrderProduct(complitedOrderId, assortmentId, count)
     }
 
-    async getAllComplitedOrderProductsByComplitedOrderId(orderId) {
-        const response = ComplitedOrderProductsService.getAllComplitedOrderProductsByComplitedOrderId(orderId)
+    async getAllComplitedOrderProductsByComplitedOrderId(complitedOrderId) {
+        const response = await ComplitedOrderProductsService.getAllComplitedOrderProductsByComplitedOrderId(complitedOrderId)
         this.setComplitedOrderProducts(response.data)
     }
 

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Button, Container, Row, Col, Tabs, Tab } from "react-bootstrap";
-import CreateAssortment from '../components/AdminPage/CreateAssortment';
-import EditAssortment from '../components/AdminPage/EditAssortment'
-import { Context } from '..';
+import CreateAssortment from './CreateAssortment';
+import EditAssortment from './EditAssortment'
+import { Context } from '../..';
 
 
 // Страница администратора
 import "./admin.css"
-import "../components/AdminPage/assortment.css"
+import "./assortment.css"
 import { observer } from 'mobx-react-lite';
 
 function Admin() {
@@ -19,7 +19,7 @@ function Admin() {
 
 
   return (
-    <div className='w-75 container'>
+    <div className='w-75 container page_body'>
       <Tabs
         as={'div'}
         defaultActiveKey="profile"

@@ -23,8 +23,6 @@ export default class AssortmentStore {
 
     async getById(id) {
         const response = await AssortmentService.getById(id);
-        console.log(response.data)
-        // return response.data
         this.setAssortment(response.data)
     }
 

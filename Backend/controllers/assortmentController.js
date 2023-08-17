@@ -101,6 +101,16 @@ class AssortmentController {
         }
     }
 
+    async changeTypeByName(req, res, next) {
+        try {
+            const { type, name } = req.body
+            const updated = await Assortment.update({ type: type }, { where: { name: name } })
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async changeNameByName(req, res, next) {
         try {
             const { oldName, newName } = req.body

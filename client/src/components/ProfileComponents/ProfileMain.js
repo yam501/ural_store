@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Button, Container, Nav, Form} from 'react-bootstrap'
 
+
+import { Context } from '../..';
 
 import './profile.css'
 
 const ProfileMain = () => {
-    const [profileName, setProfileName] = useState('')
-    const [tel, setTel] = useState('')
+
+    const {user} = useContext(Context)
+
+
+    const [profileName, setProfileName] = useState()
+    const [telephone, setTelephone] = useState('');
     const [password, setPassword] = useState('')
+
+
     const [save, setSave] = useState(false)
 
+    const [disabled, setDisable] = useState(true)
 
 
     const saveClick = () => {
+        setDisable(!disabled)
         setSave(!save)
     }
     return (
@@ -23,33 +33,36 @@ const ProfileMain = () => {
             </Nav>
             <Nav className='mt-5 mb-4'>
                 <Form.Control 
-                className='profile-info input' 
+                className='profile-info profile-input input' 
                 type='text' 
-                placeholder='Ваше погоняло'
+                placeholder={user._user.name ? user._user.name : "Ваше погоняло"}
                 value={profileName}
-                onChange={e => setProfileName(e.target.profileName)}
+                disabled = {disabled}
+                onChange={event => setProfileName(event.target.value)}
                 >
                 </Form.Control>
             </Nav>
             <Nav className='mb-4'>
                 <Form.Control 
-                className='profile-tel input' 
+                className='profile-tel profile-input input' 
                 type='tel' 
-                placeholder='9991114433' 
+                placeholder={user._user.number}
                 maxlength="12" 
                 minlength="12" 
-                value={tel}
-                onChange={e => setTel(e.target.tel)}
+                value={telephone}
+                disabled = {disabled}
+                onChange={event => setTelephone(event.target.value)}
                 >
                 </Form.Control>
             </Nav>
             <Nav className='mb-5'>
                 <Form.Control  
-                className='profile-info input' 
+                className='profile-info profile-input input' 
                 type='password' 
-                placeholder='Пароль'
+                placeholder={user._user.password}
                 value={password}
-                onChange={e => setPassword(e.target.password)}
+                disabled = {disabled}
+                onChange={event => setPassword(event.target.value)}
                 >
                 </Form.Control>
             </Nav>
@@ -58,7 +71,7 @@ const ProfileMain = () => {
             className='button-sendInfoProfile'
             onClick={() => saveClick()}
             >
-                {save ? 'Редактировать' : 'Сохранить'}
+                {save ? 'Сохранить' : 'Редактировать'}
             </Button>
         </Container>
     );

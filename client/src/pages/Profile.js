@@ -4,7 +4,7 @@ import ProfileMain from '../components/ProfileComponents/ProfileMain';
 
 function Profile() {
   return (
-    <div>
+    <div className='page_body'>
       <ProfileMain/>
     </div>
   );
