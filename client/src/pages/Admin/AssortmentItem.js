@@ -11,9 +11,9 @@ const AssortmentItem = (props) => {
   const { assortment } = useContext(Context)
   const [showModal, setShowModal] = useState(false)
 
-  const delButton = () => {
-    AssortmentService.deleteOneByName(props.assortment.name)
-    assortment.getAll()
+  async function delButton (){
+    await AssortmentService.deleteOneByName(props.assortment.name)
+    await props.onClick()
   }
 
 
@@ -40,12 +40,12 @@ const AssortmentItem = (props) => {
         </Col>
 
         <Col className='border-1 p-2'>
-          <Button className='w-100' size='sm' variant="danger" type='submit' onClick={delButton} >Удалить</Button>
+          <Button className='w-100' size='sm' variant="danger" onClick={delButton} >Удалить</Button>
         </Col>
       </Row>
 
       <>
-      <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} />
+      <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} onClick={props.onClick}/>
       </>
     </Form>
   )

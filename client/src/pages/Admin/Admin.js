@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 import CreateAssortment from './CreateAssortment';
 import EditAssortment from './EditAssortment'
@@ -12,24 +12,36 @@ import { observer } from 'mobx-react-lite';
 
 function Admin() {
   const { assortment } = useContext(Context)
+  const [products, setProducts] = useState([])
 
-  const getAllAssortment = () => {
-    assortment.getAll()
+
+  async function getAllProducts() {
+    console.log('asda')
+    await assortment.getAll()
+    setProducts(assortment.assortments ? assortment.assortments : [])
+
   }
 
 
+  useEffect(() => {
+    getAllProducts()
+  }, [])
+
+
+
+
   return (
-    <div className='w-75 container page_body'>
+    <div className='w-75 container'>
       <Tabs
         as={'div'}
-        defaultActiveKey="profile"
+        defaultActiveKey="EditAssortment"
         className="mb-3"
       >
         <Tab eventKey="CreateAssortment" title="Создать ассортимент">
           <CreateAssortment />
         </Tab>
-        <Tab eventKey="EditAssortment" title="Редактировать ассортимент" onSelect={getAllAssortment()}>
-          <EditAssortment />
+        <Tab eventKey="EditAssortment" title="Редактировать ассортимент" >
+          <EditAssortment products={products} onClick={getAllProducts} />
         </Tab>
       </Tabs>
     </div>
@@ -45,20 +57,3 @@ function Admin() {
 }
 
 export default observer(Admin);
-
-  // <div className=" border">
-    //   <Row>
-    //     <Col className="d-flex flex-column border justify-content-center align-items-center" sm={2} >
-    //       <Button variant='outline-dark' className='mt-4 p-3 w-50' onClick={showOnlyAddAssortment} > Добавить ассортимент</Button>
-    //       <Button variant='outline-dark' className='mt-4 p-3 w-50' onClick={showOnlyEditAssortment} > Изменить ассортимент </Button>
-
-
-
-    //     </Col>
-    //     <Col className=" border" sm={8} >
-    //       <CreateAssortment show={assortmentVisible ? "" : "d-none"} />
-    //       <EditAssortment show={editAssortmentVisible ? "" : "d-none"} />
-
-    //     </Col>
-    //   </Row>
-    // </div>

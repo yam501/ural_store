@@ -16,14 +16,20 @@ export default class AssortmentStore {
         this._assortment = assortment
     }
 
-    async getAllByAvailable(available) {
-        const response = await AssortmentService.getAllByAvailable(available);
-        this.setProducts(response.data)
-    }
 
     async getById(id) {
         const response = await AssortmentService.getById(id);
         this.setAssortment(response.data)
+    }
+
+
+
+
+
+
+    async getAllByAvailable(available) {
+        const response = await AssortmentService.getAllByAvailable(available);
+        this.setProducts(response.data)
     }
 
     async getAll() {
@@ -45,6 +51,15 @@ export default class AssortmentStore {
         const response = await AssortmentService.getAllByTypeAndName(type, name);
         this.setProducts(response.data)
     }
+
+
+
+
+
+
+
+
+
 
     get assortments() {
         return this._assortments

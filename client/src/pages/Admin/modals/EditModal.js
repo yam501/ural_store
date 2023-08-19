@@ -7,7 +7,6 @@ import { Context } from '../../..';
 
 const EditModal = (props) => {
     const assort = props.assortment
-    const { assortment } = useContext(Context)
 
     const [type, setType] = useState(assort.type)
     const [typeChanged, setTypeChanged] = useState(false)
@@ -20,6 +19,8 @@ const EditModal = (props) => {
 
     const [composition, setComposition] = useState(assort.composition)
     const [compositionChanged, setCompositionChanged] = useState(false)
+
+    
 
     const isTypeChanged = (inputType) => {
         setType(inputType)
@@ -45,20 +46,20 @@ const EditModal = (props) => {
         else setCompositionChanged(true)
     }
 
-    const confirmEdit = () => {
+    async function confirmEdit() {
         if (nameChanged) {
-            AssortmentService.changeNameByName(assort.name, name)
+            await AssortmentService.changeNameByName(assort.name, name)
         }
         if (typeChanged) {
-            AssortmentService.changeTypeByName(name, type)
+            await AssortmentService.changeTypeByName(name, type)
         }
         if (costPerOneChanged) {
-            AssortmentService.changeCostPerOneByName(name, costPerOne)
+            await AssortmentService.changeCostPerOneByName(name, costPerOne)
         }
         if (compositionChanged) {
-            AssortmentService.changeCompositionByName(name, composition)
+            await AssortmentService.changeCompositionByName(name, composition)
         }
-        assortment.getAll()
+        props.onClick()
         props.onHide()
     }
     return (
@@ -78,14 +79,14 @@ const EditModal = (props) => {
                     <div>
                         Тип:
                         <div>
-                            <Dropdown>
+                            <Dropdown onSelect={e => isTypeChanged(e)}>
                                 <Dropdown.Toggle > {type} </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item key={1} onClick={() => isTypeChanged('Мясо')}>Мясо</Dropdown.Item>
-                                    <Dropdown.Item key={2} onClick={() => isTypeChanged('Салаты')}>Салаты</Dropdown.Item>
-                                    <Dropdown.Item key={3} onClick={() => isTypeChanged('Овощи')}>Овощи</Dropdown.Item>
-                                    <Dropdown.Item key={4} onClick={() => isTypeChanged('Выпечка')}>Выпечка</Dropdown.Item>
-                                    <Dropdown.Item key={5} onClick={() => isTypeChanged('Молочка')}>Молочка</Dropdown.Item>
+                                    <Dropdown.Item eventKey={'Мясо'}>Мясо</Dropdown.Item>
+                                    <Dropdown.Item eventKey={'Салаты'}>Салаты</Dropdown.Item>
+                                    <Dropdown.Item eventKey={'Овощи'}>Овощи</Dropdown.Item>
+                                    <Dropdown.Item eventKey={'Выпечка'}>Выпечка</Dropdown.Item>
+                                    <Dropdown.Item eventKey={'Молочка'}>Молочка</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
