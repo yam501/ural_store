@@ -1,0 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import './gpsStyle.css'
+import GPS from './GPS';
+import CloseButton from '../UI/CloseButton';
+import GpsIcon from './GpsIcon';
+
+const ModalWindowYMaps = ({findAdress, show, ...props}) => {
+    const [adress, setAdress] = useState('')
+    return (
+        <div
+        className={`map_box ${show ? 'active' : ''}`}
+        >
+        <div className={show ? 'd-block overlay' : 'd-none'}></div>
+        <div  className='map'>
+            <CloseButton onClick={props.onClick}/>
+            {/* <div className='gps_form_box'>
+                <form className='gps_form'>
+                    <label>Введите адрес доставки</label>
+                    <div className='form_adres_string_box'>
+                        <input type='text' value={adress} onChange={e => setAdress(e.target.value)} className='form_adress_string'/>
+                        <button className='form_gelocation_btn'><GpsIcon/></button>
+                    </div>
+
+                </form>
+            </div> */}
+            <div className='ymap_box'>
+                <GPS findAdress={findAdress}/>
+            </div>
+        </div>
+        </div>
+    );
+};
+
+export default ModalWindowYMaps;

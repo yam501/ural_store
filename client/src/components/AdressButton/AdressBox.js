@@ -18,7 +18,7 @@ const AdressBox = ({adress, ...props}) => {
         >
         <div className='d-flex w-100 justify-content-between align-items-center adressBoxContent' >
             {props.width > 1299 && <div className='adressBoxSvgIcon'><AdressBoxIcon/></div>}
-            <span className='text-center wrap adressBoxText'>г. Ревда,ул. {adress}</span>
+            <span className='text-center wrap adressBoxText'>{adress}</span>
         </div>
 
         </Button>
