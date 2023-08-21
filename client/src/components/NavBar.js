@@ -20,7 +20,7 @@ import ModalWindowYMaps from './YndexMaps/ModalWindowYMaps';
 const NavBar = observer(() => {
     const {user} = useContext(Context)
     const [width, setWidth] = useState(window.innerWidth);
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
     const [adress, setAdress] = useState({
       adressString: 'Выберите адрес' 
     })
