@@ -6,7 +6,7 @@ import '../components/aboutUs.css'
 
 const AboutUs = () => {
     return (
-        <Container>
+        <Container className='page_body'>
             <Nav className='h1 nav justify-content-start about-us-head'>
                 Добро пожаловать в Уральский!
             </Nav>

@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite';
 function Store() {
 
   return (
-    <div>
+    <div className='page_body'>
       <StoreMain />
     </div >
   );

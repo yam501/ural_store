@@ -1,0 +1,82 @@
+.map_box {
+    position: absolute !important;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 100vw;
+    transition: left 300ms ease-in, top 300ms ease-in;
+}
+
+.map_box.active {
+    top: 0;
+    left: 0;
+    transition: left 300ms ease-in-out, top 300ms ease-in-out, background-color 10ms ease;
+}
+
+.overlay {
+    position: fixed;
+    background-color: rgba(0,0,0, .2);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.map {
+    position: relative;
+    z-index: 3;
+    left: 49.1vw;
+    width: 50vw;
+    height: 100vh;
+    background-color: aliceblue !important;
+}
+
+.gps_form_box {
+    display: flex;
+    position: relative;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 10%;
+    background-color: white;
+}
+
+.gps_form {
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form_adress_string {
+    outline: none;
+    outline-offset: none;
+    margin-top: 2%;
+    border: 1px solid rgba(0,0,0, .2);
+    border-right: 0;
+    border-radius: 15px 0 0 15px;
+    
+}
+
+.form_gelocation_btn {
+    background-color: white;
+    border: 1px solid rgba(0,0,0, .2);
+    border-left: 0;
+    border-radius: 0 15px 15px 0;
+}
+
+.form_gelocation_btn:hover .gps_icon {
+    fill: #7e7e7e;
+}
+
+.ymap_box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}

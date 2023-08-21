@@ -14,10 +14,21 @@ import SearchPanel from './NavBarComponents/SearchPanel';
 import FeedB from './FeedB';
 import { observer } from 'mobx-react-lite';
 import Accept from './AuthButton/Accept';
+import GPS from './YndexMaps/GPS';
+import ModalWindowYMaps from './YndexMaps/ModalWindowYMaps';
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
     const [width, setWidth] = useState(window.innerWidth);
+    const [show, setShow] = useState(true)
+    const [adress, setAdress] = useState({
+      adressString: 'Выберите адрес' 
+    })
+    const findAdress = (adress) => {
+      setAdress({
+        adressString: adress
+      })
+    }
     useEffect(() => {
       const handleResize = (event) => {
       setWidth(event.target.innerWidth);
@@ -39,8 +50,9 @@ const NavBar = observer(() => {
         <Container className='container'>
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
-            {width >= 1199 && <AdressBox width={width}/>}
-            <AuthButton/>
+            {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width}/>}
+            <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
+            <AuthButton />
             <ShopBasketButton/>
           </div>
           </Nav>
