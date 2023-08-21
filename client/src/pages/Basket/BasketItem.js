@@ -7,17 +7,14 @@ const BasketItem = ({product, user, basketProduct, basket, ...props}) => {
     
     const [countProduct, setCountProduct] = useState(basketProduct.count)
     const plus = () => {
-        basket.getBasketByUserID(user.id) 
         product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
         basket.getBasketByUserID(user.id) 
         countProduct >= 1 && setCountProduct(countProduct + 1)
         
     }
     const minus = () => {
-        basket.getBasketByUserID(user.id) 
         if (countProduct === 1) {
             product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
-            product.getAllBasketProductsByBasketID(basketProduct.basketId)
         } else {
             product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct-1)
             countProduct > 1 && setCountProduct(countProduct - 1)
