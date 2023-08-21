@@ -8,6 +8,7 @@ import BasketProductStore from './store/BasketProductStore';
 import BasketStore from './store/BasketStore';
 import ComplitedOrdersStore from './store/ComplitedOrdersStore';
 import ComplitedOrderProductsStore from './store/ComplitedOrderProductsStore';
+import FeedbackStore from './store/FeedbackStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const Context = createContext()
@@ -20,7 +21,8 @@ root.render(
     basket: new BasketStore(),
     basketProduct: new BasketProductStore(),
     complitedOrders: new ComplitedOrdersStore(),
-    complitedOrderProducts: new ComplitedOrderProductsStore()
+    complitedOrderProducts: new ComplitedOrderProductsStore(),
+    feedback: new FeedbackStore()
   }}>
     <App />
   </Context.Provider>
