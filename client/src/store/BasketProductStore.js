@@ -21,9 +21,7 @@ export default class BasketProductStore {
 
     async getAllBasketProductsByBasketID(basketId) {
         const response = await BasketProductService.getAllBasketProductsByBasketID(basketId);
-        console.log(response.data)
         this.setBasketProducts(response.data)
-        console.log(this._basketProducts)
     }
 
     async deleteAllBasketProductsByBasketID(id) {
@@ -51,7 +49,7 @@ export default class BasketProductStore {
     
     async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
         const response = await BasketProductService.changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count);
-        console.log(response.data[0])
+        //console.log(response.data[0])
         return response.data[0]
     }
 

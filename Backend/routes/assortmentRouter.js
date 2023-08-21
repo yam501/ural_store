@@ -14,14 +14,14 @@ router.post('/getAllProductsByTypeAndAvailable', assortmentController.getAllByTy
 router.post('/getAllProductsByTypeAndName', assortmentController.getAllByTypeAndName)
 
 
-router.post('/deleteProductByName', checkRole('ADMIN'), assortmentController.deleteOneByName)
+router.post('/deleteProductByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.deleteOneByName)
 
-router.put('/changeProductNameByName', checkRole('ADMIN'), assortmentController.changeNameByName)
-router.put('/changeProductAvailableByName', checkRole('ADMIN'), assortmentController.changeAvailableByName)
-router.put('/changeProductCostPerOneByName', checkRole('ADMIN'), assortmentController.changeCostPerOneByName)
-router.put('/changeProductDescriptionByName', checkRole('ADMIN'), assortmentController.changeDescriptionByName)
-router.put('/changeProductCompositionByName', checkRole('ADMIN'),  assortmentController.changeCompositionByName)
-router.put('/changeProductImageByName', checkRole('ADMIN'), assortmentController.changeImageByName)
-router.put('/changeTypeByName', checkRole('ADMIN'), assortmentController.changeTypeByName)
+router.put('/changeProductNameByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeNameByName)
+router.put('/changeProductAvailableByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeAvailableByName)
+router.put('/changeProductCostPerOneByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeCostPerOneByName)
+router.put('/changeProductDescriptionByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeDescriptionByName)
+router.put('/changeProductCompositionByName', checkRole(['ADMIN', 'ADMIN_EDIT']),  assortmentController.changeCompositionByName)
+router.put('/changeProductImageByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeImageByName)
+router.put('/changeTypeByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeTypeByName)
 
 module.exports = router
