@@ -12,6 +12,7 @@ const App = observer(() => {
   const { user } = useContext(Context)
   const { product } = useContext(Context)
   const { basket } = useContext(Context)
+  const { order } = useContext(Context)
   const { basketProduct } = useContext(Context)
 
   const [loading, setLoading] = useState(true)
@@ -21,12 +22,20 @@ const App = observer(() => {
   //     user.setIsAuth(true)
   //   }).finally(() => setLoading(false))
   // }, [])
+
+  async function loadToContext() {
+    await user.checkAuth()
+    basket.getBasketByUserID(user._user.id)
+    order.getOrderByUserId(user._user.id)
+  }
+
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      user.checkAuth()
+      console.log('КОНТЕКСТ ЗАГРУЖЕН')
+      loadToContext()
       // setLoading(false)
     }
-  }, [])
+  }, [user._user.id])
   product.getAllByAvailable(true)
   
   // basket.getBasketByUserID(user._user.id)
