@@ -4,6 +4,9 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import OurDateTime from '../../dateTime/dateTime';
 import ComplitedOrderItem from './ComplitedOrderItem';
+import { Container } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { STORE_ROUTE } from '../../utils/consts';
 
 // Страница истории заказов
 
@@ -22,16 +25,24 @@ function HistoryOrder() {
   }, [])
 
   return (
-    <div className="HistoryOrder">
-      <header className="HistoryOrder-header">
-        <h1 className='history-title'>История заказов</h1>
-      </header>
-      <div className="complitedOrders">
-        {complitedOrdersDinamic.map(complitedOrder =>
-          <ComplitedOrderItem key={complitedOrder.id} user={user} complitedOrder={complitedOrder}/>
-        )}
-      </div>
-    </div>
+    <Container className='page_body'>
+      {complitedOrdersDinamic.length === 0 ?
+        <Container className='d-flex justify-content-center align-items-center history-empty'>
+          <div className='history-empty-text'>Ваша история пока не написана</div>
+          <div className='history-empty-content'>
+
+            <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
+            <div className='history-icon'> </div>
+          </div>
+        </Container>
+        :
+        <Container className="complitedOrders">
+          {complitedOrdersDinamic.map(complitedOrder =>
+            <ComplitedOrderItem key={complitedOrder.id} user={user} complitedOrder={complitedOrder} />
+          )}
+        </Container>
+      }
+    </Container>
   );
 }
 

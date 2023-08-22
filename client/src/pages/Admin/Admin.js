@@ -31,7 +31,7 @@ function Admin() {
 
 
   return (
-    <div className='w-75 container'>
+    <div className='container page_body'>
       <Tabs
         as={'div'}
         defaultActiveKey="EditAssortment"

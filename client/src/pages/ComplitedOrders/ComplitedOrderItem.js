@@ -21,7 +21,7 @@ function ComplitedOrderItem({ user, complitedOrder }) {
     }
 
     const appendProduct = (product, count) => {
-        productsToRepeat.push({...product, count: count})
+        productsToRepeat.push({ ...product, count: count })
     }
 
     async function repeatOrder() {
@@ -40,25 +40,27 @@ function ComplitedOrderItem({ user, complitedOrder }) {
 
     return (
         <div className="complitedOrderItem">
-            <h2 className="complitedOrderItem--title">
+            <h2 className="historyOrder-title">
                 Заказ от {new OurDateTime(complitedOrder.orderTime).getStringDateTime()}
             </h2>
-            <p className="complitedOrderItem--paragraph complitedOrderItem--addressParagraph">
+            <p className='historyOrder-text'>
                 Адрес доставки: {complitedOrder.address}
             </p>
-            <p className="complitedOrderItem--paragraph complitedOrderItem--complitedTimeParagraph">
+            <p className='historyOrder-text'>
                 Был доставлен: {new OurDateTime(complitedOrder.complitedTime).getStringDateTime()}
             </p>
-            <p className="complitedOrderItem--paragraph complitedOrderItem--complitedSumParagraph">
+            <p className='historyOrder-text'>
                 Итоговая стоимость заказа составила: {complitedOrder.complitedSum}
             </p>
-            <div>
-                {complitedOrderProducts.map(item => {
-                    return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} append={appendProduct} />
-                }
-                )}
+            <div className='d-flex'>
+                <div className='historyOrder-products'>
+                    {complitedOrderProducts.map(item => {
+                        return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} append={appendProduct} />
+                    }
+                    )}
+                </div>
+                <Button onClick={repeatOrder}>Повторить заказ</Button>
             </div>
-            <Button onClick={repeatOrder}>Повторить заказ</Button>
         </div>
     )
 }
