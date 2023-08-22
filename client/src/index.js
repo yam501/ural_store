@@ -8,6 +8,7 @@ import BasketProductStore from './store/BasketProductStore';
 import BasketStore from './store/BasketStore';
 import ComplitedOrdersStore from './store/ComplitedOrdersStore';
 import ComplitedOrderProductsStore from './store/ComplitedOrderProductsStore';
+import FeedbackStore from './store/FeedbackStore';
 import OrderStore from './store/OrderStore';
 import OrderProductsStore from './store/OrderProductsStore';
 
@@ -23,6 +24,7 @@ root.render(
     basketProduct: new BasketProductStore(),
     complitedOrders: new ComplitedOrdersStore(),
     complitedOrderProducts: new ComplitedOrderProductsStore(),
+    feedback: new FeedbackStore(),
     order: new OrderStore(),
     orderProducts: new OrderProductsStore()
   }}>

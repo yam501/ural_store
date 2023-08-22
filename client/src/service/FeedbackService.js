@@ -5,12 +5,12 @@ const FeedbackService =  {
         return new Promise((resolve) => resolve($authHost.post('api/feedback/sendFeedback', {typeOfFeedback, userEmail, userFIO, feedbackMessage})))
     },
 
-    async getFeedbackOfType(typeOfFeedback){
-        return new Promise((resolve) => resolve($authHost.post('api/feedback/getFeedbackOfType', {typeOfFeedback})))
-    },
+    // async getFeedbackOfType(typeOfFeedback){
+    //     return new Promise((resolve) => resolve($authHost.post('api/feedback/getFeedbackOfType', {typeOfFeedback})))
+    // },
 
     async getAllFeedback(){
-        return new Promise((resolve) => resolve($authHost.get('api/feedback/getAllFeedback')))
+        return new Promise((resolve) => resolve($authHost.post('api/feedback/getAllFeedback')))
     },
 
     async destroyFeedback( id ){

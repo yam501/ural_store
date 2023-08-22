@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 import CreateAssortment from './CreateAssortment';
-import EditAssortment from './EditAssortment'
+import EditAssortment from './EditAssortment';
+import Feedback from './feedbacks/Feedback';
 import { Context } from '../..';
 
 
@@ -11,9 +12,9 @@ import "./assortment.css"
 import { observer } from 'mobx-react-lite';
 
 function Admin() {
-  const { assortment } = useContext(Context)
+  const { assortment, feedback } = useContext(Context)
   const [products, setProducts] = useState([])
-
+  const [feedbackList, setFeedbackList] = useState([])
 
   async function getAllProducts() {
     console.log('asda')
@@ -21,20 +22,25 @@ function Admin() {
     setProducts(assortment.assortments ? assortment.assortments : [])
 
   }
+  async function getAllFeedbacks() {
+    await feedback.getAll()
+    setFeedbackList(feedback.feedbacks)
+}
 
 
   useEffect(() => {
     getAllProducts()
+    getAllFeedbacks()
   }, [])
 
 
 
 
   return (
-    <div className='w-75 container'>
+    <div className='container page_body'>
       <Tabs
         as={'div'}
-        defaultActiveKey="EditAssortment"
+        defaultActiveKey="Feedbacks"
         className="mb-3"
       >
         <Tab eventKey="CreateAssortment" title="Создать ассортимент">
@@ -43,6 +49,14 @@ function Admin() {
         <Tab eventKey="EditAssortment" title="Редактировать ассортимент" >
           <EditAssortment products={products} onClick={getAllProducts} />
         </Tab>
+
+        <Tab eventKey="CompliteOrders" title="Подтвердить заказ" >
+        </Tab>
+
+        <Tab eventKey="Feedbacks" title="Отзывы" >
+          <Feedback feedback={feedbackList}/>
+        </Tab>
+
       </Tabs>
     </div>
 
