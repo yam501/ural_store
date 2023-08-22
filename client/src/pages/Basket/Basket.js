@@ -18,18 +18,16 @@ function Basket() {
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
 
+
   async function createOrderOrNothing() {
-    try {
-      if (order._order.id) {
-        return
-      }
-      await order.getOrderByUserId(user._user.id)
-      if (order._order.id) {
-        return
-      }
-    } catch (error) {
-      await order.createOrder(user._user.id, user._user.default, 0)
+    if (JSON.stringify(order._order) !== '{}') {
+      return
     }
+    await order.getOrderByUserId(user._user.id)
+    if (order._order !== null) {
+      return
+    }
+    await order.createOrder(user._user.id, user._user.default, 0)
   }
 
   async function transferToOrder() {
@@ -46,17 +44,25 @@ function Basket() {
   }
 
   async function renderBasketItems() {
-    await basketProduct.getAllBasketProductsByBasketID(user._user.id)
+<<<<<<< HEAD
+    await basketProduct.getAllBasketProductsByBasketID(basket.basket.id)
+      
+=======
+    if (JSON.stringify(basket._baskets) !== "{}") {
+      await basketProduct.getAllBasketProductsByBasketID(basket._baskets.id)
+    }
+>>>>>>> 6821b7570f406ee46a25adf83eebd84d15e9c3c4
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
 
   useEffect(() => {
     renderBasketItems()
-  }, [])
+  }, [basket._baskets.id])
 
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
+
   return (
     <div className='mb-5 basket_page'>
       <Container className='justify-content-center text-center page-name'>
