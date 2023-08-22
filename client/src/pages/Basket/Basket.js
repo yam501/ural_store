@@ -11,29 +11,39 @@ import { STORE_ROUTE } from '../../utils/consts';
 
 function Basket() {
   const { basketProduct } = useContext(Context)
-  const [basketProductsDynamic, setBasketProductsDynamic] = useState([])
+  const [basketProducts, setBasketProducts] = useState([])
   const { basket } = useContext(Context)
   const { assortment } = useContext(Context)
   const { user } = useContext(Context)
 
   // const [basketAproxSum, setBasketAproxSum] = useState(basket.basket.aproxSum)
+  function sortById(id){
+    return (a, b) => a[id] > b[id] ? 1 : -1;
+  }
 
-
+  async function renderBasketItems() {
+    await basketProduct.getAllBasketProductsByBasketID(user._user.id)
+    setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
+  }
+  
   useEffect(() => {
-    basketProduct.getAllBasketProductsByBasketID(user._user.id)
-    basket.getBasketByUserID(user._user.id)
-  }, [])
+    renderBasketItems()
+  })
+
+  const basketItems = useMemo(() => {
+    return basketProducts.slice().sort(sortById('id'))
+  }, [basketProducts])
   return (
     <div className='mb-5 basket_page'>
       <Container className='justify-content-center text-center page-name'>
-        {basketProduct.basketProduct.length === 0 ?
+        {basketItems.length === 0 ?
           <div className='d-flex justify-content-center align-items-center basket-empty'>
             Ваша корзина пока что пуста
             <div className='basket-empty-content'>
               <div className='basket-icon'> </div>
               <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
             </div>
-          </div> : basketProduct.basketProduct.map((basketItem) =>
+          </div> : basketItems.map((basketItem) =>
             <BasketItem key={basketItem.id} user={user._user} basket={basket} product={basketProduct} basketProduct={basketItem} />
           )}
       </Container>
