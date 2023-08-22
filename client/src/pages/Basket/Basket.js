@@ -19,14 +19,17 @@ function Basket() {
   const { orderProducts } = useContext(Context)
 
   async function createOrderOrNothing() {
-    if (order._order.id) {
-      return
+    try {
+      if (order._order.id) {
+        return
+      }
+      await order.getOrderByUserId(user._user.id)
+      if (order._order.id) {
+        return
+      }
+    } catch (error) {
+      await order.createOrder(user._user.id, user._user.default, 0)
     }
-    await order.getOrderByUserId(user._user.id)
-    if (order._order.id) {
-      return
-    }
-    await order.createOrder(user._user.id, user._user.default, 0)
   }
 
   async function transferToOrder() {
