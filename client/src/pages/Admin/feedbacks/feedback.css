@@ -1,0 +1,23 @@
+.border-success{
+    border: 3px solid rgb(13, 127, 21);
+}
+
+.border-danger{
+    border: 3px solid rgb(222, 222, 23);
+}
+
+.border-warning{
+    border: 3px solid red;
+}
+.feedback_textbox{
+    background-color:rgba(178, 178, 178, 0.2);
+    /* border: 1px solid black; */
+}
+
+.feedback-max-size-window{
+
+    max-height: 600px; 
+    /* min-height: 100px; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
