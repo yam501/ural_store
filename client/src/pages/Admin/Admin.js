@@ -17,7 +17,6 @@ function Admin() {
   const [feedbackList, setFeedbackList] = useState([])
 
   async function getAllProducts() {
-    console.log('asda')
     await assortment.getAll()
     setProducts(assortment.assortments ? assortment.assortments : [])
 
