@@ -28,7 +28,7 @@ function Basket() {
   
   useEffect(() => {
     renderBasketItems()
-  })
+  }, [])
 
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
