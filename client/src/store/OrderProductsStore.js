@@ -21,12 +21,12 @@ export default class OrderProductsStore {
 
     async createOrderProduct(orderId, assortmentId, count, moreOrLess) {
         const responce = await OrderProductsService.createOrderProduct(orderId, assortmentId, count, moreOrLess)
-        this.appendOrderProduct(responce)
+        this.appendOrderProduct(responce.data)
     }
 
     async getAllOrderProductsByOrderId(orderId) {
         const responce = await OrderProductsService.getAllOrderProductsByOrderId(orderId)
-        this.setOrderProducts(responce)
+        this.setOrderProducts(responce.data)
     }
 
     async deleteAllOrderProductsByOrderId(orderId) {
