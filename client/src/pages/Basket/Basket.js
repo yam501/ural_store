@@ -15,9 +15,30 @@ function Basket() {
   const { basket } = useContext(Context)
   const { assortment } = useContext(Context)
   const { user } = useContext(Context)
+  const { order } = useContext(Context)
+  const { orderProducts } = useContext(Context)
+
+  async function createOrderOrNothing() {
+    if (order._order.id) {
+      return
+    }
+    await order.getOrderByUserId(user._user.id)
+    if (order._order.id) {
+      return
+    }
+    await order.createOrder(user._user.id, user._user.default, 0)
+  }
+
+  async function transferToOrder() {
+    await createOrderOrNothing()
+    await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
+    basketProduct._basketProducts.map((basketItem) => {
+      orderProducts.createOrderProduct(order._order.id, basketItem.assortmentId, basketItem.count, true)
+    })
+  }
 
   // const [basketAproxSum, setBasketAproxSum] = useState(basket.basket.aproxSum)
-  function sortById(id){
+  function sortById(id) {
     return (a, b) => a[id] > b[id] ? 1 : -1;
   }
 
@@ -25,10 +46,10 @@ function Basket() {
     await basketProduct.getAllBasketProductsByBasketID(user._user.id)
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
-  
+
   useEffect(() => {
     renderBasketItems()
-  })
+  }, [])
 
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
@@ -54,7 +75,10 @@ function Basket() {
             Сумма заказа: {basket.basket.aproxSum} ₽
           </div>
           <div className='w-25'>
-            <Button className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'>
+            <Button
+              className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'
+              onClick={transferToOrder}
+            >
               Заказать
             </Button>
           </div>

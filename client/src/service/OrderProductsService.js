@@ -11,7 +11,7 @@ const OrderProductsService = {
     },
 
     async deleteAllOrderProductsByOrderId(orderId) {
-        return new Promise((resolve) => resolve($authHost.delete('api/orderProduct/deleteOrderProductByOrderId', {orderId})))
+        return new Promise((resolve) => resolve($authHost.post('api/orderProduct/deleteOrderProductByOrderId', {orderId})))
     }
 }
 

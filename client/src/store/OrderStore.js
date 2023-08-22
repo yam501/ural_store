@@ -13,17 +13,17 @@ export default class OrderStore {
 
     async createOrder(userId, address, aproxSum) {
         const responce = await OrderService.createOrder(userId, address, aproxSum)
-        this.setOrder(responce)
+        this.setOrder(responce.data)
     }
 
     async getOrderByUserId(userId) {
         const responce = await OrderService.getOrderByUserId(userId)
-        this.setOrder(responce)
+        this.setOrder(responce.data)
     }
 
     async getOrderByOrderId(id) {
         const responce = await OrderService.getOrderByOrderId(id)
-        this.setOrder(responce)
+        this.setOrder(responce.data)
     }
 
     async changeAddressByUserId(userId, address) {

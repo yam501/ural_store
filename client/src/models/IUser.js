@@ -5,6 +5,7 @@ export class IUser {
         this.isActivated = false
         this.id = '';
         this.role = '';
+        this.defaultAddress = 'Интер 42';
     }
 } 
 

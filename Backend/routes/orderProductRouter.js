@@ -8,6 +8,6 @@ router.post('/createOrderProduct', authMiddleware, activatedMiddleware, orderPro
 
 router.post('/getOrderProductByOrderID', authMiddleware, activatedMiddleware, orderProductController.getOrderProductByOrderID)
 
-router.delete('/deleteOrderProductByOrderId', authMiddleware, activatedMiddleware, orderProductController.deleteOrderProductByOrderId)
+router.post('/deleteOrderProductByOrderId', authMiddleware, activatedMiddleware, orderProductController.deleteOrderProductByOrderId)
 
 module.exports = router

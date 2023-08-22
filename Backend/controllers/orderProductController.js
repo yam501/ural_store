@@ -29,7 +29,7 @@ class OrderProductController {
     async deleteOrderProductByOrderId(req, res, next) {
         try {
             const {orderId} = req.body
-            const deleted = await Assortment.destroy({where:{orderId:orderId}})
+            const deleted = await OrderProduct.destroy({where:{orderId:orderId}})
             return res.json(deleted)
 
         } catch (e){
