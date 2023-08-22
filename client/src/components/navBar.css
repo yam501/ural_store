@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+body{
+    padding-top: 5.2vw;
+}
+
+
 .navbar1 {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
     min-height: 64px;
     height: 5.2vw;
     background: #962A4A;

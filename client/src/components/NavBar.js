@@ -51,7 +51,7 @@ const NavBar = observer(() => {
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width}/>}
-            <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
+            {/* <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/> */}
             <AuthButton />
             <ShopBasketButton/>
           </div>
