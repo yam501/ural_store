@@ -3,14 +3,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { YMaps, Map, Placemark, SearchControl, GeolocationControl, withYMaps} from '@pbe/react-yandex-maps';
 import './gpsStyle.css'
 const GPS = ({findAdress, ...props}) => {
+    const [youAdress, setYouAdress] = useState('')
     const getGeoLocation = ymaps => {
         return ymaps.geolocation
           .get({ provider: "yandex", autoReverseGeocode: true, mapStateAutoApply: true })
           .then(function (result) {
-            console.log(result.geoObjects.get(0).properties.get('metaDataProperty'));
+            console.log(result.geoObjects.get(0).properties.get('metaDataProperty').GeocoderMetaData.AddressDetails);
         })
       };
-      
+    
     const posMap = React.memo(({ymaps, geocode}) => {
         const [loadedCoords, setLoading] = React.useState(false);
         const [coords, setCoords] = React.useState([56.800084, 59.908718])
@@ -50,16 +51,16 @@ const GPS = ({findAdress, ...props}) => {
     const handleApiAvaliable = ymaps => {
         const geolocation = getGeoLocation(ymaps);
     };
-    const [location, setLocation] = useState(null)
+    const [location, setLocation] = useState([56.800084, 59.908718])
     const [adress, setAdress] = useState(null)
     const mapRef = useRef(null)
-    const onResultShow = () => {
+    const onResultShow = async () => {
         if (mapRef.current) {
              
-            setAdress(mapRef.current.getRequestString())
+            setAdress(mapRef.current.getSelectedIndex())
             
-            setLocation(mapRef.current.getResultsArray())
-            console.log(location[0].geometry._coordinates)
+            setLocation(mapRef.current.getResult(adress)['_value']['geometry']['_coordinates'])
+            console.log(location)
             
         }
         findAdress(adress)
@@ -83,8 +84,9 @@ const GPS = ({findAdress, ...props}) => {
                 modules={["geolocation", "geocode"]}
                 defaultState={{center: [56.800084, 59.908718], zoom: 13}}
                 onLoad={ymaps => handleApiAvaliable(ymaps)}>
-                    <SearchControl instanceRef={mapRef} onResultShow={onResultShow} 
+                    <SearchControl instanceRef={mapRef} onResultSelect={onResultShow} 
                     options={{
+                        noPlacemark: true,
                         float: 'right',
                         kind: 'street',
                         provider: 'yandex#map',
@@ -93,10 +95,10 @@ const GPS = ({findAdress, ...props}) => {
                         noSelect: true,
                         boundedBy: [[56.830569, 59.852335], [56.755036, 59.999630]]}}/>
                     {/* <GeolocationControl instanceRef={location} options={{}}/> */}
-                    {/* <Placemark geometry={[56.800086, 59.908717]} options={{
+                    <Placemark geometry={[56.800084, 59.908718]} options={{
                         preset: 'islands#redCircleDotIcon',
                         draggable: true
-                    }}/> */}
+                    }}/>
                 </Map>
             </YMaps>
         </div>

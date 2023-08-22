@@ -8,8 +8,8 @@ const AddProductToBasketBtn = ({product, countProduct}) => {
     const {basket} = useContext(Context)
     const {user} = useContext(Context)
     const addProductInBasket = () => {
-        basketProduct.createBasketProduct(user._user.id, product.id, product.costPerOne * countProduct, countProduct, false)
-        basketProduct.getAllBasketProductsByBasketID(user._user.id)
+        basketProduct.createBasketProduct(basket.basket.id, product.id, product.costPerOne * countProduct, countProduct, false)
+        basketProduct.getAllBasketProductsByBasketID(basket.basket.id)
     }
     return (
         <Nav className='d-felx justify-content-center mt-2'>
