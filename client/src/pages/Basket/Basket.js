@@ -44,6 +44,7 @@ function Basket() {
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
+
   return (
     <div className='mb-5 basket_page'>
       <Container className='justify-content-center text-center page-name'>

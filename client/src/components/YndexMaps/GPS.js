@@ -1,104 +1,91 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 // import { YMaps, Map, Placemark, SearchControl, GeolocationControl,} from '@pbe/react-yandex-maps';
-import { YMaps, Map, Placemark, SearchControl, GeolocationControl, withYMaps} from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark, SearchControl, GeolocationControl, withYMaps, ZoomControl} from '@pbe/react-yandex-maps';
 import './gpsStyle.css'
 const GPS = ({findAdress, ...props}) => {
-    const [youAdress, setYouAdress] = useState('')
-    const getGeoLocation = ymaps => {
-        return ymaps.geolocation
-          .get({ provider: "yandex", autoReverseGeocode: true, mapStateAutoApply: true })
-          .then(function (result) {
-            console.log(result.geoObjects.get(0).properties.get('metaDataProperty').GeocoderMetaData.AddressDetails);
-        })
+    const mapOptions = {
+        modules: ["geocode", "SuggestView"],
+        defaultOptions: { suppressMapOpenBlock: true, restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]]},
+        width: '100%',
+        height: '100vh',
       };
-    
-    const posMap = React.memo(({ymaps, geocode}) => {
-        const [loadedCoords, setLoading] = React.useState(false);
-        const [coords, setCoords] = React.useState([56.800084, 59.908718])
-
-        const onLoad = () => {
-            ymaps.geocode()
-              .then(res => {
-                setLoading(true)
-                console.log(res.geoObjects.get(0).properties.get('metaDataProperty').getAll());
-              });
+      
+      const geolocationOptions = {
+        defaultOptions: { maxWidth: 128 },
+        defaultData: { content: "Где я?" },
+      };
+      
+      const initialState = {
+        title: "",
+        center: [56.800084, 59.908718],
+        zoom: 13,
+      };
+    const [state, setState] = useState({ ...initialState });
+    const [mapConstructor, setMapConstructor] = useState(null);
+    const mapRef = useRef(null);
+    const searchRef = useRef(null);
+    const handleReset = () => {
+        setState({ ...initialState });
+        searchRef.current.value = "";
+        mapRef.current.setCenter(initialState.center);
+        mapRef.current.setZoom(initialState.zoom);
+      };
+    useEffect(() => {
+        if (mapConstructor) {
+          new mapConstructor.SuggestView(searchRef.current, { 
+            boundedBy: [[56.830569, 59.852335], [56.755036, 59.999630]], 
+            offset: [0, 2],
+            strictBounds: true,
+            provider: 'yandex#map'}).events.add("select", function (e) {
+            const selectedName = e.get("item").value;
+            mapConstructor.geocode(selectedName).then((result) => {
+              const newCoords = result.geoObjects.get(0).geometry.getCoordinates();
+              setState((prevState) => ({ ...prevState, center: newCoords }));
+            });
+          });
         }
-
-        React.useEffect(() => {
-            onLoad()
-        }, [])
-
-        return (
-            loadedCoords && (
-              <Map
-                width={'100%'}
-                height={'100vh'}
-                options={{
-                    restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]],
-                    suppressMapOpenBlock: true}}
-                modules={["geolocation", "geocode"]}
-                defaultState={{center: [56.800084, 59.908718], zoom: 13}}
-              />
-            )
-          );
-    })
-
-    const ConnectedMap = React.useMemo(() => {
-        return withYMaps(posMap, true, [["geolocation", "geocode"]]);
-      }, [posMap]);
-    
-
-    const handleApiAvaliable = ymaps => {
-        const geolocation = getGeoLocation(ymaps);
-    };
-    const [location, setLocation] = useState([56.800084, 59.908718])
-    const [adress, setAdress] = useState(null)
-    const mapRef = useRef(null)
-    const onResultShow = async () => {
-        if (mapRef.current) {
-             
-            setAdress(mapRef.current.getSelectedIndex())
-            
-            setLocation(mapRef.current.getResult(adress)['_value']['geometry']['_coordinates'])
-            console.log(location)
-            
-        }
-        findAdress(adress)
-    }
-
-    
-
-    // const geoLocation = useMemo(() => setLocation())
-    // const geo = useYMaps('geocode')
+      }, [mapConstructor]);
+    const handleBoundsChange = (e) => {
+        const newCoords = mapRef.current.getCenter();
+        mapConstructor.geocode(newCoords).then((res) => {
+          const nearest = res.geoObjects.get(0);
+          const foundAddress = nearest.properties.get("text");
+          const [centerX, centerY] = nearest.geometry.getCoordinates();
+          const [initialCenterX, initialCenterY] = initialState.center;
+          if (centerX !== initialCenterX && centerY !== initialCenterY) {
+            setState((prevState) => ({ ...prevState, title: foundAddress }));
+          }
+        });
+      };
+      
     return (
         <div className=''>
             <YMaps query={{ lang: 'ru_RU', 
             apikey: '8e2c6a37-a238-4ab8-80f7-eccef9472ef9',
             load: "Map,Placemark,control.GeolocationControl,control.FullscreenControl,control.SearchControl,geoObject.addon.balloon"}}>
+                <div className='search_map_box'>
+                    <div className='search_map_content'>
+                        <input className='search_content_input' ref={searchRef} placeholder='Поиск...' disabled={!mapConstructor}/>
+                    </div>
+                    <button onClick={() => findAdress(state.title)} className='search_submit_btn' disabled={Boolean(!state.title.length)}>
+                        Ok
+                    </button>
+                </div>
                 <Map
-                width={'100%'}
-                height={'100vh'}
-                options={{
-                    restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]],
-                    suppressMapOpenBlock: true}}
-                modules={["geolocation", "geocode"]}
-                defaultState={{center: [56.800084, 59.908718], zoom: 13}}
-                onLoad={ymaps => handleApiAvaliable(ymaps)}>
-                    <SearchControl instanceRef={mapRef} onResultSelect={onResultShow} 
+                {...mapOptions}
+                state={state}
+                onLoad={setMapConstructor}
+                onBoundsChange={handleBoundsChange}
+                instanceRef={mapRef}>
+                    <GeolocationControl {...geolocationOptions} />
+                    <ZoomControl/>
+                    <Placemark 
+                    geometry={[56.800084, 59.908718]} 
                     options={{
-                        noPlacemark: true,
-                        float: 'right',
-                        kind: 'street',
-                        provider: 'yandex#map',
-                        size: 'small',
-                        strictBounds: true,
-                        noSelect: true,
-                        boundedBy: [[56.830569, 59.852335], [56.755036, 59.999630]]}}/>
-                    {/* <GeolocationControl instanceRef={location} options={{}}/> */}
-                    <Placemark geometry={[56.800084, 59.908718]} options={{
                         preset: 'islands#redCircleDotIcon',
                         draggable: true
-                    }}/>
+                    }}
+                    />
                 </Map>
             </YMaps>
         </div>

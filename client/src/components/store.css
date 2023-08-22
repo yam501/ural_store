@@ -81,7 +81,7 @@ body {
 
 
 .meat-section-content {
-    background: url("../assets/meat-bg1.svg") 0 0 / 100%  no-repeat;
+    background: url("../assets/meat-bg1.svg") 0 0 / 100% no-repeat;
     height: 1296px;
     display: inline-block;
     vertical-align: top;
@@ -102,7 +102,7 @@ body {
 }
 
 .bakery-section-content {
-    background: url("../assets/bakery-bg1.svg") 0 0 / 100%  no-repeat;
+    background: url("../assets/bakery-bg1.svg") 0 0 / 100% no-repeat;
     height: 1296px;
     display: inline-block;
     vertical-align: top;
@@ -115,92 +115,112 @@ body {
     vertical-align: top;
 }
 
-@media (min-width: 1200px) and (max-width: 1399px){
-    .meat-section-content{
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .meat-section-content {
         background: url("../assets/meat-bg2.svg") 0 0 / 100% no-repeat;
     }
-    .salad-section-content{
+
+    .salad-section-content {
         background: url("../assets/salad-bg2.svg") 0 0 / 100% no-repeat;
     }
-    .veg-section-content{
+
+    .veg-section-content {
         background: url("../assets/veg-bg2.svg") 0 0 / 100% no-repeat;
     }
-    .bakery-section-content{
+
+    .bakery-section-content {
         background: url("../assets/bakery-bg2.svg") 0 0 / 100% no-repeat;
     }
-    .dairy-section-content{
+
+    .dairy-section-content {
         background: url("../assets/dairy-bg2.svg") 0 0 / 100% no-repeat;
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px){
-    .meat-section-content{
+@media (min-width: 992px) and (max-width: 1199px) {
+    .meat-section-content {
         background: url("../assets/meat-bg3.svg") 0 0 / 100% no-repeat;
     }
-    .salad-section-content{
+
+    .salad-section-content {
         background: url("../assets/salad-bg3.svg") 0 0 / 100% no-repeat;
     }
-    .veg-section-content{
+
+    .veg-section-content {
         background: url("../assets/veg-bg3.svg") 0 0 / 100% no-repeat;
     }
-    .bakery-section-content{
+
+    .bakery-section-content {
         background: url("../assets/bakery-bg3.svg") 0 0 / 100% no-repeat;
     }
-    .dairy-section-content{
+
+    .dairy-section-content {
         background: url("../assets/dairy-bg3.svg") 0 0 / 100% no-repeat;
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px){
-    .meat-section-content{
+@media (min-width: 768px) and (max-width: 991px) {
+    .meat-section-content {
         background: url("../assets/meat-bg4.svg") 0 0 / 100% no-repeat;
     }
-    .salad-section-content{
+
+    .salad-section-content {
         background: url("../assets/salad-bg4.svg") 0 0 / 100% no-repeat;
     }
-    .veg-section-content{
+
+    .veg-section-content {
         background: url("../assets/veg-bg4.svg") 0 0 / 100% no-repeat;
     }
-    .bakery-section-content{
+
+    .bakery-section-content {
         background: url("../assets/bakery-bg4.svg") 0 0 / 100% no-repeat;
     }
-    .dairy-section-content{
+
+    .dairy-section-content {
         background: url("../assets/dairy-bg4.svg") 0 0 / 100% no-repeat;
     }
 }
 
-@media (min-width: 576px ) and (max-width: 767px){
-    .meat-section-content{
+@media (min-width: 576px) and (max-width: 767px) {
+    .meat-section-content {
         background: url("../assets/meat-bg5.svg") 0 0 / 100% no-repeat;
     }
-    .salad-section-content{
+
+    .salad-section-content {
         background: url("../assets/salad-bg5.svg") 0 0 / 100% no-repeat;
     }
-    .veg-section-content{
+
+    .veg-section-content {
         background: url("../assets/veg-bg5.svg") 0 0 / 100% no-repeat;
     }
-    .bakery-section-content{
+
+    .bakery-section-content {
         background: url("../assets/bakery-bg5.svg") 0 0 / 100% no-repeat;
     }
-    .dairy-section-content{
+
+    .dairy-section-content {
         background: url("../assets/dairy-bg5.svg") 0 0 / 100% no-repeat;
     }
 }
 
-@media (max-width: 575px){
-    .meat-section-content{
+@media (max-width: 575px) {
+    .meat-section-content {
         background: none;
     }
-    .salad-section-content{
+
+    .salad-section-content {
         background: none;
     }
-    .veg-section-content{
+
+    .veg-section-content {
         background: none;
     }
-    .bakery-section-content{
+
+    .bakery-section-content {
         background: none;
     }
-    .dairy-section-content{
+
+    .dairy-section-content {
         background: none;
     }
 }
@@ -209,6 +229,49 @@ body {
 .section-header {
     height: 100px;
 }
+
+.carousel-wrapper {
+    min-width: 100%;
+}
+
+.carousel-wrapper.entering {
+    animation: show-products 1s forwards;
+}
+
+.carousel-wrapper.exiting {
+    animation: hide-products 0.5s forwards;
+
+}
+
+.carousel-wrapper.exited {
+}
+
+@keyframes show-products {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hide-products {
+    0% {
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
 
 
 @media (max-width: 575px) {
