@@ -42,7 +42,7 @@ const NavBar = observer(() => {
     <Navbar className='d-flex navbar1'>
         <Container className='z-2 w-25'>
           <div className='d-flex align-items-center navBarBtnsBox'>
-            <BurgerMenu width={width}/>
+            <BurgerMenu adress={adress.adressString} onClick={() => setShow(true)} width={width}/>
             <ShopLogo/>
           </div>
         </Container>
