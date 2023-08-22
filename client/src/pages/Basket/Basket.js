@@ -18,6 +18,7 @@ function Basket() {
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
 
+
   async function createOrderOrNothing() {
     try {
       if (order._order.id) {
@@ -46,7 +47,8 @@ function Basket() {
   }
 
   async function renderBasketItems() {
-    await basketProduct.getAllBasketProductsByBasketID(user._user.id)
+    await basketProduct.getAllBasketProductsByBasketID(basket.basket.id)
+      
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
 
@@ -57,6 +59,7 @@ function Basket() {
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
+
   return (
     <div className='mb-5 basket_page'>
       <Container className='justify-content-center text-center page-name'>
