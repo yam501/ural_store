@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import AssortmentStore from '../../store/AssortmentStore';
 import { Image } from 'react-bootstrap';
 
+
 function ComplitedOrderProductItem({ complitedOrderProduct, append }) {
     const [product, setProduct] = useState(null)
     const assortmentStore = new AssortmentStore()
@@ -24,7 +25,7 @@ function ComplitedOrderProductItem({ complitedOrderProduct, append }) {
             {product === null ?
                 <div>Загрузка</div> :
                 <div>
-                    <Image className='product-img' alt='Картинка' src={process.env.REACT_APP_API_URL + product.image}></Image>
+                    <Image className='product-img-historyOrder' alt='Картинка' src={process.env.REACT_APP_API_URL + product.image}></Image>
                     <h3 className="complitedOrderProductItem--title">
                         {product.name}
                     </h3>

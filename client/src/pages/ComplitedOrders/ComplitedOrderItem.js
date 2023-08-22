@@ -52,14 +52,14 @@ function ComplitedOrderItem({ user, complitedOrder }) {
             <p className='historyOrder-text'>
                 Итоговая стоимость заказа составила: {complitedOrder.complitedSum}
             </p>
-            <div className='d-flex'>
+            <div className='historyOrder-content'>
                 <div className='historyOrder-products'>
                     {complitedOrderProducts.map(item => {
                         return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} append={appendProduct} />
                     }
                     )}
                 </div>
-                <Button onClick={repeatOrder}>Повторить заказ</Button>
+                <Button className='btn-repeat' onClick={repeatOrder}>Повторить заказ</Button>
             </div>
         </div>
     )
