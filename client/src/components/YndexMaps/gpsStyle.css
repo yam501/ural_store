@@ -1,5 +1,6 @@
 .map_box {
-    position: absolute !important;
+    position: absolute;
+    display: none;
     z-index: 2;
     width: 100vw;
     height: 100vh;
@@ -8,7 +9,9 @@
     transition: left 300ms ease-in, top 300ms ease-in;
 }
 
+
 .map_box.active {
+    display: block;
     top: 0;
     left: 0;
     transition: left 300ms ease-in-out, top 300ms ease-in-out, background-color 10ms ease;
@@ -31,47 +34,19 @@
     height: 100vh;
     background-color: aliceblue !important;
 }
-
-.gps_form_box {
-    display: flex;
-    position: relative;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 10%;
-    background-color: white;
+@media(max-width: 999px) {
+ .map {
+    left: 30vw;
+    width: 70vw;
+ }   
 }
 
-.gps_form {
-    width: 100%;
-    margin-top: 2%;
-    margin-left: 2%;
-    display: flex;
-    flex-direction: column;
-}
-
-.form_adress_string {
-    outline: none;
-    outline-offset: none;
-    margin-top: 2%;
-    border: 1px solid rgba(0,0,0, .2);
-    border-right: 0;
-    border-radius: 15px 0 0 15px;
-    
-}
-
-.form_gelocation_btn {
-    background-color: white;
-    border: 1px solid rgba(0,0,0, .2);
-    border-left: 0;
-    border-radius: 0 15px 15px 0;
-}
-
-.form_gelocation_btn:hover .gps_icon {
-    fill: #7e7e7e;
-}
-
+@media(max-width: 699px) {
+    .map {
+       left: 0;
+       width: 100vw;
+    }   
+   }
 .ymap_box {
     position: absolute;
     top: 0;
@@ -79,4 +54,27 @@
     z-index: 2;
     width: 100%;
     height: 100%;
+}
+
+.search_map_box  {
+    margin-left: 2%;
+    width: 100%;
+    height: 4vw;
+    display: flex;
+    align-items: center;
+}
+
+
+.search_map_content {
+    margin-right: 2%;
+    width: 80%;
+}
+
+.search_content_input {
+    width: 100%;
+}
+
+.search_input_results {
+    
+    width: 100%;
 }

@@ -8,7 +8,7 @@ import { ABOUTUS_ROUTE, ADMIN_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, TERMS_ROUT
 import Container from 'react-bootstrap/esm/Container';
 import FeedB from '../FeedB';
 
-const BurgerMenu = (props) => {
+const BurgerMenu = ({width, adress, onClick, ...props}) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleShow = () => setOpen(true);
@@ -27,9 +27,9 @@ const BurgerMenu = (props) => {
           </div>
           <Offcanvas className='border-0 menuBox' show={open} onHide={handleClose}>
             <Container className='mt-5 pt-4'>
-              {props.width <= 1299 && <div className='text-center text-wrap menuAdressText'>г. Ревда, ул. Уральская 5</div>}
+              {width <= 1299 && <div className='text-center text-wrap menuAdressText' onClick={onClick}>{adress}</div>}
             </Container>
-            {props.width <= 1299 && <div className='mt-4 sepLineMenu'></div>}
+            {width <= 1299 && <div className='mt-4 sepLineMenu'></div>}
             <Offcanvas.Body className='menuBodyBox' >
             <Container className='container d-flex flex-column justify-content-between menuNav'>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ABOUTUS_ROUTE}>О нас</NavLink></div>
