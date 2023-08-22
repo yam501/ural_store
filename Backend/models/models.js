@@ -85,7 +85,7 @@ const Feedback = sequelize.define('feedback', {
     typeOfFeedback: { type: DataTypes.STRING, allowNull: false },
     userEmail: { type: DataTypes.STRING, allowNull: false },
     userFIO: { type: DataTypes.STRING, allowNull: false },
-    feedbackMessage: { type: DataTypes.STRING, allowNull: false }
+    feedbackMessage: { type: DataTypes.TEXT, allowNull: false }
 })
 
 
