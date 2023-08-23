@@ -7,7 +7,7 @@ import AuthButton from './AuthButton/AuthButton';
 import './navBar.css';
 import AdressBox from './AdressButton/AdressBox';
 import ShopBasketButton from './NavBarComponents/ShopBasketButton';
-import BurgerMenu from './NavBarComponents/BurgerMenu'; 
+import BurgerMenu from './NavBarComponents/BurgerMenu';
 import ShopLogo from './NavBarComponents/ShopLogo';
 import LogOutButton from './AuthButton/LogOutButton';
 import SearchPanel from './NavBarComponents/SearchPanel';
@@ -18,69 +18,48 @@ import GPS from './YndexMaps/GPS';
 import ModalWindowYMaps from './YndexMaps/ModalWindowYMaps';
 
 const NavBar = observer(() => {
-    // let lastScroll = 0;
-    // const defaultOffset = 200;
-    // const navbar1 = document.querySelector('.navbar1');
-    // const scrollPosition = () => window.scrollY || document.documentElement.scrollTop;
-    // const containHide = () => navbar1.classList.contains('hide');
 
-
-
-    // window.addEventListener('scroll',() => {
-    //   if (scrollPosition() > lastScroll && containHide() && scrollPosition > defaultOffset){
-    //     //vniz
-    //     console.log("вниз");
-    //   }
-      
-    //   else if (scrollPosition() < lastScroll){
-    //     //vverh
-    //     console.log("вверх");
-    //   }
-
-    //   lastScroll = scrollPosition()
-    // })
-
-    const {user} = useContext(Context)
-    const [width, setWidth] = useState(window.innerWidth);
-    const [show, setShow] = useState(false)
-    const [adress, setAdress] = useState({
-      adressString: 'Выберите адрес' 
+  const { user } = useContext(Context)
+  const [width, setWidth] = useState(window.innerWidth);
+  const [show, setShow] = useState(false)
+  const [adress, setAdress] = useState({
+    adressString: 'Выберите адрес'
+  })
+  const findAdress = (adress) => {
+    setAdress({
+      adressString: adress
     })
-    const findAdress = (adress) => {
-      setAdress({
-        adressString: adress
-      })
-    }
-    useEffect(() => {
-      const handleResize = (event) => {
+  }
+  useEffect(() => {
+    const handleResize = (event) => {
       setWidth(event.target.innerWidth);
     };
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-    })
-    return (
+  })
+  return (
     <Navbar className='d-flex navbar1'>
-        <Container className='z-2 w-25'>
-          <div className='d-flex align-items-center navBarBtnsBox'>
-            <BurgerMenu adress={adress.adressString} onClick={() => setShow(true)} width={width}/>
-            <ShopLogo/>
-          </div>
-        </Container>
-        {/* <SearchPanel/> */}
-        <Container className='container'>
-          <Nav className="ms-auto d-flex align-items-center">
+      <Container className='z-2 w-25'>
+        <div className='d-flex align-items-center navBarBtnsBox'>
+          <BurgerMenu adress={adress.adressString} onClick={() => setShow(true)} width={width} />
+          <ShopLogo />
+        </div>
+      </Container>
+      {/* <SearchPanel/> */}
+      <Container className='container'>
+        <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
-            {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width}/>}
-            <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
+            {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width} />}
+            {/* <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/> */}
             <AuthButton />
-            <ShopBasketButton/>
+            <ShopBasketButton />
           </div>
-          </Nav>
-        </Container>
-      </Navbar>
-    );
+        </Nav>
+      </Container>
+    </Navbar>
+  );
 });
 
 
