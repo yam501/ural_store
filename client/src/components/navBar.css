@@ -1,28 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-body{
-    padding-top: 5.2vw;
-}
-
-
 .navbar1 {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 1;
     min-height: 64px;
     height: 5.2vw;
     background: #962A4A;
     font-size: 16px;
-    width: 100%;
-    transition: transform .1s linear;
 }
-
-.navbar1.hide {
-    transform: translateY(-5.2vw);
-}
-
 
 .btnAuth {
     min-height: 29px;

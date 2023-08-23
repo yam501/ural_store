@@ -20,9 +20,11 @@ function Basket() {
 
   async function transferToOrder() {
     await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
-    basketProduct._basketProducts.map((basketItem) => {
+    basketProduct._basketProducts.map( (basketItem) => {
       orderProducts.createOrderProduct(order._order.id, basketItem.assortmentId, basketItem.count, true)
     })
+    basketProduct.deleteAllBasketProductsByBasketID(basket._baskets.id)
+    setBasketProducts([])
   }
 
   // const [basketAproxSum, setBasketAproxSum] = useState(basket.basket.aproxSum)
