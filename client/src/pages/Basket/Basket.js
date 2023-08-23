@@ -18,20 +18,7 @@ function Basket() {
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
 
-
-  async function createOrderOrNothing() {
-    if (JSON.stringify(order._order) !== '{}') {
-      return
-    }
-    await order.getOrderByUserId(user._user.id)
-    if (order._order !== null) {
-      return
-    }
-    await order.createOrder(user._user.id, user._user.default, 0)
-  }
-
   async function transferToOrder() {
-    await createOrderOrNothing()
     await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
     basketProduct._basketProducts.map((basketItem) => {
       orderProducts.createOrderProduct(order._order.id, basketItem.assortmentId, basketItem.count, true)
