@@ -1,6 +1,6 @@
 import { $authHost, $host } from "../http";
 
-const AuthService =  {
+const AuthService =  {  
     async login(number, password){
         return new Promise((resolve) => resolve($authHost.post('api/user/login', {number, password})))
     },
@@ -11,6 +11,10 @@ const AuthService =  {
 
     async logout(){
         return new Promise((resolve) => resolve($authHost.post('api/user/logout')))
+    },
+
+    async changeDefaultAddressByNumber(defaultAddress, number) {
+        return new Promise((resolve) => resolve($authHost.put('api/user/changeDefaultAddressByNumber', {defaultAddress, number})))
     }
 } 
 

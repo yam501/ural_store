@@ -16,12 +16,19 @@ export default class UserStore {
     setIsActivated(bool) {
         this._user.isActivated = bool
     }
-
+    setDefaultAdress(adress) {
+        this._user.defaultAddress = adress
+    }
     setIsAuth(bool) {
         this._isAuth = bool
     }
     setUser(user) {
         this._user = user
+    }
+
+    async changeDefaultAddressByNumber(defaultAddress, number) {
+        const response = await AuthService.changeDefaultAddressByNumber(defaultAddress, number);
+        this.setDefaultAdress(defaultAddress)
     }
 
     async login(number, password) {
