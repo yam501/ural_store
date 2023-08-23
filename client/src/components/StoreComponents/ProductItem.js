@@ -46,12 +46,12 @@ const ProductItem = ({ product }) => {
                         {product.costPerOne * countProduct} ₽
                     </div>
                 </div>
-                <div className='mt-1 d-flex justify-content-center mb-2'>
-                    <Button className=' d-flex justify-content-center align-items-center btn-minus rounded-circle me-4 ms-4'  onClick={() => minus()}>
+                <div className='mt-1 d-flex justify-content-between mb-2'>
+                    <Button className='btn-minus rounded-circle'  onClick={() => minus()}>
                         -
                     </Button>
                     <span className='d-flex align-items-center info-text justify-content-center'>{countProduct} кг</span>
-                    <Button className='d-flex justify-content-center align-items-center btn-plus rounded-circle ms-4 me-4'  onClick={() => plus()}>
+                    <Button className='btn-plus rounded-circle'  onClick={() => plus()}>
                         +
                     </Button>
                 </div>
@@ -67,11 +67,11 @@ const ProductItem = ({ product }) => {
                 <div className='mb-1 info-text'>{product.costPerOne} ₽ за кг</div>
                 <div className='mb-1 productItem_text info-text'>{countProduct * product.costPerOne} ₽</div>
                 <div className='d-flex justify-content-between mb-1'>
-                            <Button className=' d-flex justify-content-center align-items-center btn-minus rounded-circle justify-self-start'  onClick={() => minus()}>
+                            <Button className='btn-minus rounded-circle justify-self-start'  onClick={() => minus()}>
                                 -
                             </Button>
                             <span className='d-flex align-items-center justify-self-center productItem_text info-text'>{countProduct} кг</span>
-                            <Button className='d-flex justify-content-center align-items-center btn-plus rounded-circle justify-self-end'  onClick={() => plus()}>
+                            <Button className='btn-plus rounded-circle justify-self-end'  onClick={() => plus()}>
                                 +
                             </Button>
                         </div>

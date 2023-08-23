@@ -147,6 +147,14 @@
     font-weight: 500;
 }
 
+@media (max-width: 400px) {
+    .product-img {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
 
 @media (max-width: 575px) {
     .btn-show-product {
@@ -161,7 +169,8 @@
     }
 
     .product-img {
-        height: 180px;
+        width: 120px;
+        height: 170px;
     }
 
     .btn-minus {
@@ -194,6 +203,7 @@
     }
 
     .product-img {
+        width: 198px;
         height: 200px;
     }
 
@@ -227,6 +237,7 @@
     }
 
     .product-img {
+        width: 248px;
         height: 250px;
     }
 
@@ -260,6 +271,7 @@
     }
 
     .product-img {
+        width: 248px;
         height: 250px;
     }
 

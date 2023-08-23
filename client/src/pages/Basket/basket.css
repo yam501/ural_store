@@ -4,47 +4,101 @@
     font-family: 'Montserrat';
 }
 
-.page_body{
+.page_body {
     flex: 1 1 auto;
 }
 
 
-#root{
+#root {
     min-height: 100% !important;
     display: flex;
     flex-direction: column;
 }
 
-html, body{
+html,
+body {
     height: 100% !important;
 }
 
-.img_box {
-    height: 7vw;
-    width: 7vw;
-}
+
 
 .product_item {
-    background-color: white;
+    background-color: rgba(178, 178, 178, 0.2);
     border-radius: 50px;
     font-weight: 500;
     font-size: calc(14px + 4 * (100vw/1903));
+    height: 200px;
 }
 
-@media (max-width: 575px) {
+
+@media(max-width: 999px) {
+    .product_item {
+        width: 100% !important;
+        height: 150px;
+    }
+}
+
+.basket-img {
+    cursor: pointer !important;
+    border-radius: 90px;
+    width: 180px;
+    height: 180px;
+}
+
+@media (max-width: 399px) {
+    .basket-img {
+        width: 50px;
+        height: 50px;
+    }
     .product_item {
         height: 75px;
     }
 }
 
-@media(max-width: 999px) {
+
+@media (min-width: 400px) and (max-width: 575px) {
+    .basket-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 40px;
+    }
     .product_item {
-        width: 100% !important;
+        height: 75px;
     }
 }
 
-.product_item:hover {
-    background-color: rgba(178, 178, 178, 0.2);
+@media (min-width: 576px) and (max-width: 659px) {
+    .basket-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 60px;
+    }
+    .product_item {
+        height: 120px;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 767px) {
+
+    .basket-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 70px;
+    }
+    .product_item {
+        height: 120px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .basket-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 80px;
+    }
+    .product_item {
+        height: 150px;
+    }
 }
 
 .basket_item_cost {
@@ -57,6 +111,10 @@ html, body{
 }
 
 .btn-minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35px;
     background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
@@ -66,7 +124,11 @@ html, body{
     height: 48px;
 }
 
-.btn-minus {
+.btn-plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 35px;
     background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
@@ -104,8 +166,8 @@ html, body{
     user-select: none;
 }
 
-@media (max-width: 600px){
-    .basket-icon{
+@media (max-width: 600px) {
+    .basket-icon {
         display: none;
     }
 }
@@ -152,7 +214,7 @@ html, body{
     border: 0;
     border-radius: 29px;
     width: 10vw;
-    height: 3vw;
+    height: 4vw;
 }
 
 .order_delive_form_btn:active,
