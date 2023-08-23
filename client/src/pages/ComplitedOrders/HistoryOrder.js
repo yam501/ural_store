@@ -10,6 +10,12 @@ import { STORE_ROUTE } from '../../utils/consts';
 
 // Страница истории заказов
 
+
+
+
+//ПЕРЕПИСАТЬ ИСТОРИЮ ЗАКАЗОВ НА МАССИВЫ, А НЕ ПОСТОЯННОЕ ОБРАЩЕНИЕ К БД
+
+
 function HistoryOrder() {
   const { complitedOrders } = useContext(Context)
   const { user } = useContext(Context)
