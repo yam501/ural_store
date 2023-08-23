@@ -25,13 +25,14 @@ const App = observer(() => {
 
   async function loadToContext() {
     await user.checkAuth()
-    basket.getBasketByUserID(user._user.id)
-    order.getOrderByUserId(user._user.id)
+    if (user._user.isActivated) {
+      basket.getBasketByUserID(user._user.id)
+      order.getOrderByUserId(user._user.id)
+    }
   }
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      console.log('КОНТЕКСТ ЗАГРУЖЕН')
       loadToContext()
       // setLoading(false)
     }
