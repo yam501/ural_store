@@ -41,7 +41,7 @@ const Accept = observer((props) => {
                 <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
                     Если код не пришел, попробуйте снова через 30 секунд.
                 </div>
-                <Button onClick={putAccept} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
+                <Button onClick={putAccept} type='submit' className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
                     Подтвердить
                 </Button>
             </Form>

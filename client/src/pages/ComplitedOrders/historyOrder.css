@@ -43,6 +43,7 @@
     /* max-height: 120px; */
     background-color: rgba(178, 178, 178, 0.2);
     padding: 20px 20px 20px 20px;
+    border-radius: 3%;
 }
 
 .complitedOrderProductItem {

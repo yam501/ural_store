@@ -48,7 +48,7 @@ function Basket() {
   }, [basketProducts])
 
   return (
-    <div className='mb-5 basket_page'>
+    <div className='mb-5 basket_page page_body'>
       <Container className='justify-content-center text-center page-name'>
         {basketItems.length === 0 ?
           <div className='d-flex justify-content-center align-items-center basket-empty'>

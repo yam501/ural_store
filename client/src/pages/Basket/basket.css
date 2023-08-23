@@ -25,7 +25,8 @@ html, body{
 }
 
 .product_item {
-    border: 1px solid #962A4A;
+    background-color: white;
+    border-radius: 50px;
     font-weight: 500;
     font-size: calc(14px + 4 * (100vw/1903));
 }
@@ -138,7 +139,8 @@ html, body{
     font-size: calc(14px + 4 * (100vw/1903));
     font-weight: 500;
     padding: 2vw;
-    border: 1px solid #962A4A;
+    background-color: rgba(178, 178, 178, 0.2);
+    border-radius: 50px;
     margin-right: 5%;
     margin-left: 5%;
 }
