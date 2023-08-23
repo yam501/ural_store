@@ -18,10 +18,9 @@ const Feedback = ({ feedback }) => {
     return (
 
         <div>
-
-            <div>
-                <p>Показать отзывы:</p>
-                <select value={selectSort} onChange={e => setSelectSort(e.target.value)}>
+            <div className="d-flex flex-column">
+                <label for='typeOfFeedback'>Показать отзывы:</label>
+                <select id='typeOfFeedback' value={selectSort} onChange={e => setSelectSort(e.target.value)}>
                     <option value={''}>Любые</option>
                     <option value={'Положительный'}>Положительные</option>
                     <option value={'Нейтральный'}>Нейтральные</option>

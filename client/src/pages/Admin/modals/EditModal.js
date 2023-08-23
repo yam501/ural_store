@@ -1,5 +1,4 @@
-
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { Button, Modal, Image, Form, Dropdown } from 'react-bootstrap';
 import AssortmentService from '../../../service/AssortmentService';
 import { observer } from 'mobx-react-lite';
@@ -7,6 +6,7 @@ import { Context } from '../../..';
 
 const EditModal = (props) => {
     const assort = props.assortment
+
 
     const [type, setType] = useState(assort.type)
     const [typeChanged, setTypeChanged] = useState(false)
@@ -20,7 +20,10 @@ const EditModal = (props) => {
     const [composition, setComposition] = useState(assort.composition)
     const [compositionChanged, setCompositionChanged] = useState(false)
 
-    
+    const [image, setImage] = useState(assort.image)
+    const [imagePath, setImagePath] = useState()
+
+
 
     const isTypeChanged = (inputType) => {
         setType(inputType)
@@ -59,8 +62,22 @@ const EditModal = (props) => {
         if (compositionChanged) {
             await AssortmentService.changeCompositionByName(name, composition)
         }
+        if (image !== undefined){
+            const formData = new FormData()
+            formData.append('name', name)
+            formData.append('image', image)
+            await AssortmentService.changeImageByName(formData)
+        }
         props.onClick()
         props.onHide()
+    }
+
+
+    const fuck = (e) => {
+
+        setImage(e.target.files[0])
+
+
     }
     return (
         <Modal
@@ -69,11 +86,6 @@ const EditModal = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
-                </Modal.Title>
-            </Modal.Header>
             <Modal.Body>
                 <Form>
                     <div>
@@ -94,30 +106,31 @@ const EditModal = (props) => {
                     <div>
                         Название:
                         <div>
-                            <input value={name} onChange={e => isNameChanged(e.target.value)} />
+                            <input value={name} className='w-100' onChange={e => isNameChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
                         Цена за штуку:
                         <div>
-                            <input value={costPerOne} type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
+                            <input value={costPerOne} className='w-100' type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
                         Состав:
                         <div>
-                            <input value={composition} onChange={e => isCompositionChanged(e.target.value)} />
+                            <textarea className='w-100' style={{ minHeight: '200px' }} value={composition} onChange={e => isCompositionChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
                         Картинка:
-                        <div>
-                            <Image className='w-100 h-100 product-img' alt='картинка' src={process.env.REACT_APP_API_URL + assort.image} />
+                        <div className='d-flex flex-column'>
+                            <Image className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={image || process.env.REACT_APP_API_URL + assort.image} thumbnail />
+                            <label for="image_uploads">Текущая картинка: {image ? image.name === undefined ? 'не измениться' : image.name : 'не измениться3'}</label>
+                            <input onChange={e => fuck(e)} id="image_uploads" accept="image/*" className="mt-3" type="file" />
                         </div>
                     </div>
 
                 </Form>
-
             </Modal.Body>
             <Modal.Footer>
                 <Button type='submit' onClick={confirmEdit}>Подтвердить изменения</Button>
@@ -126,4 +139,4 @@ const EditModal = (props) => {
         </Modal>
     );
 }
-export default observer(EditModal);
+export default EditModal;

@@ -39,7 +39,7 @@ function Admin() {
     <div className='container page_body'>
       <Tabs
         as={'div'}
-        defaultActiveKey="Feedbacks"
+        defaultActiveKey="EditAssortment"
         className="mb-3"
       >
         <Tab eventKey="CreateAssortment" title="Создать ассортимент">
