@@ -1,11 +1,14 @@
 import { Col, Container, Row } from "react-bootstrap";
-
+import OurDateTime from "../../../dateTime/dateTime";
 
 
 
 import './feedback.css'
 
 const FeedbackItem = ({ feedback }) => {
+    let timeConvert = new OurDateTime(feedback.createdAt)
+   
+
 
 
     return (
@@ -27,7 +30,8 @@ const FeedbackItem = ({ feedback }) => {
                     <p>
                         {`ФИО: ` + feedback.userFIO}
                     </p>
-
+                    {'Время создания: '+ timeConvert.getStringDateTime()}
+                    
                 </Col>
             </Row>
             <Row>
