@@ -24,7 +24,8 @@ export default class ComplitedOrdersStore {
 
     async createComplitedOrder(userId, address, complitedSum, orderTime, complitedTime) {
         const responce = await ComplitedOrdersService.createComplitedOrder(userId, address, complitedSum, orderTime, complitedTime)
-        this._complitedOrders = [...this._complitedOrders, responce]
+        this._complitedOrders = [...this._complitedOrders, responce.data]
+        return responce.data
     }
 
     get complitedOrders() {
