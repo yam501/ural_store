@@ -5,9 +5,9 @@ const { DataTypes } = require('sequelize')
 
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.TEXT, allowNull: true },
+    name: { type: DataTypes.STRING, allowNull: true },
     number: { type: DataTypes.STRING, allowNull: false, unique: true },
-    defaultAddress: { type: DataTypes.TEXT, allowNull: true },
+    defaultAddress: { type: DataTypes.STRING, allowNull: true },
     password: { type: DataTypes.STRING, allowNull: false },
     role: { type: DataTypes.STRING, allowNull: false, defaultValue: "USER" },
     isActivated: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
@@ -17,7 +17,7 @@ const User = sequelize.define('user', {
 const Token = sequelize.define('token', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false },
-    refreshToken: { type: DataTypes.STRING, allowNull: false }
+    refreshToken: { type: DataTypes.TEXT, allowNull: false }
 })
 
 const Basket = sequelize.define('basket', {
@@ -75,7 +75,6 @@ const Assortment = sequelize.define('assortment', {
     name: { type: DataTypes.STRING, allowNull: false },
     available: { type: DataTypes.BOOLEAN, allowNull: false },
     costPerOne: { type: DataTypes.DOUBLE, allowNull: false },
-    isDel: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     composition: { type: DataTypes.TEXT, allowNull: true },
     image: { type: DataTypes.STRING, allowNull: true }
 })
