@@ -24,7 +24,7 @@ const ModalWindowYMaps = ({findAdress, show, ...props}) => {
                 </form>
             </div> */}
             <div className='ymap_box'>
-                <GPS findAdress={findAdress}/>
+                <GPS onClick={props.onClick} findAdress={findAdress}/>
             </div>
         </div>
         </div>

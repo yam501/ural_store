@@ -53,6 +53,7 @@ function CreateAssortment() {
 
   }
 
+
   const formDataCreate = () => {
 
     try {
@@ -66,8 +67,8 @@ function CreateAssortment() {
 
       AssortmentService.create(formData)
 
-    } catch (error) {
-
+    } catch (e) {
+      console.log(e.response?.data?.message)
     }
 
   }
@@ -109,7 +110,7 @@ function CreateAssortment() {
         <Form.Control value={composition} className="mt-3" as='textarea' placeholder="Состав" rows={10} required onChange={e => setComposition(e.target.value)} />
 
 
-        <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile}/>
+        <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile} />
       </div>
 
       <div className="d-flex p-2 justify-content-center">

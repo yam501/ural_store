@@ -1,20 +1,21 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 // import { YMaps, Map, Placemark, SearchControl, GeolocationControl,} from '@pbe/react-yandex-maps';
 import { YMaps, Map, Placemark, SearchControl, GeolocationControl, withYMaps, ZoomControl} from '@pbe/react-yandex-maps';
 import './gpsStyle.css'
+import { Context } from '../..';
 const GPS = ({findAdress, ...props}) => {
+  const {user} = useContext(Context)
     const mapOptions = {
         modules: ["geocode", "SuggestView"],
         defaultOptions: { suppressMapOpenBlock: true, restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]]},
         width: '100%',
         height: '100vh',
       };
-      
       const geolocationOptions = {
         defaultOptions: { maxWidth: 128 },
         defaultData: { content: "Где я?" },
       };
-      
+
       const initialState = {
         title: "",
         center: [56.800084, 59.908718],
@@ -22,13 +23,16 @@ const GPS = ({findAdress, ...props}) => {
       };
     const [state, setState] = useState({ ...initialState });
     const [mapConstructor, setMapConstructor] = useState(null);
+
+    const placemarkRef = useRef(null)
     const mapRef = useRef(null);
     const searchRef = useRef(null);
-    const handleReset = () => {
-        setState({ ...initialState });
+    const locationRef = useRef(null)
+    const handleReset = async () => {
         searchRef.current.value = "";
-        mapRef.current.setCenter(initialState.center);
-        mapRef.current.setZoom(initialState.zoom);
+        await user.changeDefaultAddressByNumber(state.title, user._user.number)
+        await findAdress(user._user.defaultAddress)
+        props.onClick()
       };
     useEffect(() => {
         if (mapConstructor) {
@@ -45,19 +49,21 @@ const GPS = ({findAdress, ...props}) => {
           });
         }
       }, [mapConstructor]);
-    const handleBoundsChange = (e) => {
-        const newCoords = mapRef.current.getCenter();
-        mapConstructor.geocode(newCoords).then((res) => {
-          const nearest = res.geoObjects.get(0);
-          const foundAddress = nearest.properties.get("text");
-          const [centerX, centerY] = nearest.geometry.getCoordinates();
-          const [initialCenterX, initialCenterY] = initialState.center;
-          if (centerX !== initialCenterX && centerY !== initialCenterY) {
-            setState((prevState) => ({ ...prevState, title: foundAddress }));
-          }
-        });
-      };
-      
+
+    const geometryChange = (e) => {
+      const newCoords = placemarkRef.current.geometry.getCoordinates();
+      mapConstructor.geocode(newCoords).then((res) => {
+        const nearest = res.geoObjects.get(0);
+        const foundAddress = nearest.properties.get("text");
+        const [centerX, centerY] = nearest.geometry.getCoordinates();
+        const [initialCenterX, initialCenterY] = initialState.center;
+        if (centerX !== initialCenterX && centerY !== initialCenterY) {
+          setState((prevState) => ({ ...prevState, title: foundAddress }));
+          searchRef.current.value = foundAddress
+        }
+      });
+    }
+
     return (
         <div className=''>
             <YMaps query={{ lang: 'ru_RU', 
@@ -66,8 +72,11 @@ const GPS = ({findAdress, ...props}) => {
                 <div className='search_map_box'>
                     <div className='search_map_content'>
                         <input className='search_content_input' ref={searchRef} placeholder='Поиск...' disabled={!mapConstructor}/>
+                        {/* <div>
+                          {state.title}
+                        </div> */}
                     </div>
-                    <button onClick={() => findAdress(state.title)} className='search_submit_btn' disabled={Boolean(!state.title.length)}>
+                    <button onClick={handleReset} className='search_submit_btn' disabled={!state.title.length}>
                         Ok
                     </button>
                 </div>
@@ -75,15 +84,20 @@ const GPS = ({findAdress, ...props}) => {
                 {...mapOptions}
                 state={state}
                 onLoad={setMapConstructor}
-                onBoundsChange={handleBoundsChange}
                 instanceRef={mapRef}>
-                    <GeolocationControl {...geolocationOptions} />
+                    {/* <GeolocationControl 
+                    instanceRef={locationRef}
+                    {...geolocationOptions} /> */}
                     <ZoomControl/>
-                    <Placemark 
-                    geometry={[56.800084, 59.908718]} 
+                    <Placemark
+                    instanceRef={placemarkRef}
+                    geometry={state.center}
+                    onDragEnd={geometryChange}
                     options={{
-                        preset: 'islands#redCircleDotIcon',
-                        draggable: true
+                      useMapMarginInDragging: true,
+                      visible: true,
+                      preset: 'islands#redCircleDotIcon',
+                      draggable: true
                     }}
                     />
                 </Map>
