@@ -18,6 +18,28 @@ import GPS from './YndexMaps/GPS';
 import ModalWindowYMaps from './YndexMaps/ModalWindowYMaps';
 
 const NavBar = observer(() => {
+    // let lastScroll = 0;
+    // const defaultOffset = 200;
+    // const navbar1 = document.querySelector('.navbar1');
+    // const scrollPosition = () => window.scrollY || document.documentElement.scrollTop;
+    // const containHide = () => navbar1.classList.contains('hide');
+
+
+
+    // window.addEventListener('scroll',() => {
+    //   if (scrollPosition() > lastScroll && containHide() && scrollPosition > defaultOffset){
+    //     //vniz
+    //     console.log("вниз");
+    //   }
+      
+    //   else if (scrollPosition() < lastScroll){
+    //     //vverh
+    //     console.log("вверх");
+    //   }
+
+    //   lastScroll = scrollPosition()
+    // })
+
     const {user} = useContext(Context)
     const [width, setWidth] = useState(window.innerWidth);
     const [show, setShow] = useState(false)
@@ -51,7 +73,7 @@ const NavBar = observer(() => {
           <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width}/>}
-            {/* <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/> */}
+            <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
             <AuthButton />
             <ShopBasketButton/>
           </div>

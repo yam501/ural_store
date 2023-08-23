@@ -15,8 +15,13 @@ body{
     height: 5.2vw;
     background: #962A4A;
     font-size: 16px;
+    width: 100%;
+    transition: transform .1s linear;
 }
 
+.navbar1.hide {
+    transform: translateY(-5.2vw);
+}
 
 
 .btnAuth {
