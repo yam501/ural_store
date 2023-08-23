@@ -44,14 +44,9 @@ function Basket() {
   }
 
   async function renderBasketItems() {
-<<<<<<< HEAD
-    await basketProduct.getAllBasketProductsByBasketID(basket.basket.id)
-      
-=======
     if (JSON.stringify(basket._baskets) !== "{}") {
       await basketProduct.getAllBasketProductsByBasketID(basket._baskets.id)
     }
->>>>>>> 6821b7570f406ee46a25adf83eebd84d15e9c3c4
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
 

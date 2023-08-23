@@ -6,7 +6,7 @@
     height: 100vh;
     top: 0;
     left: 100vw;
-    transition: left 300ms ease-in, top 300ms ease-in;
+    transition: left 300ms ease-in, top 300ms ease-in, display 200ms ease-in-out;
 }
 
 
@@ -14,7 +14,7 @@
     display: block;
     top: 0;
     left: 0;
-    transition: left 300ms ease-in-out, top 300ms ease-in-out, background-color 10ms ease;
+    transition: left 300ms ease-in-out, top 300ms ease-in-out, background-color 10ms ease, display 200ms ease-in-out;
 }
 
 .overlay {
