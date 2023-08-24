@@ -22,12 +22,12 @@ const Feedback = ({ feedback }) => {
             <div className="d-flex flex-column">
                 <label for='typeOfFeedback'>Показать отзывы:</label>
                 <Dropdown  onSelect={e => setSelectSort(e)}>
-                    <Dropdown.Toggle > {selectSort} </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Положительный'} >Положительный</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Нейтральный'} >Нейтральный</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Негативный'} >Негативный</Dropdown.Item>
+                    <Dropdown.Toggle className="assortment-switch" > {selectSort} </Dropdown.Toggle>
+                    <Dropdown.Menu >
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Положительный'} >Положительный</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Нейтральный'} >Нейтральный</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Негативный'} >Негативный</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>

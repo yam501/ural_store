@@ -4,6 +4,7 @@
     font-family: 'Montserrat';
 }
 
+
 .page_body {
     flex: 1 1 auto;
 }
@@ -39,7 +40,6 @@ body {
 }
 
 .basket-img {
-    cursor: pointer !important;
     border-radius: 90px;
     width: 180px;
     height: 180px;

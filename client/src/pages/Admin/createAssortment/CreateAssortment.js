@@ -22,7 +22,6 @@ function CreateAssortment() {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity() === false ||type.includes('Выберите тип') ) {
-      alert('Не все поля заполнены')
       event.stopPropagation();
     // if(){
     //   alert('Не все поля заполнены')
@@ -97,15 +96,14 @@ function CreateAssortment() {
           <option value="Молочка">Молочка</option>
         </select> */}
         <Dropdown onSelect={e => setType(e)}>
-          <Dropdown.Toggle > {type} </Dropdown.Toggle>
+          <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item eventKey={'Выберите тип'} >Выберите тип</Dropdown.Item>
-            <Dropdown.Item eventKey={'Мясо'} >Мясо</Dropdown.Item>
-            <Dropdown.Item eventKey={'Салаты'} >Салаты</Dropdown.Item>
-            <Dropdown.Item eventKey={'Овощи'} >Овощи</Dropdown.Item>
-            <Dropdown.Item eventKey={'Выпечка'} >Выпечка</Dropdown.Item>
-            <Dropdown.Item eventKey={'Молочка'} >Молочка</Dropdown.Item>
-          </Dropdown.Menu>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Выберите тип'} >Выберите тип</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Мясо'} >Мясо</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
+          </Dropdown.Menu>  
         </Dropdown>
 
         <Form.Control 
@@ -115,10 +113,10 @@ function CreateAssortment() {
         required onChange={e => setName(e.target.value)} />
 
         <Dropdown>
-          <Dropdown.Toggle className="mt-3 assortment-yesOrnot" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
+          <Dropdown.Toggle className="mt-3 assortment-switch" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item className="assortment-yesOrnon-item" onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
-            <Dropdown.Item className="assortment-yesOrnon-item" onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
@@ -146,7 +144,7 @@ function CreateAssortment() {
       </div>
 
       <div className="d-flex p-2 justify-content-center">
-        {<Button type="submit" >Добавить</Button>}
+        {<Button className="addAssortment" type="submit" >Добавить</Button>}
       </div>
 
     </Form>
