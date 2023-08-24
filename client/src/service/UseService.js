@@ -1,8 +1,11 @@
-import { $host } from "../http";
+import { $authHost } from "../http";
 
-export default class UseService {
-    fetchUsers() {
-        return new Promise(() => $host.get('/users'))//ИЛЮХА ДОЛЖЕН БУДЕТ СКАЗАТЬ ПУТЬ СУКА
+const  UseService = {
+   async fetchUsers() {
+        return new Promise((resolve) => resolve($authHost.post('api/user/getAll')))
+        // return new Promise(() => $authHost.get('api/user/getAll'))
     }
 }
+
+export default UseService
  

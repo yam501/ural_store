@@ -11,6 +11,7 @@ router.post('/logout', authMiddleware, userController.logout)
 
 router.get('/refresh', userController.refresh)
 router.post('/getUserByNumber', authMiddleware, userController.getUserByNumber)
+router.post('/getAll', checkRole(['ADMIN', 'ADMIN_EDIT']), userController.getAllUsers)
 router.post('/getUserByUserID', authMiddleware, userController.getUserByUserID)
 
 router.put('/sendCode', authMiddleware, userController.sendCodeFromUser)
