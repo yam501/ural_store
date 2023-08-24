@@ -8,14 +8,17 @@ const GPS = ({ findAdress, ...props }) => {
 
   const mapOptions = {
     modules: ["geocode", "SuggestView"],
-    defaultOptions: { suppressMapOpenBlock: true, restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]] },
+    defaultOptions: { suppressMapOpenBlock: true,  restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]]},
     width: '100%',
     height: '100vh',
   };
 
   const geolocationOptions = {
-    defaultOptions: { maxWidth: 128 },
-    defaultData: { content: "Где я?" },
+    
+    defaultOptions: { 
+      maxWidth: 128,
+      noPlacemark: true},
+    defaultData: { content: "" },
   };
 
   const initialState = {
@@ -92,7 +95,19 @@ const GPS = ({ findAdress, ...props }) => {
       }
     });
   }
-
+  const locationchange = (event) => {
+    const newCoords = event.get('position')
+    mapConstructor.geocode(newCoords).then((res) => {
+      const nearest = res.geoObjects.get(0);
+      const foundAddress = nearest.properties.get('text');
+      const [centerX, centerY] = nearest.geometry.getCoordinates()
+      const [initialCenterX, initialCenterY] = initialState.center;
+      if (centerX !== initialCenterX && centerY !== initialCenterY) {
+        setState((options) => ({...options, title: foundAddress, center: newCoords}));
+        searchRef.current.value = foundAddress
+      }
+    })
+  }
   return (
     <div className=''>
       <YMaps query={{
@@ -102,7 +117,7 @@ const GPS = ({ findAdress, ...props }) => {
       }}>
         <div className='search_map_box'>
           <div className='search_map_content'>
-            <input className='search_content_input' ref={searchRef} placeholder='Поиск...' disabled={!mapConstructor} />
+            <input className='search_content_input textarea' ref={searchRef} placeholder='Ваш адрес...' disabled={!mapConstructor} />
             {/* <div>
                           {state.title}
                         </div> */}
@@ -116,9 +131,10 @@ const GPS = ({ findAdress, ...props }) => {
           state={state}
           onLoad={setMapConstructor}
           instanceRef={mapRef}>
-          {/* <GeolocationControl 
+          <GeolocationControl 
                     instanceRef={locationRef}
-                    {...geolocationOptions} /> */}
+                    onLocationChange={locationchange}
+                    {...geolocationOptions} />
           <ZoomControl />
           <Placemark
             instanceRef={placemarkRef}

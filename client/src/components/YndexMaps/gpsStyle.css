@@ -72,6 +72,8 @@
 
 .search_content_input {
     width: 100%;
+    outline: none;
+    outline-offset: none;
 }
 
 .search_input_results {
