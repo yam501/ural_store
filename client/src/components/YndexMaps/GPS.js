@@ -21,21 +21,33 @@ const GPS = ({findAdress, ...props}) => {
         center: [56.800084, 59.908718],
         zoom: 13,
       };
-    const [state, setState] = useState({ ...initialState });
-    const [mapConstructor, setMapConstructor] = useState(null);
+    const [state, setState] = useState({
+    title: '',
+    center: [56.800084, 59.908718],
+    zoom: 13, });
 
+    const [mapConstructor, setMapConstructor] = useState(null);
+    
     const placemarkRef = useRef(null)
     const mapRef = useRef(null);
     const searchRef = useRef(null);
     const locationRef = useRef(null)
-    const handleReset = async () => {
+    const handleReset = () => {
         searchRef.current.value = "";
-        await user.changeDefaultAddressByNumber(state.title, user._user.number)
-        await findAdress(user._user.defaultAddress)
+        setDefaultAdress()
         props.onClick()
       };
+    const [adress, setAdress] = useState('')
+    const setDefaultAdress = async () => {
+      await user.changeDefaultAddressByNumber(state.title, user._user.number)
+    }
+    const defaultAddress = useMemo(() => {
+      setAdress(user._user.defaultAddress)
+      return adress
+    }, [user._user.defaultAddress, adress])
     useEffect(() => {
         if (mapConstructor) {
+          
           new mapConstructor.SuggestView(searchRef.current, { 
             boundedBy: [[56.830569, 59.852335], [56.755036, 59.999630]], 
             offset: [0, 2],
@@ -48,6 +60,7 @@ const GPS = ({findAdress, ...props}) => {
             });
           });
         }
+        findAdress(defaultAddress)
       }, [mapConstructor]);
 
     const geometryChange = (e) => {
