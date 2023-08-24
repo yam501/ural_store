@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
+.feedb-link {
+    cursor: pointer;
+}
+
 .feedb-wrapper{
     z-index: 3;
     width: 25vw !important;
