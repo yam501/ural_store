@@ -29,7 +29,6 @@ const NavBar = observer(() => {
     setAdress({
       adressString: adress.slice(29)
     })
-    console.log(adress.adressString)
   }
   useEffect(() => {
     const handleResize = (event) => {
