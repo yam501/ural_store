@@ -42,7 +42,8 @@ const BurgerMenu = ({width, adress, onClick, ...props}) => {
               <div className='sepLineMenu'></div>
               <div className='text-white d-flex flex-column w-50 mt-3 ms-3'>
                 <span className='menuHotLine'>Горячая линия</span>
-                <span className='align-self-center mt-4 menuPhoneNum'>+77777777777</span>
+                <a className='mt-4 menuPhoneNum' href='tel:+77777777777'>
+                +777777777777</a>
               </div>
               <div className='d-flex flex-column mt-3 ms-3'>
                 <span className='text-white '>Мы в социальных сетях</span>

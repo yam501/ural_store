@@ -3,7 +3,7 @@ const router = new Router()
 const assortmentController = require('../controllers/assortmentController')
 const checkRole = require('../middleware/CheckRoleMiddleware')
 
-router.post('/createProduct', checkRole('ADMIN'), assortmentController.create)
+router.post('/createProduct', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.create)
 
 router.post('/getAll', assortmentController.getAll)
 router.post('/getOne', assortmentController.getById)

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Modal, Button, Dropdown, Form } from "react-bootstrap";
-import AssortmentService from "../../service/AssortmentService";
+import AssortmentService from "../../../service/AssortmentService";
 import { observer } from "mobx-react-lite";
 
-import './assortment.css'
+import '../assortment.css'
 
 function CreateAssortment() {
 
-  const [type, setType] = useState('')
+  const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('')
   const [available, setAvailable] = useState(true)
   const [costPerOne, setCostPerOne] = useState()
@@ -21,10 +21,12 @@ function CreateAssortment() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === false) {
-      alert('Не все поля заполнены')
+    if (form.checkValidity() === false ||type.includes('Выберите тип') ) {
       event.stopPropagation();
-
+    // if(){
+    //   alert('Не все поля заполнены')
+    //   event.stopPropagation();
+    // }
     } else {
       formDataCreate()
       setDefaultValues()
@@ -37,7 +39,7 @@ function CreateAssortment() {
   };
 
   const setDefaultValues = () => {
-    setType('')
+    setType('Выберите тип')
     setName('')
     setComposition('')
     setCostPerOne('')
@@ -79,42 +81,70 @@ function CreateAssortment() {
     <Form noValidate validated={validated} onSubmit={handleSubmit} >
 
 
-      <div className="d-flex p-2 justify-content-center fw-bold fs-4">
+      <div className="d-flex p-2 justify-content-center assortment-text">
         Добавление ассортимента
       </div>
 
       <div className="d-flex p-2 justify-content-center  flex-column ">
 
-        <select className="dropdown-select" onChange={e => setType(e.target.value)} value={type} required id="types" name="types">
+        {/* <select className="dropdown-select" onChange={e => setType(e.target.value)} value={type} required id="types" name="types">
           <option value="">Выберите тип</option>
           <option value="Мясо">Мясо</option>
           <option value="Салаты">Салаты</option>
           <option value="Овощи">Овощи</option>
           <option value="Выпечка">Выпечка</option>
           <option value="Молочка">Молочка</option>
-        </select>
+        </select> */}
+        <Dropdown onSelect={e => setType(e)}>
+          <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Выберите тип'} >Выберите тип</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Мясо'} >Мясо</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
+          </Dropdown.Menu>  
+        </Dropdown>
 
-
-        <Form.Control value={name} className="mt-3" placeholder="Введите название" required onChange={e => setName(e.target.value)} />
+        <Form.Control 
+        value={name} 
+        className="mt-3 textarea" 
+        placeholder="Введите название" 
+        required onChange={e => setName(e.target.value)} />
 
         <Dropdown>
-          <Dropdown.Toggle className="mt-3" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
+          <Dropdown.Toggle className="mt-3 assortment-switch" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
-            <Dropdown.Item onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
+            <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
-        <Form.Control value={costPerOne} min={0} className="mt-3" placeholder="Введите цену за штуку(кг)" type="number" required onChange={e => setCostPerOne(e.target.value)} />
+        <Form.Control 
+        value={costPerOne} 
+        min={0} 
+        className="mt-3 textarea" 
+        placeholder="Введите цену за штуку(кг)" 
+        
+        type="number" 
+        required onChange={e => setCostPerOne(e.target.value)} 
+        />
 
-        <Form.Control value={composition} className="mt-3" as='textarea' placeholder="Состав" rows={10} required onChange={e => setComposition(e.target.value)} />
+        <Form.Control 
+        value={composition} 
+        className="mt-3 textarea" 
+        as='textarea' 
+        placeholder="Состав" 
+        rows={10} 
+        required onChange={e => setComposition(e.target.value)} 
+        />
 
 
         <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile} />
       </div>
 
       <div className="d-flex p-2 justify-content-center">
-        {<Button type="submit" >Добавить</Button>}
+        {<Button className="addAssortment" type="submit" >Добавить</Button>}
       </div>
 
     </Form>

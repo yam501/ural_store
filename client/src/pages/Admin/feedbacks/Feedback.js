@@ -3,12 +3,13 @@ import FeedbackStore from "../../../store/FeedbackStore";
 import FeedbackItem from "./FeedbackItem";
 import { Context } from "../../..";
 import { observer } from "mobx-react-lite";
+import { Dropdown } from "react-bootstrap";
 
 
 const Feedback = ({ feedback }) => {
-    const [selectSort, setSelectSort] = useState('')
+    const [selectSort, setSelectSort] = useState('Любой тип')
     const sortedFeedback = useMemo(() => {
-        if (selectSort === '') {
+        if (selectSort.includes('Любой тип')) {
             return feedback
         }
         return feedback.filter(item => item.typeOfFeedback.includes(selectSort))
@@ -20,13 +21,17 @@ const Feedback = ({ feedback }) => {
         <div>
             <div className="d-flex flex-column">
                 <label for='typeOfFeedback'>Показать отзывы:</label>
-                <select id='typeOfFeedback' value={selectSort} onChange={e => setSelectSort(e.target.value)}>
-                    <option value={''}>Любые</option>
-                    <option value={'Положительный'}>Положительные</option>
-                    <option value={'Нейтральный'}>Нейтральные</option>
-                    <option value={'Негативный'}>Отрицательные</option>
-                </select>
+                <Dropdown  onSelect={e => setSelectSort(e)}>
+                    <Dropdown.Toggle className="assortment-switch" > {selectSort} </Dropdown.Toggle>
+                    <Dropdown.Menu >
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Положительный'} >Положительный</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Нейтральный'} >Нейтральный</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Негативный'} >Негативный</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
+            
             <hr />
             <div className="feedback-max-size-window">
                 {sortedFeedback.length === 0 ?
