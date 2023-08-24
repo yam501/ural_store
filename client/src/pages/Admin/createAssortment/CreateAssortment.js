@@ -7,7 +7,7 @@ import '../assortment.css'
 
 function CreateAssortment() {
 
-  const [type, setType] = useState('')
+  const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('')
   const [available, setAvailable] = useState(true)
   const [costPerOne, setCostPerOne] = useState()
@@ -21,10 +21,13 @@ function CreateAssortment() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false ||type.includes('Выберите тип') ) {
       alert('Не все поля заполнены')
       event.stopPropagation();
-
+    // if(){
+    //   alert('Не все поля заполнены')
+    //   event.stopPropagation();
+    // }
     } else {
       formDataCreate()
       setDefaultValues()
@@ -37,7 +40,7 @@ function CreateAssortment() {
   };
 
   const setDefaultValues = () => {
-    setType('')
+    setType('Выберите тип')
     setName('')
     setComposition('')
     setCostPerOne('')
@@ -85,15 +88,25 @@ function CreateAssortment() {
 
       <div className="d-flex p-2 justify-content-center  flex-column ">
 
-        <select className="dropdown-select" onChange={e => setType(e.target.value)} value={type} required id="types" name="types">
+        {/* <select className="dropdown-select" onChange={e => setType(e.target.value)} value={type} required id="types" name="types">
           <option value="">Выберите тип</option>
           <option value="Мясо">Мясо</option>
           <option value="Салаты">Салаты</option>
           <option value="Овощи">Овощи</option>
           <option value="Выпечка">Выпечка</option>
           <option value="Молочка">Молочка</option>
-        </select>
-
+        </select> */}
+        <Dropdown onSelect={e => setType(e)}>
+          <Dropdown.Toggle > {type} </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey={'Выберите тип'} >Выберите тип</Dropdown.Item>
+            <Dropdown.Item eventKey={'Мясо'} >Мясо</Dropdown.Item>
+            <Dropdown.Item eventKey={'Салаты'} >Салаты</Dropdown.Item>
+            <Dropdown.Item eventKey={'Овощи'} >Овощи</Dropdown.Item>
+            <Dropdown.Item eventKey={'Выпечка'} >Выпечка</Dropdown.Item>
+            <Dropdown.Item eventKey={'Молочка'} >Молочка</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
         <Form.Control 
         value={name} 
