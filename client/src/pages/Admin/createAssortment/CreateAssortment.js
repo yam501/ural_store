@@ -79,7 +79,7 @@ function CreateAssortment() {
     <Form noValidate validated={validated} onSubmit={handleSubmit} >
 
 
-      <div className="d-flex p-2 justify-content-center fw-bold fs-4">
+      <div className="d-flex p-2 justify-content-center assortment-text">
         Добавление ассортимента
       </div>
 
@@ -95,19 +95,38 @@ function CreateAssortment() {
         </select>
 
 
-        <Form.Control value={name} className="mt-3" placeholder="Введите название" required onChange={e => setName(e.target.value)} />
+        <Form.Control 
+        value={name} 
+        className="mt-3 textarea" 
+        placeholder="Введите название" 
+        required onChange={e => setName(e.target.value)} />
 
         <Dropdown>
-          <Dropdown.Toggle className="mt-3" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
+          <Dropdown.Toggle className="mt-3 assortment-yesOrnot" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
-            <Dropdown.Item onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
+            <Dropdown.Item className="assortment-yesOrnon-item" onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
+            <Dropdown.Item className="assortment-yesOrnon-item" onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
-        <Form.Control value={costPerOne} min={0} className="mt-3" placeholder="Введите цену за штуку(кг)" type="number" required onChange={e => setCostPerOne(e.target.value)} />
+        <Form.Control 
+        value={costPerOne} 
+        min={0} 
+        className="mt-3 textarea" 
+        placeholder="Введите цену за штуку(кг)" 
+        
+        type="number" 
+        required onChange={e => setCostPerOne(e.target.value)} 
+        />
 
-        <Form.Control value={composition} className="mt-3" as='textarea' placeholder="Состав" rows={10} required onChange={e => setComposition(e.target.value)} />
+        <Form.Control 
+        value={composition} 
+        className="mt-3 textarea" 
+        as='textarea' 
+        placeholder="Состав" 
+        rows={10} 
+        required onChange={e => setComposition(e.target.value)} 
+        />
 
 
         <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile} />
