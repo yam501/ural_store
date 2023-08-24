@@ -20,8 +20,8 @@ const EditModal = (props) => {
     const [composition, setComposition] = useState(assort.composition)
     const [compositionChanged, setCompositionChanged] = useState(false)
 
-    const [image, setImage] = useState(assort.image)
-    const [imagePath, setImagePath] = useState()
+    const [image, setImage] = useState()
+
 
 
 
@@ -124,8 +124,8 @@ const EditModal = (props) => {
                     <div>
                         Картинка:
                         <div className='d-flex flex-column'>
-                            <Image className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={image || process.env.REACT_APP_API_URL + assort.image} thumbnail />
-                            <label for="image_uploads">Текущая картинка: {image ? image.name === undefined ? 'не измениться' : image.name : 'не измениться3'}</label>
+                            <Image className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={process.env.REACT_APP_API_URL + assort.image} thumbnail />
+                            <label for="image_uploads">Текущая картинка: {image ? image.name === undefined ? 'не измениться' : image.name : 'не измениться'}</label>
                             <input onChange={e => fuck(e)} id="image_uploads" accept="image/*" className="mt-3" type="file" />
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Container, Row, Col, Tabs, Tab } from "react-bootstrap";
-import CreateAssortment from './CreateAssortment';
-import EditAssortment from './EditAssortment';
+import CreateAssortment from './createAssortment/CreateAssortment';
+import EditAssortment from './editAssortment/EditAssortment';
 import Feedback from './feedbacks/Feedback';
 import { Context } from '../..';
 

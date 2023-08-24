@@ -1,23 +1,24 @@
 import React, { useContext, useState } from 'react';
 import { Button, Row, Col, Form } from 'react-bootstrap';
-import AssortmentService from '../../service/AssortmentService';
-import EditModal from "./modals/EditModal";
+import AssortmentService from '../../../service/AssortmentService';
+import EditModal from "../modals/EditModal";
 
-import "./assortment.css"
-import { Context } from '../..';
+import "../assortment.css"
+
 import { observer } from 'mobx-react-lite';
+import { Context } from '../../..';
 
 const AssortmentItem = (props) => {
   const { assortment } = useContext(Context)
   const [showModal, setShowModal] = useState(false)
 
-  async function delButton (){
+  async function delButton() {
     await AssortmentService.deleteOneByName(props.assortment.name)
     await props.onClick()
   }
 
 
-  
+
   return (
     <Form>
 
@@ -45,12 +46,12 @@ const AssortmentItem = (props) => {
       </Row>
 
       <>
-      <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} onClick={props.onClick}/>
+        <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} onClick={props.onClick} />
       </>
     </Form>
   )
-  
+
 }
 // <Form.Check onChange={changeIsDel} type='checkbox'  ? true : false} />
 
-export default observer( AssortmentItem);
+export default observer(AssortmentItem);

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Modal, Button, Dropdown, Form } from "react-bootstrap";
-import AssortmentService from "../../service/AssortmentService";
+import AssortmentService from "../../../service/AssortmentService";
 import { observer } from "mobx-react-lite";
 
-import './assortment.css'
+import '../assortment.css'
 
 function CreateAssortment() {
 

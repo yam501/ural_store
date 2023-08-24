@@ -4,8 +4,8 @@ import { Modal, Button, Dropdown, Form, Row, Container, Col, Stack } from "react
 import AssortmentItem from "./AssortmentItem";
 
 
-import "./assortment.css"
-import { Context } from "../..";
+import "../assortment.css"
+import { Context } from "../../..";
 import { observer } from "mobx-react-lite";
 
 
