@@ -260,6 +260,8 @@
 }
 
 .menuPhoneNum {
+    color: white;
+    text-decoration: none;
     font-weight: 400;
     font-size: calc(14px + 6 * (100vw/1903));   
 }

@@ -45,10 +45,10 @@ function Admin() {
 
 
   return (
-    <div className='container page_body'>
+    <div className='container page_body admin-page'>
       <Tabs
         as={'div'}
-        defaultActiveKey="Giverole"
+        defaultActiveKey="CreateAssortment"
         className="mb-3"
       >
         <Tab eventKey="CreateAssortment" title="Создать ассортимент">

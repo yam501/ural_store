@@ -36,17 +36,17 @@ function EditAssortment({ products, onClick }) {
             </div>
 
             <Stack direction="horizontal" gap={3}>
-                <Form.Control className="me-auto" placeholder="Введите название" value={name} onChange={e => setName(e.target.value)} />
+                <Form.Control className="me-auto textarea" placeholder="Введите название" value={name} onChange={e => setName(e.target.value)} />
 
                 <Dropdown onSelect={e => setType(e)}>
-                    <Dropdown.Toggle > {type} </Dropdown.Toggle>
+                    <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Мясо'} >Мясо</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Салаты'} >Салаты</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Овощи'} >Овощи</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Выпечка'} >Выпечка</Dropdown.Item>
-                        <Dropdown.Item eventKey={'Молочка'} >Молочка</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Мясо'} >Мясо</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Выпечка'} >Выпечка</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>

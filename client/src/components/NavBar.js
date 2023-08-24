@@ -27,7 +27,7 @@ const NavBar = observer(() => {
   })
   const findAdress = (adress) => {
     setAdress({
-      adressString: adress
+      adressString: adress.slice(29)
     })
   }
   useEffect(() => {
