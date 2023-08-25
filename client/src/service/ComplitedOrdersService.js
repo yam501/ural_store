@@ -1,8 +1,8 @@
 import { $authHost, $host } from "../http";
 
 const ComplitedOrdersService = {
-    async getAllComplitedOrdersByUserId(userId) {
-        return new Promise((resolve) => resolve($authHost.post('api/complitedOrder/getAllComplitedOrdersByUserID', { userId })))
+    async getAllComplitedOrdersByUserId(userId, limit, page) {
+        return new Promise((resolve) => resolve($authHost.post('api/complitedOrder/getAllComplitedOrdersByUserID', { userId, limit, page })))
     },
 
     async getComplitedOrderByCompliterOrderId(complitedOrderId) {

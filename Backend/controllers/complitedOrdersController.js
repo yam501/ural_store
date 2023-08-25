@@ -15,8 +15,12 @@ class ComplitedOrdersController {
 
     async getAllComplitedOrdersByUserID(req, res, next) {
         try {
-            const {userId} = req.body
-            const complitedOrders = await ComplitedOrders.findAll({where:{userId: userId}})
+            let  {userId,limit, page} = req.body
+            page = page || 1
+            limit = limit || 5
+            let offset = page * limit - limit
+    
+            const complitedOrders = await ComplitedOrders.findAll({where:{userId: userId},limit, offset})
             return res.json(complitedOrders)
 
         } catch (e) {

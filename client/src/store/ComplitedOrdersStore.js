@@ -12,8 +12,8 @@ export default class ComplitedOrdersStore {
         this._complitedOrders = complitedOrders
     }
 
-    async getAllComplitedOrdersByUserId(userId) {
-        const response = await ComplitedOrdersService.getAllComplitedOrdersByUserId(userId)
+    async getAllComplitedOrdersByUserId(userId, limit, page) {
+        const response = await ComplitedOrdersService.getAllComplitedOrdersByUserId(userId, limit, page)
         this.setComplitedOrders(response.data)
     }
 

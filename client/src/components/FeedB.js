@@ -38,13 +38,13 @@ const FeedB = () => {
     event.preventDefault();
     setValidated(true)
 
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-
-    }
     if (type.includes('Тип отзыва')) {
       event.stopPropagation();
       setVariant('danger')
+    }
+    if (form.checkValidity() === false || type.includes('Тип отзыва')) {
+      event.stopPropagation();
+
     }
     else {
       FeedbackService.sendFeedback(type, mail, name, comment)
@@ -76,7 +76,7 @@ const FeedB = () => {
           <p className='mb-4'>Дорогой покупатель! Мы ценим вашу инициативу в выражении вашего мнения о наших товарах и услугах, так как это помогает нам постоянно развиваться,
             исправлять ошибки и укреплять наши преимущества.</p>
           <Form noValidate validated={validated} onSubmit={afterButton}>
-            <label style={{display:`${validated ? '': 'none'}`}}>Не все поля заполнены</label>
+            <label style={{ display: `${validated ? '' : 'none'}` }}>Не все поля заполнены</label>
             <p>Выберите тип отзыва </p>
             <Dropdown className='mb-4' onSelect={e => changed(e)}>
               <Dropdown.Toggle variant={variant} > {type} </Dropdown.Toggle>
