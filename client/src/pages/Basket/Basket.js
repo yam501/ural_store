@@ -18,7 +18,7 @@ function Basket() {
   const { user } = useContext(Context)
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
-
+  const [aproxSum, setAproxSum] = useState(0)
   async function transferToOrder() {
     await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
     basketProduct._basketProducts.map( (basketItem) => {
@@ -28,10 +28,10 @@ function Basket() {
     setBasketProducts([])
   }
 
-  // const [basketAproxSum, setBasketAproxSum] = useState(basket.basket.aproxSum)
   function sortById(id) {
     return (a, b) => a[id] > b[id] ? 1 : -1;
   }
+
 
   async function renderBasketItems() {
     if (JSON.stringify(basket._baskets) !== "{}") {
@@ -44,17 +44,21 @@ function Basket() {
   }
   useEffect(() => {
     renderBasketItems()
+
   }, [basket._baskets.id])
-
-
 
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
+  const countAproxSum = () => {
+    setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
+  } 
 
   if (loading) {
     return <Spinner animation={'grow'}/>
   }
+
+
   return (
     <div className='mb-5 basket_page page_body'>
       <Container className='justify-content-center text-center page-name'>
@@ -66,14 +70,14 @@ function Basket() {
               <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
             </div>
           </div> : basketItems.map((basketItem) =>
-            <BasketItem key={basketItem.id} user={user._user} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
+            <BasketItem key={basketItem.id} user={user._user} countAproxSum={countAproxSum} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
           )}
       </Container>
 
       {basketProduct.basketProduct.length > 0 &&
         <div className='mt-2 d-flex justify-content-between align-items-center order_delive_form'>
           <div>
-            Сумма заказа: {basket.basket.aproxSum} ₽
+            Сумма заказа: {aproxSum} ₽
           </div>
           <div className='w-25'>
             <Button

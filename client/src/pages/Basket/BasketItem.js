@@ -6,23 +6,25 @@ import './basket.css'
 const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
     const [countProduct, setCountProduct] = useState(basketProduct.count)
     const plus = () => {
+        basketProduct.count = countProduct + 1;
         product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
-        basket.getBasketByUserID(user.id)
         countProduct >= 1 && setCountProduct(countProduct + 1)
+        props.countAproxSum()
 
     }
     const minus = async () => {
         if (countProduct === 1) {
             product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
             props.deleteItem(basketProduct.assortmentId)
-            
         } else {
+            basketProduct.count = countProduct - 1;
             product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct - 1)
             countProduct > 1 && setCountProduct(countProduct - 1)
+            props.countAproxSum() 
         }
-        basket.getBasketByUserID(user.id)
     }
 
+    
 
     return (
 
@@ -44,7 +46,7 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
                         onClick={minus}>
                         -
                     </Button>
-                    <Form.Control value={countProduct} onChange={e => setCountProduct(e.target.value)} className='basket_item_cost' />
+                    <Form.Control value={countProduct} onChange={e => {setCountProduct(+(e.target.value)); props.countAproxSum(); }} className='basket_item_cost' />
                     <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white'
                         onClick={plus}>
                         +
