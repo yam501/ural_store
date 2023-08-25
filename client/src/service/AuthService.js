@@ -15,6 +15,26 @@ const AuthService =  {
 
     async changeDefaultAddressByNumber(defaultAddress, number) {
         return new Promise((resolve) => resolve($authHost.put('api/user/changeDefaultAddressByNumber', {defaultAddress, number})))
+    },
+
+    async changeDefaultAddressById(defaultAddress, id) {
+        return new Promise((resolve) => resolve($authHost.put('api/user/changeDefaultAddressByID', {defaultAddress, id})))
+    },
+
+    async changeNumberById(number, id) {
+        return new Promise((resolve) => resolve($authHost.put('api/user/changeNumberByID', {number, id})))
+    },
+
+    async changeNameById(name, id) {
+        return new Promise((resolve) => resolve($authHost.put('api/user/changeNameByID', {name, id})))
+    },
+
+    async changeNumberAndNameById(number, name, id) {
+        return new Promise((resolve) => resolve($authHost.put('api/user/changeNumberAndNameByID', {number, name, id})))
+    },
+
+    async changeAllById(defaultAddress, number, name, id) {
+        return new Promise((resolve) => resolve($authHost.put('api/user/changeAllByID', {defaultAddress, number, name, id})))
     }
 } 
 

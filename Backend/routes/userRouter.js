@@ -19,5 +19,10 @@ router.put('/activate', authMiddleware, userController.activate)
 router.put('/changeDefaultAddressByNumber', authMiddleware, userController.changeDefaultAddressByNumber)
 router.put('/changeNumberByNumber', authMiddleware, userController.changeNumberByNumber)
 router.put('/changeNameByNumber', authMiddleware, userController.changeNameByNumber)
+router.put('/changeDefaultAddressByID', authMiddleware, userController.changeDefaultAddressById)
+router.put('/changeNumberByID', authMiddleware, userController.changeNameById)
+router.put('/changeNameByID', authMiddleware, userController.changeNameById)
+router.put('/changeNumberAndNameByID', authMiddleware, userController.changeNumberAndNameById)
+router.put('changeAllByID', authMiddleware, userController.changeAllById)
 
 module.exports = router
