@@ -4,12 +4,13 @@ import './basket.css'
 import BasketItem from './BasketItem';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { STORE_ROUTE } from '../../utils/consts';
 // Страница корзины 
 
 function Basket() {
+  const [loading, setLoading] = useState(false)
   const { basketProduct } = useContext(Context)
   const [basketProducts, setBasketProducts] = useState([])
   const { basket } = useContext(Context)
@@ -38,19 +39,31 @@ function Basket() {
     }
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
-
+  const deleteBasketItems = (id) => {
+    setLoading(true)
+    basketProducts.map((product, i) => {
+      if (product.assortmentId === id) {
+        setBasketProducts(() => basketProducts.splice(i, 1))
+      }
+    }).finally(() => setLoading(false))
+  }
   useEffect(() => {
     renderBasketItems()
   }, [basket._baskets.id])
+
+
 
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
 
+  if (loading) {
+    return <Spinner animation={'grow'}/>
+  }
   return (
     <div className='mb-5 basket_page page_body'>
       <Container className='justify-content-center text-center page-name'>
-        {basketItems.length === 0 ?
+        {basketItems.length === 0 && loading === false?
           <div className='d-flex justify-content-center align-items-center basket-empty'>
             Ваша корзина пока что пуста
             <div className='basket-empty-content'>
@@ -58,7 +71,7 @@ function Basket() {
               <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
             </div>
           </div> : basketItems.map((basketItem) =>
-            <BasketItem key={basketItem.id} user={user._user} basket={basket} product={basketProduct} basketProduct={basketItem} />
+            <BasketItem key={basketItem.id} user={user._user} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
           )}
       </Container>
 

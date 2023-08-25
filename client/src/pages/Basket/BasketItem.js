@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { Image, Button, Form } from 'react-bootstrap';
+import React, { useContext, useState, Suspense} from 'react';
+import { Image, Button, Form, Spinner } from 'react-bootstrap';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import './basket.css'
 const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
-
     const [countProduct, setCountProduct] = useState(basketProduct.count)
     const plus = () => {
         product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
@@ -12,15 +11,20 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
         countProduct >= 1 && setCountProduct(countProduct + 1)
 
     }
-    const minus = () => {
+    const minus = async () => {
         if (countProduct === 1) {
-            product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
+            window.location.reload()
+            await product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
+            await props.deleteItem(basketProduct.assortmentId)
+            
         } else {
             product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct - 1)
             countProduct > 1 && setCountProduct(countProduct - 1)
         }
         basket.getBasketByUserID(user.id)
     }
+
+
     return (
 
         <div className='d-flex align-items-center justify-content-between mt-3 mb-3 container product_item'>
@@ -37,7 +41,7 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
                     {basketProduct.costPerOne * countProduct} ₽
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
-                    <Button className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
+                    <Button type='submit' className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
                         onClick={minus}>
                         -
                     </Button>
@@ -48,7 +52,6 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
                     </Button>
                 </div>
             </div>
-
 
         </div>
     );

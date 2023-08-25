@@ -17,7 +17,7 @@ import Accept from './AuthButton/Accept';
 import GPS from './YndexMaps/GPS';
 import ModalWindowYMaps from './YndexMaps/ModalWindowYMaps';
 
-const NavBar = observer(() => {
+const NavBar = observer(({scrollUp, ...props}) => {
 
   const { user } = useContext(Context)
   const [width, setWidth] = useState(window.innerWidth);
@@ -27,7 +27,7 @@ const NavBar = observer(() => {
   })
   const findAdress = (adress) => {
     setAdress({
-      adressString: adress.slice(29)
+      adressString: adress ? adress.slice(29) : 'Выберите адрес'
     })
   }
   useEffect(() => {
@@ -40,7 +40,7 @@ const NavBar = observer(() => {
     };
   })
   return (
-    <Navbar className='d-flex navbar1'>
+    <Navbar className={`d-flex navbar1 ${scrollUp ? 'fixed' : ''}`} >
       <Container className='z-2 w-25'>
         <div className='d-flex align-items-center navBarBtnsBox'>
           <BurgerMenu adress={adress.adressString} onClick={() => setShow(true)} width={width} />

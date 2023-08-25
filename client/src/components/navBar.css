@@ -7,6 +7,14 @@
     font-size: 16px;
 }
 
+.navbar1.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+}
+
 .btnAuth {
     min-height: 29px;
     min-width: 96px;
