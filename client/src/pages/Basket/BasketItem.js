@@ -13,9 +13,8 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
     }
     const minus = async () => {
         if (countProduct === 1) {
-            window.location.reload()
-            await product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
-            await props.deleteItem(basketProduct.assortmentId)
+            product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
+            props.deleteItem(basketProduct.assortmentId)
             
         } else {
             product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct - 1)

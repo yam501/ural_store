@@ -40,12 +40,7 @@ function Basket() {
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
   const deleteBasketItems = (id) => {
-    setLoading(true)
-    basketProducts.map((product, i) => {
-      if (product.assortmentId === id) {
-        setBasketProducts(() => basketProducts.splice(i, 1))
-      }
-    }).finally(() => setLoading(false))
+    setBasketProducts(basketProducts.filter(product => product.assortmentId !== id))
   }
   useEffect(() => {
     renderBasketItems()
