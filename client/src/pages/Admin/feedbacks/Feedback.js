@@ -47,6 +47,7 @@ const Feedback = ({ feedback }) => {
 
             </div>
             <hr />
+            <button onClick={() => console.log(sortedFeedback)}/>
         </div>
     )
 }

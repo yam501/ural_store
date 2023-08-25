@@ -17,8 +17,8 @@ function EditAssortment({ products, onClick }) {
     
 
     const searchedProducts = useMemo(() =>{
-        if (type === 'Любой тип') return products.filter(item => item.name.toLowerCase().includes(name))
-        return products.filter(item => item.name.includes(name) & item.type.includes(type))
+        if (type === 'Любой тип') return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
+        return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type))
     },
     [products, name, type]
 

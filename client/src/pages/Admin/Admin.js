@@ -3,6 +3,8 @@ import { Button, Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 import CreateAssortment from './createAssortment/CreateAssortment';
 import EditAssortment from './editAssortment/EditAssortment';
 import Feedback from './feedbacks/Feedback';
+import GivingRole from './role/GivingRole';
+
 import { Context } from '../..';
 
 
@@ -12,24 +14,31 @@ import "./assortment.css"
 import { observer } from 'mobx-react-lite';
 
 function Admin() {
-  const { assortment, feedback } = useContext(Context)
+  const { assortment, feedback, use } = useContext(Context)
   const [products, setProducts] = useState([])
   const [feedbackList, setFeedbackList] = useState([])
+  const [usersList, setUsersList] = useState([])
 
   async function getAllProducts() {
     await assortment.getAll()
     setProducts(assortment.assortments ? assortment.assortments : [])
 
   }
+
   async function getAllFeedbacks() {
     await feedback.getAll()
-    setFeedbackList(feedback.feedbacks)
-}
+    setFeedbackList(feedback.feedbacks ? feedback.feedbacks : [])
+  }
 
+  async function getAllUsers(){
+    await use.getAll()
+    setUsersList(use.users)
+  }
 
   useEffect(() => {
-    getAllProducts()
-    getAllFeedbacks()
+    getAllProducts();
+    getAllFeedbacks();
+    getAllUsers();
   }, [])
 
 
@@ -53,7 +62,11 @@ function Admin() {
         </Tab>
 
         <Tab eventKey="Feedbacks" title="Отзывы" >
-          <Feedback feedback={feedbackList}/>
+          <Feedback feedback={feedbackList} />
+        </Tab>
+
+        <Tab eventKey="Giverole" title="Выдать роли" >
+          <GivingRole users={usersList} onClick={getAllProducts}/>
         </Tab>
 
       </Tabs>
