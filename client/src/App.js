@@ -47,14 +47,14 @@ const App = observer(() => {
         setScrollUp(true)
       }
       
-      console.log('up')
+      // console.log('up')
     })
     window.addEventListener('mousemove', () => {
       setScrollUp(false)
     })
     window.addEventListener('scrollDown', () => {
       setScrollUp(false)
-      console.log('down')
+      // console.log('down')
     })
   }, [])
   // basket.getBasketByUserID(user._user.id)

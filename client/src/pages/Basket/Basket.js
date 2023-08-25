@@ -19,6 +19,7 @@ function Basket() {
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
   const [aproxSum, setAproxSum] = useState(0)
+
   async function transferToOrder() {
     await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
     basketProduct._basketProducts.map( (basketItem) => {
@@ -39,17 +40,24 @@ function Basket() {
     }
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   }
+
   const deleteBasketItems = (id) => {
     setBasketProducts(basketProducts.filter(product => product.assortmentId !== id))
   }
+
   useEffect(() => {
     renderBasketItems()
 
   }, [basket._baskets.id])
 
+  useEffect(() => {
+    setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
+  }, [basketProducts])
+
   const basketItems = useMemo(() => {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
+
   const countAproxSum = () => {
     setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
   } 
