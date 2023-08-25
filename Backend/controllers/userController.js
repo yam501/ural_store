@@ -236,6 +236,56 @@ class UserController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async changeDefaultAddressById(req, res, next) {
+        try {
+            const {defaultAddress, id} = req.body
+            const user = await User.update({defaultAddress: defaultAddress}, {where: {id: id}})
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeNumberById(req, res, next) {
+        try {
+            const {number, id} = req.body
+            const user = await User.update({number: number}, {where: {id: id}})
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeNameById(req, res, next) {
+        try {
+            const {name, id} = req.body
+            const user = await User.update({name: name}, {where: {id: id}})
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeNumberAndNameById(req, res, next) {
+        try {
+            const {number, name, id} = req.body
+            const user = await User.update({number: number, name: name}, {where: {id: id}})
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeAllById(req, res, next) {
+        try {
+            const {defaultAddress, number, name, id} = req.body
+            const user = await User.update({defaultAddress: defaultAddress, number: number, name: name}, {where: {id: id}})
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 

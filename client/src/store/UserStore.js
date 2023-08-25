@@ -16,12 +16,29 @@ export default class UserStore {
     setIsActivated(bool) {
         this._user.isActivated = bool
     }
+
     setDefaultAdress(adress) {
         this._user.defaultAddress = adress
     }
+
+    setNumber(number) {
+        this._user.number = number
+    }
+
+    setName(name) {
+        this._user.name = name
+    }
+
+    setAll(defaultAddress, number, name) {
+        this._user.defaultAddress = defaultAddress
+        this._user.number = number
+        this._user.name = name
+    }
+
     setIsAuth(bool) {
         this._isAuth = bool
     }
+
     setUser(user) {
         this._user = user
     }
@@ -29,6 +46,32 @@ export default class UserStore {
     async changeDefaultAddressByNumber(defaultAddress, number) {
         const response = await AuthService.changeDefaultAddressByNumber(defaultAddress, number);
         this.setDefaultAdress(defaultAddress)
+    }
+
+    async changeDefaultAddressById(defaultAddress, id) {
+        const response = await AuthService.changeDefaultAddressById(defaultAddress, id)
+        this.setDefaultAdress(defaultAddress)
+    }
+
+    async changeNumberById(number, id) {
+        const response = await AuthService.changeNumberById(number, id)
+        this.setNumber(number)
+    }
+
+    async changeNameById(name, id) {
+        const response = await AuthService.changeNameById(name, id)
+        this.setName(name)
+    }
+
+    async changeNumberAndNameById(number, name, id) {
+        const response = await AuthService.changeNumberAndNameById(number, name, id)
+        this.setNumber(number)
+        this.setName(name)
+    }
+
+    async changeAllById(defaultAddress, number, name, id) {
+        const response = await AuthService.changeAllById(defaultAddress, number, name, id)
+        this.setAll(defaultAddress, number, name)
     }
 
     async login(number, password) {
