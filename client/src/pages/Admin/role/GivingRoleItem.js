@@ -1,12 +1,16 @@
-import { Col, Container, Row, Form, Button, Dropdown } from "react-bootstrap";
+import { Col, Container, Row, Form, Button, Dropdown, Stack } from "react-bootstrap";
 import OurDateTime from "../../../dateTime/dateTime";
+import { useState } from "react";
+import { observer } from "mobx-react-lite";
+import UseService from "../../../service/UseService";
 
 
 
 
 
 const GivingRoleItem = ({ user }) => {
-    
+    const [role, setRole] = useState(user.role)
+    const [newRole, setNewRole] = useState(role)
 
 
 
@@ -27,19 +31,20 @@ const GivingRoleItem = ({ user }) => {
                 </Col>
 
                 <Col className='border-1 p-2'>
-                    {/* <Button variant="link">{user.role}</Button> */}
-                    <Dropdown >
-                        <Dropdown.Toggle as={Button} variant='link'>{user.role}</Dropdown.Toggle>
-                        <Dropdown.Menu >
-                            <Dropdown.Item>ADMIN</Dropdown.Item>
-                            <Dropdown.Item>ADMIN_EDIT</Dropdown.Item>
-                            <Dropdown.Item>USER</Dropdown.Item>
-
-                        </Dropdown.Menu>
-
-
-                    </Dropdown>
-
+                    <Stack direction="horizontal" gap={3}>
+                        <Dropdown onSelect={e => setNewRole(e)}>
+                            <Dropdown.Toggle as={Button} variant='link'>{newRole || role}</Dropdown.Toggle>
+                            <Dropdown.Menu >
+                                <Dropdown.Item eventKey={'ADMIN'}>ADMIN</Dropdown.Item>
+                                <Dropdown.Item eventKey={'ADMIN_EDIT'}>ADMIN_EDIT</Dropdown.Item>
+                                <Dropdown.Item eventKey={'USER'}>USER</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <div className="flex-row w-75" style={{ display: `${newRole === role ? 'none' : 'flex'}` }}  >
+                            <Button variant="success" onClick={() => UseService.changeRoleByNumber(user.number, newRole) & setRole(newRole)}>Подтвердить</Button>
+                            <Button variant="danger" onClick={() => setNewRole(role)}>Отменить</Button>
+                        </div>
+                    </Stack>
                 </Col>
 
             </Row>
@@ -49,4 +54,4 @@ const GivingRoleItem = ({ user }) => {
 
     )
 }
-export default GivingRoleItem;
+export default observer(GivingRoleItem);

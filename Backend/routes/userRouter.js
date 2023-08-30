@@ -23,6 +23,7 @@ router.put('/changeDefaultAddressByID', authMiddleware, userController.changeDef
 router.put('/changeNumberByID', authMiddleware, userController.changeNameById)
 router.put('/changeNameByID', authMiddleware, userController.changeNameById)
 router.put('/changeNumberAndNameByID', authMiddleware, userController.changeNumberAndNameById)
-router.put('changeAllByID', authMiddleware, userController.changeAllById)
+router.put('/changeAllByID', authMiddleware, userController.changeAllById)
+router.put('/changeRoleByNumber', checkRole(['ADMIN']), userController.changeRoleByNumber)
 
 module.exports = router

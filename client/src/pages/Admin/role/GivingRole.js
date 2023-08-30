@@ -12,7 +12,6 @@ function GivingRole({ users }) {
     const [name, setName] = useState('')
 
     const sortedUsers = useMemo(() => {
-        console.log('я отработал')
         if (roleSearch.includes('Любая роль')) {
             return users.filter(item => (item.number.includes(number) & item.name.includes(name)))
         }
@@ -29,7 +28,7 @@ function GivingRole({ users }) {
 
             <Stack direction="horizontal" gap={3}>
 
-                <Form.Control className="me-auto" placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value) & console.log(sortedUsers)} />
+                <Form.Control className="me-auto" placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value)} />
                 <Form.Control className="me-auto" placeholder="Введите имя" value={name} onChange={e => setName(e.target.value)} />
 
                 <Dropdown onSelect={e => setRoleSeacrh(e)}>
@@ -55,7 +54,6 @@ function GivingRole({ users }) {
 
             </div>
             <hr />
-            <button onClick={() => console.log(sortedUsers)}/>
         </div>
     )
 
