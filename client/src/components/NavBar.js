@@ -27,7 +27,7 @@ const NavBar = observer(({scrollUp, ...props}) => {
   })
   const findAdress = (adress) => {
     setAdress({
-      adressString: adress ? adress.slice(29) : 'Выберите адрес'
+      adressString: adress ? adress.slice(29).replace('улица', 'ул.') : 'Выберите адрес'
     })
   }
   
