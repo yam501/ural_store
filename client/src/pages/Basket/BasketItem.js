@@ -24,7 +24,19 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
         }
     }
 
-    
+    const changeCountByUser = (e) => {
+        if (countProduct > 0) {
+            setCountProduct(+(e.target.value));
+            product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct)
+            basketProduct.count = countProduct
+            props.countAproxSum();
+        } else {
+            setCountProduct(1);
+            product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct)
+            basketProduct.count = countProduct
+            props.countAproxSum();
+        }
+    }
 
     return (
 
@@ -46,7 +58,7 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
                         onClick={minus}>
                         -
                     </Button>
-                    <Form.Control value={countProduct} onChange={e => {setCountProduct(+(e.target.value)); props.countAproxSum(); }} className='basket_item_cost' />
+                    <Form.Control value={countProduct} disabled onChange={changeCountByUser} className='basket_item_cost' />
                     <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white'
                         onClick={plus}>
                         +

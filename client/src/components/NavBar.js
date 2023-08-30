@@ -30,6 +30,15 @@ const NavBar = observer(({scrollUp, ...props}) => {
       adressString: adress ? adress.slice(29) : 'Выберите адрес'
     })
   }
+  
+useEffect(() => {
+  if (show) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+})
+
   useEffect(() => {
     const handleResize = (event) => {
       setWidth(event.target.innerWidth);
@@ -52,7 +61,7 @@ const NavBar = observer(({scrollUp, ...props}) => {
         <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width} />}
-            <ModalWindowYMaps findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
+            <ModalWindowYMaps width={width} findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
             <AuthButton />
             <ShopBasketButton />
           </div>

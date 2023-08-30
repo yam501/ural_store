@@ -1,82 +1,73 @@
 .map_box {
     position: absolute;
-    display: none;
+    top: 0;
+    left: 0;
     z-index: 2;
     width: 100vw;
     height: 100vh;
-    top: 0;
-    left: 100vw;
-    transition: left 300ms ease-in, top 300ms ease-in, display 200ms ease-in-out;
-}
-
-
-.map_box.active {
-    display: block;
-    top: 0;
-    left: 0;
-    transition: left 300ms ease-in-out, top 300ms ease-in-out, background-color 10ms ease, display 200ms ease-in-out;
+    display: flex;
 }
 
 .overlay {
-    position: fixed;
-    background-color: rgba(0,0,0, .2);
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    background-color: rgba(0,0,0, .4);
+    z-index: 0;
 }
 
 .map {
     position: relative;
-    z-index: 3;
-    left: 49.1vw;
-    width: 50vw;
-    height: 100vh;
-    background-color: aliceblue !important;
-}
-@media(max-width: 999px) {
- .map {
-    left: 30vw;
-    width: 70vw;
- }   
+    z-index: 2;
+    display: flex;
+    margin: auto;
+    margin-top: 7vh;
+    width: 60vw;
+    height: 60vh;
+    background-color: #f6f6f6;
 }
 
-@media(max-width: 699px) {
-    .map {
-       left: 0;
-       width: 100vw;
-    }   
-   }
 .ymap_box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
     width: 100%;
     height: 100%;
 }
 
 .search_map_box  {
-    margin-left: 2%;
     width: 100%;
     height: 4vw;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-
 .search_map_content {
-    margin-right: 2%;
     width: 80%;
 }
 
 .search_content_input {
     width: 100%;
+    height: 40px;
+    border: 1px solid #F5376E;
+    border-radius: 29px 0 0 29px;
+    border-right: 0;
     outline: none;
-    outline-offset: none;
+    height: 2.1vw;
 }
 
-.search_input_results {
-    
-    width: 100%;
+.search_submit_btn {
+    color: #F5376E;
+    font-weight: 500;
+    font-size: calc(12px + 6 * (100vw/1903));
+    background-color: white;
+    box-sizing: border-box;
+    border: 1px solid #F5376E;
+    border-radius: 0 29px 29px 0;
+    width: 5vw;
+    height: 2.1vw;
+}
+
+.search_submit_btn:hover {
+    box-shadow: inset 1px 1px 5px 1px rgb(164, 164, 164);
 }

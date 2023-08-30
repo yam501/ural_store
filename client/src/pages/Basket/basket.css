@@ -110,6 +110,10 @@ body {
     font-weight: 500;
 }
 
+.basket_item_cost:disabled {
+    background-color: white;
+}
+
 .btn-minus {
     display: flex;
     justify-content: center;

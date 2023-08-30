@@ -42,20 +42,7 @@ const App = observer(() => {
   const [scrollUp, setScrollUp] = useState(false) 
   const [scrollPosition, setSrollPosition] = useState(document.documentElement.scrollTop)
   useEffect(() => {
-    window.addEventListener('scroll', (e) => {
-      if (scrollPosition > 0) {
-        setScrollUp(true)
-      }
-      
-      // console.log('up')
-    })
-    window.addEventListener('mousemove', () => {
-      setScrollUp(false)
-    })
-    window.addEventListener('scrollDown', () => {
-      setScrollUp(false)
-      // console.log('down')
-    })
+
   }, [])
   // basket.getBasketByUserID(user._user.id)
 

@@ -10,7 +10,7 @@ const GPS = ({ findAdress, ...props }) => {
     modules: ["geocode", "SuggestView"],
     defaultOptions: { suppressMapOpenBlock: true,  restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]]},
     width: '100%',
-    height: '100vh',
+    height: '60vh',
   };
 
   const geolocationOptions = {
@@ -24,13 +24,13 @@ const GPS = ({ findAdress, ...props }) => {
   const initialState = {
     title: "",
     center: [56.800084, 59.908718],
-    zoom: 13,
+    zoom: 5,
   };
 
   const [state, setState] = useState({
     title: '',
     center: [56.800084, 59.908718],
-    zoom: 13,
+    zoom: 17,
   });
 
   const [mapConstructor, setMapConstructor] = useState(null);
@@ -72,7 +72,7 @@ const GPS = ({ findAdress, ...props }) => {
         const selectedName = e.get("item").value;
         mapConstructor.geocode(selectedName).then((result) => {
           const newCoords = result.geoObjects.get(0).geometry.getCoordinates();
-          setState((prevState) => ({ ...prevState, center: newCoords }));
+          setState((prevState) => ({ ...prevState, center: newCoords, title: selectedName }));
         });
       });
     }
@@ -109,7 +109,7 @@ const GPS = ({ findAdress, ...props }) => {
     })
   }
   return (
-    <div className=''>
+    <div className='position-relative z-3'>
       <YMaps query={{
         lang: 'ru_RU',
         apikey: '8e2c6a37-a238-4ab8-80f7-eccef9472ef9',
@@ -117,13 +117,13 @@ const GPS = ({ findAdress, ...props }) => {
       }}>
         <div className='search_map_box'>
           <div className='search_map_content'>
-            <input className='search_content_input textarea' ref={searchRef} placeholder='Ваш адрес...' disabled={!mapConstructor} />
+            <input className='search_content_input p-2' ref={searchRef} placeholder='Ваш адрес...' disabled={!mapConstructor} />
             {/* <div>
                           {state.title}
                         </div> */}
           </div>
-          <button onClick={handleReset} className='search_submit_btn' disabled={!state.title.length}>
-            Ok
+          <button onClick={handleReset} className='search_submit_btn text-center' disabled={!state.title.length}>
+            OK
           </button>
         </div>
         <Map
@@ -135,7 +135,7 @@ const GPS = ({ findAdress, ...props }) => {
                     instanceRef={locationRef}
                     onLocationChange={locationchange}
                     {...geolocationOptions} />
-          <ZoomControl />
+          <ZoomControl/>
           <Placemark
             instanceRef={placemarkRef}
             geometry={state.center}
@@ -145,6 +145,15 @@ const GPS = ({ findAdress, ...props }) => {
               visible: true,
               preset: 'islands#redCircleDotIcon',
               draggable: true
+            }}
+          />
+           <Placemark
+            balloonContent = 'adsas'
+            geometry={[56.800817, 59.912877]}
+            options={{
+              useMapMarginInDragging: true,
+              preset: 'islands#blueDotIcon',
+              draggable: false,
             }}
           />
         </Map>

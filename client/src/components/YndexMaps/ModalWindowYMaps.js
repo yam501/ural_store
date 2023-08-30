@@ -4,15 +4,15 @@ import GPS from './GPS';
 import CloseButton from '../UI/CloseButton';
 import GpsIcon from './GpsIcon';
 
-const ModalWindowYMaps = ({findAdress, show, ...props}) => {
+const ModalWindowYMaps = ({findAdress, show, width, ...props}) => {
     const [adress, setAdress] = useState('')
     return (
         <div
-        className={`map_box ${show ? 'active' : ''}`}
+        className={`map_box ${show ? 'd-block' : 'd-none'}`}
         >
-        <div className={show ? 'd-block overlay' : 'd-none'}></div>
+        <div onClick={props.onClick} className={show ? 'd-block overlay' : 'd-none'}></div>
         <div  className='map'>
-            <CloseButton onClick={props.onClick}/>
+            {width < 600 && <CloseButton onClick={props.onClick}/>}
             {/* <div className='gps_form_box'>
                 <form className='gps_form'>
                     <label>Введите адрес доставки</label>
