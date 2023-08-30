@@ -286,6 +286,16 @@ class UserController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async changeRoleByNumber(req, res, next) {
+        try {
+            const {number, role} = req.body
+            const user = await User.update({role: role}, {where: {number: number}})
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 
