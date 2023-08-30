@@ -20,19 +20,20 @@ function OrderProduct({ append, orderProduct, ...props }) {
     }, [])
 
     return (
-        <div style={{ border: "1px solid green", marginBottom: "10px" }}>
+        <div >
             {
                 product === null ?
                     <div>Загрузка</div> :
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                        <div style={{display: "flex", alignItems: "center"}}>
-                            <Image alt="Картинка" style={{ height: "300px", width: "300px" }}
-                                src={process.env.REACT_APP_API_URL + product.image}></Image>
-                            <h2 style={{marginTop: "1rem", marginLeft: "1rem", alignSelf: "flex-start"}}>{product.name}</h2>
+                    <div className='order_product_card'>
+                        <div className='order_product_card_image_box'>
+                            <Image alt="Картинка" 
+                            className='w-100 h-100 order_product_card_image'
+                            src={process.env.REACT_APP_API_URL + product.image}></Image>
+                            <h2 className='order_product_name'>{product.name}</h2>
                         </div>
-                        <div>
-                            <div style={{ fontWeight: "500" }}>{product.costPerOne * orderProduct.count} ₽</div>
-                            <div>Количество: {orderProduct.count}</div>
+                        <div className='order_product_card_inform'>
+                            <div className='order_product_card_cost'>{product.costPerOne * orderProduct.count} ₽</div>
+                            <div className='order_product_card_count'>Количество: {orderProduct.count}</div>
                         </div>
                     </div>
             }

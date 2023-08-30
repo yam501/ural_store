@@ -3,7 +3,7 @@ import { Button, Container } from 'react-bootstrap';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import OrderProduct from './OrderProduct'
-
+import './order.css'
 
 // Страница заказа
 
@@ -47,21 +47,37 @@ function Order() {
   }, [order._order.id])
 
   return (
-    <Container style={{ margin: "0 auto" }} className='page_body'>
-      <h1 style={{ margin: "20px 0" }}>Ваш текущий заказ</h1>
+    <div className='page_body'>
+      <form>
+        <label>Ваш адрес</label>  
+        <input type='text'/>
+        <label>Ваш подъезд</label>  
+        <input type='text'/>
+        <label>Ваш этаж</label>  
+        <input type='text'/>
+        <label>Ваша квартира</label>  
+        <input type='text'/>
+      </form>
+      <div className='order_products_check'>
+      <h1 >Ваш текущий заказ</h1>
       {
         orderProductsDinamic.length === 0 ?
           <div>Вы еще не сформировали свой заказ *Кнопка "В корзину"*</div> :
-          <div style={{ border: "1px solid red", padding: "10px" }}>
+          <div>
             <div>
               {orderProductsDinamic.map(
                 orderProduct => <OrderProduct key={orderProduct.id} orderProduct={orderProduct} append={appendProduct}></OrderProduct>
               )}
             </div>
-            <Button onClick={confirmOrder}>Подтвердить заказ</Button>
+            <Button >Подтвердить заказ</Button>
           </div>
       }
-    </Container>
+      </div>
+      <button onClick={confirmOrder}>
+          Подтвердить заказ
+      </button>
+     
+    </div>
   );
 }
 
