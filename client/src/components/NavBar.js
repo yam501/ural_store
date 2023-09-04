@@ -27,7 +27,7 @@ const NavBar = observer(({scrollUp, ...props}) => {
   })
   const findAdress = (adress) => {
     setAdress({
-      adressString: adress ? adress.slice(29) : 'Выберите адрес'
+      adressString: adress && user._isAuth ? adress.slice(29).replace('улица', 'ул.') : 'Выберите адрес'
     })
   }
   
@@ -49,15 +49,15 @@ useEffect(() => {
     };
   })
   return (
-    <Navbar className={`d-flex navbar1 ${scrollUp ? 'fixed' : ''}`} >
-      <Container className='z-2 w-25'>
+    <Navbar className='d-flex justify-content-between align-items-center navbar1' >
+      <div className='ms-3 z-2 w-25'>
         <div className='d-flex align-items-center navBarBtnsBox'>
           <BurgerMenu adress={adress.adressString} onClick={() => setShow(true)} width={width} />
           <ShopLogo />
         </div>
-      </Container>
+      </div>
       {/* <SearchPanel/> */}
-      <Container className='container'>
+      <div className='me-2'>
         <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             {width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width} />}
@@ -66,7 +66,7 @@ useEffect(() => {
             <ShopBasketButton />
           </div>
         </Nav>
-      </Container>
+      </div>
     </Navbar>
   );
 });

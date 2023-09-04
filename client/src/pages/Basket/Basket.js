@@ -5,8 +5,8 @@ import BasketItem from './BasketItem';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import { Container, Spinner } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import { STORE_ROUTE } from '../../utils/consts';
+import { NavLink, Navigate, redirect, useNavigate } from 'react-router-dom';
+import { ORDER_ROUTE, STORE_ROUTE } from '../../utils/consts';
 // Страница корзины 
 
 function Basket() {
@@ -19,7 +19,7 @@ function Basket() {
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
   const [aproxSum, setAproxSum] = useState(0)
-
+  const navigate = useNavigate()
   async function transferToOrder() {
     if (JSON.stringify(order._order) === "{}") {
       await order.createOrder(user._user.id, user._user.defaultAddress, basket.basket.aproxSum, false)
@@ -30,7 +30,8 @@ function Basket() {
     })
     basketProduct.deleteAllBasketProductsByBasketID(basket._baskets.id)
     setBasketProducts([])
-  }
+    navigate(ORDER_ROUTE)
+    }
 
   function sortById(id) {
     return (a, b) => a[id] > b[id] ? 1 : -1;
@@ -91,12 +92,12 @@ function Basket() {
             Сумма заказа: {aproxSum} ₽
           </div>
           <div className='w-25'>
-            <Button
-              className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'
-              onClick={transferToOrder}
-            >
-              Заказать
-            </Button>
+              <Button
+                className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'
+                onClick={transferToOrder}
+              >
+                Заказать
+              </Button>
           </div>
         </div>
       }

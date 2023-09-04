@@ -12,7 +12,7 @@ const ModalWindowYMaps = ({findAdress, show, width, ...props}) => {
         >
         <div onClick={props.onClick} className={show ? 'd-block overlay' : 'd-none'}></div>
         <div  className='map'>
-            {width < 600 && <CloseButton onClick={props.onClick}/>}
+            
             {/* <div className='gps_form_box'>
                 <form className='gps_form'>
                     <label>Введите адрес доставки</label>
@@ -24,7 +24,7 @@ const ModalWindowYMaps = ({findAdress, show, width, ...props}) => {
                 </form>
             </div> */}
             <div className='ymap_box'>
-                <GPS onClick={props.onClick} findAdress={findAdress}/>
+                <GPS onClick={props.onClick} width={width} show={show} findAdress={findAdress}/>
             </div>
         </div>
         </div>

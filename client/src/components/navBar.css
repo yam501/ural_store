@@ -61,7 +61,7 @@
 }
 
 .adressBox, .adressBox:active {
-    width: 10vw;
+    width: fit-content;
     height: 2.6vw;
     background-color: #ff709a !important;
     opacity: 70%;
@@ -69,7 +69,7 @@
 
 
 .adressBox:hover {
-    width: 10vw;
+    width: fit-content;
     height: 2.6vw;
     background-color: #ff709a;
     opacity: 70%;
@@ -83,12 +83,12 @@
 .adressBoxText {
     font-size:calc(11px + 5 * (100vw/1903));
     font-family: 'Montserrat';
-    padding-left: 4%;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
     color: #fff;
     opacity: 70%;
+    margin-left: 10px;
 }
 
 .adressBoxSvgIcon {
@@ -96,7 +96,7 @@
 }
 
 .adressBoxContent {
-    padding-left: 10%;
+    padding-left: 5%;
 }
 
 

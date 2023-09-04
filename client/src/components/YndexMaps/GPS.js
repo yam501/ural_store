@@ -10,7 +10,7 @@ const GPS = ({ findAdress, ...props }) => {
     modules: ["geocode", "SuggestView"],
     defaultOptions: { suppressMapOpenBlock: true,  restrictMapArea: [[56.830569, 59.852335], [56.755036, 59.999630]]},
     width: '100%',
-    height: '60vh',
+    height: props.width < 800 ? '100vh' : '60vh',
   };
 
   const geolocationOptions = {
@@ -78,6 +78,8 @@ const GPS = ({ findAdress, ...props }) => {
     }
   }, [mapConstructor]);
 
+
+
   useEffect(() => {
     findAdress(defaultAddress)
   }, [defaultAddress])
@@ -108,6 +110,8 @@ const GPS = ({ findAdress, ...props }) => {
       }
     })
   }
+
+
   return (
     <div className='position-relative z-3'>
       <YMaps query={{
@@ -122,9 +126,10 @@ const GPS = ({ findAdress, ...props }) => {
                           {state.title}
                         </div> */}
           </div>
-          <button onClick={handleReset} className='search_submit_btn text-center' disabled={!state.title.length}>
+          <button onClick={handleReset}  className='me-1 search_submit_btn text-center' disabled={!state.title.length}>
             OK
           </button>
+          {props.width < 900 && <button className='close_btn text-center' onClick={props.onClick}>Зкарыть</button>}
         </div>
         <Map
           {...mapOptions}
