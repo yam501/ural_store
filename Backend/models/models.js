@@ -42,7 +42,8 @@ const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false, unique: true },
     address: { type: DataTypes.STRING, allowNull: false },
-    aproxSum: { type: DataTypes.DOUBLE, allowNull: false }
+    aproxSum: { type: DataTypes.DOUBLE, allowNull: false },
+    onConfirm: {type: DataTypes.BOOLEAN, allowNull: false}
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {

@@ -18,10 +18,13 @@ function Order() {
   const [productsToConfirm, setProductsToConfirm] = useState([])
 
   const appendProduct = (product, assortmentId) => {
-    productsToConfirm.push({...product, assortmentId: assortmentId})
+    productsToConfirm.push({ ...product, assortmentId: assortmentId })
   }
 
   async function createOrderProducts() {
+    if (JSON.stringify(user._user) !== "{}") {
+      order.getOrderByUserId(user._user.id)
+    }
     if (JSON.stringify(order._order) !== "{}") {
       await orderProducts.getAllOrderProductsByOrderId(order._order.id)
       setOrderProductsDinamic(orderProducts._orderProducts ? orderProducts._orderProducts : [])
@@ -30,16 +33,17 @@ function Order() {
 
   async function createComplitedOrderProduct(orderProduct, complitedOrder) {
     await complitedOrderProducts.createComplitedOrderProducts(complitedOrder.id, orderProduct.assortmentId, orderProduct.count)
-  } 
+  }
 
   async function confirmOrder() {
-    const complitedOrder = await complitedOrders.createComplitedOrder(user._user.id, user._user.defaultAddress, order._order.aproxSum,
-      order._order.updatedAt, order._order.updatedAt)
-    productsToConfirm.map((orderProduct) => {
-      createComplitedOrderProduct(orderProduct, complitedOrder)
-    })
-    orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
-    setOrderProductsDinamic([])
+    // const complitedOrder = await complitedOrders.createComplitedOrder(user._user.id, user._user.defaultAddress, order._order.aproxSum,
+    //   order._order.updatedAt, order._order.updatedAt)
+    // productsToConfirm.map((orderProduct) => {
+    //   createComplitedOrderProduct(orderProduct, complitedOrder)
+    // })
+    // orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
+    // setOrderProductsDinamic([])
+    order.changeOnConfirmByOrderId(order._order.id, true)
   }
 
   useEffect(() => {

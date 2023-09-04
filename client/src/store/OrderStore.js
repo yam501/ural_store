@@ -11,8 +11,8 @@ export default class OrderStore {
         this._order = order
     }
 
-    async createOrder(userId, address, aproxSum) {
-        const responce = await OrderService.createOrder(userId, address, aproxSum)
+    async createOrder(userId, address, aproxSum, onConfirm) {
+        const responce = await OrderService.createOrder(userId, address, aproxSum, onConfirm)
         this.setOrder(responce.data)
     }
 
@@ -33,6 +33,11 @@ export default class OrderStore {
 
     async changeAddressByOrderId(id, address) {
         await OrderService.changeAddressByOrderId(id, address)
+        this.getOrderByOrderId(id)
+    }
+
+    async changeOnConfirmByOrderId(id, onConfirm) {
+        await OrderService.changeOnConfirmByOrderId(id, onConfirm)
         this.getOrderByOrderId(id)
     }
 
