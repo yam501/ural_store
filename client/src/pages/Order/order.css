@@ -2,7 +2,7 @@
     box-sizing: border-box;
     width: 50%;
     height: 100%;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
 }
 
 .order_product_card {

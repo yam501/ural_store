@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AdressBox from '../AdressButton/AdressBox';
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -7,8 +7,10 @@ import { NavLink } from 'react-router-dom';
 import { ABOUTUS_ROUTE, ADMIN_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, TERMS_ROUTE } from '../../utils/consts';
 import Container from 'react-bootstrap/esm/Container';
 import FeedB from '../FeedB';
+import { Context } from '../..';
 
 const BurgerMenu = ({width, adress, onClick, ...props}) => {
+    const {user} = useContext(Context)
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleShow = () => setOpen(true);
@@ -27,9 +29,9 @@ const BurgerMenu = ({width, adress, onClick, ...props}) => {
           </div>
           <Offcanvas className='border-0 menuBox' show={open} onHide={handleClose}>
             <Container className='mt-5 pt-4'>
-              {width <= 1299 && <div className='text-center text-wrap menuAdressText' onClick={onClick}>{adress}</div>}
+              {user._isAuth && width <= 1299 && <div className='text-center text-wrap menuAdressText' onClick={onClick}>{adress}</div>}
             </Container>
-            {width <= 1299 && <div className='mt-4 sepLineMenu'></div>}
+            {user._isAuth && width <= 1299 && <div className='mt-4 sepLineMenu'></div>}
             <Offcanvas.Body className='menuBodyBox' >
             <Container className='container d-flex flex-column justify-content-between menuNav'>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={ABOUTUS_ROUTE}>О нас</NavLink></div>

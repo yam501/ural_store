@@ -13,11 +13,28 @@ const Accept = observer((props) => {
     const { user } = useContext(Context)
     const [time, setTime] = useState(30);
     const [code, setCode] = useState('');
+    const sendCodeAgain = () => {
+        user.sendCode(props.number)
+    }
     const putAccept = () => {
         user.checkCode(props.number, code);
     }
 
+    useEffect(() => {
+        if (props.show) {
+            let timeCount = time;
+            const timer = setInterval(() => {
+                if (timeCount < 0) {
+                    clearInterval(timer)
+                    timeCount = 0;
+                    setTime(0)
+                }
+                timeCount = timeCount - 1;
+                setTime(timeCount)
 
+            }, 1000)
+        }
+    }, [time])
 
     return (
         <Modal show={props.show}>
@@ -35,8 +52,8 @@ const Accept = observer((props) => {
                         onChange={e => setCode(e.target.value)}
                     />
                 </Form.Group>
-                <div className='d-flex justify-content-center align-items-center me-auto ms-auto mb-2 mt-1 timer' >
-                    {time}
+                <div className='timer' >
+                    {time <= 0 ? <button onClick={sendCodeAgain} className='resend_code_button'>Отправить код снова</button> : time}
                 </div>
                 <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
                     Если код не пришел, попробуйте снова через 30 секунд.
