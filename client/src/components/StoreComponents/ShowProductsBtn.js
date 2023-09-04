@@ -22,7 +22,7 @@ const ShowProductsBtn = ({ type }) => {
                 mountOnEnter
                 unmountOnExit
             >
-                {state => <ProductList state={state} product={productsList} />
+                {state => <ProductList state={state} productShow={productShow}  type={type} product={productsList} />
                 }
             </Transition>
         </Nav>

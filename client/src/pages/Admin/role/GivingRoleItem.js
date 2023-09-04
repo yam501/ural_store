@@ -41,7 +41,7 @@ const GivingRoleItem = ({ user }) => {
                             </Dropdown.Menu>
                         </Dropdown>
                         <div className="flex-row w-75" style={{ display: `${newRole === role ? 'none' : 'flex'}` }}  >
-                            <Button variant="success" onClick={() => UseService.changeRoleByNumber(user.number, newRole) & setRole(newRole)}>Подтвердить</Button>
+                            <Button className="me-1" variant="success" onClick={() => UseService.changeRoleByNumber(user.number, newRole) & setRole(newRole)}>Подтвердить</Button>
                             <Button variant="danger" onClick={() => setNewRole(role)}>Отменить</Button>
                         </div>
                     </Stack>

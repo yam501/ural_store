@@ -94,11 +94,11 @@ const EditModal = (props) => {
                             <Dropdown onSelect={e => isTypeChanged(e)}>
                                 <Dropdown.Toggle className='assortment-switch' > {type} </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item eventKey={'Мясо'}>Мясо</Dropdown.Item>
-                                    <Dropdown.Item eventKey={'Салаты'}>Салаты</Dropdown.Item>
-                                    <Dropdown.Item eventKey={'Овощи'}>Овощи</Dropdown.Item>
-                                    <Dropdown.Item eventKey={'Выпечка'}>Выпечка</Dropdown.Item>
-                                    <Dropdown.Item eventKey={'Молочка'}>Молочка</Dropdown.Item>
+                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Мясо'}>Мясо</Dropdown.Item>
+                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Салаты'}>Салаты</Dropdown.Item>
+                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Овощи'}>Овощи</Dropdown.Item>
+                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Выпечка'}>Выпечка</Dropdown.Item>
+                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Молочка'}>Молочка</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
@@ -106,13 +106,13 @@ const EditModal = (props) => {
                     <div>
                         Название:
                         <div>
-                            <input value={name} className='w-100 input' onChange={e => isNameChanged(e.target.value)} />
+                            <input value={name} className='w-100 textarea' onChange={e => isNameChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
                         Цена за штуку:
                         <div>
-                            <input value={costPerOne} className='w-100 input' type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
+                            <input value={costPerOne} className='w-100 textarea' type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
