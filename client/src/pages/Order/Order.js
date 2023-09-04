@@ -84,7 +84,7 @@ function Order() {
         <form className='form_check_order'>
           <div className='form_check_order_section'>
             <label>Ваш адрес</label>  
-            <input type='text' value={dataOfOrder.adress.slice(29)} onChange={e => setDataOfOrder({...dataOfOrder, adress: e.target.value})} className='form_check_order_section_input' placeholder='Номер вашего подъезда'/>
+            <input type='text' value={dataOfOrder.adress ? dataOfOrder.adress.slice(29) : dataOfOrder.adress} onChange={e => setDataOfOrder({...dataOfOrder, adress: e.target.value})} className='form_check_order_section_input' placeholder='Выберите адрес на карте'/>
           </div>
           <div className='form_check_order_section'>
             <label>Ваш подъезд</label>  
