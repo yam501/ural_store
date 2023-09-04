@@ -1,20 +1,123 @@
 .order_products_check {
     box-sizing: border-box;
-    width: 40vw;
-    height: fit-content;
+    width: 50%;
+    height: 100%;
+    /* overflow-y: scroll; */
 }
 
 .order_product_card {
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 20vh;
-    border: 1px solid teal;
-
+    height: 12vh;
 }
 
 .order_product_card_image_box {
+    display: flex;
     height: 100%;
-    width: 30%;
+    width: 25%;
+}
+
+.order_product_name {
+    align-self: center;
+    font-size: calc(14px + 8 * (100vw/1903));
+}
+
+.order_page_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.page_form_check_box {
+    display: flex;
+    justify-self: center;
+    justify-content: space-between;
+    width: 60vw;
+    height: 50vh;
+}
+
+.form_check_order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.form_check_order_section {
+    font-size: calc(14px + 6 * (100vw/1903));
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    height: 15%;
+}
+
+.form_check_order_section_input {
+    padding-left: 2%;
+    border: 1px solid #F5376E;
+    border-radius: 15px;
+}
+
+.order_products_accept_btn {
+    background-color: #F5376E;
+    color: white;
+    border: none;
+    border-radius: 29px;
+    height: 10%;
+    width: 35%;
+    transition: all 300ms ease-in-out;
+}
+
+.order_products_accept_btn:disabled, .order_products_accept_btn:disabled:hover {
+    background-color: #f5376d8e;
+    color: white;
+}
+
+.order_products_accept_btn:hover {
+    background-color: #f3f3f3;
+    color: #F5376E;
+    transition: all 300ms ease-in-out;
+}
+
+.order_products_check_btns {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.order_products_check_submit_btn {
+    background-color: #F5376E;
+    color: white;
+    border: none;
+    border-radius: 29px;
+    height: 2vw;
+    width: 25%;
+    transition: all 300ms ease-in-out;
+}
+
+.order_products_check_error_btn {
+    background-color: #ff709a;
+    color: white;
+    border: none;
+    border-radius: 29px;
+    height: 2vw;
+    width: 35%;
+    transition: all 300ms ease-in-out;
+}
+
+.order_products_check_box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
