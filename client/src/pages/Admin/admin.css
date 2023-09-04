@@ -5,6 +5,7 @@
 
 .admin-page{
     background-color: #f3f3f3;
+    border-radius: 17px;
 }
 
 .assortment-switch, .assortment-switch:hover, .assortment-switch:active{
@@ -36,4 +37,13 @@
 }
 .addAssortment:active{
     background-color: #962A4A !important;
+}
+
+.givingRole-dropdown{
+    text-decoration: none;
+    color: black;
+}
+
+.givingRole-dropdown:hover{
+    color: black !important;
 }

@@ -36,11 +36,11 @@ const AssortmentItem = (props) => {
           {props.assortment.costPerOne}
         </Col>
 
-        <Col className='border-1 p-2'>
+        <Col className='p-2'>
           <Button className='w-100' size='sm' variant="secondary" onClick={() => setShowModal(true)} >Изменить</Button>
         </Col>
 
-        <Col className='border-1 p-2'>
+        <Col className='p-2'>
           <Button className='w-100' size='sm' variant="danger" onClick={delButton} >Удалить</Button>
         </Col>
       </Row>

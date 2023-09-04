@@ -33,11 +33,11 @@ const GivingRoleItem = ({ user }) => {
                 <Col className='border-1 p-2'>
                     <Stack direction="horizontal" gap={3}>
                         <Dropdown onSelect={e => setNewRole(e)}>
-                            <Dropdown.Toggle as={Button} variant='link'>{newRole || role}</Dropdown.Toggle>
+                            <Dropdown.Toggle className="givingRole-dropdown"  as={Button} variant='link'>{newRole || role}</Dropdown.Toggle>
                             <Dropdown.Menu >
-                                <Dropdown.Item eventKey={'ADMIN'}>ADMIN</Dropdown.Item>
-                                <Dropdown.Item eventKey={'ADMIN_EDIT'}>ADMIN_EDIT</Dropdown.Item>
-                                <Dropdown.Item eventKey={'USER'}>USER</Dropdown.Item>
+                                <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN'}>ADMIN</Dropdown.Item>
+                                <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN_EDIT'}>ADMIN_EDIT</Dropdown.Item>
+                                <Dropdown.Item className="assortment-switch-item" eventKey={'USER'}>USER</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         <div className="flex-row w-75" style={{ display: `${newRole === role ? 'none' : 'flex'}` }}  >

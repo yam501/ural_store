@@ -45,7 +45,7 @@ function Admin() {
 
 
   return (
-    <div className='container page_body admin-page'>
+    <div className='container page_body admin-page mt-3 mb-3'>
       <Tabs
         as={'div'}
         defaultActiveKey="CreateAssortment"

@@ -92,7 +92,7 @@ const EditModal = (props) => {
                         Тип:
                         <div>
                             <Dropdown onSelect={e => isTypeChanged(e)}>
-                                <Dropdown.Toggle > {type} </Dropdown.Toggle>
+                                <Dropdown.Toggle className='assortment-switch' > {type} </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item eventKey={'Мясо'}>Мясо</Dropdown.Item>
                                     <Dropdown.Item eventKey={'Салаты'}>Салаты</Dropdown.Item>
@@ -106,19 +106,19 @@ const EditModal = (props) => {
                     <div>
                         Название:
                         <div>
-                            <input value={name} className='w-100' onChange={e => isNameChanged(e.target.value)} />
+                            <input value={name} className='w-100 input' onChange={e => isNameChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
                         Цена за штуку:
                         <div>
-                            <input value={costPerOne} className='w-100' type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
+                            <input value={costPerOne} className='w-100 input' type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
                         Состав:
                         <div>
-                            <textarea className='w-100' style={{ minHeight: '200px' }} value={composition} onChange={e => isCompositionChanged(e.target.value)} />
+                            <textarea className='w-100 textarea' style={{ minHeight: '200px' }} value={composition} onChange={e => isCompositionChanged(e.target.value)} />
                         </div>
                     </div>
                     <div>
@@ -133,8 +133,8 @@ const EditModal = (props) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button type='submit' onClick={confirmEdit}>Подтвердить изменения</Button>
-                <Button onClick={props.onHide}>Закрыть</Button>
+                <Button className='accept-change' type='submit' onClick={confirmEdit}>Подтвердить изменения</Button>
+                <Button className='btn-danger' onClick={props.onHide}>Закрыть</Button>
             </Modal.Footer>
         </Modal>
     );

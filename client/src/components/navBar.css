@@ -370,6 +370,13 @@
 
 .formPhone, .formPassword {
     min-height: 1.6vw;
+    border: 1px gray !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.formPhone, .formPassword{
+    border: #962a4a 1px solid !important;
 }
 
 .formAuthBtn {

@@ -46,7 +46,7 @@ const AuthWindow = (props) => {
                 {isLogin ? <span>Вход</span> : <span>Регистрация</span>}
             </Container>
             <Form>
-                <Form.Group className="container formPhoneBox mt-2 mb-2">
+                <Form.Group className="container formPhoneBox  mt-2 mb-2">
                     <Form.Label className=''>Телефон</Form.Label>
                     <Form.Control
                         className='rounded-4 formPhone'
