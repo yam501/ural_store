@@ -31,7 +31,6 @@ class UserController {
             await tokenController.saveToken(userDto.id, tokens.refreshToken)
 
             await Basket.create({ userId: user.id, aproxSum: 0 })
-            await Order.create({ userId: user.id, address: "", aproxSum: 0 })
 
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
             return res.json({ ...tokens, user: { ...userDto } })

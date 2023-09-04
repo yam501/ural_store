@@ -27,7 +27,6 @@ const App = observer(() => {
     await user.checkAuth()
     if (user._user.isActivated) {
       basket.getBasketByUserID(user._user.id)
-      order.getOrderByUserId(user._user.id)
     }
   }
 

@@ -8,7 +8,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import OwlCarousel from 'react-owl-carousel';
 
-const ProductList = ({product, state}) => {
+const ProductList = ({product, state, type, productShow}) => {
 
     const options = {
         responsive: {
@@ -76,7 +76,7 @@ const ProductList = ({product, state}) => {
         >
              
             {product.map(product =>
-                <ProductItem key={product.type} id={product.id} product={product} />)}
+                <ProductItem productShow={productShow} type={type} key={product.type} id={product.id} product={product} />)}
         </OwlCarousel>
         </div>
     );

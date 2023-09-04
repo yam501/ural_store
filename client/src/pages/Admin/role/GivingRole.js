@@ -26,18 +26,18 @@ function GivingRole({ users }) {
                 Изменение роли пользователя
             </div>
 
-            <Stack direction="horizontal" gap={3}>
-
-                <Form.Control className="me-auto" placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value)} />
-                <Form.Control className="me-auto" placeholder="Введите имя" value={name} onChange={e => setName(e.target.value)} />
-
-                <Dropdown onSelect={e => setRoleSeacrh(e)}>
-                    <Dropdown.Toggle  >{roleSearch} </Dropdown.Toggle>
+            <Stack direction="horizontal d-flex justify-content-between"  gap={3}>
+                
+                <Form.Control className="mt-2 textarea w-25"  placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value)} />
+                <Form.Control className="mt-2 textarea w-25" placeholder="Введите имя" value={name} onChange={e => setName(e.target.value)} />
+                
+                <Dropdown className="mt-2" onSelect={e => setRoleSeacrh(e)}>
+                    <Dropdown.Toggle className="assortment-switch"  >{roleSearch} </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item eventKey={'Любая роль'} >Любая роль</Dropdown.Item>
-                        <Dropdown.Item eventKey={'ADMIN'} >ADMIN</Dropdown.Item>
-                        <Dropdown.Item eventKey={'ADMIN_EDIT'} >ADMIN_EDIT</Dropdown.Item>
-                        <Dropdown.Item eventKey={'USER'} >USER</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Любая роль'} >Любая роль</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN'} >ADMIN</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN_EDIT'} >ADMIN_EDIT</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'USER'} >USER</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>

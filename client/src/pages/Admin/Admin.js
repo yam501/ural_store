@@ -12,6 +12,7 @@ import { Context } from '../..';
 import "./admin.css"
 import "./assortment.css"
 import { observer } from 'mobx-react-lite';
+import ConfirmOrders from './confirmOrders/ConfirmOrders';
 
 function Admin() {
   const { assortment, feedback, use } = useContext(Context)
@@ -45,7 +46,7 @@ function Admin() {
 
 
   return (
-    <div className='container page_body admin-page'>
+    <div className='container page_body admin-page mt-3 mb-3'>
       <Tabs
         as={'div'}
         defaultActiveKey="CreateAssortment"
@@ -58,7 +59,8 @@ function Admin() {
           <EditAssortment products={products} onClick={getAllProducts} />
         </Tab>
 
-        <Tab eventKey="CompliteOrders" title="Подтвердить заказ" >
+        <Tab eventKey="ConfirmOrders" title="Подтвердить заказ" >
+          <ConfirmOrders></ConfirmOrders>
         </Tab>
 
         <Tab eventKey="Feedbacks" title="Отзывы" >

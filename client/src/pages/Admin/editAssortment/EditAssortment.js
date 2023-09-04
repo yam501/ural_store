@@ -14,17 +14,17 @@ function EditAssortment({ products, onClick }) {
 
     const [type, setType] = useState('Любой тип')
     const [name, setName] = useState('')
-    
 
-    const searchedProducts = useMemo(() =>{
+
+    const searchedProducts = useMemo(() => {
         if (type === 'Любой тип') return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
         return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type))
     },
-    [products, name, type]
+        [products, name, type]
 
     )
-// products
-// products.filter(item => item.name.includes(name))
+    // products
+    // products.filter(item => item.name.includes(name))
 
     return (
 
@@ -51,17 +51,24 @@ function EditAssortment({ products, onClick }) {
                 </Dropdown>
             </Stack>
 
+            <hr/>
+            <Row className='p-1 m-1'>
+                <Col className="assortment-edit-header">Название</Col>
+                <Col className="assortment-edit-header">Отдел</Col>
+                <Col className="assortment-edit-header">Цена</Col>
+                <Col></Col>
+                <Col></Col>
+            </Row>
+                <div className="max-size-window mt-2 mb-2 w-100">
+                    {
+                        searchedProducts.map(item =>
 
-            <div className="max-size-window border-1 m-2 w-100">
-                {
-                    searchedProducts.map(item =>
+                            <AssortmentItem key={item.name} assortment={item} onClick={onClick} />
+                        )
+                    }
 
-                        <AssortmentItem key={item.name} assortment={item} onClick={onClick}/>
-                    )
-                }
-
-            </div>
-
+                </div>
+            <hr/>
 
         </div>
 

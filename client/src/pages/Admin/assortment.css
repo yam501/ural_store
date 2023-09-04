@@ -1,19 +1,31 @@
 .max-size-window{
 
-    max-height: 500px; 
+    min-height: 600px; 
     /* min-height: 100px; */
     overflow-y: scroll;
     overflow-x: hidden;
+    border: 0;
 }
 
 
 .border-1{
-    border: 3px solid #2a2f233b !important;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: white;
+    margin: 2px;
+    border-radius: 7px;
 }
+
 
 .dropdown-select:invalid {
     box-shadow: 0 0 5px 1px red;
 }
 .dropdown-select:valid {
     box-shadow: 0 0 5px 1px green;
+}
+
+
+.assortment-edit-header{
+    display: flex;
 }
