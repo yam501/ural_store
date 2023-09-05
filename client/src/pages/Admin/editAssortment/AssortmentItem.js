@@ -28,7 +28,7 @@ const AssortmentItem = (props) => {
           {props.assortment.name}
         </Col>
 
-        <Col className='border-1 p-2'>
+        <Col className='border-2 p-2'>
           {props.assortment.type}
         </Col>
 
