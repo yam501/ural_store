@@ -32,7 +32,7 @@ function Order() {
     if (JSON.stringify(user._user) !== "{}") {
       order.getOrderByUserId(user._user.id)
     }
-    if (JSON.stringify(order._order) !== "{}") {
+    if (JSON.stringify(order._order) !== "{}" && order._order !== null) {
       await orderProducts.getAllOrderProductsByOrderId(order._order.id)
       setOrderProductsDinamic(orderProducts._orderProducts ? orderProducts._orderProducts : [])
     }
@@ -74,7 +74,7 @@ function Order() {
   useEffect(() => {
     createOrderProducts()
     getDefaultAdress()
-  }, [order._order.id, user._user.defaultAddress])
+  }, [order._order, user._user.defaultAddress])
 
 
   return (

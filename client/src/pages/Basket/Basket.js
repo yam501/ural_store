@@ -21,8 +21,12 @@ function Basket() {
   const [aproxSum, setAproxSum] = useState(0)
   const navigate = useNavigate()
   async function transferToOrder() {
-    if (JSON.stringify(order._order) === "{}") {
-      await order.createOrder(user._user.id, user._user.defaultAddress, basket.basket.aproxSum, false)
+    if (JSON.stringify(order._order) === "{}" || order._order === null) {
+      await order.getOrderByUserId(user._user.id)
+      if (order._order === null) {
+        await order.createOrder(user._user.id, user._user.defaultAddress, basket.basket.aproxSum, false)
+      }
+      
     }
     await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
     basketProduct._basketProducts.map( (basketItem) => {

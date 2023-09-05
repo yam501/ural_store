@@ -15,7 +15,7 @@ class OrderController {
 
     async getAll(req, res, next) {
         try {
-            const orders = await Order.findAll()
+            const orders = await Order.findAll({where: {onConfirm: true}})
             return res.json(orders)
         } catch (e) {
             next(ApiError.badRequest(e.message))
