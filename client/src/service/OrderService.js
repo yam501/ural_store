@@ -27,6 +27,10 @@ const OrderService = {
 
     async changeOnConfirmByOrderId(id, onConfirm) {
         return new Promise((resolve) => resolve($authHost.put('api/order/changeOnConfirmByOrderID', {id, onConfirm})))
+    },
+
+    async changeOrderProductsCountByOrderId(id, orderProductsCount) {
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOrderProductsCountByOrderID', {id, orderProductsCount})))
     }
 }
 

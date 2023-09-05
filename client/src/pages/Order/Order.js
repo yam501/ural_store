@@ -15,56 +15,37 @@ function Order() {
   const { basket } = useContext(Context)
   const { basketProduct } = useContext(Context)
   const { orderProducts } = useContext(Context)
-  const { complitedOrders } = useContext(Context)
-  const { complitedOrderProducts } = useContext(Context)
   const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
   const [productsToConfirm, setProductsToConfirm] = useState([])
-  const [productsToEdit, setProductsToEdit] = useState([])
   const [dataOfOrder, setDataOfOrder] = useState({adress: '', enter: '', floor: '', flat: ''})
   const [orderIsOk, setOrderIsOk] = useState(false)
   const navigate = useNavigate()
-  const appendProduct = (product, assortmentId, productToEdit, count) => {
+
+  const appendProduct = (product, assortmentId) => {
     productsToConfirm.push({...product, assortmentId: assortmentId})
-    productsToEdit.push({...productToEdit, count: count})
   }
 
-  async function createOrderProducts() {
+  async function createOrderProductsFromBasketProducts() {
     if (JSON.stringify(user._user) !== "{}") {
       order.getOrderByUserId(user._user.id)
     }
     if (JSON.stringify(order._order) !== "{}" && order._order !== null) {
-      await orderProducts.getAllOrderProductsByOrderId(order._order.id)
-      setOrderProductsDinamic(orderProducts._orderProducts ? orderProducts._orderProducts : [])
+      setOrderProductsDinamic(basketProduct._basketProducts ? basketProduct._basketProducts : [])
     }
   }
 
   async function editOrder() {
-    await basket.getBasketByUserID(user._user.id)
-    productsToEdit.map(product => {
-        if (product.available) {
-            basketProduct.createBasketProduct(basket.basket.id, product.id, product.costPerOne, product.count, true)
-            console.log(1)
-        }
-    }
-    )
-    orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
-    setOrderProductsDinamic([])
-    console.log(2)
     navigate(BASKET_ROUTE)
 }
-  async function createComplitedOrderProduct(orderProduct, complitedOrder) {
-    await complitedOrderProducts.createComplitedOrderProducts(complitedOrder.id, orderProduct.assortmentId, orderProduct.count)
-  }
 
   async function confirmOrder() {
-    // const complitedOrder = await complitedOrders.createComplitedOrder(user._user.id, user._user.defaultAddress, order._order.aproxSum,
-    //   order._order.updatedAt, order._order.updatedAt)
-    // productsToConfirm.map((orderProduct) => {
-    //   createComplitedOrderProduct(orderProduct, complitedOrder)
-    // })
-    // orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
-    // setOrderProductsDinamic([])
+    await order.changeOrderProductsCountByOrderId(order._order.id, orderProductsDinamic.length)
+    productsToConfirm.map(orderProduct => {
+      orderProducts.createOrderProduct(order._order.id, orderProduct.assortmentId, orderProduct.count, orderProduct.moreOrLess)
+    })
     order.changeOnConfirmByOrderId(order._order.id, true)
+    basketProduct.deleteAllBasketProductsByBasketID(basket.basket.id)
+    setOrderProductsDinamic([])
   }
 
   const getDefaultAdress = () => {
@@ -72,9 +53,9 @@ function Order() {
   }
 
   useEffect(() => {
-    createOrderProducts()
+    createOrderProductsFromBasketProducts()
     getDefaultAdress()
-  }, [order._order, user._user.defaultAddress])
+  }, [order._order.id, user._user.defaultAddress])
 
 
   return (

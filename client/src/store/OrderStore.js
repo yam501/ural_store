@@ -41,6 +41,11 @@ export default class OrderStore {
         this.getOrderByOrderId(id)
     }
 
+    async changeOrderProductsCountByOrderId(id, orderProductsCount) {
+        await OrderService.changeOrderProductsCountByOrderId(id, orderProductsCount)
+        this.getOrderByOrderId(id)
+    }
+
     get order() {
         return this._order
     }

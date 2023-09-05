@@ -14,5 +14,6 @@ router.post('/getAll', authMiddleware, activatedMiddleware, checkRole(['ADMIN', 
 router.put('/changeAddressByUserID', authMiddleware, activatedMiddleware, orderController.changeAddressByUserID)
 router.put('/changeAddressByOrderID', authMiddleware, activatedMiddleware, orderController.changeAddressByOrderID)
 router.put('/changeOnConfirmByOrderID', authMiddleware, activatedMiddleware, orderController.changeOnConfirmByOrderID)
+router.put('/changeOrderProductsCountByOrderID', authMiddleware, activatedMiddleware, orderController.changeOrderProductsCountByOrderID)
 
 module.exports = router
