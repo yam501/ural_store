@@ -26,7 +26,7 @@ function GivingRole({ users }) {
                 Изменение роли пользователя
             </div>
 
-            <Stack direction="horizontal d-flex justify-content-between"  gap={3}>
+            <Stack direction="horizontal"  gap={3}>
                 
                 <Form.Control className="mt-2 textarea w-25"  placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value)} />
                 <Form.Control className="mt-2 textarea w-25" placeholder="Введите имя" value={name} onChange={e => setName(e.target.value)} />

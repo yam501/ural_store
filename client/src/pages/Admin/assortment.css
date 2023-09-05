@@ -17,6 +17,16 @@
     border-radius: 7px;
 }
 
+.border-2{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #ed789996;
+    color: white;
+    margin: 2px;
+    border-radius: 7px;
+}
+
 
 .dropdown-select:invalid {
     box-shadow: 0 0 5px 1px red;
