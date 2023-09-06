@@ -28,12 +28,6 @@ function Basket() {
       }
       
     }
-    await orderProducts.deleteAllOrderProductsByOrderId(order._order.id)
-    basketProduct._basketProducts.map( (basketItem) => {
-      orderProducts.createOrderProduct(order._order.id, basketItem.assortmentId, basketItem.count, true)
-    })
-    basketProduct.deleteAllBasketProductsByBasketID(basket._baskets.id)
-    setBasketProducts([])
     navigate(ORDER_ROUTE)
     }
 

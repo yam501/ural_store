@@ -75,6 +75,16 @@ class OrderController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async changeOrderProductsCountByOrderID(req, res, next) {
+        try {
+            const {id, orderProductsCount} = req.body
+            const updated = await Order.update({orderProductsCount: orderProductsCount}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 module.exports = new OrderController()

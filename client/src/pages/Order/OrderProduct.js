@@ -12,7 +12,7 @@ function OrderProduct({ append, orderProduct, ...props }) {
     async function getProduct() {
         await assortmentStore.getById(orderProduct.assortmentId)
         setProduct(assortmentStore.assortment)
-        append(orderProduct, assortmentStore.assortment.id, assortmentStore._assortment, orderProduct.count)
+        append(orderProduct, assortmentStore.assortment.id)
     }
 
     useEffect(() => {
