@@ -20,11 +20,17 @@ function HistoryOrder() {
   const { complitedOrders } = useContext(Context)
   const { user } = useContext(Context)
   const [complitedOrdersDinamic, setComplitedOrdersDinamic] = useState([])
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(5)
+  const [totalCount, setTotalCount] = useState(0)
+
 
   async function fetchComplitedOrders() {
-    await complitedOrders.getAllComplitedOrdersByUserId(user._user.id)
+    await complitedOrders.getAllComplitedOrdersByUserId(user._user.id, limit, page)
     setComplitedOrdersDinamic(complitedOrders._complitedOrders ? complitedOrders._complitedOrders : [])
   }
+
+
 
   useEffect(() => {
     fetchComplitedOrders()

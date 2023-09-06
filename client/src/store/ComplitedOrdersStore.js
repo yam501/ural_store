@@ -5,11 +5,13 @@ import ComplitedOrdersService from "../service/ComplitedOrdersService";
 export default class ComplitedOrdersStore {
     constructor() {
         this._complitedOrders = []
+        this._totalCount = 0
         makeAutoObservable(this)
     }
 
     setComplitedOrders(complitedOrders) {
-        this._complitedOrders = complitedOrders
+        this._complitedOrders = complitedOrders.rows
+        this._totalCount = complitedOrders.count
     }
 
     async getAllComplitedOrdersByUserId(userId, limit, page) {

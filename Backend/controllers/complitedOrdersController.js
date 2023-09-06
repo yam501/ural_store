@@ -20,8 +20,10 @@ class ComplitedOrdersController {
             limit = limit || 5
             let offset = page * limit - limit
     
-            const complitedOrders = await ComplitedOrders.findAll({where:{userId: userId},limit, offset})
+            const complitedOrders = await ComplitedOrders.findAndCountAll({where:{userId: userId},limit, offset})
+            console.log(complitedOrders)
             return res.json(complitedOrders)
+            
 
         } catch (e) {
             next(ApiError.badRequest(e.message))
