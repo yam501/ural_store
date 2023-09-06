@@ -8,6 +8,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { checkCode } from '../../http/userAPI';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
+import ResendIcon from './ResendIcon';
 
 const Accept = observer((props) => {
     const { user } = useContext(Context)
@@ -15,16 +16,17 @@ const Accept = observer((props) => {
     const [code, setCode] = useState('');
     const sendCodeAgain = () => {
         user.sendCode(props.number)
+        setTime(30)
     }
     const putAccept = () => {
         user.checkCode(props.number, code);
     }
 
-    useEffect(() => {
-        if (props.show) {
+    const resendTimer = (bool) => {
+        if (bool && time > 0) {
             let timeCount = time;
             const timer = setInterval(() => {
-                if (timeCount < 0) {
+                if (timeCount <= 0) {
                     clearInterval(timer)
                     timeCount = 0;
                     setTime(0)
@@ -34,6 +36,9 @@ const Accept = observer((props) => {
 
             }, 1000)
         }
+    }
+    useEffect(() => {
+       resendTimer(props.show)
     }, [time])
 
     return (
@@ -53,7 +58,7 @@ const Accept = observer((props) => {
                     />
                 </Form.Group>
                 <div className='timer' >
-                    {time <= 0 ? <button onClick={sendCodeAgain} className='resend_code_button'>Отправить код снова</button> : time}
+                    {time > 0 ? time : <ResendIcon onClick={sendCodeAgain} className='ms-auto me-auto resend_code_button'/>}
                 </div>
                 <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
                     Если код не пришел, попробуйте снова через 30 секунд.

@@ -51,7 +51,7 @@ class UserController {
             const code = smsController.generateCode(5)
             smsController.sendCode(number, code)
 
-            updated = await User.update({ activatedCode: code }, { where: { number: number } })
+            const updated = await User.update({ activatedCode: code }, { where: { number: number } })
 
             return res.json({ updated })
 

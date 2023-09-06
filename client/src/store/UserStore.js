@@ -131,7 +131,8 @@ export default class UserStore {
     }
 
     async sendCode(number) {
-        return await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
+        const response = await $authHost.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
+        return response
     }
     // get isAuth() {
     //     return this._isAuth 
