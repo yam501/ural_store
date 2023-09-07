@@ -21,14 +21,14 @@ const Accept = observer((props) => {
         setTime(30)
     }
     const putAccept = () => {
-        user.checkCode(props.number, code).then((res, rej) => {
+        user.checkCode(props.number, code).then((res) => {
             if (res) window.location.reload()
         })
     }
 
     useEffect(() => {
         if (code.length === 5) {putAccept()}
-    })
+    }, [code])
 
     const resendTimer = (bool) => {
         if (bool && time > 0) {
