@@ -40,7 +40,7 @@ const BasketProduct = sequelize.define('basketProduct', {
 
 const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    userId: { type: DataTypes.INTEGER, allowNull: false, unique: true },
+    userId: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING, allowNull: false },
     aproxSum: { type: DataTypes.DOUBLE, allowNull: false },
     onConfirm: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},

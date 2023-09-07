@@ -27,7 +27,7 @@ function Order() {
 
   async function createOrderProductsFromBasketProducts() {
     if (JSON.stringify(user._user) !== "{}") {
-      order.getOrderByUserId(user._user.id)
+      order.getNotOnConfirmOrderByUserId(user._user.id)
     }
     if (JSON.stringify(order._order) !== "{}" && order._order !== null) {
       setOrderProductsDinamic(basketProduct._basketProducts ? basketProduct._basketProducts : [])

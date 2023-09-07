@@ -5,8 +5,12 @@ const OrderService = {
         return new Promise((resolve) => resolve($authHost.post('api/order/createOrder', { userId, address, aproxSum, onConfirm })))
     },
 
-    async getOrderByUserId(userId) {
-        return new Promise((resolve) => resolve($authHost.post('api/order/getOrderByUserID', { userId })))
+    async getNotOnConfirmOrderByUserId(userId) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/getNotOnConfirmOrderByUserID', { userId })))
+    },
+
+    async getOnConfirmOrderByUserId(userId) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/getOnConfirmOrderByUserID', {userId})))
     },
 
     async getOrderByOrderId(id) {

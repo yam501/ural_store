@@ -7,7 +7,8 @@ const orderController = require('../controllers/orderController')
 
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 
-router.post('/getOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOrderByUserID)
+router.post('/getNotOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getNotOnConfirmOrderByUserID)
+router.post('/getOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOnConfirmOrderByUserID)
 router.post('/getOrderByOrderID', authMiddleware, activatedMiddleware, orderController.getOrderByOrderID)
 router.post('/getAll', authMiddleware, activatedMiddleware, checkRole(['ADMIN', 'ADMIN_EDIT']), orderController.getAll)
 

@@ -6,6 +6,7 @@ class OrderController {
         try {
             const {userId, address, aproxSum, onConfirm} = req.body
             const order = await Order.create({userId, address, aproxSum, onConfirm})
+            console.log("Дошел до сюда")
             return res.json(order)
 
         } catch (e){
@@ -22,12 +23,22 @@ class OrderController {
         }
     }
 
-    async getOrderByUserID(req, res, next) {
+    async getNotOnConfirmOrderByUserID(req, res, next) {
         try {
             const {userId} = req.body
-            const order = await Order.findOne({where:{userId: userId}})
+            const order = await Order.findOne({where:{userId: userId, onConfirm: false}})
             return res.json(order)
 
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async getOnConfirmOrderByUserID(req, res, next) {
+        try {
+            const {userId} = req.body
+            const order= await Order.findOne({where: {userId: userId, onConfirm: true}})
+            return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

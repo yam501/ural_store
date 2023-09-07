@@ -16,9 +16,14 @@ export default class OrderStore {
         this.setOrder(responce.data)
     }
 
-    async getOrderByUserId(userId) {
-        const responce = await OrderService.getOrderByUserId(userId)
+    async getNotOnConfirmOrderByUserId(userId) {
+        const responce = await OrderService.getNotOnConfirmOrderByUserId(userId)
         this.setOrder(responce.data)
+    }
+
+    async getOnConfirmOrderByUserId(userId) {
+        const response = await OrderService.getOnConfirmOrderByUserId(userId)
+        this.setOrder(response.data)
     }
 
     async getOrderByOrderId(id) {

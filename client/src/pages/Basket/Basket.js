@@ -20,9 +20,10 @@ function Basket() {
   const { orderProducts } = useContext(Context)
   const [aproxSum, setAproxSum] = useState(0)
   const navigate = useNavigate()
+
   async function transferToOrder() {
     if (JSON.stringify(order._order) === "{}" || order._order === null) {
-      await order.getOrderByUserId(user._user.id)
+      await order.getNotOnConfirmOrderByUserId(user._user.id)
       if (order._order === null) {
         await order.createOrder(user._user.id, user._user.defaultAddress, basket.basket.aproxSum, false)
       }
