@@ -55,7 +55,7 @@ function Order() {
   useEffect(() => {
     createOrderProductsFromBasketProducts()
     getDefaultAdress()
-  }, [order._order.id, user._user.defaultAddress])
+  }, [user._user.defaultAddress])
 
 
   return (
