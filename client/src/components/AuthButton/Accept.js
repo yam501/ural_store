@@ -9,18 +9,26 @@ import { checkCode } from '../../http/userAPI';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import ResendIcon from './ResendIcon';
-
+import ReactInputVerificationCode from 'react-input-verification-code';
 const Accept = observer((props) => {
     const { user } = useContext(Context)
     const [time, setTime] = useState(30);
     const [code, setCode] = useState('');
     const sendCodeAgain = () => {
         user.sendCode(props.number)
+        console.log(code)
+        setCode('')
         setTime(30)
     }
     const putAccept = () => {
-        user.checkCode(props.number, code);
+        user.checkCode(props.number, code).then((res, rej) => {
+            if (res) window.location.reload()
+        })
     }
+
+    useEffect(() => {
+        if (code.length === 5) {putAccept()}
+    })
 
     const resendTimer = (bool) => {
         if (bool && time > 0) {
@@ -43,19 +51,14 @@ const Accept = observer((props) => {
 
     return (
         <Modal show={props.show}>
-        <div className='position-relative ms-auto me-3 acceptCloseBtn' onClick={props.handleClose} ></div>
+        {/* <div className='position-relative ms-auto me-3 acceptCloseBtn' onClick={props.handleClose} ></div> */}
             <Container className='mt-2 ms-2 text-center'>
                 <span>Подтверждение номера</span>
             </Container>
             <Form>
-                <Form.Group className="container text-center checkCodeBox mt-2 mb-2">
-                    <Form.Label className=''>Код</Form.Label>
-                    <Form.Control
-                        className='rounded-4 formCheckCode'
-                        type="text"
-                        value={code}
-                        onChange={e => setCode(e.target.value)}
-                    />
+                <Form.Group className="text-center checkCodeBox mt-2 mb-4">
+                    <Form.Label className='mb-4'>Код</Form.Label>
+                    <ReactInputVerificationCode autoFocus placeholder='' onChange={setCode} value={code} length={5}/>
                 </Form.Group>
                 <div className='timer' >
                     {time > 0 ? time : <ResendIcon onClick={sendCodeAgain} className='ms-auto me-auto resend_code_button'/>}
@@ -63,9 +66,9 @@ const Accept = observer((props) => {
                 <div className='d-flex text-center justify-content-center align-items-center me-auto ms-auto mb-2 formLinkBox '>
                     Если код не пришел, попробуйте снова через 30 секунд.
                 </div>
-                <Button onClick={putAccept} type='submit' className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
+                {/* <Button onClick={putAccept} disabled={code.length < 5} type='submit' className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formCheckCodeBtn'>
                     Подтвердить
-                </Button>
+                </Button> */}
             </Form>
         </Modal>
     );

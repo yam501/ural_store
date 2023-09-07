@@ -13,7 +13,7 @@ class smsController {
 
     generateCode = (length) => {
         let result = ''
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+        const characters = '0123456789'
         const charactersLength = characters.length;
         let counter = 0;
         while (counter < length) {
