@@ -1,19 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .navbar1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
     min-height: 64px;
     height: 5.2vw;
     background: #962A4A;
     font-size: 16px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .navbar1.fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    width: 100%;
+    transform: translateY(-100%);
 }
+
 
 .btnAuth {
     min-height: 29px;
@@ -139,6 +142,7 @@
     text-align: center; 
 }
 
+
 .burgerMenu {
     z-index: 2;
     width: 42px;
@@ -153,6 +157,7 @@
     content: '';
     background-color: #FF709A;
     position: absolute;
+    z-index: 3;
     width: 29px;
     height: 5px;
     left:0;
@@ -200,6 +205,7 @@
 .burgerMenu.open span {
     transform: scale(0);
 }
+
 
 .menuBox {
     z-index: 1;
@@ -277,11 +283,6 @@
 .menuSocWebText {
     font-size: calc(14px + 6 * (100vw/1903));   
 }
-
-@media(max-width:1199px) {
-
-}
-
 
 .btnLogOut {
     text-align: center;

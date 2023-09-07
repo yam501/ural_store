@@ -20,7 +20,7 @@ const BurgerMenu = ({width, adress, onClick, ...props}) => {
 
 
     return (
-        <div>
+        <div className=''>
           <div 
           className={`me-3 burgerMenu ${open ? 'open' : ''}`}
           onClick={openMenu} 

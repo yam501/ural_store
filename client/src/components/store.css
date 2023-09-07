@@ -2,7 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body {
+    margin-top: 5.2vw;
     height: 100%;
+}
+
+@media(max-width: 1299px) {
+    body {
+        margin-top: 64px;
+    }
 }
 
 * {

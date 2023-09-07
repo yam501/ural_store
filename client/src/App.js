@@ -38,11 +38,21 @@ const App = observer(() => {
   }, [user._user.id])
   product.getAllByAvailable(true)
 
-  const [scrollUp, setScrollUp] = useState(false) 
-  const [scrollPosition, setSrollPosition] = useState(document.documentElement.scrollTop)
+  const [showHeader, setShowHeader] = useState(false)
   useEffect(() => {
+    let prevScrollPos = window.scrollY;
+    window.onscroll = function() {
+        const currentScrollPos = window.scrollY;
+        if (prevScrollPos >= currentScrollPos) {
+            setShowHeader(false)
+        } else {
+            setShowHeader(true)
+        }
+        prevScrollPos = currentScrollPos;
+    };
+  })
+  
 
-  }, [])
   // basket.getBasketByUserID(user._user.id)
 
   // if (loading) {
@@ -51,7 +61,7 @@ const App = observer(() => {
   
   return (
     <BrowserRouter>
-      <NavBar scrollUp={scrollUp}/>
+      <NavBar showHeader={showHeader}/>
       <AppRouter/>
       <Footer />
     </BrowserRouter>

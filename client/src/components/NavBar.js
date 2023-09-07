@@ -17,7 +17,7 @@ import Accept from './AuthButton/Accept';
 import GPS from './YndexMaps/GPS';
 import ModalWindowYMaps from './YndexMaps/ModalWindowYMaps';
 
-const NavBar = observer(({scrollUp, ...props}) => {
+const NavBar = observer(({showHeader, ...props}) => {
 
   const { user } = useContext(Context)
   const [width, setWidth] = useState(window.innerWidth);
@@ -49,7 +49,7 @@ useEffect(() => {
     };
   })
   return (
-    <Navbar className='d-flex justify-content-between align-items-center navbar1' >
+    <Navbar className={`d-flex justify-content-between align-items-center navbar1 ${showHeader ? 'fixed' : ''}`} >
       <div className='ms-3 z-2 w-25'>
         <div className='d-flex align-items-center navBarBtnsBox'>
           <BurgerMenu adress={adress.adressString} onClick={() => setShow(true)} width={width} />
