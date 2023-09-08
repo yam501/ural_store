@@ -13,17 +13,7 @@ import AdminPanelBtnIcon from './AdminPanelBtnIcon';
 
 const AuthButton = observer(() => {
     const { user } = useContext(Context)
-    const [numArr, setNumArr] = useState({
-        number: '',
-        isShowAccept: true
-    })
 
-    const updateNum = (number, bool) => {
-        setNumArr({
-            number: number,
-            isShowAccept: bool,
-        })
-    }
 
     const logout = () => {
         user.logout()
@@ -32,7 +22,7 @@ const AuthButton = observer(() => {
     const [show, setShow] = useState(false);
     const handleShowControl = () => setShow(!show)
 
-    if (user._isAuth && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')) {
+    if (user._isAuth && user._user.isActivated && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')) {
         return <div className='d-flex align-items-center'>
             <Button
                 onClick={() => logout()}
@@ -50,12 +40,9 @@ const AuthButton = observer(() => {
                 <Button className='ms-2 container rounded-circle admin-icon'>
                 </Button>
             </NavLink>
-            {numArr.isShowAccept ?
-                <Accept show={show} handleClose={handleShowControl} number={numArr.number} /> :
-                ''}
         </div>
     }
-    if (user._isAuth) {
+    if (user._isAuth && user._user.isActivated) {
         return <div className='d-flex align-items-center'>
             <Button
                 onClick={() => logout()}
@@ -76,9 +63,6 @@ const AuthButton = observer(() => {
                     <span className='btnText'>Личный кабинет</span>
                 </Button>
             </NavLink>
-            {numArr.isShowAccept ?
-                <Accept show={show} handleClose={handleShowControl} number={numArr.number} /> :
-                ''}
         </div>
     }
     return (
@@ -91,7 +75,7 @@ const AuthButton = observer(() => {
                     <span className='btnText'>Войти</span>
                 </div>
             </Button>
-            <AuthWindow show={show} handleClose={handleShowControl} number={numArr} updateNum={updateNum} />
+            <AuthWindow show={show} handleClose={handleShowControl}/>
         </div>
     );
 });

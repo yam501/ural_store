@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 .order_products_check {
     box-sizing: border-box;
     width: 50%;
@@ -34,8 +38,8 @@
 }
 
 .page_form_check_box {
+    /* justify-self: flex-start; */
     display: flex;
-    justify-self: center;
     justify-content: space-between;
     width: 60vw;
     height: 50vh;
@@ -45,7 +49,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 50%;
 }
 
