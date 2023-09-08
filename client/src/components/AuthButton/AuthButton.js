@@ -17,10 +17,10 @@ const AuthButton = observer(() => {
         number: '',
         isShowAccept: true
     })
-    
+
     const updateNum = (number, bool) => {
-        setNumArr({ 
-            number: number, 
+        setNumArr({
+            number: number,
             isShowAccept: bool,
         })
     }
@@ -31,8 +31,8 @@ const AuthButton = observer(() => {
 
     const [show, setShow] = useState(false);
     const handleShowControl = () => setShow(!show)
-    
-    if (user._isAuth && user._user.role === 'ADMIN') {
+
+    if (user._isAuth && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')) {
         return <div className='d-flex align-items-center'>
             <Button
                 onClick={() => logout()}
@@ -51,34 +51,34 @@ const AuthButton = observer(() => {
                 </Button>
             </NavLink>
             {numArr.isShowAccept ?
-            <Accept show={show} handleClose={handleShowControl} number={numArr.number}/> :
-            ''}
+                <Accept show={show} handleClose={handleShowControl} number={numArr.number} /> :
+                ''}
         </div>
-    } 
+    }
     if (user._isAuth) {
         return <div className='d-flex align-items-center'>
-        <Button
-            onClick={() => logout()}
-            type='submit'
-            className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
-        >
-            <span className='btnLogOutText'>Выйти</span>
-        </Button>
-        <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
-            <Button className='ms-2 container rounded-circle adminBtn'>
-                <AuthIcon />
+            <Button
+                onClick={() => logout()}
+                type='submit'
+                className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
+            >
+                <span className='btnLogOutText'>Выйти</span>
             </Button>
-        </NavLink>
-        <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
-        <Button
-            className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
-        >
-            <span className='btnText'>Личный кабинет</span>
-        </Button>
-        </NavLink>
-        {numArr.isShowAccept ?
-        <Accept show={show} handleClose={handleShowControl} number={numArr.number}/> :
-        ''}
+            <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
+                <Button className='ms-2 container rounded-circle adminBtn'>
+                    <AuthIcon />
+                </Button>
+            </NavLink>
+            <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
+                <Button
+                    className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
+                >
+                    <span className='btnText'>Личный кабинет</span>
+                </Button>
+            </NavLink>
+            {numArr.isShowAccept ?
+                <Accept show={show} handleClose={handleShowControl} number={numArr.number} /> :
+                ''}
         </div>
     }
     return (

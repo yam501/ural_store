@@ -9,7 +9,7 @@ function AppRouter() {
     const location = useLocation()
     return (
         <Routes>
-            {user._user.role === 'ADMIN' && adminRoutes.map(({path, element}) =>
+            {(user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')  && adminRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )} 
             {user._isAuth && authRoutes.map(({path, element}) =>

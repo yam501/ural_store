@@ -37,7 +37,10 @@ function GivingRole({ users }) {
                         <Dropdown.Item className="assortment-switch-item" eventKey={'Любая роль'} >Любая роль</Dropdown.Item>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN'} >ADMIN</Dropdown.Item>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN_EDIT'} >ADMIN_EDIT</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'USER'} >USER</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'OPERATOR'} >Оператор</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'CASHIER'} >Кассир</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'USER'} >Пользователь</Dropdown.Item>
+                        
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>

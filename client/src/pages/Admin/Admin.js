@@ -15,10 +15,15 @@ import { observer } from 'mobx-react-lite';
 import ConfirmOrders from './confirmOrders/ConfirmOrders';
 
 function Admin() {
-  const { assortment, feedback, use } = useContext(Context)
+  const { assortment, feedback, use, user } = useContext(Context)
   const [products, setProducts] = useState([])
   const [feedbackList, setFeedbackList] = useState([])
   const [usersList, setUsersList] = useState([])
+  const [adminShow, setAdminShow] = useState(false)
+  const [adminEditShow, setAdminEditShow] = useState(false)
+  const [cashierShow, setCashierShow] = useState(false)
+
+  const [operatorShow, setOperatorShow] = useState(false)
 
   async function getAllProducts() {
     await assortment.getAll()
@@ -31,15 +36,31 @@ function Admin() {
     setFeedbackList(feedback.feedbacks ? feedback.feedbacks : [])
   }
 
-  async function getAllUsers(){
+  async function getAllUsers() {
     await use.getAll()
     setUsersList(use.users)
   }
 
   useEffect(() => {
-    getAllProducts();
-    getAllFeedbacks();
-    getAllUsers();
+    if (user._user.role === 'ADMIN') {
+      setAdminShow(true)
+      getAllProducts();
+      getAllFeedbacks();
+      getAllUsers();
+    }
+    if (user._user.role === 'ADMIN_EDIT'){
+      setAdminEditShow(true)
+      getAllProducts();
+    }
+    if (user._user.role === 'OPERATOR'){
+      setOperatorShow(true)
+      ///ТУТ ДЛЯ ПОДТВЕРЖДЕНИЯ ЗАКАЗА
+    }
+    if (user._user.role === 'CASHIER' ){
+      setCashierShow(true)
+      getAllProducts();
+    }
+
   }, [])
 
 
@@ -52,24 +73,45 @@ function Admin() {
         defaultActiveKey="CreateAssortment"
         className="mb-3"
       >
-        <Tab eventKey="CreateAssortment" title="Создать ассортимент">
-          <CreateAssortment />
-        </Tab>
-        <Tab eventKey="EditAssortment" title="Редактировать ассортимент" >
-          <EditAssortment products={products} onClick={getAllProducts} />
-        </Tab>
+        {adminEditShow || adminShow ?
 
-        <Tab eventKey="ConfirmOrders" title="Подтвердить заказ" >
-          <ConfirmOrders></ConfirmOrders>
-        </Tab>
+          <Tab eventKey="CreateAssortment" title="Создать ассортимент">
+            <CreateAssortment />
+          </Tab>
+          :
+          <div></div>
+        }
+        {adminEditShow || adminShow ?
+          <Tab eventKey="EditAssortment" title="Редактировать ассортимент" >
+            <EditAssortment products={products} onClick={getAllProducts} />
+          </Tab>
+          :
+          <div></div>
 
-        <Tab eventKey="Feedbacks" title="Отзывы" >
-          <Feedback feedback={feedbackList} />
-        </Tab>
+        }
+        {operatorShow || adminShow ?
+          <Tab eventKey="ConfirmOrders" title="Подтвердить заказ" >
+            <ConfirmOrders></ConfirmOrders>
+          </Tab>
+          :
+          <div></div>
+        }
 
-        <Tab eventKey="Giverole" title="Выдать роли" >
-          <GivingRole users={usersList} onClick={getAllProducts}/>
-        </Tab>
+        {adminShow ?
+          <Tab eventKey="Feedbacks" title="Отзывы" >
+            <Feedback feedback={feedbackList} />
+          </Tab>
+
+          :
+          <div></div>
+        }
+        {adminShow == true ?
+          <Tab eventKey="Giverole" title="Выдать роли" >
+            <GivingRole users={usersList} onClick={getAllProducts} />
+          </Tab>
+          :
+          <div></div>
+        }
 
       </Tabs>
     </div>
