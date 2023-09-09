@@ -2,6 +2,7 @@ const Router = require('express')
 const router = new Router()
 const userController = require('../controllers/userController')
 const authMiddleware = require('../middleware/AuthMiddleware')
+const activatedMiddleware = require('../middleware/ActivatedMiddleware')
 const checkRole = require('../middleware/CheckRoleMiddleware')
 
 router.post('/createUser', authMiddleware, checkRole(['ADMIN']), userController.createUser)
@@ -11,7 +12,7 @@ router.post('/logout', authMiddleware, userController.logout)
 
 router.get('/refresh', userController.refresh)
 router.post('/getUserByNumber', authMiddleware, userController.getUserByNumber)
-router.post('/getAll', checkRole(['ADMIN_EDIT']), userController.getAllUsers)
+router.post('/getAll', checkRole(['ADMIN']), userController.getAllUsers)
 router.post('/getUserByUserID', authMiddleware, userController.getUserByUserID)
 
 router.put('/sendCode', authMiddleware, userController.sendCodeFromUser)
@@ -25,5 +26,7 @@ router.put('/changeNameByID', authMiddleware, userController.changeNameById)
 router.put('/changeNumberAndNameByID', authMiddleware, userController.changeNumberAndNameById)
 router.put('/changeAllByID', authMiddleware, userController.changeAllById)
 router.put('/changeRoleByNumber', checkRole(['ADMIN']), userController.changeRoleByNumber)
+router.put('/changePasswordbyNumber', authMiddleware, activatedMiddleware, userController.changePasswordbyNumber)
+
 
 module.exports = router

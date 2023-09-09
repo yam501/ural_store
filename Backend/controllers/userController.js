@@ -143,7 +143,7 @@ class UserController {
     }
 
     async getAllUsers(req, res, next) {
-        try {            
+        try {
             return res.json(await User.findAll())
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -238,8 +238,8 @@ class UserController {
 
     async changeDefaultAddressById(req, res, next) {
         try {
-            const {defaultAddress, id} = req.body
-            const user = await User.update({defaultAddress: defaultAddress}, {where: {id: id}})
+            const { defaultAddress, id } = req.body
+            const user = await User.update({ defaultAddress: defaultAddress }, { where: { id: id } })
             return res.json(user)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -248,8 +248,8 @@ class UserController {
 
     async changeNumberById(req, res, next) {
         try {
-            const {number, id} = req.body
-            const user = await User.update({number: number}, {where: {id: id}})
+            const { number, id } = req.body
+            const user = await User.update({ number: number }, { where: { id: id } })
             return res.json(user)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -258,8 +258,8 @@ class UserController {
 
     async changeNameById(req, res, next) {
         try {
-            const {name, id} = req.body
-            const user = await User.update({name: name}, {where: {id: id}})
+            const { name, id } = req.body
+            const user = await User.update({ name: name }, { where: { id: id } })
             return res.json(user)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -268,8 +268,8 @@ class UserController {
 
     async changeNumberAndNameById(req, res, next) {
         try {
-            const {number, name, id} = req.body
-            const user = await User.update({number: number, name: name}, {where: {id: id}})
+            const { number, name, id } = req.body
+            const user = await User.update({ number: number, name: name }, { where: { id: id } })
             return res.json(user)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -278,8 +278,8 @@ class UserController {
 
     async changeAllById(req, res, next) {
         try {
-            const {defaultAddress, number, name, id} = req.body
-            const user = await User.update({defaultAddress: defaultAddress, number: number, name: name}, {where: {id: id}})
+            const { defaultAddress, number, name, id } = req.body
+            const user = await User.update({ defaultAddress: defaultAddress, number: number, name: name }, { where: { id: id } })
             return res.json(user)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -288,13 +288,25 @@ class UserController {
 
     async changeRoleByNumber(req, res, next) {
         try {
-            const {number, role} = req.body
-            const user = await User.update({role: role}, {where: {number: number}})
+            const { number, role } = req.body
+            const user = await User.update({ role: role }, { where: { number: number } })
             return res.json(user)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async changePasswordbyNumber(req, res, next) {
+        try {
+            const { number, password } = req.body
+            const hashPassword = await bcrypt.hash(password, 5)
+            const user = await User.update({ password: hashPassword }, { where: { number: number } })
+            return res.json(user)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
 }
 
 
