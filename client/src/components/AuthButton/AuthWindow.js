@@ -3,14 +3,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
-import { NavLink, Navigate, Route, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { registration } from "../../http/userAPI";
 import { ORDER_ROUTE, STORE_ROUTE } from '../../utils/consts';
 import Accept from './Accept';
-import PasswordRecov from '../PasswordRecov';
+import PasswordRecov from './PasswordRecov';
 import { Context } from '../..';
 import { Row } from 'react-bootstrap';
-const AuthWindow = (props) => {
+import { observer } from 'mobx-react-lite';
+const AuthWindow = ({show, handleClose, ...props}) => {
+    const { user } = useContext(Context)
+
     const [phone, setPhone] = useState('+79');
 
     const handlePhoneChange = (event) => {
@@ -22,26 +25,48 @@ const AuthWindow = (props) => {
         }
     };
 
+    const [userAuthData, setUserAuthData] = useState({
+        number: '',
+        password: '',
+    })
+    
     const [isLogin, setIsLogin] = useState(true)
-    const [number, setNumber] = useState('')
-    const [password, setPassword] = useState('')
-    const { user } = useContext(Context)
-    const location = useLocation()
+    const [isAccept, setIsAccept] = useState(false)
+    const [isPasswordRecov, setIsPasswordRecov] = useState(false)
+    
+    const showPasswordRecovPage = () => {
+        setIsLogin(false)
+        setIsPasswordRecov(true)
+    }
+
+    const showRegistrationPage = () => {
+        setIsAccept(false)
+        setIsLogin(false)
+        setIsPasswordRecov(false)
+    }
+
+    const showAuhtPage = () => {
+        setIsLogin(true)
+        setIsPasswordRecov(false)
+    }
 
     const registration = () => {
-        user.registration(number, password);
-        props.updateNum(number, !isLogin)
-
+        setIsAccept(true)
     }
     const login = () => {
-        user.login(number, password);
-        props.updateNum('', !isLogin)
+        user.login(userAuthData.number, userAuthData.password);
+    }
+    
+    if (isAccept) {
+        return <Accept userAuthData={userAuthData} show={isAccept} goBack={showRegistrationPage}/>
     }
 
-
+    if (isPasswordRecov) {
+        return <PasswordRecov show={isPasswordRecov} goBack={showAuhtPage} handleClose={handleClose} showRegistrationPage={showRegistrationPage} showAuhtPage={showAuhtPage}/>
+    }
 
     return (
-        <Modal show={props.show} onHide={props.handleClose} >
+        <Modal show={show} onHide={handleClose}>
             <Container className='mt-2 ms-2'>
                 {isLogin ? <span>Вход</span> : <span>Регистрация</span>}
             </Container>
@@ -52,8 +77,8 @@ const AuthWindow = (props) => {
                         className='rounded-4 formPhone'
                         type="text"
                         placeholder="+78888888888"
-                        value={number}
-                        onChange={e => setNumber(e.target.value)}
+                        value={userAuthData.number}
+                        onChange={e => setUserAuthData({...userAuthData, number: e.target.value})}
                     />
                 </Form.Group>
 
@@ -62,8 +87,8 @@ const AuthWindow = (props) => {
                     <Form.Control
                         type="password"
                         className='container rounded-4 formPassword'
-                        value={password}
-                        onChange={e => setPassword(e.target.value)} />
+                        value={userAuthData.password}
+                        onChange={e => setUserAuthData({...userAuthData, password: e.target.value})} />
                 </Form.Group>
                 {isLogin ?
                     <div >
@@ -71,8 +96,8 @@ const AuthWindow = (props) => {
                             Продолжить
                         </Button>
                         <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
-                            <NavLink onClick={() => setIsLogin(false)} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
-                            <NavLink className='ms-3 text-decoration-none text-black text-nowrap'>Забыли пароль?</NavLink>
+                            <NavLink onClick={showRegistrationPage} className='me-3 text-decoration-none text-black'>Регистрация</NavLink>
+                            <NavLink onClick={showPasswordRecovPage} className='ms-3 text-decoration-none text-black text-nowrap'>Забыли пароль?</NavLink>
                         </div>
                     </div> :
                     <div >
@@ -80,14 +105,13 @@ const AuthWindow = (props) => {
                             Продолжить
                         </Button>
                         <div className='d-flex justify-content-center align-items-center text-nowrap me-auto ms-auto mb-2 formLinkBox'>
-                            Уже есть аккаунт?<NavLink onClick={() => setIsLogin(true)} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
+                            Уже есть аккаунт?<NavLink onClick={showAuhtPage} className='ms-1 text-decoration-none text-black'>Войти!</NavLink>
                         </div>
                     </div>
                 }
             </Form>
-            {/* <PasswordRecov show={props.show} handleClose={props.handleClose}/>  */}
         </Modal>
     );
 };
 
-export default AuthWindow;
+export default observer(AuthWindow);

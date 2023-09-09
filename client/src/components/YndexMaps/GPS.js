@@ -33,15 +33,12 @@ const GPS = ({ findAdress, ...props }) => {
     zoom: 17,
   });
 
-  const [mapConstructor, setMapConstructor] = useState(null);
-
-  const placemarkRef = useRef(null)
-
-  const mapRef = useRef(null);
-
-  const searchRef = useRef(null);
-
-  const locationRef = useRef(null)
+  const [mapConstructor, setMapConstructor] = useState(null),
+        [adress, setAdress] = useState(''),
+        placemarkRef = useRef(null),
+        mapRef = useRef(null),
+        searchRef = useRef(null),
+        locationRef = useRef(null);
 
   const handleReset = async () => {
     searchRef.current.value = "";
@@ -49,7 +46,7 @@ const GPS = ({ findAdress, ...props }) => {
     props.onClick()
   };
 
-  const [adress, setAdress] = useState('')
+ 
 
   const setDefaultAdress = async () => {
     await user.changeDefaultAddressByNumber(state.title, user._user.number)
@@ -62,7 +59,6 @@ const GPS = ({ findAdress, ...props }) => {
 
   useEffect(() => {
     if (mapConstructor) {
-
       new mapConstructor.SuggestView(searchRef.current, {
         boundedBy: [[56.830569, 59.852335], [56.755036, 59.999630]],
         offset: [0, 2],

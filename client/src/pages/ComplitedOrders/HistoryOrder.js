@@ -7,7 +7,7 @@ import ComplitedOrderItem from './ComplitedOrderItem';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { STORE_ROUTE } from '../../utils/consts';
-
+import ComplitedOrdersService from '../../service/ComplitedOrdersService';
 // Страница истории заказов
 
 
@@ -23,18 +23,39 @@ function HistoryOrder() {
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(5)
   const [totalCount, setTotalCount] = useState(0)
+  const [fetching, setFetching] = useState(true)
 
-
-  async function fetchComplitedOrders() {
-    await complitedOrders.getAllComplitedOrdersByUserId(user._user.id, limit, page)
-    setComplitedOrdersDinamic(complitedOrders._complitedOrders ? complitedOrders._complitedOrders : [])
-  }
-
-
+  // async function fetchComplitedOrders() {
+  //    await complitedOrders.getAllComplitedOrdersByUserId(user._user.id, limit, page)
+  //    setComplitedOrdersDinamic(complitedOrders._complitedOrders ? complitedOrders._complitedOrders : [])
+  // }
 
   useEffect(() => {
-    fetchComplitedOrders()
+    if (fetching) {
+      ComplitedOrdersService.getAllComplitedOrdersByUserId(user._user.id, limit, page).then(response => {
+          setComplitedOrdersDinamic([...complitedOrdersDinamic, ...response.data.rows])
+          setPage(prevState => prevState + 1)
+          setTotalCount(response.data.count)
+        })
+        .finally(() => setFetching(false))
+    }
+  }, [user._user.id, limit, page, fetching])
+
+  useEffect(() => {
+    
+    document.addEventListener('scroll', scrollHandler)
+
+    return function () {
+      document.removeEventListener('scroll', scrollHandler)
+    }
   }, [])
+
+  const scrollHandler = (e) => {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
+      && complitedOrdersDinamic.length <= totalCount) {
+      setFetching(true)
+    }
+  }
 
   return (
     <Container className='page_body'>

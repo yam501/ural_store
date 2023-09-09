@@ -10,7 +10,7 @@ import { ADMIN_ROUTE } from '../../utils/consts';
 
 const LogOutButton = observer((props) => {
     const {user} = useContext(Context)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false) 
 
     // useEffect(() => {
     //     check().then(data => {
