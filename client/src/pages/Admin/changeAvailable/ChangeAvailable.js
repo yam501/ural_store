@@ -10,17 +10,32 @@ function ChangeAvailable({ products, onClick }) {
     const [name, setName] = useState('')
 
 
-    // const searchedProducts = useMemo(() => {
-    //     if (type === 'Любой тип') return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
-    //     return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type))
-    // }, [products, name, type]
-    // )
+    const searchedProducts = useMemo(() => {
+        if (type === 'Любой тип') {
+            if (available === 'Любое наличие') {
+                return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
+            }
+            if (name === '') {
+                return products.filter(item => available.includes('Есть') ? item.available : !item.available)
+            }
+            return products.filter(item => (available.includes('Есть') ? item.available : !item.available) &  item.name.toLowerCase().includes(name.toLowerCase()))
+        }
+        if (available === 'Любое наличие') {
+            return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type))
+        }
+        if (name === '') {
+            return products.filter(item => (available.includes('Есть') ? item.available : !item.available) & item.type.includes(type)) 
+        }
+
+        return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type) & (available.includes('Есть') ? item.available : !item.available))
+    }, [products, name, type, available]
+    )
 
     return (
         <>
 
             <div className="d-flex p-2 justify-content-center fw-bold fs-4">
-                Изменение наличия 
+                Изменение наличия
             </div>
 
             <Stack direction="horizontal" gap={3}>
@@ -39,18 +54,18 @@ function ChangeAvailable({ products, onClick }) {
                 </Dropdown>
 
                 <Dropdown onSelect={e => setAvailable(e)}>
-                    <Dropdown.Toggle className="assortment-switch" > {available.includes('Любое наличие') ? 'Любое наличие' :available.includes(true) ? 'Есть': 'Нет'} </Dropdown.Toggle>
+                    <Dropdown.Toggle className="assortment-switch" > {available} </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'Любое наличие'} >Любое наличие</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={true} >Есть</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={false} >Нет</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Есть'} >Есть</Dropdown.Item>
+                        <Dropdown.Item className="assortment-switch-item" eventKey={'Нет'} >Нет</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>
-            <hr/>
+            <hr />
             <div>
-                {products.map(item =>
-                    <AvailableItem key={item.name} products={item}/>)}
+                {searchedProducts.map(item =>
+                    <AvailableItem key={item.name} products={item} />)}
             </div>
         </>
     )

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Row, Col, Form } from 'react-bootstrap';
 
 import AssortmentService from '../../../service/AssortmentService';
@@ -8,15 +8,19 @@ import "../assortment.css"
 import { observer } from 'mobx-react-lite';
 import { Context } from '../../..';
 
-const AvailableItem = ({ products }) => {
-    const [available, setAvailable] = useState(products.available)
+
+
+const AvailableItem =  ({ products }) => {
+    const [available, setAvailable] = useState()
 
     const changeAvailable = () => {
-        // setAvailable(!available)
+        setAvailable(!available)
         console.log(products.name, available)
-        // AssortmentService.changeAvailableByName(products.name, available)
+        AssortmentService.changeAvailableByName(products.name, available)
     }
-
+    useEffect(() =>{
+        setAvailable(products.available)
+    },[products.available])
 
     return (
         <Form>

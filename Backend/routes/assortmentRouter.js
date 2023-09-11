@@ -17,7 +17,7 @@ router.post('/getAllProductsByTypeAndName', assortmentController.getAllByTypeAnd
 router.post('/deleteProductByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.deleteOneByName)
 
 router.put('/changeProductNameByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeNameByName)
-router.put('/changeProductAvailableByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeAvailableByName)
+router.put('/changeProductAvailableByName', checkRole(['ADMIN', 'ADMIN_EDIT', 'CASHIER']), assortmentController.changeAvailableByName)
 router.put('/changeProductCostPerOneByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeCostPerOneByName)
 router.put('/changeProductDescriptionByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeDescriptionByName)
 router.put('/changeProductCompositionByName', checkRole(['ADMIN', 'ADMIN_EDIT']),  assortmentController.changeCompositionByName)
