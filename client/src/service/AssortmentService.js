@@ -62,8 +62,8 @@ const AssortmentService = {
     async changeImageByName(formData) {
         return new Promise((resolve) => resolve($authHost.put('api/assortment/changeProductImageByName', formData)))
     },
-    async changeAvailableByName(name, available) {
-        return new Promise((resolve) => resolve($authHost.put('api/assortment/changeProductAvailableByName', {name, available})))
+    async changeAvailableByName(name) {
+        return new Promise((resolve) => resolve($authHost.put('api/assortment/changeProductAvailableByName', {name})))
     }
 }
 

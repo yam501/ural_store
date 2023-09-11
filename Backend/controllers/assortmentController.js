@@ -123,8 +123,9 @@ class AssortmentController {
 
     async changeAvailableByName(req, res, next) {
         try {
-            const { name, available } = req.body
-            const updated = await Assortment.update({ available: available }, { where: { name: name } })
+            const { name } = req.body
+            const product = await Assortment.findOne({ where: { name: name } })
+            const updated = await Assortment.update({ available: !product.available }, { where: { name: name } })
             if (!available) {
                 const product = await Assortment.findOne({ where: { name: name } })
                 await BasketProduct.destroy({ where: { assortmentId: product['id'] } })

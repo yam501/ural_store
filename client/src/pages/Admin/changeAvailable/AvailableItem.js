@@ -11,17 +11,17 @@ import { Context } from '../../..';
 
 
 const AvailableItem =  ({ products }) => {
-    const [available, setAvailable] = useState()
+    const [available, setAvailable] = useState(products.available)
 
     const changeAvailable = () => {
-        setAvailable(!available)
-        console.log(products.name, available)
-        AssortmentService.changeAvailableByName(products.name, available)
+        try {
+            
+            setAvailable(!available)
+            AssortmentService.changeAvailableByName(products.name)
+        } catch (error) {
+            
+        }
     }
-    useEffect(() =>{
-        setAvailable(products.available)
-    },[products.available])
-
     return (
         <Form>
 
