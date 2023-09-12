@@ -80,6 +80,24 @@ const GPS = ({ findAdress, ...props }) => {
     findAdress(defaultAddress)
   }, [defaultAddress])
 
+  const placemarkByDefaultAdress = () => {
+    const currentLocation = defaultAddress ? defaultAddress : 'Ревда';
+    mapConstructor.geocode(currentLocation).then((res) => {
+      const nearest = res.geoObjects.get(0)
+      const [centerX, centerY] = nearest.geometry.getCoordinates();
+      const [initialCenterX, initialCenterY] = initialState.center;
+      if (centerX !== initialCenterX && centerY !== initialCenterY) {
+        setState((prevState) => ({ ...prevState, title: currentLocation, center: [centerX, centerY] }));
+        searchRef.current.value = currentLocation
+    }})
+  }
+
+  useEffect(() => {
+    if (props.show) {
+      placemarkByDefaultAdress()
+    }
+  }, [props.show])
+
   const geometryChange = (e) => {
     const newCoords = placemarkRef.current.geometry.getCoordinates();
     mapConstructor.geocode(newCoords).then((res) => {
