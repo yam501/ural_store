@@ -63,7 +63,13 @@ function ChangeAvailable({ products, onClick }) {
                 </Dropdown>
             </Stack>
             <hr />
-            <div>
+            <Row className='p-1 m-1'>
+                <Col className="assortment-edit-header">Название</Col>
+                <Col className="assortment-edit-header">Отдел</Col>
+                <Col className="assortment-edit-header">Наличие</Col>
+                
+            </Row>
+            <div className="max-size-window">
                 {searchedProducts.map(item =>
                     <AvailableItem key={item.name} products={item} />)}
             </div>
