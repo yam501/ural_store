@@ -4,7 +4,7 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import OrderProduct from './OrderProduct'
 import './order.css'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { BASKET_ROUTE } from '../../utils/consts';
 
 // Страница заказа
@@ -86,7 +86,9 @@ function Order() {
         <div className='order_products_check'>
         {
           orderProductsDinamic.length === 0 ?
-            <div>Вы еще не сформировали свой заказ *Кнопка "В корзину"*</div> :
+            <div className='order-empty-content'>Вы еще не сформировали свой заказ
+              <NavLink className='btn-returnToBasket text-white text-decoration-none' to={BASKET_ROUTE}>В корзину</NavLink>
+            </div> :
             <div className='order_products_check_box'>
               <div>
                 {orderProductsDinamic.map(

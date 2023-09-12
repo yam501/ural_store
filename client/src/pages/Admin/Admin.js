@@ -49,15 +49,15 @@ function Admin() {
       getAllFeedbacks();
       getAllUsers();
     }
-    if (user._user.role === 'ADMIN_EDIT'){
+    if (user._user.role === 'ADMIN_EDIT') {
       setAdminEditShow(true)
       getAllProducts();
     }
-    if (user._user.role === 'OPERATOR'){
+    if (user._user.role === 'OPERATOR') {
       setOperatorShow(true)
       ///ТУТ ДЛЯ ПОДТВЕРЖДЕНИЯ ЗАКАЗА
     }
-    if (user._user.role === 'CASHIER' ){
+    if (user._user.role === 'CASHIER') {
       setCashierShow(true)
       getAllProducts();
     }
@@ -113,9 +113,13 @@ function Admin() {
           :
           <div></div>
         }
-        <Tab eventKey="ChangeAvailable" title="Изменить наличия" >
-          <ChangeAvailable products={products} onClick={getAllProducts} />
-        </Tab>
+        {cashierShow || adminShow ?
+          <Tab eventKey="ChangeAvailable" title="Изменить наличия" >
+            <ChangeAvailable products={products} onClick={getAllProducts} />
+          </Tab>
+          :
+          <div></div>
+        }
 
       </Tabs>
     </div>

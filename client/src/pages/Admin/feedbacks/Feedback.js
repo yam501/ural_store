@@ -33,7 +33,7 @@ const Feedback = ({ feedback }) => {
             </div>
             
             <hr />
-            <div className="feedback-max-size-window">
+            <div className="max-size-window">
                 {sortedFeedback.length === 0 ?
 
                     feedback.map(item =>

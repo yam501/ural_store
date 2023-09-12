@@ -15,19 +15,13 @@ function ChangeAvailable({ products, onClick }) {
             if (available === 'Любое наличие') {
                 return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
             }
-            if (name === '') {
-                return products.filter(item => available.includes('Есть') ? item.available : !item.available)
-            }
-            return products.filter(item => (available.includes('Есть') ? item.available : !item.available) &  item.name.toLowerCase().includes(name.toLowerCase()))
+            return products.filter(item => (available.includes('Любое наличие') ? item : available.includes('Есть') ? item.available : !item.available) & item.name.toLowerCase().includes(name.toLowerCase()))
         }
         if (available === 'Любое наличие') {
             return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type))
         }
-        if (name === '') {
-            return products.filter(item => (available.includes('Есть') ? item.available : !item.available) & item.type.includes(type)) 
-        }
 
-        return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type) & (available.includes('Есть') ? item.available : !item.available))
+        return products.filter(item => item.name.toLowerCase().includes(name.toLowerCase()) & item.type.includes(type) & (available.includes('Любое наличие') ? item : available.includes('Есть') ? item.available : !item.available))
     }, [products, name, type, available]
     )
 
@@ -63,7 +57,13 @@ function ChangeAvailable({ products, onClick }) {
                 </Dropdown>
             </Stack>
             <hr />
-            <div>
+            <Row className='p-1 m-1'>
+                <Col className="assortment-edit-header">Название</Col>
+                <Col className="assortment-edit-header">Отдел</Col>
+                <Col className="assortment-edit-header">Наличие</Col>
+
+            </Row>
+            <div className="max-size-window">
                 {searchedProducts.map(item =>
                     <AvailableItem key={item.name} products={item} />)}
             </div>

@@ -15,9 +15,9 @@ function GivingRole({ users }) {
         if (roleSearch.includes('Любая роль')) {
             return users.filter(item => (item.number.includes(number) & item.name.includes(name)))
         }
-    
+
         return users.filter(item => (item.number.includes(number) & item.role.includes(roleSearch) & item.name.includes(name)))
-    }, [roleSearch, number, name,users])
+    }, [roleSearch, number, name, users])
 
     return (
         <div>
@@ -26,11 +26,11 @@ function GivingRole({ users }) {
                 Изменение роли пользователя
             </div>
 
-            <Stack direction="horizontal"  gap={3}>
-                
-                <Form.Control className="mt-2 textarea w-25"  placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value)} />
+            <Stack direction="horizontal" gap={3}>
+
+                <Form.Control className="mt-2 textarea w-25" placeholder="Введите номер" value={number} onChange={e => setNumber(e.target.value)} />
                 <Form.Control className="mt-2 textarea w-25" placeholder="Введите имя" value={name} onChange={e => setName(e.target.value)} />
-                
+
                 <Dropdown className="mt-2" onSelect={e => setRoleSeacrh(e)}>
                     <Dropdown.Toggle className="assortment-switch"  >{roleSearch} </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -40,16 +40,23 @@ function GivingRole({ users }) {
                         <Dropdown.Item className="assortment-switch-item" eventKey={'OPERATOR'} >Оператор</Dropdown.Item>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'CASHIER'} >Кассир</Dropdown.Item>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'USER'} >Пользователь</Dropdown.Item>
-                        
+
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>
 
             <hr />
+            <Row className='p-1 m-1'>
+                <Col className="assortment-edit-header">Номер пользователя</Col>
+                <Col className="assortment-edit-header">Имя пользователя</Col>
+                <Col className="assortment-edit-header">Наличие</Col>
+                
+
+            </Row>
             <div className="feedback-max-size-window">
 
                 {
-            
+
                     sortedUsers.map(item =>
                         <GivingRoleItem key={item.id} user={item} />
                     )

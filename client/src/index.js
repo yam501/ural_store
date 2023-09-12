@@ -12,6 +12,7 @@ import FeedbackStore from './store/FeedbackStore';
 import OrderStore from './store/OrderStore';
 import OrderProductsStore from './store/OrderProductsStore';
 import UseStore from './store/UseStore';
+import AdminOrderStore from './store/AdminOrderStore'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const Context = createContext()
@@ -28,7 +29,8 @@ root.render(
     feedback: new FeedbackStore(),
     order: new OrderStore(),
     orderProducts: new OrderProductsStore(),
-    use: new UseStore()
+    use: new UseStore(),
+    adminOrders: new AdminOrderStore()
   }}>
     <App />
   </Context.Provider>

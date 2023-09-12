@@ -126,7 +126,7 @@ class AssortmentController {
             const { name } = req.body
             const product = await Assortment.findOne({ where: { name: name } })
             const updated = await Assortment.update({ available: !product.available }, { where: { name: name } })
-            if (!available) {
+            if (!product.available) {
                 const product = await Assortment.findOne({ where: { name: name } })
                 await BasketProduct.destroy({ where: { assortmentId: product['id'] } })
                 const baskets = await Basket.findAll()

@@ -1,10 +1,10 @@
-import { makeAutoObservable, makeObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import OrderService from "../service/OrderService";
 
 export default class AdminOrderStore {
     constructor() {
         this._orders = []
-        makeObservable(this)
+        makeAutoObservable(this)
     }
 
     setOrders(orders) {
