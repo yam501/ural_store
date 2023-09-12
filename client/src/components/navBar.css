@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 4;
     width: 100%;
     min-height: 64px;
     height: 5.2vw;
@@ -135,6 +135,7 @@
 }
 
 .logo {
+    z-index: 4;
     text-decoration: none;
     font-size: calc(16px + 6 * (100vw/1903));
     font-weight: 700;
@@ -144,13 +145,17 @@
 
 
 .burgerMenu {
-    z-index: 2;
     width: 42px;
     height: 28px;
     display: block;
-    position: relative;
+    position: relative !important;
+    z-index: 2;
     cursor: pointer;
     left: 0;
+}
+
+.burgerMenu.open {
+    z-index: 2;
 }
 
 .burgerMenu::after, .burgerMenu::before {
@@ -210,8 +215,9 @@
 .menuBox {
     z-index: 1;
     width: 15vw !important;
-    background-color:#621B30;
-    opacity: .9;
+    background-color:#962A4A;
+    border: none;
+    /* opacity: .9; */
 }
 
 @media (max-width: 1310px) {
@@ -221,7 +227,7 @@
 }
 
 .menuBodyBox {
-    z-index: 1;
+    z-index: 2;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -481,19 +487,19 @@
     content: '';
     background-color: #D9D9D9;
     position: absolute;
-    width: 25px;
-    height: 3px;
+    width: 15px;
+    height: 2px;
     cursor: pointer;
 }
 
 .acceptCloseBtn::after {
-    transform: rotate(45deg);
-    bottom: 5;
+    transform: rotate(25deg);
+    bottom: 0;
 }
 
 .acceptCloseBtn::before {
-    transform: rotate(-45deg);
-    top: 10;
+    transform: rotate(-25deg);
+    top: 0;
 }
 
 .admin-icon{
@@ -512,4 +518,14 @@
 .resend_code_button {
     border: none;
     cursor: pointer;
+}
+
+.password_recov_title_box {
+    display: flex;
+}
+
+.back_arrow {
+    cursor: pointer;
+    margin-left: 1vw;
+    margin-right: 2.5vw;
 }

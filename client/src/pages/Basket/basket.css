@@ -23,6 +23,7 @@ body {
 
 
 
+
 .product_item {
     background-color: rgba(178, 178, 178, 0.2);
     border-radius: 50px;
@@ -50,6 +51,7 @@ body {
         width: 50px;
         height: 50px;
     }
+
     .product_item {
         height: 75px;
     }
@@ -62,6 +64,7 @@ body {
         height: 60px;
         border-radius: 40px;
     }
+
     .product_item {
         height: 75px;
     }
@@ -73,6 +76,7 @@ body {
         height: 100px;
         border-radius: 60px;
     }
+
     .product_item {
         height: 120px;
     }
@@ -85,6 +89,7 @@ body {
         height: 100px;
         border-radius: 70px;
     }
+
     .product_item {
         height: 120px;
     }
@@ -96,6 +101,7 @@ body {
         height: 100px;
         border-radius: 80px;
     }
+
     .product_item {
         height: 150px;
     }
@@ -140,6 +146,10 @@ body {
     font-family: 'Inter';
     width: 48px;
     height: 48px;
+}
+
+.btn-plus:hover .btn-deleteIcon{
+    background: url('../../assets/deleteIconHover.svg') 0 0 / 90% no-repeat;
 }
 
 
@@ -225,3 +235,12 @@ body {
 .order_delive_form_btn:hover {
     background-color: #ED789A !important;
 }
+
+
+.btn-deleteIcon {
+    background: url('../../assets/deleteIcon.svg') 0 0 / 100% no-repeat;
+    width: 42px;
+    height: 46px;
+    margin-top: 20px;
+}
+

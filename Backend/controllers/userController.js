@@ -155,7 +155,17 @@ class UserController {
 
 
 
+    async cheackCode(req, res, next) {
+        try {
+            const { number, code } = req.body
+            const user = await User.findOne({ where: { number: number } })
+            if (user.activatedCode === code) return res.json(true)
+            return res.json(false)
 
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
 
 

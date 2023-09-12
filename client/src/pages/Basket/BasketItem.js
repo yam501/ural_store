@@ -43,7 +43,7 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
                 <div className='mt-1 d-flex justify-content-center'>
                     <Button type='submit' className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
                         onClick={minus}>
-                        {countProduct === 1 ? <DeleteButton/> : '-'}
+                        {countProduct === 1 ? <div className='btn-deleteIcon'> </div> : '-'}
                     </Button>
                     <Form.Control value={countProduct} onChange={(e) => {
                         if (e.target.value > 0) {

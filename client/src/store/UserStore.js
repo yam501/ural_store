@@ -29,6 +29,10 @@ export default class UserStore {
         this._user.name = name
     }
 
+    setPassword(password) {
+        this._user.password = password
+    }
+
     setAll(defaultAddress, number, name) {
         this._user.defaultAddress = defaultAddress
         this._user.number = number
@@ -46,6 +50,11 @@ export default class UserStore {
     async changeDefaultAddressByNumber(defaultAddress, number) {
         const response = await AuthService.changeDefaultAddressByNumber(defaultAddress, number);
         this.setDefaultAdress(defaultAddress)
+    }
+
+    async changeIsActivatedByNumber(number, isActivated) {
+        const response = await AuthService.changeIsActivatedByNumber(number, isActivated);
+        this.setIsActivated(isActivated)
     }
 
     async changeDefaultAddressById(defaultAddress, id) {
@@ -74,6 +83,11 @@ export default class UserStore {
         this.setAll(defaultAddress, number, name)
     }
 
+    async changePasswordByNumber(number, password) {
+        const response = await AuthService.changePasswordByNumber(number, password);
+        this.setPassword(password)
+    }
+    
     async login(number, password) {
         try {
             const response = await AuthService.login(number, password);
@@ -120,7 +134,7 @@ export default class UserStore {
 
     async checkCode(number, code) {
         try {
-            const response = await $authHost.put(`${process.env.REACT_APP_API_URL}api/user/activate`, { number, code })
+            const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/activate`, { number, code })
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
@@ -130,8 +144,13 @@ export default class UserStore {
         }
     }
 
+    async checkCodeForRecovPassword(number, code) {
+        const response = await AuthService.cheackCode(number, code)
+        return response;
+    }
+
     async sendCode(number) {
-        const response = await $authHost.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
+        const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
         return response
     }
     // get isAuth() {

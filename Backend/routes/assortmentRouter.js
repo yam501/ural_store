@@ -12,6 +12,7 @@ router.post('/getAllProductsByType', assortmentController.getAllByType)
 router.post('/getAllProductsByAvailable', assortmentController.getAllByAvailable)
 router.post('/getAllProductsByTypeAndAvailable', assortmentController.getAllByTypeAndAvailable)
 router.post('/getAllProductsByTypeAndName', assortmentController.getAllByTypeAndName)
+router.post('/getAssortmentByIds', assortmentController.getAssortmentByIds)
 
 
 router.post('/deleteProductByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.deleteOneByName)
