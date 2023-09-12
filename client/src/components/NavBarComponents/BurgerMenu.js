@@ -30,7 +30,7 @@ const BurgerMenu = ({width, adress, onClick, ...props}) => {
           </div>
           <Offcanvas className='border-0 menuBox' show={open} onHide={handleClose}>
             <Container className='mt-5 pt-4'>
-              {user._isAuth && width <= 1299 && <div className='text-center text-wrap menuAdressText' onClick={onClick}>{adress}</div>}
+              {user._isAuth && width <= 1299 && <div className='text-center text-wrap menuAdressText' onClick={() => {openMenu(); onClick()}}>{adress}</div>}
             </Container>
             {user._isAuth && width <= 1299 && <div className='mt-4 sepLineMenu'></div>}
             <Offcanvas.Body className='menuBodyBox' >
