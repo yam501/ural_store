@@ -9,6 +9,7 @@ router.post('/createUser', authMiddleware, checkRole(['ADMIN']), userController.
 router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.post('/logout', authMiddleware, userController.logout)
+router.post('/cheackCode', userController.cheackCode)
 
 router.get('/refresh', userController.refresh)
 router.post('/getUserByNumber', authMiddleware, userController.getUserByNumber)
