@@ -77,7 +77,7 @@ function Order() {
           </div>
           <div className='form_check_order_section'>
             <label>Ваша квартира</label>  
-            <input type='text' value={dataOfOrder.flat} onChange={e => setDataOfOrder({...dataOfOrder, flat: e.target.value})} className='form_check_order_section_input' placeholder='Ноиер вашей квартиры'/>
+            <input type='text' value={dataOfOrder.flat} onChange={e => setDataOfOrder({...dataOfOrder, flat: e.target.value})} className='form_check_order_section_input' placeholder='Номер вашей квартиры'/>
           </div>
           <button onClick={confirmOrder} className='order_products_accept_btn' disabled={!orderIsOk}>
             Подтвердить заказ

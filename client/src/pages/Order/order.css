@@ -66,10 +66,12 @@
 }
 
 .form_check_order_section_input {
-    padding-left: 2%;
+    padding-left: 3%;
     border: 1px solid #F5376E;
     border-radius: 15px;
+    outline: none !important;
 }
+
 
 .order_products_accept_btn {
     background-color: #F5376E;
