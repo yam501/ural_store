@@ -1,3 +1,4 @@
+const { json } = require('sequelize')
 const ApiError = require('../error/ApiError')
 const { Assortment, BasketProduct, Basket } = require('../models/models')
 const basketController = require('./basketController')
@@ -201,6 +202,29 @@ class AssortmentController {
             next(ApiError.badRequest(e.message))
         }
     }
-}
 
+
+    async getAssortmentByIds(req, res, next) {
+
+        try {
+            let { ids } = req.body
+            let intIds = []
+            ids = ids.split(' ')
+            ids.map((id) => {
+                intIds.push(Number(id))
+            })
+            let result = await Assortment.findAll({ where: { id: intIds } })
+            return res.json(result)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+
+    }
+}
+find = async (id) => {
+
+    const a = await Assortment.findOne({ where: { id: id } })
+
+    return a
+}
 module.exports = new AssortmentController()
