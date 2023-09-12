@@ -8,6 +8,7 @@ import { ABOUTUS_ROUTE, ADMIN_ROUTE, HISTORYORDER_ROUTE, ORDER_ROUTE, TERMS_ROUT
 import Container from 'react-bootstrap/esm/Container';
 import FeedB from '../FeedB';
 import { Context } from '../..';
+import ShopLogo from './ShopLogo';
 
 const BurgerMenu = ({width, adress, onClick, ...props}) => {
     const {user} = useContext(Context)

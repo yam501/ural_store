@@ -159,7 +159,7 @@ class UserController {
         try {
             const { number, code } = req.body
             const user = await User.findOne({ where: { number: number } })
-            if (user.code === code) return res.json(true)
+            if (user.activatedCode === code) return res.json(true)
             return res.json(false)
 
         } catch (e) {

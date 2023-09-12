@@ -35,6 +35,14 @@ const AuthService =  {
 
     async changeAllById(defaultAddress, number, name, id) {
         return new Promise((resolve) => resolve($authHost.put('api/user/changeAllByID', {defaultAddress, number, name, id})))
+    },
+
+    async changePasswordByNumber(number, password) {
+        return new Promise((resolve) => resolve($host.put('api/user/changePasswordbyNumber', {number, password})))
+    },
+
+    async cheackCode(number, code) {
+        return new Promise((resolve) => resolve($host.post(`api/user/cheackCode`, {number, code})))
     }
 } 
 

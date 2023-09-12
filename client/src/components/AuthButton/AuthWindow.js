@@ -24,11 +24,9 @@ const AuthWindow = ({show, handleClose, ...props}) => {
             setPhone(input);
         }
     };
+    const [number, setNumber] = useState('')
+    const [password, setPassword] = useState('')
 
-    const [userAuthData, setUserAuthData] = useState({
-        number: '',
-        password: '',
-    })
     
     const [isLogin, setIsLogin] = useState(true)
     const [isAccept, setIsAccept] = useState(false)
@@ -45,24 +43,35 @@ const AuthWindow = ({show, handleClose, ...props}) => {
         setIsPasswordRecov(false)
     }
 
+    
     const showAuhtPage = () => {
         setIsLogin(true)
         setIsPasswordRecov(false)
     }
 
+    const showAcceptPage = (bool) => {
+        setIsLogin(false)
+        setIsPasswordRecov(false)
+        setIsAccept(bool)
+    }
+
     const registration = () => {
-        setIsAccept(true)
+        showAcceptPage(true)
     }
     const login = () => {
-        user.login(userAuthData.number, userAuthData.password);
+        user.login(number, password);
     }
     
     if (isAccept) {
-        return <Accept userAuthData={userAuthData} show={isAccept} goBack={showRegistrationPage}/>
+        return <Accept number={number} password={password} show={isAccept} goBack={showRegistrationPage}/>
     }
 
     if (isPasswordRecov) {
-        return <PasswordRecov show={isPasswordRecov} goBack={showAuhtPage} handleClose={handleClose} showRegistrationPage={showRegistrationPage} showAuhtPage={showAuhtPage}/>
+        return <PasswordRecov
+        show={isPasswordRecov} 
+        goBack={showAuhtPage}
+        handleClose={handleClose} 
+        />
     }
 
     return (
@@ -77,8 +86,8 @@ const AuthWindow = ({show, handleClose, ...props}) => {
                         className='rounded-4 formPhone'
                         type="text"
                         placeholder="+78888888888"
-                        value={userAuthData.number}
-                        onChange={e => setUserAuthData({...userAuthData, number: e.target.value})}
+                        value={number}
+                        onChange={e => setNumber(e.target.value)}
                     />
                 </Form.Group>
 
@@ -87,8 +96,8 @@ const AuthWindow = ({show, handleClose, ...props}) => {
                     <Form.Control
                         type="password"
                         className='container rounded-4 formPassword'
-                        value={userAuthData.password}
-                        onChange={e => setUserAuthData({...userAuthData, password: e.target.value})} />
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}/>
                 </Form.Group>
                 {isLogin ?
                     <div >

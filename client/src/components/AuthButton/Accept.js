@@ -10,25 +10,28 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import ResendIcon from './ResendIcon';
 import ReactInputVerificationCode from 'react-input-verification-code';
-const Accept = observer(({userAuthData, goBack, ...props}) => {
+import BackArrow from './BackArrow';
+const Accept = observer(({number, password, goBack, ...props}) => {
     const { user } = useContext(Context)
     const [time, setTime] = useState(30);
     const [code, setCode] = useState('');
+
     const sendCodeAgain = () => {
-        user.sendCode(userAuthData.number)
+        user.sendCode(number)
         setCode('')
         setTime(30)
     }
+    
     const putAccept = () => {
-        user.checkCode(userAuthData.number, code).then((res) => {
+        user.checkCode(number, code).then((res) => {
             if (res) window.location.reload()
-        })
+        })    
     }
 
     useEffect(() => {
         if (props.show) {
-            user.registration(userAuthData.number, userAuthData.password);
-        }
+            user.registration(number, password);
+        } 
     }, [props.show])
 
     useEffect(() => {
@@ -56,7 +59,8 @@ const Accept = observer(({userAuthData, goBack, ...props}) => {
 
     return (
         <Modal show={props.show}>
-        <div className='position-relative ms-auto me-3 acceptCloseBtn' id='accept' onClick={goBack} ></div>
+        {/* <div className='position-relative ms-auto me-3 acceptCloseBtn' id='accept' onClick={goBack} ></div> */}
+            <BackArrow onClick={goBack}/>
             <Container className='mt-2 ms-2 text-center'>
                 <span>Подтверждение номера</span>
             </Container>
