@@ -7,7 +7,7 @@ const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: true, defaultValue: "Гость" },
     number: { type: DataTypes.STRING, allowNull: false, unique: true },
-    defaultAddress: { type: DataTypes.STRING, allowNull: true},
+    defaultAddress: { type: DataTypes.STRING, allowNull: false, defaultValue: ""},
     password: { type: DataTypes.STRING, allowNull: false },
     role: { type: DataTypes.STRING, allowNull: false, defaultValue: "USER" },
     isActivated: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
@@ -41,7 +41,7 @@ const BasketProduct = sequelize.define('basketProduct', {
 const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER, allowNull: false },
-    address: { type: DataTypes.STRING, allowNull: false },
+    address: { type: DataTypes.STRING, allowNull: false, defaultValue: "" },
     aproxSum: { type: DataTypes.DOUBLE, allowNull: false },
     onConfirm: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     orderProductsCount: {type: DataTypes.INTEGER, asllowNull: false, defaultValue: 0}
