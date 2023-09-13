@@ -45,6 +45,10 @@ const AssortmentService = {
         return new Promise((resolve) => resolve($authHost.post('api/assortment/getAllProductsByTypeAndName', { type, name })))
     },
 
+    async getAssortmentByIds(ids) {
+        return new Promise((resolve) => resolve($authHost.post('api/assortment/getAssortmentByIds', { ids })))
+    },
+
 
 
     async changeNameByName(oldName, newName) {
@@ -62,11 +66,11 @@ const AssortmentService = {
     async changeImageByName(formData) {
         return new Promise((resolve) => resolve($authHost.put('api/assortment/changeProductImageByName', formData)))
     },
-    
+
     async changeAvailableByName(name) {
         try {
-            return new Promise((resolve) => resolve($authHost.put('api/assortment/changeProductAvailableByName', {name})))
-            
+            return new Promise((resolve) => resolve($authHost.put('api/assortment/changeProductAvailableByName', { name })))
+
         } catch (error) {
             console.log(error)
         }
