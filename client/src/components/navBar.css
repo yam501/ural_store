@@ -8,9 +8,9 @@
     width: 100%;
     min-height: 64px;
     height: 5.2vw;
-    background: #962A4A;
+    background: #832440;
     font-size: 16px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out; 
 }
 
 .navbar1.fixed {
@@ -215,7 +215,7 @@
 .menuBox {
     z-index: 1;
     width: 15vw !important;
-    background-color:#962A4A;
+    background-color:#832440;
     border: none;
     /* opacity: .9; */
 }
