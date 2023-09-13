@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 5;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -20,7 +20,7 @@
 
 .map {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     display: flex;
     margin: auto;
     margin-top: 7vh;
