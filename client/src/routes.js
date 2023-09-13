@@ -20,10 +20,6 @@ export const authRoutes = [
         element: <Order/>
     },
     {
-        path: BASKET_ROUTE,
-        element: <Basket/>
-    }, 
-    {
         path: PROFILE_ROUTE,
         element: <Profile/>
     },
@@ -50,4 +46,8 @@ export const publicRoutes = [
         path: TERMS_ROUTE,
         element: <Terms/>
     },
+    {
+        path: BASKET_ROUTE,
+        element: <Basket/>
+    }
 ]
