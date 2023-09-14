@@ -1,6 +1,6 @@
 .history-empty {
     flex-direction: column;
-    margin-top: 10vh;
+    min-height: 700px;
 }
 
 .history-empty-content {
