@@ -52,12 +52,11 @@ function Basket() {
   }
 
   useEffect(() => {
-    renderBasketItems()
-
+    if (user._isAuth) renderBasketItems()
   }, [basket._baskets.id])
 
   useEffect(() => {
-    setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
+    if (user._isAuth) setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
   }, [basketProducts])
 
   const basketItems = useMemo(() => {
