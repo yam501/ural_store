@@ -6,7 +6,7 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import { Container, Spinner } from 'react-bootstrap';
 import { NavLink, Navigate, redirect, useNavigate } from 'react-router-dom';
-import { ORDER_ROUTE, STORE_ROUTE } from '../../utils/consts';
+import { BASKET_ROUTE, ORDER_ROUTE, REGISTRATION_ROUTE, STORE_ROUTE } from '../../utils/consts';
 // Страница корзины 
 
 function Basket() {
@@ -27,10 +27,10 @@ function Basket() {
       if (order._order === null) {
         await order.createOrder(user._user.id, user._user.defaultAddress, basket.basket.aproxSum, false)
       }
-      
+
     }
     navigate(ORDER_ROUTE)
-    }
+  }
 
   function sortById(id) {
     return (a, b) => a[id] > b[id] ? 1 : -1;
@@ -63,22 +63,33 @@ function Basket() {
 
   const countAproxSum = () => {
     setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
-  } 
+  }
 
   if (loading) {
-    return <Spinner animation={'grow'}/>
+    return <Spinner animation={'grow'} />
   }
 
 
   return (
     <div className='mb-5 basket_page page_body'>
       <Container className='justify-content-center text-center page-name'>
-        {basketItems.length === 0 && loading === false?
+        {basketItems.length === 0 && loading === false ?
           <div className='d-flex justify-content-center align-items-center basket-empty'>
-            Ваша корзина пока что пуста
+            {user.isAuth ?
+              "Ваша корзина пока что пуста"
+              :
+              `Чтобы добавить товар 
+            зарегестрируйтесь на сайте`
+            }
             <div className='basket-empty-content'>
-              <div className='basket-icon'> </div>
-              <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
+              {user.isAuth ?
+                <>
+                  <div className='basket-icon'> </div>
+                  <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
+                </>
+                :
+                <NavLink className='btn-returnToStore text-white text-decoration-none'>Регестрация</NavLink>
+              }
             </div>
           </div> : basketItems.map((basketItem) =>
             <BasketItem key={basketItem.id} user={user._user} countAproxSum={countAproxSum} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
@@ -91,12 +102,12 @@ function Basket() {
             Сумма заказа: {aproxSum} ₽
           </div>
           <div className='w-25'>
-              <Button
-                className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'
-                onClick={transferToOrder}
-              >
-                Заказать
-              </Button>
+            <Button
+              className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'
+              onClick={transferToOrder}
+            >
+              Заказать
+            </Button>
           </div>
         </div>
       }
