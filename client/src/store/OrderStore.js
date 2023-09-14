@@ -33,7 +33,7 @@ export default class OrderStore {
 
     async changeAddressByUserId(userId, address) {
         await OrderService.changeAddressByUserId(userId, address)
-        this.getOrderByUserId(userId)
+        this.getOrderByOrderId(userId)
     }
 
     async changeAddressByOrderId(id, address) {
@@ -43,7 +43,22 @@ export default class OrderStore {
 
     async changeOnConfirmByOrderId(id, onConfirm) {
         await OrderService.changeOnConfirmByOrderId(id, onConfirm)
-        this.getOrderByOrderId(id)
+        this.getNotOnConfirmOrderByUserId(id)
+    }
+
+    async changeOnCreateByOrderId(id, onCreate) {
+        await OrderService.changeOnCreateByOrderId(id, onCreate)
+        this.getNotOnConfirmOrderByUserId(id)
+    }
+
+    async changeOnDeliverByOrderId(id, onDeliver) {
+        await OrderService.changeOnDeliverByOrderId(id, onDeliver)
+        this.getNotOnConfirmOrderByUserId(id)
+    }
+
+    async changeDeliveredByOrderId(id, delivered) {
+        await OrderService.changeDeliveredByOrderId(id, delivered)
+        this.getNotOnConfirmOrderByUserId(id)
     }
 
     async changeOrderProductsCountByOrderId(id, orderProductsCount) {
