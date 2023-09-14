@@ -71,9 +71,10 @@ function Admin() {
     <div className='container page_body admin-page mt-3 mb-3'>
       <Tabs
         as={'div'}
-        defaultActiveKey="ChangeAvailable"
+        defaultActiveKey="default"
         className="mb-3"
       >
+        <div eventKey='default'></div>
         {adminEditShow || adminShow ?
 
           <Tab eventKey="CreateAssortment" title="Создать ассортимент">
