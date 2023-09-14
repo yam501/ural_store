@@ -11,7 +11,7 @@ import { ADMIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
 import AdminPanelBtnIcon from './AdminPanelBtnIcon';
 
 
-const AuthButton = observer(() => {
+const AuthButton = observer(({show, handleShowControl, ...props}) => {
     const { user } = useContext(Context)
 
 
@@ -19,8 +19,7 @@ const AuthButton = observer(() => {
         user.logout()
     }
 
-    const [show, setShow] = useState(false);
-    const handleShowControl = () => setShow(!show)
+
 
     if (user._isAuth && user._user.isActivated && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')) {
         return <div className='d-flex align-items-center'>

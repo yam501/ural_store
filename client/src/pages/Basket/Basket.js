@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 import { Container, Spinner } from 'react-bootstrap';
 import { NavLink, Navigate, redirect, useNavigate } from 'react-router-dom';
 import { BASKET_ROUTE, ORDER_ROUTE, REGISTRATION_ROUTE, STORE_ROUTE } from '../../utils/consts';
+import AuthWindow from '../../components/AuthButton/AuthWindow';
 // Страница корзины 
 
 function Basket() {
@@ -19,6 +20,8 @@ function Basket() {
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
   const [aproxSum, setAproxSum] = useState(0)
+  const [show, setShow] = useState(false);
+  const handleShowControl = () => setShow(!show)
   const navigate = useNavigate()
 
   async function transferToOrder() {
@@ -88,7 +91,7 @@ function Basket() {
                   <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
                 </>
                 :
-                <NavLink className='btn-returnToStore text-white text-decoration-none'>Регестрация</NavLink>
+                <button className='btn-returnToStore text-white' onClick={handleShowControl}>Регестрация</button>
               }
             </div>
           </div> : basketItems.map((basketItem) =>
@@ -111,6 +114,7 @@ function Basket() {
           </div>
         </div>
       }
+      <AuthWindow show={show} handleClose={handleShowControl}/>
     </div>
   );
 }

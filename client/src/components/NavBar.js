@@ -22,6 +22,8 @@ const NavBar = observer(({showHeader, ...props}) => {
   const { user } = useContext(Context)
   const [width, setWidth] = useState(window.innerWidth);
   const [show, setShow] = useState(false)
+  const [showAuth, setShowAuth] = useState(false);
+  const handleShowControl = () => setShowAuth(!showAuth)
   const [adress, setAdress] = useState({
     adressString: 'Выберите адрес'
   })
@@ -62,7 +64,7 @@ useEffect(() => {
           <div className='d-flex align-items-center navBtnsBox'>
             {user._isAuth && user._user.isActivated && width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width} />}
             <ModalWindowYMaps width={width} findAdress={findAdress} adress={adress.adressString} onClick={() => setShow(false)} show={show}/>
-            <AuthButton />
+            <AuthButton show={showAuth} handleShowControl={handleShowControl}/>
             <ShopBasketButton />
           </div>
         </Nav>
