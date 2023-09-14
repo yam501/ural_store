@@ -21,12 +21,8 @@ function CreateAssortment() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === false ||type.includes('Выберите тип') ) {
+    if (form.checkValidity() === false || type.includes('Выберите тип')) {
       event.stopPropagation();
-    // if(){
-    //   alert('Не все поля заполнены')
-    //   event.stopPropagation();
-    // }
     } else {
       formDataCreate()
       setDefaultValues()
@@ -103,14 +99,14 @@ function CreateAssortment() {
             <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
             <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
             <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
-          </Dropdown.Menu>  
+          </Dropdown.Menu>
         </Dropdown>
 
-        <Form.Control 
-        value={name} 
-        className="mt-3 textarea" 
-        placeholder="Введите название" 
-        required onChange={e => setName(e.target.value)} />
+        <Form.Control
+          value={name}
+          className="mt-3 textarea"
+          placeholder="Введите название"
+          required onChange={e => setName(e.target.value)} />
 
         <Dropdown>
           <Dropdown.Toggle className="mt-3 assortment-switch" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
@@ -120,23 +116,23 @@ function CreateAssortment() {
           </Dropdown.Menu>
         </Dropdown>
 
-        <Form.Control 
-        value={costPerOne} 
-        min={0} 
-        className="mt-3 textarea" 
-        placeholder="Введите цену за штуку(кг)" 
-        
-        type="number" 
-        required onChange={e => setCostPerOne(e.target.value)} 
+        <Form.Control
+          value={costPerOne}
+          min={0}
+          className="mt-3 textarea"
+          placeholder="Введите цену за штуку(кг)"
+
+          type="number"
+          required onChange={e => setCostPerOne(e.target.value)}
         />
 
-        <Form.Control 
-        value={composition} 
-        className="mt-3 textarea" 
-        as='textarea' 
-        placeholder="Состав" 
-        rows={10} 
-        required onChange={e => setComposition(e.target.value)} 
+        <Form.Control
+          value={composition}
+          className="mt-3 textarea"
+          as='textarea'
+          placeholder="Состав"
+          rows={10}
+          required onChange={e => setComposition(e.target.value)}
         />
 
 
