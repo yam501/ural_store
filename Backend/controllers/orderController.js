@@ -87,6 +87,36 @@ class OrderController {
         }
     }
 
+    async changeOnCreateByOrderID(req, res, next) {
+        try {
+            const {id, onCreate} = req.body
+            const updated = await Order.update({onCreate: onCreate}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeOnDeliverByOrderID(req, res, next) {
+        try {
+            const {id, onDeliver} = req.body
+            const updated = await Order.update({onDeliver: onDeliver}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeDeliveredByOrderID(req, res, next) {
+        try {
+            const {id, delivered} = req.body
+            const updated = await Order.update({delivered: delivered}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async changeOrderProductsCountByOrderID(req, res, next) {
         try {
             const {id, orderProductsCount} = req.body

@@ -33,6 +33,18 @@ const OrderService = {
         return new Promise((resolve) => resolve($authHost.put('api/order/changeOnConfirmByOrderID', {id, onConfirm})))
     },
 
+    async changeOnCreateByOrderId(id, onCreate) {
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnCreateByUserID', {id, onCreate})))
+    },
+
+    async changeOnDeliverByOrderId(id, onDeliver) {
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnDelivereByUserID', {id, onDeliver})))
+    },
+
+    async changeDeliveredByOrderId(id, delivered) {
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeDeliveredByUserID', {id, delivered})))
+    },
+
     async changeOrderProductsCountByOrderId(id, orderProductsCount) {
         return new Promise((resolve) => resolve($authHost.put('api/order/changeOrderProductsCountByOrderID', {id, orderProductsCount})))
     }
