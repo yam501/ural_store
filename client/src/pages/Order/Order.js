@@ -111,7 +111,7 @@ function Order() {
                 <NavLink className='btn-returnToBasket text-white text-decoration-none' to={BASKET_ROUTE}>В корзину</NavLink>
               </div> :
               <div className='order_products_check_box'>
-                <div>
+                <div className='order_products_check_list'>
                   {orderProductsDinamic.map(
                     orderProduct => <OrderProduct key={orderProduct.id} orderProduct={orderProduct} append={appendProduct}></OrderProduct>
                   )}
