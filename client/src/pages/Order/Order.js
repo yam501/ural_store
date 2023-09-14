@@ -27,7 +27,7 @@ function Order() {
 
   async function createOrderProductsFromBasketProducts() {
     if (JSON.stringify(user._user) !== "{}") {
-      order.getNotOnConfirmOrderByUserId(user._user.id)
+      await order.getNotOnConfirmOrderByUserId(user._user.id)
     }
     if (JSON.stringify(order._order) !== "{}" && order._order !== null) {
       setOrderProductsDinamic(basketProduct._basketProducts ? basketProduct._basketProducts : [])
@@ -83,9 +83,9 @@ function Order() {
             <label>Ваш номер</label>  
             <input type='tel' value={dataOfOrder.tel} onChange={e => setDataOfOrder({...dataOfOrder, tel: e.target.value})} className='form_check_order_section_input' placeholder='+7(999)9999999'/>
           </div>
-          <button onClick={confirmOrder} className='order_products_accept_btn' disabled={!orderIsOk}>
+          <Button onClick={confirmOrder} className='order_products_accept_btn' disabled={!orderIsOk}>
             Подтвердить заказ
-          </button>
+          </Button>
         </form>
         <div className='order_products_check'>
         {
