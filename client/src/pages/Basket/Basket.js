@@ -70,21 +70,20 @@ function Basket() {
   if (loading) {
     return <Spinner animation={'grow'} />
   }
-
+  console.log(user._isAuth)
 
   return (
     <div className='mb-5 basket_page page_body'>
       <Container className='justify-content-center text-center page-name'>
         {basketItems.length === 0 && loading === false ?
           <div className='d-flex justify-content-center align-items-center basket-empty'>
-            {user.isAuth ?
+            {user._isAuth ?
               "Ваша корзина пока что пуста"
               :
-              `Чтобы добавить товар 
-            зарегестрируйтесь на сайте`
+              'Чтобы добавить товар зарегестрируйтесь на сайте'
             }
             <div className='basket-empty-content'>
-              {user.isAuth ?
+              {user._isAuth ?
                 <>
                   <div className='basket-icon'> </div>
                   <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>

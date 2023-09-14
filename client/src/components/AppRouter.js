@@ -1,12 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import {Routes, Route, Navigate, useLocation} from 'react-router-dom'
+import {Routes, Route, Navigate, useLocation, useNavigate} from 'react-router-dom'
 import { adminRoutes, authRoutes, publicRoutes } from '../routes';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
 import { STORE_ROUTE } from '../utils/consts';
+import ErrorPage from './ErrorPage';
 function AppRouter() {
     const {user} = useContext(Context)
     const location = useLocation()
+    const navigate = useNavigate()
+
     return (
         <Routes>
             {(user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')  && adminRoutes.map(({path, element}) =>
@@ -18,8 +21,7 @@ function AppRouter() {
             {publicRoutes.map(({path, element}) =>
                 <Route key={path} path={path} element={element} exact/>
             )}
-            <Route path='*' element={<Navigate to={location} replace/>}/>
-            {/* <Route path='*' element={<Navigate to={STORE_ROUTE}/>}/> */}
+            <Route path='*' element={<ErrorPage/>}/>
         </Routes>
     );
   }

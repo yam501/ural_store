@@ -26,10 +26,6 @@ export const authRoutes = [
     {
         path: HISTORYORDER_ROUTE,
         element: <HistoryOrder/>
-    },
-    {
-        path: '*',
-        element: <Store/> 
     }
 ]
 
