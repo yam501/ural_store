@@ -6,27 +6,33 @@ import ComplitedOrderProductsStore from '../../store/ComplitedOrderProductsStore
 import OurDateTime from '../../dateTime/dateTime';
 import ComplitedOrderProductItem from './ComplitedOrderProductItem';
 import { Button } from 'react-bootstrap';
+import AssortmentStore from '../../store/AssortmentStore';
 
 function ComplitedOrderItem({ user, complitedOrder }) {
     const { basket } = useContext(Context)
     const { basketProduct } = useContext(Context)
+    const assortmentStore = new AssortmentStore()
     const [complitedOrderProducts, setComplitedOrderProducs] = useState([])
     const complitedOrderProductsStore = new ComplitedOrderProductsStore()
-    const [productsToRepeat, setProductsToRepeat] = useState([])
 
     async function fetchComplitedOrderProducts() {
         await complitedOrderProductsStore.getAllComplitedOrderProductsByComplitedOrderId(complitedOrder.id)
-        setComplitedOrderProducs(complitedOrderProductsStore._complitedOrderProducts ?
-            complitedOrderProductsStore._complitedOrderProducts : [])
-    }
-
-    const appendProduct = (product, count) => {
-        productsToRepeat.push({ ...product, count: count })
+        let ids = []
+        complitedOrderProductsStore._complitedOrderProducts.forEach(complitedOrderProduct => {
+            ids.push(complitedOrderProduct.assortmentId)
+        })
+        await assortmentStore.getAssortmentByIds(ids.join(' '))
+        let toComplitedOrderProducts = complitedOrderProductsStore._complitedOrderProducts.map(complitedOrderProduct => {
+            let product = assortmentStore._assortments.filter(item => item.id === complitedOrderProduct.assortmentId)[0]
+            return {...complitedOrderProduct, ...product}
+        })
+        setComplitedOrderProducs(toComplitedOrderProducts ?
+            toComplitedOrderProducts : [])
     }
 
     async function repeatOrder() {
         await basket.getBasketByUserID(user._user.id)
-        productsToRepeat.map(product => {
+        complitedOrderProducts.map(product => {
             if (product.available) {
                 basketProduct.createBasketProduct(basket.basket.id, product.id, product.costPerOne, product.count, true)
             }
@@ -55,7 +61,7 @@ function ComplitedOrderItem({ user, complitedOrder }) {
             <div className='historyOrder-content'>
                 <div className='historyOrder-products'>
                     {complitedOrderProducts.map(item => {
-                        return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} append={appendProduct} />
+                        return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} />
                     }
                     )}
                 </div>
