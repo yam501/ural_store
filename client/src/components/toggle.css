@@ -1,0 +1,41 @@
+.toggle_box {
+    width: 15vw;
+
+}
+
+.switch, .toggle {
+    height: 2.8rem;
+    border-radius: 100px;
+  }
+  .switch {
+    width: 100%;
+    background-color: rgba(0,0,0,.1);
+    border-radius: 100px;
+    position: relative;
+    margin: 1.8rem 0 4rem 0; 
+    cursor: pointer;
+  }
+  .toggle {
+    position: absolute;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,.15);
+    transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .toggle.more {
+    transform: translate(100%);
+  }
+  .toggle.less {
+    transform: translate(0);
+  }
+  .names {
+    font-size: 90%;
+    font-weight: bolder;
+    width: 65%;
+    margin-left: 17.5%;
+    margin-top: .5%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+  }
