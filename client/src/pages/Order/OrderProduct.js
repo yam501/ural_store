@@ -25,12 +25,25 @@ function OrderProduct({ append, orderProduct, ...props }) {
                 product === null ?
                     <div>Загрузка</div> :
                     <div className='order_product_card'>
-                        <div className='order_product_card_image_box'>
-                            <Image alt="Картинка" 
-                            className='w-100 h-100 order_product_card_image'
-                            src={process.env.REACT_APP_API_URL + product.image}></Image>
-                            <h2 className='ms-2 order_product_name'>{product.name}</h2>
+                        <Image alt="Картинка"
+                            className='order-product-image'
+                            src={process.env.REACT_APP_API_URL + product.image}>
+
+                        </Image>
+                        <div className='order-product-name'>
+                            <h2 className='ms-2 order-product-text'>{product.name}</h2>
                         </div>
+                        <div className='checkbox-content'>
+                            <label className='checkbox-label'>
+                                <input type='checkbox'></input>
+                                положить больше
+                            </label>
+                            <label className='checkbox-label'>
+                                <input type='checkbox'></input>
+                                положить меньше
+                            </label>
+                        </div>
+
                         <div className='me-3 order_product_card_inform'>
                             <div className='order_product_card_cost'>{product.costPerOne * orderProduct.count} ₽</div>
                             <div className='order_product_card_count'>Количество: {orderProduct.count}</div>

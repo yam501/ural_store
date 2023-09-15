@@ -70,7 +70,6 @@ function Basket() {
   if (loading) {
     return <Spinner animation={'grow'} />
   }
-  console.log(user._isAuth)
 
   return (
     <div className='mb-5 basket_page page_body'>
