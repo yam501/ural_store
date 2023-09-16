@@ -4,11 +4,13 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import AssortmentStore from '../../store/AssortmentStore';
 import { Image } from 'react-bootstrap';
+import Toggle from '../../components/Toggle';
 
 function OrderProduct({ append, orderProduct, ...props }) {
     const [product, setProduct] = useState({})
     const assortmentStore = new AssortmentStore()
-
+    const [toggleState, setToggleState] = useState(false)
+    const toggleSwitch = () => toggleState ? setToggleState(false) : setToggleState(true);
     async function getProduct() {
         await assortmentStore.getById(orderProduct.assortmentId)
         setProduct(assortmentStore.assortment)
@@ -33,16 +35,12 @@ function OrderProduct({ append, orderProduct, ...props }) {
                         <div className='order-product-name'>
                             <h2 className='ms-2 order-product-text'>{product.name}</h2>
                         </div>
+                        { product.type === 'Мясо' || product.type === 'Салаты' || product.type === 'Овощи'  ? 
                         <div className='checkbox-content'>
-                            <label className='checkbox-label'>
-                                <input type='checkbox'></input>
-                                положить больше
-                            </label>
-                            <label className='checkbox-label'>
-                                <input type='checkbox'></input>
-                                положить меньше
-                            </label>
+                            <Toggle toggleState={toggleState} toggleSwitch={toggleSwitch}/>
                         </div>
+                        :
+                        <div></div>}
 
                         <div className='me-3 order_product_card_inform'>
                             <div className='order_product_card_cost'>{product.costPerOne * orderProduct.count} ₽</div>

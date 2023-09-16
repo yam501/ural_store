@@ -1,20 +1,21 @@
 .toggle_box {
-    width: 15vw;
-
+  width: 8vw;
+  height: 1.5vw;
 }
 
 .switch, .toggle {
-    height: 2.8rem;
+    height: 100%;
     border-radius: 100px;
   }
+
   .switch {
     width: 100%;
     background-color: rgba(0,0,0,.1);
     border-radius: 100px;
     position: relative;
-    margin: 1.8rem 0 4rem 0; 
     cursor: pointer;
   }
+
   .toggle {
     position: absolute;
     width: 50%;
@@ -29,13 +30,14 @@
     transform: translate(0);
   }
   .names {
-    font-size: 90%;
-    font-weight: bolder;
-    width: 65%;
-    margin-left: 17.5%;
-    margin-top: .5%;
+    width: 100%;
+    height: 100%;
+    font-size: calc(10px + 2 * (100vw/1903));
+    font-weight: 600;
     position: absolute;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     user-select: none;
+    padding-top: 0.75vw;
   }

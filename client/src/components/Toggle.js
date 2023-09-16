@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import './toggle.css'
-const Toggle = () => {
+const Toggle = ({toggleState, toggleSwitch, ...props}) => {
 
-    const [toggleState, setToggleState] = useState('less')
-    const toggleSwitch = () => toggleState === 'less' ? setToggleState('more') : setToggleState('less');
+
     return (
         <div className='toggle_box'>
             <div onClick={toggleSwitch} className='switch'>
-                <div className={`toggle ${toggleState}`}></div>
+                <div className={`toggle ${toggleState ? 'more' : 'less'}`}></div>
                 <div className='names'>
                     <p className='less'>Меньше</p>
                     <p className='more'>Больше</p>
