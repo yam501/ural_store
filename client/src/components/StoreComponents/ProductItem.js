@@ -102,7 +102,7 @@ const ProductItem = ({ product, type, productShow }) => {
                         +
                     </Button>
                 </div>
-                <AddProductToBasketBtn product={product} countProduct={countProduct} />
+                <AddProductToBasketBtn product={product} type={type} countProduct={countProduct} />
             </Card>
 
             <Modal show={show} onHide={handleClose}>
@@ -112,19 +112,19 @@ const ProductItem = ({ product, type, productShow }) => {
                     </div>
                     <div className='flex-grow-1'>
                         <div className='mb-1 info-text'>{product.name}</div>
-                        <div className='mb-1 info-text'>{product.costPerOne} ₽ за кг</div>
-                        <div className='mb-1 productItem_text info-text'>{countProduct * product.costPerOne} ₽</div>
+                        <div className='mb-1 info-text'>{product.costPerOne} ₽ за {productType[type].value}</div>
+                        <div className='mb-1 productItem_text info-text'>{productType[type].cost} ₽</div>
                         <div className='d-flex justify-content-between mb-1'>
                             <Button className='btn-minus rounded-circle justify-self-start' onClick={() => minus()}>
                                 -
                             </Button>
-                            <span className='d-flex align-items-center justify-self-center productItem_text info-text'>{countProduct} кг</span>
+                            <span className='d-flex align-items-center justify-self-center productItem_text info-text'>{countProduct} {productType[type].value}</span>
                             <Button className='btn-plus rounded-circle justify-self-end' onClick={() => plus()}>
                                 +
                             </Button>
                         </div>
                         <div>
-                            <AddProductToBasketBtn product={product} countProduct={countProduct} />
+                            <AddProductToBasketBtn product={product} cost={productType[type].cost} countProduct={countProduct} />
                         </div>
                     </div>
                     <div className='mt-2 productItem_text'>

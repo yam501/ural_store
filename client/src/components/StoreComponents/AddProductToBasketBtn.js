@@ -2,13 +2,11 @@ import React, {useContext, useState} from 'react';
 import { Button, Nav } from 'react-bootstrap';
 import { Context } from '../..';
 
-const AddProductToBasketBtn = ({product, countProduct}) => {
-    const [text, setText] = useState(false)
+const AddProductToBasketBtn = ({product, countProduct, cost}) => {
     const {basketProduct} = useContext(Context)
     const {basket} = useContext(Context)
-    const {user} = useContext(Context)
     const addProductInBasket = () => {
-        basketProduct.createBasketProduct(basket.basket.id, product.id, product.costPerOne * countProduct, countProduct, false)
+        basketProduct.createBasketProduct(basket.basket.id, product.id, cost, countProduct, false)
         basketProduct.getAllBasketProductsByBasketID(basket.basket.id)
     }
     return (

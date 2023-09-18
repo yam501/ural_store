@@ -19,6 +19,7 @@ function Basket() {
   const { user } = useContext(Context)
   const { order } = useContext(Context)
   const { orderProducts } = useContext(Context)
+  const [typeOfProducts, setTypeOfProducts] = useState([])
   const [aproxSum, setAproxSum] = useState(0)
   const [show, setShow] = useState(false);
   const handleShowControl = () => setShow(!show)
@@ -63,6 +64,8 @@ function Basket() {
     return basketProducts.slice().sort(sortById('id'))
   }, [basketProducts])
 
+  
+
   const countAproxSum = () => {
     setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
   }
@@ -92,7 +95,7 @@ function Basket() {
               }
             </div>
           </div> : basketItems.map((basketItem) =>
-            <BasketItem key={basketItem.id} user={user._user} countAproxSum={countAproxSum} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
+            <BasketItem key={basketItem.id} user={user._user}  countAproxSum={countAproxSum} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
           )}
       </Container>
 
