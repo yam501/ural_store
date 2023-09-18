@@ -70,7 +70,7 @@ body {
     }
 }
 
-@media (min-width: 576px) and (max-width: 659px) {
+@media (min-width: 576px) and (max-width: 660px) {
     .basket-img {
         width: 100px;
         height: 100px;
@@ -152,6 +152,9 @@ body {
     background: url('../../assets/deleteIconHover.svg') 0 0 / 90% no-repeat;
 }
 
+.btn-plus:hover .deleteBtnFill{
+    fill: white;
+}
 
 .basket_page {
     margin: auto;
