@@ -139,7 +139,7 @@
 }
 
 .btnBasket:hover .btnBasketFill {
-    stroke: #fff;
+    stroke: #FFCDDC !important;
 }
 
 .logo {

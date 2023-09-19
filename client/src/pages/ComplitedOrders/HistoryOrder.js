@@ -61,7 +61,7 @@ function HistoryOrder() {
     <Container className='page_body'>
       {complitedOrdersDinamic.length === 0?
         <Container className='d-flex justify-content-center align-items-center history-empty'>
-          <div className='history-empty-text'>Ваша история пока не написана</div>
+          <div className='history-empty-text'>Ваша история заказов пока не написана</div>
           <div className='history-empty-content'>
 
             <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
