@@ -38,7 +38,7 @@ const ProductItem = ({ product, type, productShow }) => {
                 setCountProduct(50)
                 return 50
             },
-            cost: product.costPerOne * (countProduct / 50)
+            cost: (product.costPerOne * (countProduct / 50))/2
         },
         "Овощи": {
             value: 'кг',
@@ -85,7 +85,7 @@ const ProductItem = ({ product, type, productShow }) => {
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
                     <div className='info-text'>
-                        {product.costPerOne} ₽ за {productType[type].value}
+                        {product.costPerOne} ₽ за {`${type === 'Салаты' ? 100 : 1} ${productType[type].value}`}
                     </div>
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>

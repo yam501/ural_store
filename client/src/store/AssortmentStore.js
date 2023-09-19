@@ -20,6 +20,7 @@ export default class AssortmentStore {
     async getById(id) {
         const response = await AssortmentService.getById(id);
         this.setAssortment(response.data)
+        return true
     }
 
 
