@@ -23,9 +23,16 @@
     min-width: 96px;
     width: 6vw;
     height: 2.6vw;
-    background-color: #F5376E;
-    color: white;
+    background-color: #BF486A;
+    color: #FFCDDC;
     /* opacity: 70%; */
+    border: 0;
+}
+
+.btnBasket {
+    height: 50px;
+    width: 50px;
+    background-color: #d6587b;
     border: 0;
 }
 
@@ -50,7 +57,7 @@
 .adminBtn:hover,
 .adminPanBtn:hover,
 .admin-icon:hover {
-    background-color: #ED789A !important;
+    background-color: #e6688b !important;
 }
 
 .btnAuth:active,
@@ -58,26 +65,26 @@
 .adminBtn:active,
 .adminPanBtn:active,
 .admin-icon:active {
-    background-color: #ED789A !important;
+    background-color: #e6688b !important;
 }
 
 .btnAuth:hover .btnText {
-    color: #fff;
+    color: #ffdee7;
 }
 
 .btnAuth:hover .btnIconFill,
 .adminBtn:hover .btnIconFill,
 .adminPanBtn:hover .btnIconFill {
     fill: #F5376E;
-    fill-opacity: 100%;
+    color: #ffdee7;
 }
 
 .adressBox,
 .adressBox:active {
     width: fit-content;
     height: 2.6vw;
-    background-color: #ff709a !important;
-    color: white;
+    background-color: #d6587b !important;
+    color: #FFCDDC;
     /* opacity: 70%; */
 }
 
@@ -100,7 +107,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    color: #ffffff;
+    color: #ffdee7;
     margin-left: 10px;
 }
 
@@ -122,13 +129,6 @@
 
 
 
-.btnBasket {
-    height: 50px;
-    width: 50px;
-    background-color: #F5376E;
-    border: 0;
-}
-
 @media (max-width:1499px) {
     .btnBasket {
         width: 50px;
@@ -147,7 +147,7 @@
     text-decoration: none;
     font-size: calc(16px + 6 * (100vw/1903));
     font-weight: 700;
-    color: white;
+    color: #FFCDDC;
     text-align: center;
 }
 
@@ -275,7 +275,7 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    color: white;
+    color: #FFCDDC;
 }
 
 .sepLineMenu {
@@ -317,7 +317,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    color: rgba(255, 255, 255);
+    color: #ffdee7;
 }
 
 @media (max-width:1199px) {
