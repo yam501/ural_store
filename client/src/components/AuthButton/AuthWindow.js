@@ -79,7 +79,6 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
             handleClose={handleClose}
         />
     }
-
     return (
         <Modal show={show} onHide={closeError}>
             <Container className='mt-2 ms-2'>
