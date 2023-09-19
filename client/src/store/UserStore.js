@@ -96,7 +96,7 @@ export default class UserStore {
             this.setUser(response.data.user)
             return true
         } catch (e) {
-            return e.response?.data?.message
+            return false
         }
     }
 

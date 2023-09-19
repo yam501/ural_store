@@ -549,3 +549,8 @@
     margin-left: 1vw;
     margin-right: 2.5vw;
 }
+
+.error-login{
+    color: #c93c3c;
+    font-size: calc(12px + 4 * (100vw/1903));
+}
