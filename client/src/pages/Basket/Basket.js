@@ -46,18 +46,21 @@ function Basket() {
       await basketProduct.getAllBasketProductsByBasketID(basket._baskets.id)
     }
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
+  
   }
 
   const deleteBasketItems = (id) => {
     setBasketProducts(basketProducts.filter(product => product.assortmentId !== id))
   }
 
+  
   useEffect(() => {
     if (user._isAuth) renderBasketItems()
   }, [basket._baskets.id])
 
   useEffect(() => {
-    if (user._isAuth) setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
+    
+    if (user._isAuth) countAproxSum()
   }, [basketProducts])
 
   const basketItems = useMemo(() => {
@@ -66,7 +69,7 @@ function Basket() {
 
   
 
-  const countAproxSum = () => {
+  const countAproxSum = async () => {
     setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
   }
 

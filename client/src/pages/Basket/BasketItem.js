@@ -1,27 +1,39 @@
-import React, { useContext, useState, Suspense } from 'react';
+import React, { useContext, useState, Suspense, useEffect } from 'react';
 import { Image, Button, Form, Spinner } from 'react-bootstrap';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import './basket.css'
 import DeleteButton from './DeleteButton';
 const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
+    const {assortment} = useContext(Context)
     const [countProduct, setCountProduct] = useState(basketProduct.count)
-    const plus = () => {
-        basketProduct.count = countProduct + 1;
-        product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + 1)
-        countProduct >= 1 && setCountProduct(countProduct + 1)
-        props.countAproxSum()
+    const [type, setType] = useState('')
+    const typeDetect = async () => {
+        await assortment.getById(basketProduct.assortmentId).then(res => {
+            if (res) setType(assortment.assortment.type)
+            
+        })
+    }
+    useEffect(() => {
+        typeDetect()
+        console.log(1)
+    }, [])
+    const plus = async () => {
+        basketProduct.count = countProduct + (type === 'Салаты' ? 50 : 1);
+        product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct + (type === 'Салаты' ? 50 : 1))
+        countProduct >= (type === 'Салаты' ? 50 : 1) && setCountProduct(countProduct + (type === 'Салаты' ? 50 : 1))
+        props.countAproxSum(type)
 
     }
     const minus = async () => {
-        if (countProduct === 1) {
+        if (countProduct <= (type === 'Салаты' ? 50 : 1)) {
             product.deleteOneBasketProductByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId);
             props.deleteItem(basketProduct.assortmentId)
         } else {
-            basketProduct.count = countProduct - 1;
-            product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct - 1)
-            countProduct > 1 && setCountProduct(countProduct - 1)
-            props.countAproxSum()
+            basketProduct.count = countProduct - (type === 'Салаты' ? 50 : 1);
+            product.changeCountByBasketIDAndAssortmentID(basketProduct.basketId, basketProduct.assortmentId, countProduct - (type === 'Салаты' ? 50 : 1))
+            countProduct > (type === 'Салаты' ? 50 : 1) && setCountProduct(countProduct - (type === 'Салаты' ? 50 : 1))
+            props.countAproxSum(type)
         }
     }
 
@@ -38,18 +50,18 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
             </div>
             <div className='text-center'>
                 <div className='info-text'>
-                    {basketProduct.costPerOne * countProduct} ₽
+                    {Math.round(type === 'Салаты' ? (basketProduct.costPerOne * (countProduct/50))/2 : basketProduct.costPerOne  * countProduct)} ₽
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
                     <Button type='submit' className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
                         onClick={minus}>
-                        {countProduct === 1 ? <DeleteButton/> : '-'}
+                        {countProduct <= (type === 'Салаты' ? 50 : 1) ? <DeleteButton/> : '-'}
                     </Button>
                     <Form.Control value={countProduct} onChange={(e) => {
                         if (e.target.value > 0) {
                             setCountProduct(+e.target.value);
                             basketProduct.count = e.target.value
-                            props.countAproxSum();
+                            props.countAproxSum(type);
                         }
                     }
                     } className='basket_item_cost' />
