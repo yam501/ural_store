@@ -59,7 +59,7 @@ const AuthWindow = ({show, handleClose, ...props}) => {
         showAcceptPage(true)
     }
     const login = () => {
-        user.login(number, password);
+        user.login(number, password) ? <div>da</div> : <div>yt</div> 
     }
     
     if (isAccept) {
