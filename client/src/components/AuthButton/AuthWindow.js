@@ -79,7 +79,7 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
             handleClose={handleClose}
         />
     }
-    console.log(showError)
+
 
     return (
         <Modal show={show} onHide={closeError}>
