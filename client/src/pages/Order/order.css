@@ -88,13 +88,17 @@
     height: 15%;
 }
 
-.form_check_order_section_input {
+.form_check_order_section_input{
     padding-left: 3%;
-    border: 1px solid #F5376E;
+    border: 1px solid gray;
     border-radius: 15px;
     outline: none !important;
+    box-shadow: none !important;
 }
 
+.form_check_order_section_input:active, .form_check_order_section_input:focus{
+    border: 1px solid #F5376E !important;
+}
 
 .order_products_accept_btn {
     background-color: #F5376E;

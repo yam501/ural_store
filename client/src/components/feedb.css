@@ -39,20 +39,39 @@
     border-radius: 7px;
 }
 
+.dropDown-feedback{
+    background-color: #832440 !important;
+}
+
 .textarea:focus{
     border: #962a4a 1px solid !important;
 }
 
 .button-good{
-    background-color: #51ff7c !important;
+    background-color: white;
+}
+
+.button-good:hover{
+    background-color: #198754!important;
+    color: white !important;
 }   
 
 .button-neutral{
-    background-color: #ffe550 !important;
+    background-color: white !important;
+}
+
+.button-neutral:hover{
+    background-color: #ffc107 !important;
+    /* color: white !important; */
 }
 
 .button-bad{
-    background-color: #fc4a4a !important;
+    background-color: white !important;
+}
+
+.button-bad:hover{
+    background-color: #dc3545 !important;
+    color: white !important;
 }
 
 

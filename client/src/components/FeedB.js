@@ -80,7 +80,7 @@ const FeedB = () => {
             <p>Выберите тип отзыва </p>
             <Dropdown className='mb-4' onSelect={e => changed(e)}>
               <Dropdown.Toggle variant={variant} > {type} </Dropdown.Toggle>
-              <Dropdown.Menu>
+              <Dropdown.Menu className='dropDown-feedback'>
                 <Dropdown.Item className='button-good' eventKey={'Положительный'}>Положительный</Dropdown.Item>
                 <Dropdown.Item className='button-neutral' eventKey={'Нейтральный'}>Нейтральный</Dropdown.Item>
                 <Dropdown.Item className='button-bad' eventKey={'Негативный'}>Негативный</Dropdown.Item>
