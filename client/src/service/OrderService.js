@@ -10,11 +10,15 @@ const OrderService = {
     },
 
     async getOnConfirmOrderByUserId(userId) {
-        return new Promise((resolve) => resolve($authHost.post('api/order/getOnConfirmOrderByUserID', {userId})))
+        return new Promise((resolve) => resolve($authHost.post('api/order/getOnConfirmOrderByUserID', { userId })))
     },
 
     async getOrderByOrderId(id) {
         return new Promise((resovle) => resovle($authHost.post('api/order/getOrderByOrderID', { id })))
+    }, 
+    
+    async getOrderByUserId(userId) {
+        return new Promise((resovle) => resovle($authHost.post('api/order/getOrderByUserID', { userId })))
     },
 
     async getAll() {
@@ -30,23 +34,23 @@ const OrderService = {
     },
 
     async changeOnConfirmByOrderId(id, onConfirm) {
-        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnConfirmByOrderID', {id, onConfirm})))
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnConfirmByOrderID', { id, onConfirm })))
     },
 
     async changeOnCreateByOrderId(id, onCreate) {
-        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnCreateByUserID', {id, onCreate})))
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnCreateByUserID', { id, onCreate })))
     },
 
     async changeOnDeliverByOrderId(id, onDeliver) {
-        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnDelivereByUserID', {id, onDeliver})))
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOnDelivereByUserID', { id, onDeliver })))
     },
 
     async changeDeliveredByOrderId(id, delivered) {
-        return new Promise((resolve) => resolve($authHost.put('api/order/changeDeliveredByUserID', {id, delivered})))
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeDeliveredByUserID', { id, delivered })))
     },
 
     async changeOrderProductsCountByOrderId(id, orderProductsCount) {
-        return new Promise((resolve) => resolve($authHost.put('api/order/changeOrderProductsCountByOrderID', {id, orderProductsCount})))
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeOrderProductsCountByOrderID', { id, orderProductsCount })))
     }
 }
 

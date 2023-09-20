@@ -31,6 +31,11 @@ export default class OrderStore {
         this.setOrder(responce.data)
     }
 
+    async getOrderByUserId(userId) {
+        const responce = await OrderService.getOrderByUserId(userId)
+        this.setOrder(responce.data)
+    }
+
     async changeAddressByUserId(userId, address) {
         await OrderService.changeAddressByUserId(userId, address)
         this.getOrderByOrderId(userId)

@@ -55,6 +55,17 @@ class OrderController {
         }
     }
 
+    async getOrderByUserID(req, res, next) {
+        try {
+            const {userId} = req.body
+            const order = await Order.findAll({where:{userId: userId}})
+            return res.json(order)
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async changeAddressByUserID(req, res, next) {
         try {
             const {userId, address} = req.body
