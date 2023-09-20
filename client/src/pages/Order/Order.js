@@ -21,6 +21,7 @@ function Order() {
   const [orderIsOk, setOrderIsOk] = useState(false)
   const navigate = useNavigate()
   const [validated, setValidated] = useState(false);
+  const [orderSend, setOrderSend] = useState(false);
 
   const appendProduct = (product, assortmentId) => {
     productsToConfirm.push({ ...product, assortmentId: assortmentId })
