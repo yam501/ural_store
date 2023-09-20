@@ -59,7 +59,7 @@ useEffect(() => {
         </div>
       </div>
       {/* <SearchPanel/> */}
-      <div className='me-2'>
+      <div className='me-3'>
         <Nav className="ms-auto d-flex align-items-center">
           <div className='d-flex align-items-center navBtnsBox'>
             {user._isAuth && user._user.isActivated && width >= 1199 && <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width} />}
