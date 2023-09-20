@@ -8,29 +8,34 @@ const OrderStages = () => {
     const [orderPacking, setOrderPacking] = useState(false);
     const [orderDelivery, setOrderDelivery] = useState(false);
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
+    var colorDotsArray = document.getElementsByClassName('order_stage_dots')
     console.log(colorArray)
-
     const confirmed = () => {
         setOrderConfirm(!orderConfirm)
-        colorArray[0].style.backgroundColor= '#D6587B';
+        colorArray[0].style.backgroundColor = '#D6587B';
+        colorDotsArray[0].style.backgroundColor = '#D6587B';
+        colorDotsArray[1].style.backgroundColor = '#D6587B';
+        colorDotsArray[2].style.backgroundColor = '#D6587B';
     }
 
     const packing = () => {
         setOrderPacking(!orderPacking)
-        colorArray[0].style.backgroundColor= '#D6587B';
+        colorArray[1].style.backgroundColor = '#D6587B';
+        colorDotsArray[3].style.backgroundColor = '#D6587B';
+        colorDotsArray[4].style.backgroundColor = '#D6587B';
+        colorDotsArray[5].style.backgroundColor = '#D6587B';
     }
 
     const delivery = () => {
         setOrderDelivery(!orderDelivery)
-        colorArray[0].style.backgroundColor= '#D6587B';
+        colorArray[2].style.backgroundColor = '#D6587B';
     }
     return (
-        <Stack
-            direction='horizontal'
-            className='page_body order_stages_wrapper'>
+        <Container
+            className='page_body mx-auto order_stages_wrapper'>
             <div
                 className='order_stages_content'>
-                <div className='order_stages_breakpoint_wrapper'>
+                <div className='order_stages_breakpoint_wrapper mt-5'>
                     {!orderConfirm ?
                         <div
                             className='order_stages_breakpoint_confirmFalse'>
@@ -42,58 +47,91 @@ const OrderStages = () => {
                     }
                 </div>
                 {!orderConfirm ?
-                    "Заказ ждет подтверждения"
+                    <div className='mt-5'>
+                        Заказ ждет подтверждения
+                    </div>
                     :
-                    "Заказ подтвержден"
+                    <div className='mt-5'>
+                        Заказ подтвержден
+                    </div>
                 }
-                <Button onClick={() => confirmed()}>переключатель</Button>
+                {/* <Button onClick={() => confirmed()}>переключатель</Button> */}
             </div>
             <>
                 <div
-                    style={{ backgroundColor: "#666", width: '25px', height: '25px', borderRadius: '50px' }}>
+                    className='order_stage_dots'>
                 </div>
                 <div
-                    style={{ backgroundColor: "#666", width: '25px', height: '25px', borderRadius: '50px' }}>
+                    className='order_stage_dots'>
                 </div>
                 <div
-                    style={{ backgroundColor: "#666", width: '25px', height: '25px', borderRadius: '50px' }}>
+                    className='order_stage_dots'>
                 </div>
             </>
             <div className='order_stages_content'>
                 <div
-                    className='order_stages_breakpoint_wrapper'>
+                    className='order_stages_breakpoint_wrapper mt-5'>
+                    {!orderPacking ?
+                        <div
+                            className='order_stages_breakpoint_packingFalse'>
+                        </div>
+                        :
+                        <div
+                            className='order_stages_breakpoint_confirmTrue'>
+                        </div>
+                    }
                 </div>
                 {!orderPacking ?
-                    "Заказ собирается"
+                    <div className='mt-5'>
+                        Заказ собирается
+                    </div>
                     :
-                    "Заказ собран"
+                    <div className='mt-5'>
+                        Заказ собран
+                    </div>
                 }
-                <Button onClick={() => packing()}>переключатель</Button>
+                {/* <Button onClick={() => packing()}>переключатель</Button> */}
             </div>
             <>
                 <div
-                    style={{ backgroundColor: "#666", width: '25px', height: '25px', borderRadius: '50px' }}>
+                    className='order_stage_dots'>
                 </div>
                 <div
-                    style={{ backgroundColor: "#666", width: '25px', height: '25px', borderRadius: '50px' }}>
+                    className='order_stage_dots'>
                 </div>
                 <div
-                    style={{ backgroundColor: "#666", width: '25px', height: '25px', borderRadius: '50px' }}>
+                    className='order_stage_dots'>
                 </div>
             </>
             <div className='order_stages_content'>
                 <div
-                    className='order_stages_breakpoint_wrapper'>
+                    className='order_stages_breakpoint_wrapper mt-5'>
+                    {!orderDelivery ?
+                        <div
+                            className='order_stages_breakpoint_deliveryFalse'>
+                        </div>
+                        :
+                        <div
+                            className='order_stages_breakpoint_confirmTrue'>
+                        </div>
+                    }
                 </div>
                 {!orderDelivery ?
-                    "Передаем заказ курьеру"
+                    <div className='mt-5'>
+                        Передаем заказ курьеру
+                    </div>
                     :
-                    "Курьер доставляет заказ"
+                    <div className='mt-5'>
+                        Курьер доставляет заказ
+                    </div>
                 }
 
-                <Button onClick={() => delivery()}>переключатель</Button>
+                {/* <Button onClick={() => delivery()}>переключатель</Button> */}
             </div>
-        </Stack>
+            <Container>
+                чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу
+            </Container>
+        </Container>
     );
 };
 
