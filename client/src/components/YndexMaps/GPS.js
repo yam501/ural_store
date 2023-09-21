@@ -60,6 +60,7 @@ const GPS = ({ findAdress, ...props }) => {
   useEffect(() => {
     if (mapConstructor) {
       new mapConstructor.SuggestView(searchRef.current, {
+        // load: 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=<8e2c6a37-a238-4ab8-80f7-eccef9472ef9>&suggest_apikey=<1e1d0ab9-d063-4a48-ae23-624adc6bba4b>',
         boundedBy: [[56.830569, 59.852335], [56.755036, 59.999630]],
         offset: [0, 2],
         strictBounds: true,
@@ -131,7 +132,8 @@ const GPS = ({ findAdress, ...props }) => {
       <YMaps query={{
         lang: 'ru_RU',
         apikey: '8e2c6a37-a238-4ab8-80f7-eccef9472ef9',
-        load: "Map,Placemark,control.GeolocationControl,control.FullscreenControl,control.SearchControl,geoObject.addon.balloon"
+        suggest_apikey: '1e1d0ab9-d063-4a48-ae23-624adc6bba4b',
+        load: "Map,Placemark,control.GeolocationControl,control.FullscreenControl,control.SearchControl,geoObject.addon.balloon,SuggestView"
       }}>
         <div className='search_map_box'>
           <div className='search_map_content'>
