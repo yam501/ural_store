@@ -3,21 +3,20 @@ import OurDateTime from "../../../dateTime/dateTime";
 import AssortmentStore from "../../../store/AssortmentStore";
 import OrderProductsStore from "../../../store/OrderProductsStore";
 import { useState, useEffect } from "react";
+import OrderStore from "../../../store/OrderStore";
 
 function ConfirmOrderItem({ order, user }) {
     const dateTime = new OurDateTime(order.updatedAt)
+    const orderStore = new OrderStore()
     const orderProducts = new OrderProductsStore()
     const assortmentStore = new AssortmentStore()
-    const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const [products, setProducts] = useState([])
-    const [onConfirm, setOnConfirm] = useState(order.onConfirm)
     const [onCreate, setOnCreate] = useState(order.onCreate)
     const [onDeliver, setOnDeliver] = useState(order.onDeliver)
     const [delivered, setDelivered] = useState(order.delivered)
 
     async function getOrderProducts() {
         await orderProducts.getAllOrderProductsByOrderId(order.id)
-        setOrderProductsDinamic(orderProducts._orderProducts)
         let ids = []
         orderProducts._orderProducts.map(orderProduct => {
             ids.push(orderProduct.assortmentId)
@@ -26,19 +25,18 @@ function ConfirmOrderItem({ order, user }) {
         setProducts(assortmentStore._assortments ? assortmentStore._assortments : [])
     }
 
-    async function changeOnConfirmState(state) {
-        setOnConfirm(state)
-    }
-
     async function changeOnCreateState(state) {
+        orderStore.changeOnCreateByOrderId(order.id, state)
         setOnCreate(state)
     }
 
     async function changeOnDeliverState(state) {
+        orderStore.changeOnDeliverByOrderId(order.id, state)
         setOnDeliver(state)
     }
 
     async function changeDeliverState(state) {
+        orderStore.changeDeliveredByOrderId(order.id, state)
         setDelivered(state)
     }
 
@@ -66,7 +64,7 @@ function ConfirmOrderItem({ order, user }) {
                     {onCreate ? <div style={{ color: "green" }}>Подтвержден</div> : <div style={{ color: "red" }}>Ожидает подтверждения</div>}
                     {
                         onCreate ?
-                            <button onClick={() => changeOnCreateState(false)}>Отменить заказ</button> :
+                            <button disabled={onDeliver} onClick={() => changeOnCreateState(false)}>Отменить заказ</button> :
                             <button onClick={() => changeOnCreateState(true)}>Подтвердить заказ</button>
                     }
                 </div>
@@ -76,7 +74,7 @@ function ConfirmOrderItem({ order, user }) {
                             {onDeliver ? <div style={{ color: "green" }}>Готов</div> : <div style={{ color: "red" }}>Готовится</div>}
                             {
                                 onDeliver ?
-                                    <button onClick={() => changeOnDeliverState(false)}>Отменить доставку</button> :
+                                    <button disabled={delivered} onClick={() => changeOnDeliverState(false)}>Отменить доставку</button> :
                                     <button onClick={() => changeOnDeliverState(true)}>Начать доставку</button>
                             }
                         </div> :
