@@ -46,11 +46,11 @@ const OrderStages = () => {
                         }
                     </div>
                     {!orderConfirm ?
-                        <div className='mt-5'>
+                        <div className='mt-3'>
                             Заказ ждет подтверждения
                         </div>
                         :
-                        <div className='mt-5'>
+                        <div className='mt-3'>
                             Заказ подтвержден
                         </div>
                     }
@@ -81,11 +81,11 @@ const OrderStages = () => {
                         }
                     </div>
                     {!orderPacking ?
-                        <div className='mt-5'>
+                        <div className='mt-3'>
                             Заказ собирается
                         </div>
                         :
-                        <div className='mt-5'>
+                        <div className='mt-3'>
                             Заказ собран
                         </div>
                     }
@@ -116,11 +116,11 @@ const OrderStages = () => {
                         }
                     </div>
                     {!orderDelivery ?
-                        <div className='mt-5'>
+                        <div className='mt-3'>
                             Передаем заказ курьеру
                         </div>
                         :
-                        <div className='mt-5'>
+                        <div className='mt-3'>
                             Курьер доставляет заказ
                         </div>
                     }
@@ -143,7 +143,7 @@ const OrderStages = () => {
                                 Детали заказа
                             </div>
                             <div>
-                                номер заказа
+                                "номер заказа"
                             </div>
                         </div>
                         <hr/>
