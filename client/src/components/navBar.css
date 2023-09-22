@@ -542,12 +542,16 @@
 
 .password_recov_title_box {
     display: flex;
+    justify-content: space-between;
+}
+
+.password_recov_title {
+    margin: auto;    
 }
 
 .back_arrow {
     cursor: pointer;
     margin-left: 1vw;
-    margin-right: 2.5vw;
 }
 
 .error-login{

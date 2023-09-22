@@ -44,7 +44,7 @@ const PasswordRecov = ({goBack, ...props}) => {
     
         <div className='mt-2 password_recov_title_box'>
             <BackArrow onClick={() => check === 'code' ? setCheck('number') : goBack()}/>
-           <span className='password_recov_title'>Восстановление пароля</span>
+           <span className='password_recov_title text-center'>Восстановление пароля</span>
         </div>
 
         {check === 'number' ? <Form>
@@ -58,7 +58,7 @@ const PasswordRecov = ({goBack, ...props}) => {
                 // maxLength={12}
                 onChange={e => setPhone(e.target.value)}/>
             </Form.Group>
-            <Button onClick={changeIsActivatedByNumber} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 passwordRecovBtn'>
+            <Button onClick={changeIsActivatedByNumber} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                  Подтвердить
            </Button>
            {/* <div className='d-flex justify-content-around align-items-center me-auto ms-auto mb-2 formLinkBox'>
@@ -78,7 +78,7 @@ const PasswordRecov = ({goBack, ...props}) => {
                     // maxLength={12}
                     onChange={e => setCode(e.target.value)}/>
                 </Form.Group>
-                <Button onClick={cheackCode} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 passwordRecovBtn'>
+                <Button onClick={cheackCode} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                     Подтвердить
                 </Button>
             </Form>
@@ -93,7 +93,7 @@ const PasswordRecov = ({goBack, ...props}) => {
                     // maxLength={12}
                     onChange={e => setNewPassword(e.target.value)}/>
                 </Form.Group>
-                <Button onClick={changePasswordByNumber} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 passwordRecovBtn'>
+                <Button onClick={changePasswordByNumber} className='d-flex justify-content-center align-items-center ms-auto me-auto rounded-5 mb-2 border-0 formAuthBtn'>
                     Изменить пароль
                 </Button>
             </Form>}
