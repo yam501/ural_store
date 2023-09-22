@@ -31,105 +31,141 @@ const OrderStages = () => {
         colorArray[2].style.backgroundColor = '#D6587B';
     }
     return (
-        <Container
-            className='page_body mx-auto order_stages_wrapper'>
-            <div
-                className='order_stages_content'>
-                <div className='order_stages_breakpoint_wrapper mt-5'>
+        <Container className='page_body mx-auto order_stages_wrapper mb-5'>
+            <div className='order_stages_wrapper'>
+                <div className='order_stages_content'>
+                    <div className='order_stages_breakpoint_wrapper mt-5'>
+                        {!orderConfirm ?
+                            <div
+                                className='order_stages_breakpoint_confirmFalse'>
+                            </div>
+                            :
+                            <div
+                                className='order_stages_breakpoint_confirmTrue'>
+                            </div>
+                        }
+                    </div>
                     {!orderConfirm ?
-                        <div
-                            className='order_stages_breakpoint_confirmFalse'>
+                        <div className='mt-5'>
+                            Заказ ждет подтверждения
                         </div>
                         :
-                        <div
-                            className='order_stages_breakpoint_confirmTrue'>
+                        <div className='mt-5'>
+                            Заказ подтвержден
                         </div>
                     }
+                    {/* <Button onClick={() => confirmed()}>переключатель</Button> */}
                 </div>
-                {!orderConfirm ?
-                    <div className='mt-5'>
-                        Заказ ждет подтверждения
+                <>
+                    <div
+                        className='order_stage_dots'>
                     </div>
-                    :
-                    <div className='mt-5'>
-                        Заказ подтвержден
+                    <div
+                        className='order_stage_dots'>
                     </div>
-                }
-                {/* <Button onClick={() => confirmed()}>переключатель</Button> */}
-            </div>
-            <>
-                <div
-                    className='order_stage_dots'>
-                </div>
-                <div
-                    className='order_stage_dots'>
-                </div>
-                <div
-                    className='order_stage_dots'>
-                </div>
-            </>
-            <div className='order_stages_content'>
-                <div
-                    className='order_stages_breakpoint_wrapper mt-5'>
+                    <div
+                        className='order_stage_dots'>
+                    </div>
+                </>
+                <div className='order_stages_content'>
+                    <div
+                        className='order_stages_breakpoint_wrapper mt-5'>
+                        {!orderPacking ?
+                            <div
+                                className='order_stages_breakpoint_packingFalse'>
+                            </div>
+                            :
+                            <div
+                                className='order_stages_breakpoint_confirmTrue'>
+                            </div>
+                        }
+                    </div>
                     {!orderPacking ?
-                        <div
-                            className='order_stages_breakpoint_packingFalse'>
+                        <div className='mt-5'>
+                            Заказ собирается
                         </div>
                         :
-                        <div
-                            className='order_stages_breakpoint_confirmTrue'>
+                        <div className='mt-5'>
+                            Заказ собран
                         </div>
                     }
+                    {/* <Button onClick={() => packing()}>переключатель</Button> */}
                 </div>
-                {!orderPacking ?
-                    <div className='mt-5'>
-                        Заказ собирается
+                <>
+                    <div
+                        className='order_stage_dots'>
                     </div>
-                    :
-                    <div className='mt-5'>
-                        Заказ собран
+                    <div
+                        className='order_stage_dots'>
                     </div>
-                }
-                {/* <Button onClick={() => packing()}>переключатель</Button> */}
-            </div>
-            <>
-                <div
-                    className='order_stage_dots'>
-                </div>
-                <div
-                    className='order_stage_dots'>
-                </div>
-                <div
-                    className='order_stage_dots'>
-                </div>
-            </>
-            <div className='order_stages_content'>
-                <div
-                    className='order_stages_breakpoint_wrapper mt-5'>
+                    <div
+                        className='order_stage_dots'>
+                    </div>
+                </>
+                <div className='order_stages_content'>
+                    <div
+                        className='order_stages_breakpoint_wrapper mt-5'>
+                        {!orderDelivery ?
+                            <div
+                                className='order_stages_breakpoint_deliveryFalse'>
+                            </div>
+                            :
+                            <div
+                                className='order_stages_breakpoint_confirmTrue'>
+                            </div>
+                        }
+                    </div>
                     {!orderDelivery ?
-                        <div
-                            className='order_stages_breakpoint_deliveryFalse'>
+                        <div className='mt-5'>
+                            Передаем заказ курьеру
                         </div>
                         :
-                        <div
-                            className='order_stages_breakpoint_confirmTrue'>
+                        <div className='mt-5'>
+                            Курьер доставляет заказ
                         </div>
                     }
-                </div>
-                {!orderDelivery ?
-                    <div className='mt-5'>
-                        Передаем заказ курьеру
-                    </div>
-                    :
-                    <div className='mt-5'>
-                        Курьер доставляет заказ
-                    </div>
-                }
 
-                {/* <Button onClick={() => delivery()}>переключатель</Button> */}
+                    {/* <Button onClick={() => delivery()}>переключатель</Button> */}
+                </div>
+
             </div>
-            <Container>
-                чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу чета снизу
+            <Container className='order_stages_downContent mt-5'>
+                <div className='order_stages_downContent_left'>тут будут товары которые чел заказал</div>
+                <div className='mt-3 mb-3' style={{width: '3px',backgroundColor: '#f1f1f1'}}></div>
+                <div className='order_stages_downContent_right'>
+                    <div className='order_stages_downContent_courierNumber'>
+                        Телефона курьера: +7(999)9990011
+                    </div>
+                    <hr/>
+                    <div className='order_stages_downContent_order_details mt-2'>
+                        <div className='order_stages_downContent_order_number'>
+                            <div>
+                                Детали заказа
+                            </div>
+                            <div>
+                                номер заказа
+                            </div>
+                        </div>
+                        <hr/>
+                        <label className='order_stages_downContent_adres'>Адрес доставки: ул. Максима Горького 26, подъезд 3, этаж 3, кв 65</label>
+                        <hr/>
+                        <label className='order_stages_downContent_comment mt-2'>Комментарий:
+                            <div className='d-flex w-100'>
+                                <div className='order_stages_downContent_comment_text me-2'>сюда передать текст </div>
+                                <Button className='btn_edit_order_comment'></Button>
+                            </div>
+                        </label>
+                        <hr/>
+                        <label className='order_stages_downContent_tel mt-2'>Телефон:
+                        <div className='d-flex w-100'>
+                            <div className='order_stages_downContent_comment_text me-2'>+7(999)0005511 </div>
+                            <Button className='btn_edit_order_comment'></Button>
+                            </div>
+                        </label>
+                        <Button className='btn_cancel_order w-100'>Отменить заказ</Button>
+                    </div>
+                </div>
+
             </Container>
         </Container>
     );
