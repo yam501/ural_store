@@ -89,35 +89,35 @@ body {
 
 .meat-section-content {
     background: url("../assets/meat-bg1.svg") 0 0 / 100% no-repeat;
-    height: 1296px;
+    height: 1400px;
     display: inline-block;
     vertical-align: top;
 }
 
 .salad-section-content {
     background: url("../assets/salad-bg1.svg") 0 0 / 100% no-repeat;
-    height: 1296px;
+    height: 1400px;
     display: inline-block;
     vertical-align: top;
 }
 
 .veg-section-content {
     background: url("../assets/veg-bg1.svg") 0 0 / 100% no-repeat;
-    height: 1296px;
+    height: 1400px;
     display: inline-block;
     vertical-align: top;
 }
 
 .bakery-section-content {
     background: url("../assets/bakery-bg1.svg") 0 0 / 100% no-repeat;
-    height: 1296px;
+    height: 1400px;
     display: inline-block;
     vertical-align: top;
 }
 
 .dairy-section-content {
     background: url("../assets/dairy-bg1.svg") 0 0 / 100% no-repeat;
-    height: 1296px;
+    height: 1400px;
     display: inline-block;
     vertical-align: top;
 }
