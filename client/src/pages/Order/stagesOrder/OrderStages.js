@@ -8,6 +8,7 @@ const OrderStages = () => {
     const [orderPacking, setOrderPacking] = useState(false);
     const [orderDelivery, setOrderDelivery] = useState(false);
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
+    var colorSmallDotsArray = document.getElementsByClassName('order_stage_small_dots')
     var colorDotsArray = document.getElementsByClassName('order_stage_dots')
     console.log(colorArray)
     const confirmed = () => {
@@ -16,6 +17,8 @@ const OrderStages = () => {
         colorDotsArray[0].style.backgroundColor = '#D6587B';
         colorDotsArray[1].style.backgroundColor = '#D6587B';
         colorDotsArray[2].style.backgroundColor = '#D6587B';
+        colorSmallDotsArray[0].style.backgroundColor = '#D6587B';
+        colorSmallDotsArray[1].style.backgroundColor = '#D6587B';
     }
 
     const packing = () => {
@@ -24,6 +27,8 @@ const OrderStages = () => {
         colorDotsArray[3].style.backgroundColor = '#D6587B';
         colorDotsArray[4].style.backgroundColor = '#D6587B';
         colorDotsArray[5].style.backgroundColor = '#D6587B';
+        colorSmallDotsArray[2].style.backgroundColor = '#D6587B';
+        colorSmallDotsArray[3].style.backgroundColor = '#D6587B';
     }
 
     const delivery = () => {
@@ -46,11 +51,11 @@ const OrderStages = () => {
                         }
                     </div>
                     {!orderConfirm ?
-                        <div className='mt-3'>
+                        <div className='order_stages_breakpoint_text mt-3'>
                             Заказ ждет подтверждения
                         </div>
                         :
-                        <div className='mt-3'>
+                        <div className='order_stages_breakpoint_text mt-3'>
                             Заказ подтвержден
                         </div>
                     }
@@ -62,6 +67,12 @@ const OrderStages = () => {
                     </div>
                     <div
                         className='order_stage_dots'>
+                    </div>
+                    <div
+                        className='order_stage_small_dots'>
+                    </div>
+                    <div
+                        className='order_stage_small_dots'>
                     </div>
                     <div
                         className='order_stage_dots'>
@@ -81,11 +92,11 @@ const OrderStages = () => {
                         }
                     </div>
                     {!orderPacking ?
-                        <div className='mt-3'>
+                        <div className='order_stages_breakpoint_text mt-3'>
                             Заказ собирается
                         </div>
                         :
-                        <div className='mt-3'>
+                        <div className='order_stages_breakpoint_text mt-3'>
                             Заказ собран
                         </div>
                     }
@@ -97,6 +108,12 @@ const OrderStages = () => {
                     </div>
                     <div
                         className='order_stage_dots'>
+                    </div>
+                    <div
+                        className='order_stage_small_dots'>
+                    </div>
+                    <div
+                        className='order_stage_small_dots'>
                     </div>
                     <div
                         className='order_stage_dots'>
@@ -116,11 +133,11 @@ const OrderStages = () => {
                         }
                     </div>
                     {!orderDelivery ?
-                        <div className='mt-3'>
+                        <div className='order_stages_breakpoint_text mt-3'>
                             Передаем заказ курьеру
                         </div>
                         :
-                        <div className='mt-3'>
+                        <div className='order_stages_breakpoint_text mt-3'>
                             Курьер доставляет заказ
                         </div>
                     }
@@ -131,12 +148,12 @@ const OrderStages = () => {
             </div>
             <Container className='order_stages_downContent mt-5'>
                 <div className='order_stages_downContent_left'>тут будут товары которые чел заказал</div>
-                <div className='mt-3 mb-3' style={{width: '3px',backgroundColor: '#f1f1f1'}}></div>
+                <div className='mt-3 mb-3' style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
                 <div className='order_stages_downContent_right'>
                     <div className='order_stages_downContent_courierNumber'>
                         Телефона курьера: +7(999)9990011
                     </div>
-                    <hr/>
+                    <hr />
                     <div className='order_stages_downContent_order_details mt-2'>
                         <div className='order_stages_downContent_order_number'>
                             <div>
@@ -146,20 +163,20 @@ const OrderStages = () => {
                                 "номер заказа"
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <label className='order_stages_downContent_adres'>Адрес доставки: ул. Максима Горького 26, подъезд 3, этаж 3, кв 65</label>
-                        <hr/>
+                        <hr />
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
-                            <div className='d-flex w-100'>
+                            <div className='d-flex order_stages_downContent_comment'>
                                 <div className='order_stages_downContent_comment_text me-2'>сюда передать текст </div>
                                 <Button className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
-                        <hr/>
+                        <hr />
                         <label className='order_stages_downContent_tel mt-2'>Телефон:
-                        <div className='d-flex w-100'>
-                            <div className='order_stages_downContent_comment_text me-2'>+7(999)0005511 </div>
-                            <Button className='btn_edit_order_comment'></Button>
+                            <div className='d-flex order_stages_downContent_comment'>
+                                <div className='order_stages_downContent_comment_text me-2'>+7(999)0005511 </div>
+                                <Button className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
                         <Button className='btn_cancel_order w-100'>Отменить заказ</Button>
