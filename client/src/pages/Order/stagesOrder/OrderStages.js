@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Stack } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/esm/Container';
 import './orderStages.css'
 const OrderStages = () => {
@@ -148,7 +148,7 @@ const OrderStages = () => {
             </div>
             <Container className='order_stages_downContent mt-5'>
                 <div className='order_stages_downContent_left'>тут будут товары которые чел заказал</div>
-                <div className='mt-3 mb-3' style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
+                <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
                 <div className='order_stages_downContent_right'>
                     <div className='order_stages_downContent_courierNumber'>
                         Телефона курьера: +7(999)9990011

@@ -78,36 +78,37 @@ function Order() {
 
   return (
     <div className='page_body order_page_body'>
-      <h1 >Ваш текущий заказ</h1>
+      <h1 > Текущий заказ</h1>
       <div className='page_form_check_box'>
         <Form noValidate validated={validated} className='form_check_order' onSubmit={confirmOrder}>
           <div className='form_check_order_section'>
-            <label>Ваш адрес</label>
+            <label>Адрес</label>
             <input required type='text' value={dataOfOrder.adress ? dataOfOrder.adress.slice(29) : dataOfOrder.adress} onChange={e => setDataOfOrder({ ...dataOfOrder, adress: e.target.value })} className='form-control form_check_order_section_input' placeholder='Выберите адрес на карте' />
           </div>
           <div className='form_check_order_section'>
-            <label>Ваш подъезд</label>
-            <input required type='text' value={dataOfOrder.enter} onChange={e => setDataOfOrder({ ...dataOfOrder, enter: e.target.value })} className='form-control form_check_order_section_input' placeholder='Номер вашего подъезда' />
+            <label>Подъезд</label>
+            <input required type='text' value={dataOfOrder.enter} onChange={e => setDataOfOrder({ ...dataOfOrder, enter: e.target.value })} className='form-control form_check_order_section_input' placeholder='Подъезд' />
           </div >
           <div className='form_check_order_section'>
-            <label>Ваш этаж</label>
-            <input required type='text' value={dataOfOrder.floor} onChange={e => setDataOfOrder({ ...dataOfOrder, floor: e.target.value })} className='form-control form_check_order_section_input' placeholder='На каком этаже вы живете' />
+            <label>Этаж</label>
+            <input required type='text' value={dataOfOrder.floor} onChange={e => setDataOfOrder({ ...dataOfOrder, floor: e.target.value })} className='form-control form_check_order_section_input' placeholder='Этаж' />
           </div>
           <div className='form_check_order_section'>
-            <label>Ваша квартира</label>
-            <input required type='text' value={dataOfOrder.flat} onChange={e => setDataOfOrder({ ...dataOfOrder, flat: e.target.value })} className='form-control form_check_order_section_input' placeholder='Номер вашей квартиры' />
+            <label>Квартира\офис</label>
+            <input required type='text' value={dataOfOrder.flat} onChange={e => setDataOfOrder({ ...dataOfOrder, flat: e.target.value })} className='form-control form_check_order_section_input' placeholder='Квартира\офис' />
           </div>
           <div className='form_check_order_section'>
-            <label>Ваш номер</label>
+            <label>Номер</label>
             <input required type='tel' value={dataOfOrder.tel} onChange={e => setDataOfOrder({ ...dataOfOrder, tel: e.target.value })} className='form-control form_check_order_section_input' placeholder='+7(999)9999999' />
           </div>
-          <div className='form_check_order_section'>
-            <label>Ваш комментарий</label>
+          <div className='form_check_order_section_comment'>
+            <label>Комментарий</label>
             <textarea
               required
-              className='mb-2 form-control form_check_order_section_input'
+              className='mb-2 form-control form_check_order_section_textarea'
               placeholder="Комментарий"
               as="textarea"
+              cols={60}
               rows={10}
             ></textarea>
           </div>

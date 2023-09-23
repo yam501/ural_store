@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../..";
 import ConfirmOrderItem from "./ConfirmOrderItem";
-
+import './confirmOrder.css'
 function ConfirmOrders() {
     const { adminOrders, use } = useContext(Context)
     const [ordersDinamic, setOrdersDinamic] = useState([])
@@ -23,11 +23,12 @@ function ConfirmOrders() {
         <div>
             {
                 ordersDinamic.length === 0 ?
-                <div>Заказов нет, адыхаем</div> : 
-                ordersDinamic.map(order => {
-                    const user = usersDinamic.find((potUser) => potUser.id === order.userId)
-                    return <ConfirmOrderItem key={order.id} order={order} user={user}></ConfirmOrderItem>
-                })
+                    <div>Заказов нет, адыхаем</div>
+                    :
+                    ordersDinamic.map(order => {
+                        const user = usersDinamic.find((potUser) => potUser.id === order.userId)
+                        return <ConfirmOrderItem key={order.id} order={order} user={user}></ConfirmOrderItem>
+                    })
             }
         </div>
     )
