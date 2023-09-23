@@ -14,6 +14,7 @@
 
 .confir_order_item_info_h {
     font-size: calc(18px + 2 * (100vw/1903));
+    font-weight: 600;
 }
 
 .confirm_order_item_stages {
