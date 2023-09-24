@@ -33,9 +33,13 @@ function OrderProduct({ append, orderProduct, ...props }) {
 
                         </Image>
                         <div className='order-product-name'>
-                            <h2 className='ms-2 order-product-text'>{product.name}</h2>
+                            <h2 className='order-product-text'>{product.name}</h2>
                         </div>
-                        {product.type === 'Мясо' || product.type === 'Салаты' || product.type === 'Овощи' ?
+
+                        <div className='order_product_card_inform'>
+                            <div className='order_product_card_cost'>{product.costPerOne * orderProduct.count} ₽</div>
+                            <div className='order_product_card_count'>{orderProduct.count} шт</div>
+                            {product.type === 'Мясо' || product.type === 'Салаты' || product.type === 'Овощи' ?
                             <div className='checkbox-content'>
                                 <Toggle toggleState={toggleState} toggleSwitch={toggleSwitch} />
                             </div>
@@ -43,10 +47,6 @@ function OrderProduct({ append, orderProduct, ...props }) {
                             <div className=' w-100'>
                                 <div className='w-100'></div>
                             </div>}
-
-                        <div className='me-3 order_product_card_inform'>
-                            <div className='order_product_card_cost'>{product.costPerOne * orderProduct.count} ₽</div>
-                            <div className='order_product_card_count'>Количество: {orderProduct.count}</div>
                         </div>
                     </div>
             }

@@ -8,8 +8,8 @@ const Toggle = ({toggleState, toggleSwitch, ...props}) => {
             <div onClick={toggleSwitch} className='switch'>
                 <div className={`toggle ${toggleState ? 'more' : 'less'}`}></div>
                 <div className='names'>
-                    <p className='less'>Меньше</p>
-                    <p className='more'>Больше</p>
+                    <p className='lessName'>Меньше</p>
+                    <p className='moreName'>Больше</p>
                 </div>
             </div>
         </div>
