@@ -90,8 +90,13 @@
 }
 
 .order_page_content {
+    padding-top: 1vw;
+    border: 1px solid #d9d9d9;
+    border-radius: 29px;
+    margin-top: 2vw;
     display: flex;
     width: 60vw;
+    justify-content: center;
 }
 
 .order_pay_form {
