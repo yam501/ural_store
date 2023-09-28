@@ -87,7 +87,11 @@ function Order() {
 
   return (
     <div className='page_body order_page_body'>
-      <h1 className='page_title'> Текущий заказ</h1>
+      {/* <h1 className='page_title'> Текущий заказ</h1> */}
+      {orderProductsDinamic.length === 0 ?
+      <div className='order-empty-content'>Вы еще не сформировали свой заказ
+      <NavLink className='btn-returnToBasket text-white text-decoration-none' to={BASKET_ROUTE}>В корзину</NavLink>
+    </div> : 
       <div className='order_page_content'>
         <div className='page_form_check_box'>
           <Form noValidate validated={validated} className='form_check_order' onSubmit={confirmOrder}>
@@ -139,13 +143,8 @@ function Order() {
             </div>
           </Form>
           <div className='order_products_check'>
-            {
-              orderProductsDinamic.length === 0 ?
-                <div className='order-empty-content'>Вы еще не сформировали свой заказ
-                  <NavLink className='btn-returnToBasket text-white text-decoration-none' to={BASKET_ROUTE}>В корзину</NavLink>
-                </div> :
                 <div className='order_products_check_box'>
-                  <h2>Ваш заказ</h2>
+                  <h2 className='order_products_check_title'>Ваш заказ</h2>
 
                   <div className='order_products_check_list'>
                     {orderProductsDinamic.map(
@@ -157,7 +156,7 @@ function Order() {
                     <button className='order_products_check_error_btn' onClick={editOrder}>Изменить заказ</button>
                   </div>
                 </div>
-            }
+            
           </div>
         </div>
         <div className='order_pay_form'>
@@ -174,7 +173,7 @@ function Order() {
             Заказать
           </button>
         </div>
-      </div>
+      </div>}
 
     </div>
   );

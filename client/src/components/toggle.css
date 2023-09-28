@@ -1,6 +1,6 @@
 .toggle_box {
-  width: 8vw;
-  height: 1.5vw;
+  width: 153px;
+  height: 30px;
 }
 
 .switch, .toggle {
@@ -32,7 +32,7 @@
   .names {
     width: 100%;
     height: 100%;
-    font-size: calc(10px + 2 * (100vw/1903));
+    font-size: 12px;
     font-weight: 600;
     position: absolute;
     display: flex;
@@ -40,4 +40,18 @@
     justify-content: space-around;
     user-select: none;
     padding-top: 0.75vw;
+  }
+
+  @media (max-width: 1199px) {
+    .names {
+      font-size: calc(10px + 2 * (100vw/1903));
+      padding-top: 1.6vw;
+    }
+
+  }
+
+  @media (max-width: 775px) {
+    .names {
+      padding-top: 3vw;
+    }
   }
