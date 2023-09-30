@@ -80,7 +80,7 @@ function Basket() {
   return (
     <div className='mb-5 basket_page page_body'>
       <Container className='justify-content-center text-center page-name'>
-        {basketItems.length === 0 && loading === false ?
+        {basketItems.length === 0 ?
           <div className='d-flex justify-content-center align-items-center basket-empty'>
             {user._isAuth ?
               "Ваша корзина пока что пуста"
@@ -102,7 +102,7 @@ function Basket() {
           )}
       </Container>
 
-      {basketProduct.basketProduct.length > 0 &&
+      {basketItems.length > 0 &&
         <div className='mt-2 d-flex justify-content-between align-items-center order_delive_form'>
           <div>
             Сумма заказа: {aproxSum} ₽

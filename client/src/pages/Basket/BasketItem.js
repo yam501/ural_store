@@ -16,7 +16,6 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
     }
     useEffect(() => {
         typeDetect()
-        console.log(1)
     }, [])
     const plus = async () => {
         basketProduct.count = countProduct + (type === 'Салаты' ? 50 : 1);
