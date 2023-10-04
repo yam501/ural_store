@@ -4,6 +4,45 @@ const basketController = require('./basketController')
 
 
 class BasketProductController {
+
+    // Объединенный методы
+
+    async createBasketProductAndReturnAllBasketProducts(req, res, next) {
+        try {
+            const { basketId, assortmentId, count, moreOrLess } = req.body
+            const product = await Assortment.findOne({ where: { id: assortmentId } })
+            const costPerOne = product['costPerOne']
+            const basketProductOld = await BasketProduct.findOne({ where: { basketId: basketId, assortmentId: assortmentId } })
+            if (basketProductOld) {
+                await BasketProduct.update({ count: count + basketProductOld.count }, { where: { basketId: basketId, assortmentId: assortmentId } })
+                basketController.updateSum(basketId)
+                return res.json(await BasketProduct.findAll({ where: { basketId: basketId } }))
+            }
+            await BasketProduct.create({ basketId, assortmentId, count, costPerOne, moreOrLess })
+            basketController.updateSum(basketId)
+            return res.json(await BasketProduct.findAll({ where: { basketId: basketId } }))
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async createBasketProductFromBack(basketId, assortmentId, count, moreOrLess, next) {
+        try {
+            const basketProductOld = await BasketProduct.findOne({ where: { basketId: basketId, assortmentId: assortmentId } })
+            if (basketProductOld) {
+                await BasketProduct.update({ count: count + basketProductOld.count }, { where: { basketId: basketId, assortmentId: assortmentId } })
+                basketController.updateSum(basketId)
+                return
+            }
+            await BasketProduct.create({ basketId, assortmentId, count, moreOrLess })
+            basketController.updateSum(basketId)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    //
+
     async createBasketProduct(req, res, next) {
         try {
             const { basketId, assortmentId, count, moreOrLess } = req.body

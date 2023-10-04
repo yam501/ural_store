@@ -31,9 +31,10 @@ const BasketProduct = sequelize.define('basketProduct', {
     basketId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
-    costPerOne: { type: DataTypes.DOUBLE, allowNull: false },
-    moreOrLess: { type: DataTypes.BOOLEAN, allowNull: false },
+    moreOrLess: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
 
+    
+    costPerOne: { type: DataTypes.DOUBLE, allowNull: true },
     name: { type: DataTypes.STRING, allowNull: true },
     image: { type: DataTypes.STRING, allowNull: true }
 })

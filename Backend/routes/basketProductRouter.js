@@ -4,6 +4,12 @@ const activatedMiddleware = require('../middleware/ActivatedMiddleware')
 const authMiddleware = require('../middleware/AuthMiddleware')
 const basketProductController = require('../controllers/basketProductController')
 
+//Объединенные
+
+router.post('/createBasketProductAndReturnAllBasketProducts', authMiddleware, activatedMiddleware, basketProductController.createBasketProductAndReturnAllBasketProducts)
+
+//
+
 router.post('/createBasketProduct', authMiddleware, activatedMiddleware, basketProductController.createBasketProduct)
 
 router.post('/getAllBasketProductsByBasketID', authMiddleware, activatedMiddleware, basketProductController.getAllBasketProductsByBasketID)

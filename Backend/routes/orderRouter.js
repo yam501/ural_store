@@ -5,6 +5,12 @@ const activatedMiddleware = require('../middleware/ActivatedMiddleware')
 const checkRole = require('../middleware/CheckRoleMiddleware')
 const orderController = require('../controllers/orderController')
 
+//Объединенные
+
+router.post('/createOrderByBasketId', authMiddleware, activatedMiddleware, orderController.createOrderByBasketId)
+
+//
+
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 
 router.post('/getNotOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getNotOnConfirmOrderByUserID)

@@ -1,7 +1,27 @@
 const ApiError = require('../error/ApiError')
-const {ComplitedOrders} = require('../models/models')
+const {ComplitedOrders, ComplitedOrderProduct} = require('../models/models')
+const basketProductController = require('./basketProductController')
 
 class ComplitedOrdersController {
+
+    //Объединенные методы
+
+    async repeatOrderByComplitedOrderIdAndBasketId(req, res, next) {
+        try {
+            const {complitedOrderId, basketId} = req.body
+            const complitedOrderProducts = await ComplitedOrderProduct.findAll({where: {complitedOrderId: complitedOrderId}})
+            complitedOrderProducts.forEach(complitedOrderProduct => {
+                basketProductController.createBasketProductFromBack(basketId, complitedOrderProduct['assortmentId'], 
+                    complitedOrderProduct['count'], complitedOrderProduct['moreOrLess'], next)
+            })
+            return res.json({"Результат": "Готова"})
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    //
+
     async createComplitedOrder(req, res, next) {
         try {
             const {userId, address, complitedSum, orderTime, complitedTime} = req.body

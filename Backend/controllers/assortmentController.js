@@ -220,11 +220,10 @@ class AssortmentController {
         }
 
     }
-}
-find = async (id) => {
 
-    const a = await Assortment.findOne({ where: { id: id } })
-
-    return a
+    async getAssortmentByIdsFromBack(ids) {
+        return await Assortment.findAll({where: {id: ids}})
+    }
 }
+
 module.exports = new AssortmentController()
