@@ -18,7 +18,9 @@ const BurgerMenu = ({width, adress, onClick, ...props}) => {
     const openMenu = () => {
       return !open ? setOpen(true) : setOpen(false);
     }
-
+    const logout = () => {
+      user.logout();
+    }
 
     return (
         <div className=''>
@@ -40,6 +42,7 @@ const BurgerMenu = ({width, adress, onClick, ...props}) => {
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={HISTORYORDER_ROUTE}>История заказов</NavLink></div>
               <div className='d-flex align-items-center menuItem' onClick={openMenu}><span className='me-3 menuItemMarker'></span><NavLink className='text-white text-decoration-none' to={TERMS_ROUTE} >Условия доставки</NavLink></div>
               <div className='d-flex align-items-center menuItem'><span className='me-3 menuItemMarker'></span><FeedB/></div> 
+              <div className='d-flex align-items-center menuItem'><span onClick={logout} className='ms-3 text-white'>Выйти</span></div>
             </Container>
             <Container>
               <div className='sepLineMenu'></div>
