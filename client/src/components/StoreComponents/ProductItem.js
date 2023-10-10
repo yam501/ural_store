@@ -11,7 +11,8 @@ const ProductItem = ({ product, type, productShow }) => {
     const { basketProduct } = useContext(Context)
     const { user } = useContext(Context)
     const [show, setShow] = useState(false);
-
+    const [cardState, setCardState] = useState(false)
+    const switchCardState = () => setCardState(!cardState);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -74,36 +75,53 @@ const ProductItem = ({ product, type, productShow }) => {
 
     return (
         <>
-            <Card className='card-wrapper products-bg'>
+            <div className='card_wrapper products_bg'>
                 <Image className='product-img' onClick={handleShow} src={process.env.REACT_APP_API_URL + product.image} />
-                <div className='mt-1 d-flex justify-content-center'>
-                    <div className='d-flex align-items-center'>
+                {cardState ?
+                    <div className='card_wrapper_content'>
+                     <div className='mt-1 d-flex justify-content-center'>
+                        <div className='d-flex align-items-center card_wrapper_title_box'>
+                            <div className='info-text'>
+                                {product.name}
+                            </div>
+                        </div>
+                    </div>                       
+                    <div className='mt-1 d-flex justify-content-center'>
                         <div className='info-text'>
-                            {product.name}
+                            {productType[type].cost} ₽
                         </div>
                     </div>
-                </div>
-                <div className='mt-1 d-flex justify-content-center'>
-                    <div className='info-text'>
-                        {product.costPerOne} ₽ за {`${type === 'Салаты' ? 100 : 1} ${productType[type].value}`}
+                    <div className='mt-1 d-flex justify-content-between mb-2'>
+                        <Button className='btn-minus rounded-circle' onClick={() => minus()}>
+                            -
+                        </Button>
+                        <span className='d-flex align-items-center info-text justify-content-center'>{countProduct} {productType[type].value} </span>
+                        <Button className='btn-plus rounded-circle' onClick={() => plus()}>
+                            +
+                        </Button>
                     </div>
-                </div>
-                <div className='mt-1 d-flex justify-content-center'>
-                    <div className='info-text'>
-                        {productType[type].cost} ₽
+                    </div> :
+                    <div className='card_wrapper_content'>
+                    <div className='mt-1 d-flex justify-content-center'>
+                        <div className='d-flex align-items-center card_wrapper_title_box'>
+                            <div className='info-text'>
+                                {product.name}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='mt-1 d-flex justify-content-between mb-2'>
-                    <Button className='btn-minus rounded-circle' onClick={() => minus()}>
-                        -
-                    </Button>
-                    <span className='d-flex align-items-center info-text justify-content-center'>{countProduct} {productType[type].value} </span>
-                    <Button className='btn-plus rounded-circle' onClick={() => plus()}>
-                        +
-                    </Button>
-                </div>
-                <AddProductToBasketBtn product={product} type={type} countProduct={countProduct} />
-            </Card>
+                    <div className='mt-1 d-flex justify-content-center'>
+                        <div className='info-text'>
+                            {product.costPerOne} ₽ за {`${type === 'Салаты' ? 100 : 1} ${productType[type].value}`}
+                        </div>
+                    </div>
+
+                    <AddProductToBasketBtn product={product} switchCardState={switchCardState} type={type} countProduct={countProduct} />
+
+                    </div>
+                }
+                
+               
+            </div>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body className='w-100 h-100 d-flex flex-column justify-content-between'>

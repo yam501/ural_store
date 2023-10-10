@@ -25,17 +25,28 @@
 }
 
 
-.card-wrapper {
+.card_wrapper {
     margin-bottom: 60px;
     width: 300px;
+    height: 25vw;
     cursor: 'pointer';
     border: 0;
 }
 
-.products-bg {
+.card_wrapper_content {
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    display: flex;
+    height: 170px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.products_bg {
     background-color: rgba(220, 72, 115, 0.6);
     cursor: default !important;
 }
+
 
 .product-img {
     cursor: pointer !important;
@@ -146,6 +157,8 @@
     font-size: calc(16px + 4 * (100vw/1903));
     font-weight: 500;
 }
+
+
 
 @media (max-width: 400px) {
     .product-img {
