@@ -8,6 +8,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { BASKET_ROUTE } from '../../utils/consts';
 import GPS from '../../components/YndexMaps/GPS';
 import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
+import OrderStages from './stagesOrder/OrderStages';
 
 // Страница заказа
 
@@ -35,7 +36,6 @@ function Order() {
   }
 
   function getStringAddress(dataOfOrder) {
-    console.log(dataOfOrder)
     return "Улица: " + dataOfOrder.address + "; Подъезд: " + dataOfOrder.enter + "; Этаж: " + dataOfOrder.floor + "; Квартира: " + dataOfOrder.flat
   }
 
@@ -51,6 +51,7 @@ function Order() {
       })
       basketProduct.deleteAllBasketProductsByBasketID(basket.basket.id)
       setOrderProductsDinamic([])
+      tryGetOrder()
       return 0
     }
     setValidated(true);
@@ -61,6 +62,7 @@ function Order() {
   }
 
   useEffect(() => {
+    tryGetOrder()
     createOrderProductsFromBasketProducts()
     getDefaultAddress()
   }, [user._user.defaultAddress, basket._baskets])
@@ -73,9 +75,20 @@ function Order() {
     if (user._isAuth) countAproxSum();
   }, [orderProductsDinamic])
 
+  const [isOrder, setIsOrder] = useState(false)
+
+  async function tryGetOrder() {
+    await order.getOrderByUserId(user._user.id)
+    setIsOrder(order._order.length !== 0)
+  }
+
   return (
     <div className='page_body order_page_body'>
-      {/* <h1 className='page_title'> Текущий заказ</h1> */}
+      {
+        isOrder ? 
+        <OrderStages order={order._order[0]}></OrderStages> :
+        <div>
+          {/* <h1 className='page_title'> Текущий заказ</h1> */}
       {orderProductsDinamic.length === 0 ?
         <div className='order-empty-content'>Вы еще не сформировали свой заказ
           <NavLink className='btn-returnToBasket text-white text-decoration-none' to={BASKET_ROUTE}>В корзину</NavLink>
@@ -167,6 +180,8 @@ function Order() {
             </button> */}
           </div>
         </div>}
+        </div>
+      }
 
     </div>
   );

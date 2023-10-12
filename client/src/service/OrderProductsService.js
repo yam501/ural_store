@@ -10,6 +10,10 @@ const OrderProductsService = {
         return new Promise((resolve) => resolve($authHost.post('api/orderProduct/getOrderProductByOrderId', {orderId})))
     },
 
+    async getOrderProductsWithAssortmentInfoByOrderId(orderId) {
+        return new Promise((resolve) => resolve($authHost.post('api/orderProduct/getOrderProductsWithAssortmentInfoByOrderId', {orderId})))
+    },
+
     async deleteAllOrderProductsByOrderId(orderId) {
         return new Promise((resolve) => resolve($authHost.post('api/orderProduct/deleteOrderProductByOrderId', {orderId})))
     }

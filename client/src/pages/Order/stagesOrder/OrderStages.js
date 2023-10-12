@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/esm/Container';
 import './orderStages.css'
-const OrderStages = () => {
+import { Context } from '../../..';
+import OrderProduct from '../OrderProduct';
+const OrderStages = ({order}) => {
 
-    const [orderConfirm, setOrderConfirm] = useState(false);
-    const [orderPacking, setOrderPacking] = useState(false);
-    const [orderDelivery, setOrderDelivery] = useState(false);
+    const [orderConfirm, setOrderConfirm] = useState(order.onCreate);
+    const [orderPacking, setOrderPacking] = useState(order.onDeliver);
+    const [orderDelivery, setOrderDelivery] = useState(order.delivered);
+    const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
+    const {orderProducts} = useContext(Context)
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
     var colorSmallDotsArray = document.getElementsByClassName('order_stage_small_dots')
     var colorDotsArray = document.getElementsByClassName('order_stage_dots')
+
+    async function getOrderProducts() {
+        await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.id)
+        setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
+    }
+
+    useEffect(() => {
+        getOrderProducts()
+    }, [])
+
     console.log(colorArray)
     const confirmed = () => {
         setOrderConfirm(!orderConfirm)
@@ -35,6 +49,9 @@ const OrderStages = () => {
         setOrderDelivery(!orderDelivery)
         colorArray[2].style.backgroundColor = '#D6587B';
     }
+
+
+
     return (
         <Container className='page_body mx-auto order_stages_wrapper mb-5'>
             <div className='order_stages_wrapper'>
@@ -134,11 +151,11 @@ const OrderStages = () => {
                     </div>
                     {!orderDelivery ?
                         <div className='order_stages_breakpoint_text mt-3'>
-                            Передаем заказ курьеру
+                            Курьер доставляет заказ
                         </div>
                         :
                         <div className='order_stages_breakpoint_text mt-3'>
-                            Курьер доставляет заказ
+                            Заказ доставлен
                         </div>
                     }
 
@@ -147,7 +164,14 @@ const OrderStages = () => {
 
             </div>
             <Container className='order_stages_downContent mt-5'>
-                <div className='order_stages_downContent_left'>тут будут товары которые чел заказал</div>
+                <div className='order_stages_downContent_left'>{
+                    // orderProduct => <OrderProduct key={orderProduct.id} orderProduct={orderProduct} ></OrderProduct>
+                    orderProductsDinamic.length === 0 ?
+                    <div>Загрузка товаров</div> :
+                    orderProductsDinamic.map(orderProduct => {
+                        return <OrderProduct key={orderProduct.id} orderProduct={orderProduct}></OrderProduct>
+                    })
+                }</div>
                 <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
                 <div className='order_stages_downContent_right'>
                     <div className='order_stages_downContent_courierNumber'>
@@ -160,11 +184,11 @@ const OrderStages = () => {
                                 Детали заказа
                             </div>
                             <div>
-                                "номер заказа"
+                                Заказ номер {order.id}
                             </div>
                         </div>
                         <hr />
-                        <label className='order_stages_downContent_adres'>Адрес доставки: ул. Максима Горького 26, подъезд 3, этаж 3, кв 65</label>
+                        <label className='order_stages_downContent_adres'>Адрес доставки: {order.address}</label>
                         <hr />
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
                             <div className='d-flex order_stages_downContent_comment'>

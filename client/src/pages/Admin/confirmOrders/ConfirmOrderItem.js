@@ -103,7 +103,7 @@ function ConfirmOrderItem({ order, user }) {
                                     </div>
                                     :
                                     <div className="btn_confirm_order_item_stages_wrapper">
-                                        <Button className="btn_confirm_order_item_stages" onClick={() => setDelivered(true)}>Завершить доставку</Button>
+                                        <Button className="btn_confirm_order_item_stages" onClick={() => changeDeliverState(true)}>Завершить доставку</Button>
                                     </div>
                             }
                         </div> :

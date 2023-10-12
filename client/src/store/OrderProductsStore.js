@@ -29,6 +29,11 @@ export default class OrderProductsStore {
         this.setOrderProducts(responce.data)
     }
 
+    async getOrderProductsWithAssortmentInfoByOrderId(orderId) {
+        const response = await OrderProductsService.getOrderProductsWithAssortmentInfoByOrderId(orderId)
+        this.setOrderProducts(response.data)
+    }
+
     async deleteAllOrderProductsByOrderId(orderId) {
         await OrderProductsService.deleteAllOrderProductsByOrderId(orderId)
         this.deleteOrderProducts()
