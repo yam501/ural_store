@@ -6,6 +6,9 @@ const BasketProductService = {
         return new Promise((resolve) => resolve($authHost.post('api/basketProduct/createBasketProduct', {basketId, assortmentId, costPerOne, count, moreOrLess})))
     },
 
+    async getBasketProductsWithAssortmentInfoByBasketID(basketId) {
+        return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getBasketProductsWithAssortmentInfoByBasketID', {basketId})))
+    },
 
     async getAllBasketProductsByBasketID(basketId) {
         return new Promise((resolve) => resolve($authHost.post('api/basketProduct/getAllBasketProductsByBasketID', { basketId })))

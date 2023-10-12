@@ -26,13 +26,6 @@ function Basket() {
   const navigate = useNavigate()
 
   async function transferToOrder() {
-    if (JSON.stringify(order._order) === "{}" || order._order === null) {
-      await order.getNotOnConfirmOrderByUserId(user._user.id)
-      if (order._order === null) {
-        await order.createOrder(user._user.id, user._user.defaultAddress, basket.basket.aproxSum, false)
-      }
-
-    }
     navigate(ORDER_ROUTE)
   }
 
@@ -43,7 +36,7 @@ function Basket() {
 
   async function renderBasketItems() {
     if (JSON.stringify(basket._baskets) !== "{}") {
-      await basketProduct.getAllBasketProductsByBasketID(basket._baskets.id)
+      await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id)
     }
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
   

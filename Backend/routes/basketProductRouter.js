@@ -6,6 +6,7 @@ const basketProductController = require('../controllers/basketProductController'
 
 //Объединенные
 
+router.post('/getBasketProductsWithAssortmentInfoByBasketID', authMiddleware, activatedMiddleware, basketProductController.getBasketProductsWithAssortmentInfoByBasketId)
 router.post('/createBasketProductAndReturnAllBasketProducts', authMiddleware, activatedMiddleware, basketProductController.createBasketProductAndReturnAllBasketProducts)
 
 //

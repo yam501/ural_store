@@ -24,6 +24,11 @@ export default class BasketProductStore {
         this.setBasketProducts(response.data)
     }
 
+    async getBasketProductsWithAssortmentInfoByBasketID(basketId) {
+        const response = await BasketProductService.getBasketProductsWithAssortmentInfoByBasketID(basketId)
+        this.setBasketProducts(response.data)
+    }
+
     async deleteAllBasketProductsByBasketID(id) {
         const response = await BasketProductService.deleteAllBasketProductsByBasketID(id);
         // console.log(response.data)

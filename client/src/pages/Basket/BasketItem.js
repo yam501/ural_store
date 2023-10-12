@@ -9,10 +9,7 @@ const BasketItem = ({ product, user, basketProduct, basket, ...props }) => {
     const [countProduct, setCountProduct] = useState(basketProduct.count)
     const [type, setType] = useState('')
     const typeDetect = async () => {
-        await assortment.getById(basketProduct.assortmentId).then(res => {
-            if (res) setType(assortment.assortment.type)
-            
-        })
+        setType(product.type)
     }
     useEffect(() => {
         typeDetect()

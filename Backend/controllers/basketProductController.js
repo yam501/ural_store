@@ -1,11 +1,38 @@
 const ApiError = require('../error/ApiError')
 const { BasketProduct, Assortment } = require('../models/models')
 const basketController = require('./basketController')
+const assortmentController = require('./assortmentController')
 
 
 class BasketProductController {
 
     // Объединенный методы
+
+    async getBasketProductsWithAssortmentInfoByBasketId(req, res, next) {
+        try {
+            const {basketId} = req.body
+            const basketProducts = await BasketProduct.findAll({where: {basketId: basketId}})
+            let ids = []
+            basketProducts.forEach(basketProduct => {
+                ids.push(Number(basketProduct['assortmentId']))
+            })
+            const assorment = await assortmentController.getAssortmentByIdsFromBack(ids)
+            let basketProductsWithAssorment = []
+            basketProducts.forEach(basketProduct => {
+                assorment.forEach(product => {
+                    if (basketProduct['assortmentId'] === product['id']) {
+                        basketProduct = JSON.parse(JSON.stringify(basketProduct))
+                        product = JSON.parse(JSON.stringify(product))
+                        delete product['id']
+                        basketProductsWithAssorment.push({...basketProduct, ...product})
+                    }
+                })
+            })
+            return res.json(basketProductsWithAssorment)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
     async createBasketProductAndReturnAllBasketProducts(req, res, next) {
         try {
