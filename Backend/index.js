@@ -10,7 +10,7 @@ const app = express() //Объект приложения
 const errorHandler = require('./middleware/ErrorHandlingMiddleware') //Инициализация еррорхендлера
 const path = require('path')
 const cookieParser = require('cookie-parser')
-
+const webSocketController = require('./webSockets/webSocketController')
 
 
 const corsOptions ={
@@ -30,12 +30,21 @@ app.use('/api', router)
 //!!!РЕГИСТРИРУЕТСЯ ОБЯЗАТЕЛЬНО В САМОМ КОНЦЕ!!!
 app.use(errorHandler)
 
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "http://localhost:3000"
+    },
+    path: "/webSocket/"
+})
+
 //Запуск сервера
 const start = async () => {
     try {
         await sequelize.authenticate()
         await sequelize.sync({alter:true})
-        app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+        webSocketController(io)
+        server.listen(PORT, () => console.log(`Server started on port ${PORT}`))
     } catch (e) {
         console.log(e)
     }

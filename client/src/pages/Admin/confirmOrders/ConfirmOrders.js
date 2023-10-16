@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../..";
 import ConfirmOrderItem from "./ConfirmOrderItem";
 import './confirmOrder.css'
+import { io } from 'socket.io-client'
 function ConfirmOrders() {
     const { adminOrders, use } = useContext(Context)
     const [ordersDinamic, setOrdersDinamic] = useState([])
@@ -15,8 +16,21 @@ function ConfirmOrders() {
         setUsersDinamic(use._users ? use._users : [])
     }
 
+    const socket = io(process.env.REACT_APP_API_URL, {
+        path: "/webSocket/"
+    })
+
+    function sendWS(orderId) {
+        socket.emit("messageFromAdmin", {"orderId": orderId})
+    }
+
+    socket.on('update', message => {
+        getOrders()
+    })
+
     useEffect(() => {
         getOrders()
+        socket.emit("newAdmin", "")
     }, [])
 
     return (
@@ -27,7 +41,7 @@ function ConfirmOrders() {
                     :
                     ordersDinamic.map(order => {
                         const user = usersDinamic.find((potUser) => potUser.id === order.userId)
-                        return <ConfirmOrderItem key={order.id} order={order} user={user}></ConfirmOrderItem>
+                        return <ConfirmOrderItem key={order.id} order={order} user={user} sendWS={sendWS}></ConfirmOrderItem>
                     })
             }
         </div>

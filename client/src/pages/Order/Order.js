@@ -9,6 +9,7 @@ import { BASKET_ROUTE } from '../../utils/consts';
 import GPS from '../../components/YndexMaps/GPS';
 import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
 import OrderStages from './stagesOrder/OrderStages';
+import { io } from 'socket.io-client'
 
 // Страница заказа
 
@@ -23,6 +24,10 @@ function Order() {
   const navigate = useNavigate()
   const [validated, setValidated] = useState(false);
   const [aproxSum, setAproxSum] = useState(0);
+
+  const socket = io(process.env.REACT_APP_API_URL, {
+    path: "/webSocket/"
+  })
 
   async function createOrderProductsFromBasketProducts() {
     if (JSON.stringify(basket._baskets) !== "{}") {
@@ -52,6 +57,7 @@ function Order() {
       basketProduct.deleteAllBasketProductsByBasketID(basket.basket.id)
       setOrderProductsDinamic([])
       tryGetOrder()
+      socket.emit("messageFromUser", {"orderId": order.order.id})
       return 0
     }
     setValidated(true);
@@ -86,7 +92,7 @@ function Order() {
     <div className='page_body order_page_body'>
       {
         isOrder ? 
-        <OrderStages order={order._order[0]}></OrderStages> :
+        <OrderStages order={order._order[0]} socket={socket}></OrderStages> :
         <div>
           {/* <h1 className='page_title'> Текущий заказ</h1> */}
       {orderProductsDinamic.length === 0 ?
