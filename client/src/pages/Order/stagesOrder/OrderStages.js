@@ -4,16 +4,31 @@ import Container from 'react-bootstrap/esm/Container';
 import './orderStages.css'
 import { Context } from '../../..';
 import OrderProduct from '../OrderProduct';
-const OrderStages = ({order}) => {
+import { io } from 'socket.io-client' 
+const OrderStages = ({order, socket}) => {
 
     const [orderConfirm, setOrderConfirm] = useState(order.onCreate);
     const [orderPacking, setOrderPacking] = useState(order.onDeliver);
     const [orderDelivery, setOrderDelivery] = useState(order.delivered);
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const {orderProducts} = useContext(Context)
+    const { orderController } = useContext(Context)
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
     var colorSmallDotsArray = document.getElementsByClassName('order_stage_small_dots')
     var colorDotsArray = document.getElementsByClassName('order_stage_dots')
+
+    async function updateOrder() {
+        await orderController.getOrderByOrderId(order.id)
+        order = orderController.order
+        setOrderDelivery(order.onDeliver)
+        setOrderPacking(order.onCreate)
+        setOrderConfirm(order.onConfirm)
+    }
+
+    socket.on('update', message => {
+        console.log("ЖЫЖЫЖЫЖЫЖЫЖ")
+        updateOrder()
+    })
 
     async function getOrderProducts() {
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.id)
@@ -151,11 +166,11 @@ const OrderStages = ({order}) => {
                     </div>
                     {!orderDelivery ?
                         <div className='order_stages_breakpoint_text mt-3'>
-                            Курьер доставляет заказ
+                            Передаем заказ курьеру
                         </div>
                         :
                         <div className='order_stages_breakpoint_text mt-3'>
-                            Заказ доставлен
+                            Курьер доставляет заказ
                         </div>
                     }
 

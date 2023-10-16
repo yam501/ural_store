@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import OrderStore from "../../../store/OrderStore";
 import { Button } from 'react-bootstrap';
 
-function ConfirmOrderItem({ order, user }) {
+function ConfirmOrderItem({ order, user, sendWS }) {
     const dateTime = new OurDateTime(order.updatedAt)
     const orderStore = new OrderStore()
     const orderProducts = new OrderProductsStore()
@@ -27,18 +27,21 @@ function ConfirmOrderItem({ order, user }) {
     }
 
     async function changeOnCreateState(state) {
-        orderStore.changeOnCreateByOrderId(order.id, state)
+        await orderStore.changeOnCreateByOrderId(order.id, state)
         setOnCreate(state)
+        sendWS(order.id)
     }
 
     async function changeOnDeliverState(state) {
-        orderStore.changeOnDeliverByOrderId(order.id, state)
+        await orderStore.changeOnDeliverByOrderId(order.id, state)
         setOnDeliver(state)
+        sendWS(order.id)
     }
 
     async function changeDeliverState(state) {
-        orderStore.changeDeliveredByOrderId(order.id, state)
+        await orderStore.changeDeliveredByOrderId(order.id, state)
         setDelivered(state)
+        sendWS(order.id)
     }
 
     useEffect(() => {
