@@ -5,41 +5,49 @@ import './orderStages.css'
 import { Context } from '../../..';
 import OrderProduct from '../OrderProduct';
 import { io } from 'socket.io-client' 
-const OrderStages = ({order, socket}) => {
+const OrderStages = () => {
 
-    const [orderConfirm, setOrderConfirm] = useState(order.onCreate);
-    const [orderPacking, setOrderPacking] = useState(order.onDeliver);
-    const [orderDelivery, setOrderDelivery] = useState(order.delivered);
+    const [orderConfirm, setOrderConfirm] = useState(false);
+    const [orderPacking, setOrderPacking] = useState(false);
+    const [orderDelivery, setOrderDelivery] = useState(false);
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const {orderProducts} = useContext(Context)
-    const { orderController } = useContext(Context)
+    const { order } = useContext(Context)
+    const {user} = useContext(Context)
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
     var colorSmallDotsArray = document.getElementsByClassName('order_stage_small_dots')
     var colorDotsArray = document.getElementsByClassName('order_stage_dots')
 
+    const socket = io(process.env.REACT_APP_API_URL, {
+        path: "/webSocket/"
+      })
+
     async function updateOrder() {
-        await orderController.getOrderByOrderId(order.id)
-        order = orderController.order
-        setOrderDelivery(order.onDeliver)
-        setOrderPacking(order.onCreate)
-        setOrderConfirm(order.onConfirm)
+        await order.getOrderByOrderId(order.order.id)
+        setOrderDelivery(order.order.delivered)
+        setOrderPacking(order.order.onDeliver)
+        setOrderConfirm(order.order.onCreate)
     }
 
     socket.on('update', message => {
-        console.log("ЖЫЖЫЖЫЖЫЖЫЖ")
         updateOrder()
     })
 
     async function getOrderProducts() {
-        await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.id)
+        await order.getOneOrderByUserId(user._user.id)
+        setOrderDelivery(order.order.delivered)
+        setOrderPacking(order.order.onDeliver)
+        setOrderConfirm(order.order.onCreate)
+        await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
+        socket.emit("messageFromUser", {"orderId": order.order.id})
     }
 
     useEffect(() => {
         getOrderProducts()
     }, [])
 
-    console.log(colorArray)
+    // console.log(colorArray)
     const confirmed = () => {
         setOrderConfirm(!orderConfirm)
         colorArray[0].style.backgroundColor = '#D6587B';
@@ -199,11 +207,11 @@ const OrderStages = ({order, socket}) => {
                                 Детали заказа
                             </div>
                             <div>
-                                Заказ номер {order.id}
+                                Заказ номер {order.order.id}
                             </div>
                         </div>
                         <hr />
-                        <label className='order_stages_downContent_adres'>Адрес доставки: {order.address}</label>
+                        <label className='order_stages_downContent_adres'>Адрес доставки: {order.order.address}</label>
                         <hr />
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
                             <div className='d-flex order_stages_downContent_comment'>

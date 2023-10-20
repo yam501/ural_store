@@ -17,6 +17,7 @@ router.post('/getNotOnConfirmOrderByUserID', authMiddleware, activatedMiddleware
 router.post('/getOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOnConfirmOrderByUserID)
 router.post('/getOrderByOrderID', authMiddleware, activatedMiddleware, orderController.getOrderByOrderID)
 router.post('/getOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOrderByUserID)
+router.post('/getOneOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOneOrderByUserID)
 router.post('/getAll', authMiddleware, activatedMiddleware, checkRole(['ADMIN', 'ADMIN_EDIT']), orderController.getAll)
 
 router.put('/changeAddressByUserID', authMiddleware, activatedMiddleware, orderController.changeAddressByUserID)

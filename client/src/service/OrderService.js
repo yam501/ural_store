@@ -21,6 +21,10 @@ const OrderService = {
         return new Promise((resovle) => resovle($authHost.post('api/order/getOrderByUserID', { userId })))
     },
 
+    async getOneOrderByUserId(userId) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/getOneOrderByUserID', {userId})))
+    },
+
     async getAll() {
         return new Promise((resolve) => resolve($authHost.post('api/order/getAll')))
     },
