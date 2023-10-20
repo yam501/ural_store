@@ -174,11 +174,11 @@ const OrderStages = () => {
                     </div>
                     {!orderDelivery ?
                         <div className='order_stages_breakpoint_text mt-3'>
-                            Передаем заказ курьеру
+                            Заказ доставляется
                         </div>
                         :
                         <div className='order_stages_breakpoint_text mt-3'>
-                            Курьер доставляет заказ
+                            Заказ доставлен
                         </div>
                     }
 
