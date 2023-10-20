@@ -25,8 +25,17 @@ const OrderStages = () => {
     async function updateOrder() {
         await order.getOrderByOrderId(order.order.id)
         setOrderDelivery(order.order.delivered)
+        if (order.order.delivered) {
+            delivery()
+        }
         setOrderPacking(order.order.onDeliver)
+        if (order.order.onDeliver) {
+            packing()
+        }
         setOrderConfirm(order.order.onCreate)
+        if (order.order.onCreate) {
+            confirmed()
+        }
     }
 
     socket.on('update', message => {
@@ -36,8 +45,17 @@ const OrderStages = () => {
     async function getOrderProducts() {
         await order.getOneOrderByUserId(user._user.id)
         setOrderDelivery(order.order.delivered)
+        if (order.order.delivered) {
+            delivery()
+        }
         setOrderPacking(order.order.onDeliver)
+        if (order.order.onDeliver) {
+            packing()
+        }
         setOrderConfirm(order.order.onCreate)
+        if (order.order.onCreate) {
+            confirmed()
+        }
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
         socket.emit("messageFromUser", {"orderId": order.order.id})
@@ -49,7 +67,7 @@ const OrderStages = () => {
 
     // console.log(colorArray)
     const confirmed = () => {
-        setOrderConfirm(!orderConfirm)
+        // setOrderConfirm(!orderConfirm)
         colorArray[0].style.backgroundColor = '#D6587B';
         colorDotsArray[0].style.backgroundColor = '#D6587B';
         colorDotsArray[1].style.backgroundColor = '#D6587B';
@@ -59,7 +77,7 @@ const OrderStages = () => {
     }
 
     const packing = () => {
-        setOrderPacking(!orderPacking)
+        // setOrderPacking(!orderPacking)
         colorArray[1].style.backgroundColor = '#D6587B';
         colorDotsArray[3].style.backgroundColor = '#D6587B';
         colorDotsArray[4].style.backgroundColor = '#D6587B';
@@ -69,7 +87,7 @@ const OrderStages = () => {
     }
 
     const delivery = () => {
-        setOrderDelivery(!orderDelivery)
+        // setOrderDelivery(!orderDelivery)
         colorArray[2].style.backgroundColor = '#D6587B';
     }
 
