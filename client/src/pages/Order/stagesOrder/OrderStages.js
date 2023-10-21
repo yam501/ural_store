@@ -28,13 +28,22 @@ const OrderStages = () => {
         if (order.order.delivered) {
             delivery()
         }
+        else {
+            // Поменять цвет у третьего кружка
+        }
         setOrderPacking(order.order.onDeliver)
         if (order.order.onDeliver) {
             packing()
         }
+        else {
+            // Поменять цвет у второго кружка
+        }
         setOrderConfirm(order.order.onCreate)
         if (order.order.onCreate) {
             confirmed()
+        }
+        else {
+            // Поменять цвет у первого кружка
         }
     }
 
@@ -48,13 +57,22 @@ const OrderStages = () => {
         if (order.order.delivered) {
             delivery()
         }
+        else {
+            // Поменять цвет у третьего кружка
+        }
         setOrderPacking(order.order.onDeliver)
         if (order.order.onDeliver) {
             packing()
         }
+        else {
+            // Поменять цвет у второго кружка
+        }
         setOrderConfirm(order.order.onCreate)
         if (order.order.onCreate) {
             confirmed()
+        }
+        else {
+            // Поменять цвет у первого кружка
         }
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
