@@ -78,15 +78,15 @@ function Order() {
   const [isOrder, setIsOrder] = useState(false)
 
   async function tryGetOrder() {
-    await order.getOrderByUserId(user._user.id)
-    setIsOrder(order._order.length !== 0)
+    await order.getOneOrderByUserId(user._user.id)
+    setIsOrder(JSON.stringify(order.order) !== "{}")
   }
 
   return (
     <div className='page_body order_page_body'>
       {
         isOrder ? 
-        <OrderStages currentOrder={order._order[0]}></OrderStages> :
+        <OrderStages></OrderStages> :
         <div>
           {/* <h1 className='page_title'> Текущий заказ</h1> */}
       {orderProductsDinamic.length === 0 ?

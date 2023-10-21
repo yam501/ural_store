@@ -76,6 +76,7 @@ const OrderStages = () => {
         }
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
+        console.log(order.order)
         socket.emit("messageFromUser", {"orderId": order.order.id})
     }
 
