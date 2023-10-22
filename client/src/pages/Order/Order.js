@@ -40,7 +40,7 @@ function Order() {
   }
 
   async function confirmOrder(event) {
-    const form = event.currentTarget;
+    const form = document.querySelector('.form_check_order');
     event.preventDefault();
     if (form.checkValidity() === false) {
       event.stopPropagation();
@@ -142,11 +142,11 @@ function Order() {
                   as="textarea"
                 />
               </div>
-              {/*  */}
+{/*               
               <button type='submit' className='order_products_accept_btn'>
               Заказать
-            </button>
-              {/*  */}
+            </button> */}
+              
             </Form>
             <div className='order_products_check'>
               <div className='order_products_check_box'>
@@ -175,9 +175,9 @@ function Order() {
             <div className='order_pay_foter'>
               <span>К оплате</span> <span>{aproxSum}</span>
             </div>
-            {/* <button type='submit' className='order_products_accept_btn'>
+            <button type='submit' onClick={confirmOrder} className='order_products_accept_btn'>
               Заказать
-            </button> */}
+            </button>
           </div>
         </div>}
         </div>
