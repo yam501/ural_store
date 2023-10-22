@@ -79,7 +79,7 @@ function Order() {
 
   async function tryGetOrder() {
     await order.getOneOrderByUserId(user._user.id)
-    setIsOrder(JSON.stringify(order.order) !== "{}")
+    setIsOrder(order.order !== null)
   }
 
   return (
