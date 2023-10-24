@@ -6,7 +6,6 @@ import BasketService from "../service/BasketService";
 export default class BasketProductStore {
     constructor() {
         this._basketProducts = []
-       
         makeAutoObservable(this)
     }
 

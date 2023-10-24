@@ -1,8 +1,8 @@
 import { $authHost } from "../http";
 
 const OrderService = {
-    async createOrder(userId, address, aproxSum, onConfirm) {
-        return new Promise((resolve) => resolve($authHost.post('api/order/createOrder', { userId, address, aproxSum, onConfirm })))
+    async createOrder(userId, address, aproxSum, onConfirm, comment, number) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/createOrder', { userId, address, aproxSum, onConfirm, comment, number })))
     },
 
     async getNotOnConfirmOrderByUserId(userId) {
@@ -15,14 +15,14 @@ const OrderService = {
 
     async getOrderByOrderId(id) {
         return new Promise((resovle) => resovle($authHost.post('api/order/getOrderByOrderID', { id })))
-    }, 
-    
+    },
+
     async getOrderByUserId(userId) {
         return new Promise((resovle) => resovle($authHost.post('api/order/getOrderByUserID', { userId })))
     },
 
     async getOneOrderByUserId(userId) {
-        return new Promise((resolve) => resolve($authHost.post('api/order/getOneOrderByUserID', {userId})))
+        return new Promise((resolve) => resolve($authHost.post('api/order/getOneOrderByUserID', { userId })))
     },
 
     async getAll() {
