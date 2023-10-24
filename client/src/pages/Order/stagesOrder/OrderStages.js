@@ -29,21 +29,21 @@ const OrderStages = () => {
             delivery()
         }
         else {
-            // Поменять цвет у третьего кружка
+            notDelivery()
         }
         setOrderPacking(order.order.onDeliver)
         if (order.order.onDeliver) {
             packing()
         }
         else {
-            // Поменять цвет у второго кружка
+            notPacking()
         }
         setOrderConfirm(order.order.onCreate)
         if (order.order.onCreate) {
             confirmed()
         }
         else {
-            // Поменять цвет у первого кружка
+            notConfirmed()
         }
     }
 
@@ -58,21 +58,21 @@ const OrderStages = () => {
             delivery()
         }
         else {
-            // Поменять цвет у третьего кружка
+            notDelivery()
         }
         setOrderPacking(order.order.onDeliver)
         if (order.order.onDeliver) {
             packing()
         }
         else {
-            // Поменять цвет у второго кружка
+            notPacking()
         }
         setOrderConfirm(order.order.onCreate)
         if (order.order.onCreate) {
             confirmed()
         }
         else {
-            // Поменять цвет у первого кружка
+            notConfirmed()
         }
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
@@ -95,6 +95,17 @@ const OrderStages = () => {
         colorSmallDotsArray[1].style.backgroundColor = '#D6587B';
     }
 
+    const notConfirmed = () => {
+        // setOrderConfirm(!orderConfirm)
+        colorArray[0].style.backgroundColor = '#D9D9D9';
+        colorDotsArray[0].style.backgroundColor = '#D9D9D9';
+        colorDotsArray[1].style.backgroundColor = '#D9D9D9';
+        colorDotsArray[2].style.backgroundColor = '#D9D9D9';
+        colorSmallDotsArray[0].style.backgroundColor = '#D9D9D9';
+        colorSmallDotsArray[1].style.backgroundColor = '#D9D9D9';
+    }
+
+
     const packing = () => {
         // setOrderPacking(!orderPacking)
         colorArray[1].style.backgroundColor = '#D6587B';
@@ -105,11 +116,26 @@ const OrderStages = () => {
         colorSmallDotsArray[3].style.backgroundColor = '#D6587B';
     }
 
+    const notPacking = () => {
+        // setOrderPacking(!orderPacking)
+        colorArray[1].style.backgroundColor = '#D9D9D9';
+        colorDotsArray[3].style.backgroundColor = '#D9D9D9';
+        colorDotsArray[4].style.backgroundColor = '#D9D9D9';
+        colorDotsArray[5].style.backgroundColor = '#D9D9D9';
+        colorSmallDotsArray[2].style.backgroundColor = '#D9D9D9';
+        colorSmallDotsArray[3].style.backgroundColor = '#D9D9D9';
+    }
+
     const delivery = () => {
         // setOrderDelivery(!orderDelivery)
         colorArray[2].style.backgroundColor = '#D6587B';
     }
 
+
+    const notDelivery = () => {
+        // setOrderDelivery(!orderDelivery)
+        colorArray[2].style.backgroundColor = '#D9D9D9';
+    }
 
 
     return (
@@ -136,7 +162,6 @@ const OrderStages = () => {
                             Заказ подтвержден
                         </div>
                     }
-                    {/* <Button onClick={() => confirmed()}>переключатель</Button> */}
                 </div>
                 <>
                     <div
@@ -177,7 +202,6 @@ const OrderStages = () => {
                             Заказ собран
                         </div>
                     }
-                    {/* <Button onClick={() => packing()}>переключатель</Button> */}
                 </div>
                 <>
                     <div
@@ -219,7 +243,6 @@ const OrderStages = () => {
                         </div>
                     }
 
-                    {/* <Button onClick={() => delivery()}>переключатель</Button> */}
                 </div>
 
             </div>
@@ -235,7 +258,7 @@ const OrderStages = () => {
                 <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
                 <div className='order_stages_downContent_right'>
                     <div className='order_stages_downContent_courierNumber'>
-                        Телефона курьера: +7(999)9990011
+                        Телефон курьера: +7(999)9990011
                     </div>
                     <hr />
                     <div className='order_stages_downContent_order_details mt-2'>
