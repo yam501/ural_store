@@ -15,7 +15,7 @@ const AddProductToBasketBtn = ({product, countProduct, switchCardState, cost}) =
         <div className='text-white fb-2'>
             
         </div>
-        <Button onClick={addProductInBasket} className='btn-addToBasket w-50 mb-2 rounded-5'>
+        <Button onClick={addProductInBasket} className='btn-addToBasket rounded-5'>
             В корзину
         </Button>
     </Nav>

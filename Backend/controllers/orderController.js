@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError')
-const {Order, OrderProduct, BasketProduct} = require('../models/models')
+const { Order, OrderProduct, BasketProduct, User } = require('../models/models')
 
 class OrderController {
 
@@ -7,15 +7,17 @@ class OrderController {
 
     async createOrderByBasketId(req, res, next) {
         try {
-            const {userId, address, aproxSum, basketId} = req.body
-            const order = await Order.create({userId, address, aproxSum})
-            const basketProducts = await BasketProduct.findAll({where: {basketId: basketId}})
+            const { userId, address, aproxSum, basketId, comment } = req.body
+            const order = await Order.create({ userId, address, aproxSum, comment })
+            const basketProducts = await BasketProduct.findAll({ where: { basketId: basketId } })
             basketProducts.forEach(basketProduct => {
-                OrderProduct.create({orderId: order['id'], assortmentId: basketProduct['assortmentId'], count: basketProduct['count'],
-                    moreOrLess: basketProduct['moreOrLess']})
+                OrderProduct.create({
+                    orderId: order['id'], assortmentId: basketProduct['assortmentId'], count: basketProduct['count'],
+                    moreOrLess: basketProduct['moreOrLess']
+                })
             })
-            BasketProduct.destroy({where: {basketId: basketId}})
-            return res.json({"Результат": "Готово"})
+            BasketProduct.destroy({ where: { basketId: basketId } })
+            return res.json({ "Результат": "Готово" })
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
@@ -25,18 +27,18 @@ class OrderController {
 
     async createOrder(req, res, next) {
         try {
-            const {userId, address, aproxSum, onConfirm} = req.body
-            const order = await Order.create({userId, address, aproxSum, onConfirm})
+            const { userId, address, aproxSum, onConfirm, comment, number } = req.body
+            const order = await Order.create({ userId, address, aproxSum, onConfirm, comment, number })
             return res.json(order)
 
-        } catch (e){
+        } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
     async getAll(req, res, next) {
         try {
-            const orders = await Order.findAll({where: {onConfirm: true}})
+            const orders = await Order.findAll({ where: { onConfirm: true } })
             return res.json(orders)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -45,8 +47,8 @@ class OrderController {
 
     async getNotOnConfirmOrderByUserID(req, res, next) {
         try {
-            const {userId} = req.body
-            const order = await Order.findOne({where:{userId: userId, onConfirm: false}})
+            const { userId } = req.body
+            const order = await Order.findOne({ where: { userId: userId, onConfirm: false } })
             return res.json(order)
 
         } catch (e) {
@@ -56,8 +58,8 @@ class OrderController {
 
     async getOnConfirmOrderByUserID(req, res, next) {
         try {
-            const {userId} = req.body
-            const order= await Order.findOne({where: {userId: userId, onConfirm: true}})
+            const { userId } = req.body
+            const order = await Order.findOne({ where: { userId: userId, onConfirm: true } })
             return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -66,8 +68,8 @@ class OrderController {
 
     async getOrderByOrderID(req, res, next) {
         try {
-            const {id} = req.body
-            const order = await Order.findOne({where:{id: id}})
+            const { id } = req.body
+            const order = await Order.findOne({ where: { id: id } })
             return res.json(order)
 
         } catch (e) {
@@ -77,8 +79,8 @@ class OrderController {
 
     async getOrderByUserID(req, res, next) {
         try {
-            const {userId} = req.body
-            const order = await Order.findAll({where:{userId: userId}})
+            const { userId } = req.body
+            const order = await Order.findAll({ where: { userId: userId } })
             return res.json(order)
 
         } catch (e) {
@@ -88,8 +90,8 @@ class OrderController {
 
     async getOneOrderByUserID(req, res, next) {
         try {
-            const {userId} = req.body
-            const order = await Order.findOne({where: {userId: userId}})
+            const { userId } = req.body
+            const order = await Order.findOne({ where: { userId: userId } })
             return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -98,30 +100,30 @@ class OrderController {
 
     async changeAddressByUserID(req, res, next) {
         try {
-            const {userId, address} = req.body
-            const updated = await Order.update({address: address} , {where:{userId: userId}})
+            const { userId, address } = req.body
+            const updated = await Order.update({ address: address }, { where: { userId: userId } })
             return res.json(updated)
 
-        } catch (e){
-            next(ApiError.badRequest(e.message))    
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
     async changeAddressByOrderID(req, res, next) {
         try {
-            const {id, address} = req.body
-            const updated = await Order.update({address: address} , {where:{id: id}})
+            const { id, address } = req.body
+            const updated = await Order.update({ address: address }, { where: { id: id } })
             return res.json(updated)
 
-        } catch (e){
-            next(ApiError.badRequest(e.message))      
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
         }
     }
 
     async changeOnConfirmByOrderID(req, res, next) {
         try {
-            const {id, onConfirm} = req.body
-            const updated = await Order.update({onConfirm: onConfirm}, {where: {id: id}})
+            const { id, onConfirm } = req.body
+            const updated = await Order.update({ onConfirm: onConfirm }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -130,8 +132,8 @@ class OrderController {
 
     async changeOnCreateByOrderID(req, res, next) {
         try {
-            const {id, onCreate} = req.body
-            const updated = await Order.update({onCreate: onCreate}, {where: {id: id}})
+            const { id, onCreate } = req.body
+            const updated = await Order.update({ onCreate: onCreate }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -140,8 +142,8 @@ class OrderController {
 
     async changeOnDeliverByOrderID(req, res, next) {
         try {
-            const {id, onDeliver} = req.body
-            const updated = await Order.update({onDeliver: onDeliver}, {where: {id: id}})
+            const { id, onDeliver } = req.body
+            const updated = await Order.update({ onDeliver: onDeliver }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -150,8 +152,8 @@ class OrderController {
 
     async changeDeliveredByOrderID(req, res, next) {
         try {
-            const {id, delivered} = req.body
-            const updated = await Order.update({delivered: delivered}, {where: {id: id}})
+            const { id, delivered } = req.body
+            const updated = await Order.update({ delivered: delivered }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -160,8 +162,8 @@ class OrderController {
 
     async changeOrderProductsCountByOrderID(req, res, next) {
         try {
-            const {id, orderProductsCount} = req.body
-            const updated = await Order.update({orderProductsCount: orderProductsCount}, {where: {id: id}})
+            const { id, orderProductsCount } = req.body
+            const updated = await Order.update({ orderProductsCount: orderProductsCount }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))

@@ -9,16 +9,18 @@ import AddProductToBasketBtn from './AddProductToBasketBtn';
 const ProductItem = ({ product, type, productShow }) => {
 
     const { basketProduct } = useContext(Context)
+    const { basket } = useContext(Context)
     const { user } = useContext(Context)
+    const [basketId, setBasketId] = useState(basket.basket.id);
     const [show, setShow] = useState(false);
     const [cardState, setCardState] = useState(false)
     const switchCardState = () => setCardState(!cardState);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     const [countProduct, setCountProduct] = useState(1)
     const plus = () => {
         countProduct >= productType[type].count() && setCountProduct(countProduct + productType[type].count())
+
     }
     const minus = () => {
         countProduct > productType[type].count() && setCountProduct(countProduct - productType[type].count())
@@ -102,19 +104,22 @@ const ProductItem = ({ product, type, productShow }) => {
                     </div>
                     </div> :
                     <div className='card_wrapper_content'>
-                    <div className='mt-1 d-flex justify-content-center'>
-                        <div className='d-flex align-items-center card_wrapper_title_box'>
-                            <div className='info-text'>
-                                {product.name}
-                            </div>
-                        </div>
-                    </div>
-                    <div className='mt-1 d-flex justify-content-center'>
+                    <div className='card_wrapper_content_box'>
+                    <div className='mb-1 card_wrapper_title_box'>
                         <div className='info-text'>
-                            {product.costPerOne} ₽ за {`${type === 'Салаты' ? 100 : 1} ${productType[type].value}`}
+                            {product.name}
                         </div>
                     </div>
-
+                    
+                    <div className='card_wraper_content_inform'>
+                        <div className='mb-1 info-text'>
+                            {product.costPerOne} ₽ 
+                        </div>
+                        <div  className='info-text'>
+                            {`${type === 'Салаты' ? 100 : 1} ${productType[type].value}`}
+                        </div>
+                    </div>
+                    </div>
                     <AddProductToBasketBtn product={product} switchCardState={switchCardState} type={type} countProduct={countProduct} />
 
                     </div>

@@ -32,8 +32,6 @@ const BasketProduct = sequelize.define('basketProduct', {
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
     moreOrLess: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
-
-    
     costPerOne: { type: DataTypes.DOUBLE, allowNull: true },
     name: { type: DataTypes.STRING, allowNull: true },
     image: { type: DataTypes.STRING, allowNull: true }
@@ -48,7 +46,9 @@ const Order = sequelize.define('order', {
     onCreate: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     onDeliver: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     delivered: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    orderProductsCount: {type: DataTypes.INTEGER, asllowNull: false, defaultValue: 0}
+    orderProductsCount: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0},
+    comment:{type: DataTypes.TEXT, allowNull: false, defaultValue: 0},
+    number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0}
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {

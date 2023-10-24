@@ -4,23 +4,23 @@ import Container from 'react-bootstrap/esm/Container';
 import './orderStages.css'
 import { Context } from '../../..';
 import OrderProduct from '../OrderProduct';
-import { io } from 'socket.io-client' 
+import { io } from 'socket.io-client'
 const OrderStages = () => {
 
     const [orderConfirm, setOrderConfirm] = useState(false);
     const [orderPacking, setOrderPacking] = useState(false);
     const [orderDelivery, setOrderDelivery] = useState(false);
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
-    const {orderProducts} = useContext(Context)
+    const { orderProducts } = useContext(Context)
     const { order } = useContext(Context)
-    const {user} = useContext(Context)
+    const { user } = useContext(Context)
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
     var colorSmallDotsArray = document.getElementsByClassName('order_stage_small_dots')
     var colorDotsArray = document.getElementsByClassName('order_stage_dots')
 
     const socket = io(process.env.REACT_APP_API_URL, {
         path: "/webSocket/"
-      })
+    })
 
     async function updateOrder() {
         await order.getOrderByOrderId(order.order.id)
@@ -77,7 +77,7 @@ const OrderStages = () => {
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
         console.log(order.order)
-        socket.emit("messageFromUser", {"orderId": order.order.id})
+        socket.emit("messageFromUser", { "orderId": order.order.id })
     }
 
     useEffect(() => {
@@ -250,10 +250,10 @@ const OrderStages = () => {
                 <div className='order_stages_downContent_left'>{
                     // orderProduct => <OrderProduct key={orderProduct.id} orderProduct={orderProduct} ></OrderProduct>
                     orderProductsDinamic.length === 0 ?
-                    <div>Загрузка товаров</div> :
-                    orderProductsDinamic.map(orderProduct => {
-                        return <OrderProduct key={orderProduct.id} orderProduct={orderProduct}></OrderProduct>
-                    })
+                        <div>Загрузка товаров</div> :
+                        orderProductsDinamic.map(orderProduct => {
+                            return <OrderProduct key={orderProduct.id} orderProduct={orderProduct}></OrderProduct>
+                        })
                 }</div>
                 <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
                 <div className='order_stages_downContent_right'>
@@ -275,14 +275,14 @@ const OrderStages = () => {
                         <hr />
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <div className='order_stages_downContent_comment_text me-2'>сюда передать текст </div>
+                                <div className='order_stages_downContent_comment_text me-2'>{order.order.comment}</div>
                                 <Button className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
                         <hr />
                         <label className='order_stages_downContent_tel mt-2'>Телефон:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <div className='order_stages_downContent_comment_text me-2'>+7(999)0005511 </div>
+                                <div className='order_stages_downContent_comment_text me-2'>{order.order.number}</div>
                                 <Button className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
