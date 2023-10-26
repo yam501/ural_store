@@ -9,6 +9,7 @@ import { BASKET_ROUTE } from '../../utils/consts';
 import GPS from '../../components/YndexMaps/GPS';
 import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
 import OrderStages from './stagesOrder/OrderStages';
+import PhoneInputMask from "../../InputMasks/PhoneInputMask";
 
 // Страница заказа
 
@@ -23,6 +24,7 @@ function Order() {
   const navigate = useNavigate()
   const [validated, setValidated] = useState(false);
   const [aproxSum, setAproxSum] = useState(0);
+  const phoneMask = new PhoneInputMask()
 
   async function createOrderProductsFromBasketProducts() {
     if (JSON.stringify(basket._baskets) !== "{}") {
@@ -104,7 +106,7 @@ function Order() {
                     <div className='form_check_order_section form_check_order_phone_section'>
                       {/* <label>Номер</label> */}
                       <input required type='tel'
-                        value={dataOfOrder.tel} onChange={e => setDataOfOrder({ ...dataOfOrder, tel: e.target.value })}
+                        value={phoneMask.formatNumberToClient(dataOfOrder.tel)} onChange={e => setDataOfOrder({ ...dataOfOrder, tel: phoneMask.formatNumberToBackend(e.target.value) })}
                         className='form-control form_check_order_section_input form_check_order_phone_section_input'
                         placeholder='+7-(999)-999-99-99' />
                     </div>

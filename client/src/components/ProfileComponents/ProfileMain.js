@@ -5,6 +5,7 @@ import { Button, Container, Nav, Form } from 'react-bootstrap'
 import { Context } from '../..';
 
 import './profile.css'
+import PhoneInputMask from "../../InputMasks/PhoneInputMask";
 
 const ProfileMain = () => {
 
@@ -20,6 +21,7 @@ const ProfileMain = () => {
 
     const [disabled, setDisable] = useState(true)
 
+    const phoneMask = new PhoneInputMask()
 
     const saveClick = async () => {
         if (save) {
@@ -51,12 +53,12 @@ const ProfileMain = () => {
                 <Form.Control
                     className='profile-tel profile-input input'
                     type='tel'
-                    placeholder={user._user.number}
-                    maxlength="12"
-                    minlength="12"
-                    value={telephone}
+                    placeholder={phoneMask.formatNumberToClient(user._user.number)}
+                    maxlength="16"
+                    minlength="16"
+                    value={phoneMask.formatNumberToClient(telephone)}
                     disabled={disabled}
-                    onChange={event => setTelephone(event.target.value)}
+                    onChange={event => setTelephone(phoneMask.formatNumberToBackend(event.target.value))}
                 >
                 </Form.Control>
             </Nav>

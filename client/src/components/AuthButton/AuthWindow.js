@@ -11,6 +11,7 @@ import PasswordRecov from './PasswordRecov';
 import { Context } from '../..';
 import { Row } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
+import PhoneInputMask from "../../InputMasks/PhoneInputMask";
 const AuthWindow = ({ show, handleClose, ...props }) => {
     const { user } = useContext(Context)
 
@@ -31,6 +32,8 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
     const [isLogin, setIsLogin] = useState(true)
     const [isAccept, setIsAccept] = useState(false)
     const [isPasswordRecov, setIsPasswordRecov] = useState(false)
+
+    const phoneMask = new PhoneInputMask()
 
     const showPasswordRecovPage = () => {
         setIsLogin(false)
@@ -90,9 +93,9 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
                     <Form.Control
                         className='rounded-4 formPhone'
                         type="text"
-                        placeholder="+78888888888"
-                        value={number}
-                        onChange={e => setNumber(e.target.value)}
+                        placeholder="+7 999 999 99 99"
+                        value={phoneMask.formatNumberToClient(number)}
+                        onChange={e => setNumber(phoneMask.formatNumberToBackend(e.target.value))}
                     />
                 </Form.Group>
 
