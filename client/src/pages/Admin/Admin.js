@@ -5,11 +5,7 @@ import EditAssortment from './editAssortment/EditAssortment';
 import Feedback from './feedbacks/Feedback';
 import GivingRole from './role/GivingRole';
 import ChangeAvailable from './changeAvailable/ChangeAvailable';
-
 import { Context } from '../..';
-
-
-// Страница администратора
 import "./admin.css"
 import "./assortment.css"
 import { observer } from 'mobx-react-lite';
@@ -124,14 +120,6 @@ function Admin() {
 
       </Tabs>
     </div>
-
-
-
-
-
-
-
-
   );
 }
 
