@@ -37,25 +37,36 @@ export default class PhoneInputMask {
         while (currentIndex < number.length) {
             if (spaceCount === 0) {
                 if (currentIndex === 0 && number[currentIndex] === '7' || number[currentIndex] === '8') {
-                    arrayNumber.push("+7 ")
+                    arrayNumber.push("+7 (")
                     spaceCount++
                     currentIndex++
                     continue
                 }
-                arrayNumber.push("+7 ")
+                arrayNumber.push("+7 (")
                 arrayNumber.push(number[currentIndex])
                 currentIndex++
                 spaceCount++
                 numbersCount++
             }
-            else if (spaceCount < 3) {
+            else if (spaceCount === 1) {
                 if (numbersCount < 3) {
                     arrayNumber.push(number[currentIndex])
                     currentIndex++
                     numbersCount++
                     continue
                 }
-                arrayNumber.push(' ')
+                arrayNumber.push(') ')
+                spaceCount++
+                numbersCount = 0
+            }
+            else if (spaceCount === 2) {
+                if (numbersCount < 3) {
+                    arrayNumber.push(number[currentIndex])
+                    currentIndex++
+                    numbersCount++
+                    continue
+                }
+                arrayNumber.push('-')
                 spaceCount++
                 numbersCount = 0
             }
@@ -66,7 +77,7 @@ export default class PhoneInputMask {
                     numbersCount++
                     continue
                 }
-                arrayNumber.push(' ')
+                arrayNumber.push('-')
                 spaceCount++
                 numbersCount = 0
             }
