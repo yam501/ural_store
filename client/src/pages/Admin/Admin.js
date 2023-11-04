@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Container, Row, Col, Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab } from "react-bootstrap";
 import CreateAssortment from './createAssortment/CreateAssortment';
 import EditAssortment from './editAssortment/EditAssortment';
 import Feedback from './feedbacks/Feedback';
@@ -103,7 +103,7 @@ function Admin() {
           :
           <div></div>
         }
-        {adminShow == true ?
+        {adminShow === true ?
           <Tab eventKey="Giverole" title="Выдать роли" >
             <GivingRole users={usersList} onClick={getAllProducts} />
           </Tab>
