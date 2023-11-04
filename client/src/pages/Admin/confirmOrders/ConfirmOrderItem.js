@@ -4,10 +4,11 @@ import AssortmentStore from "../../../store/AssortmentStore";
 import OrderProductsStore from "../../../store/OrderProductsStore";
 import { useState, useEffect } from "react";
 import OrderStore from "../../../store/OrderStore";
-import {Button, Dropdown} from 'react-bootstrap';
+import { Button, Dropdown } from 'react-bootstrap';
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
+
 
 function ConfirmOrderItem({ order, user, sendWS }) {
     const dateTime = new OurDateTime(order.updatedAt)
@@ -18,6 +19,7 @@ function ConfirmOrderItem({ order, user, sendWS }) {
     const [onCreate, setOnCreate] = useState(order.onCreate)
     const [onDeliver, setOnDeliver] = useState(order.onDeliver)
     const [delivered, setDelivered] = useState(order.delivered)
+    const [courierNumber, setCourierNumber] = useState("Номер курьера");
 
     async function getOrderProducts() {
         await orderProducts.getAllOrderProductsByOrderId(order.id)
@@ -51,7 +53,10 @@ function ConfirmOrderItem({ order, user, sendWS }) {
         getOrderProducts()
     }, [])
 
-    const [courierNumber, setCourierNumber] = useState("Номер курьера");
+    async function changeCourierNumber(number){
+        await orderStore.changeCourierNumber(order.id, number)
+        setCourierNumber(number)
+    }
 
 
 
@@ -63,12 +68,12 @@ function ConfirmOrderItem({ order, user, sendWS }) {
                 <div className="confir_order_item_info">Телефон: {user.number}</div>
                 <div className="confir_order_item_info">Адрес: {order.address}</div>
                 <div className="confir_order_item_info">Последнее обновление статуса: {dateTime.getStringDateTime()}</div>
-                <Dropdown onSelect={e => setCourierNumber(e)}>
+                <Dropdown onSelect={e => changeCourierNumber(e)}>
                     <DropdownToggle className="assortment-switch"> {courierNumber}</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem className="assortment-switch-item" eventKey={"+" +1}>+1</DropdownItem>
-                        <DropdownItem className="assortment-switch-item" eventKey={"+" +2}>+2</DropdownItem>
-                        <DropdownItem className="assortment-switch-item" eventKey={"+" +3}>+3</DropdownItem>
+                        <DropdownItem className="assortment-switch-item" eventKey={"+" + 1}>+1</DropdownItem>
+                        <DropdownItem className="assortment-switch-item" eventKey={"+" + 2}>+2</DropdownItem>
+                        <DropdownItem className="assortment-switch-item" eventKey={"+" + 3}>+3</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
                 <div className="confir_order_item_info">

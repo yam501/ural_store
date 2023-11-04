@@ -76,6 +76,10 @@ export default class OrderStore {
         this.getOrderByOrderId(id)
     }
 
+    async changeCourierNumber(id, orderProductsCount) {
+        await OrderService.changeCourierNumber(id, orderProductsCount)
+        this.getOrderByOrderId(id)
+    }
     get order() {
         return this._order
     }
