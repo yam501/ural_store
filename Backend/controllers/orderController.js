@@ -169,6 +169,16 @@ class OrderController {
             next(ApiError.badRequest(e.message))
         }
     }
+    
+    async changeCourierNumber(req, res, next) {
+        try {
+            const { id, courierNumber } = req.body
+            const updated = await Order.update({ courierNumber: courierNumber }, { where: { id: id } })
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 module.exports = new OrderController()

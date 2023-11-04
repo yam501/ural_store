@@ -93,7 +93,7 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
                     <Form.Control
                         className='rounded-4 formPhone'
                         type="text"
-                        placeholder="+7 999 999 99 99"
+                        placeholder="+7 (999) 999-99-99"
                         value={phoneMask.formatNumberToClient(number)}
                         onChange={e => setNumber(phoneMask.formatNumberToBackend(e.target.value))}
                     />

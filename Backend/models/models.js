@@ -42,13 +42,14 @@ const Order = sequelize.define('order', {
     userId: { type: DataTypes.INTEGER, allowNull: false },
     address: { type: DataTypes.STRING, allowNull: false, defaultValue: "" },
     aproxSum: { type: DataTypes.DOUBLE, allowNull: false },
-    onConfirm: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    onCreate: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    onDeliver: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    delivered: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-    orderProductsCount: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0},
-    comment:{type: DataTypes.TEXT, allowNull: false, defaultValue: 0},
-    number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0}
+    onConfirm: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    onCreate: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    onDeliver: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    delivered: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    orderProductsCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
+    comment: { type: DataTypes.TEXT, allowNull: false, defaultValue: 0 },
+    number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
+    courierNumber: { type: DataTypes.STRING, allowNull: false, defaultValue: "Курьер ещё не назначен" }
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {
