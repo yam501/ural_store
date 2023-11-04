@@ -11,6 +11,9 @@ import OwlCarousel from 'react-owl-carousel';
 const ProductList = ({product, state, type, productShow}) => {
     const {basket, basketProduct} = useContext(Context)
     const [basketProductsList, setBasketProductsList] = useState([]);
+    const deleteBasketItem = (id) => {
+        setBasketProductsList(basketProductsList.filter(item => item.assortmentId !== id))
+    }
     const fillBasketProductList = async () => {
             await basketProduct.getAllBasketProductsByBasketID(basket.basket.id).then(res => {
                 if (res) setBasketProductsList(basketProduct.basketProduct)
@@ -18,7 +21,6 @@ const ProductList = ({product, state, type, productShow}) => {
           
     }
     useEffect(() => {
-        console.log(1)
         fillBasketProductList()
     }, [basketProduct.basketProduct.length])
     const options = {
@@ -87,7 +89,7 @@ const ProductList = ({product, state, type, productShow}) => {
         >
              
             {product.map(product =>
-                <ProductItem productShow={productShow} basket={basketProductsList} type={type} key={product.type} id={product.id} product={product} />)}
+                <ProductItem productShow={productShow} deleteBasketProductItem={deleteBasketItem} basketProductsList={basketProductsList} type={type} key={product.type} id={product.id} product={product} />)}
         </OwlCarousel>
         </div>
     );
