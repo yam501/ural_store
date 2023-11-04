@@ -55,6 +55,10 @@ const OrderService = {
 
     async changeOrderProductsCountByOrderId(id, orderProductsCount) {
         return new Promise((resolve) => resolve($authHost.put('api/order/changeOrderProductsCountByOrderID', { id, orderProductsCount })))
+    },
+
+    async changeCourierNumber( id, courierNumber) {
+        return new Promise((resolve) => resolve($authHost.put('api/order/changeNumberOfCourier', {  id, courierNumber})))
     }
 }
 
