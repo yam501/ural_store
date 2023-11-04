@@ -9,7 +9,7 @@ const orderController = require('../controllers/orderController')
 
 router.post('/createOrderByBasketId', authMiddleware, activatedMiddleware, orderController.createOrderByBasketId)
 
-//authMiddleware, activatedMiddleware,
+//
 
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 
@@ -27,6 +27,6 @@ router.put('/changeOnCreateByOrderID', authMiddleware, activatedMiddleware, orde
 router.put('/changeOnDeliverByOrderID', authMiddleware, activatedMiddleware, orderController.changeOnDeliverByOrderID)
 router.put('/changeDeliveredByOrderID', authMiddleware, activatedMiddleware, orderController.changeDeliveredByOrderID)
 router.put('/changeOrderProductsCountByOrderID', authMiddleware, activatedMiddleware, orderController.changeOrderProductsCountByOrderID)
-router.put('/changeNumberOfCourier',  orderController.changeCourierNumber)
+router.put('/changeNumberOfCourier', authMiddleware, activatedMiddleware, orderController.changeCourierNumber)
 
 module.exports = router
