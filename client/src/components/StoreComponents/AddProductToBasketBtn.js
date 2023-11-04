@@ -5,9 +5,9 @@ import { Context } from '../..';
 const AddProductToBasketBtn = ({product, countProduct, switchCardState, cost}) => {
     const {basketProduct} = useContext(Context)
     const {basket} = useContext(Context)
+    
     const addProductInBasket = () => {
         basketProduct.createBasketProduct(basket.basket.id, product.id, cost, countProduct, false)
-        basketProduct.getAllBasketProductsByBasketID(basket.basket.id)
         switchCardState()
     }
     return (

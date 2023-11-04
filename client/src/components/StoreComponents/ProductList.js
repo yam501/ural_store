@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import ProductItem from './ProductItem';
 import { Context } from '../..';
@@ -9,7 +9,18 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import OwlCarousel from 'react-owl-carousel';
 
 const ProductList = ({product, state, type, productShow}) => {
-
+    const {basket, basketProduct} = useContext(Context)
+    const [basketProductsList, setBasketProductsList] = useState([]);
+    const fillBasketProductList = async () => {
+            await basketProduct.getAllBasketProductsByBasketID(basket.basket.id).then(res => {
+                if (res) setBasketProductsList(basketProduct.basketProduct)
+            })
+          
+    }
+    useEffect(() => {
+        console.log(1)
+        fillBasketProductList()
+    }, [basketProduct.basketProduct.length])
     const options = {
         responsive: {
             0: {
@@ -58,7 +69,7 @@ const ProductList = ({product, state, type, productShow}) => {
             },
         },
     }
-
+    
     return (
 
         
@@ -76,7 +87,7 @@ const ProductList = ({product, state, type, productShow}) => {
         >
              
             {product.map(product =>
-                <ProductItem productShow={productShow} type={type} key={product.type} id={product.id} product={product} />)}
+                <ProductItem productShow={productShow} basket={basketProductsList} type={type} key={product.type} id={product.id} product={product} />)}
         </OwlCarousel>
         </div>
     );

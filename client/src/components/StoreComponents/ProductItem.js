@@ -6,18 +6,16 @@ import './productItem.css'
 import { Context } from '../..';
 import AddProductToBasketBtn from './AddProductToBasketBtn';
 
-const ProductItem = ({ product, type, productShow }) => {
+const ProductItem = ({ product, type, basket, productShow }) => {
 
-    const { basketProduct } = useContext(Context)
-    const { basket } = useContext(Context)
-    const { user } = useContext(Context)
-    const [basketId, setBasketId] = useState(basket.basket.id);
+    const { user} = useContext(Context)
     const [show, setShow] = useState(false);
     const [cardState, setCardState] = useState(false)
     const switchCardState = () => setCardState(!cardState);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [countProduct, setCountProduct] = useState(1)
+    
     const plus = () => {
         countProduct >= productType[type].count() && setCountProduct(countProduct + productType[type].count())
 
@@ -25,7 +23,15 @@ const ProductItem = ({ product, type, productShow }) => {
     const minus = () => {
         countProduct > productType[type].count() && setCountProduct(countProduct - productType[type].count())
     }
-    
+
+    const checkProductItem = () => {
+        basket.map(item => item.assortmentId === product.id && setCardState(true))
+    }
+
+    useEffect(() => {
+        checkProductItem()
+    }, [basket])
+
     const productType = {
         "Мясо": {
             value: 'кг',
