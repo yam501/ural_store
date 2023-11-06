@@ -10,6 +10,7 @@ import "./admin.css"
 import "./assortment.css"
 import { observer } from 'mobx-react-lite';
 import ConfirmOrders from './confirmOrders/ConfirmOrders';
+import ChangeCourier from "./couriers/ChangeCourier";
 
 function Admin() {
   const { assortment, feedback, use, user } = useContext(Context)
@@ -117,6 +118,9 @@ function Admin() {
           :
           <div></div>
         }
+        <Tab eventKey="changeCourier" title="Курьеры">
+          <ChangeCourier/>
+        </Tab>
 
       </Tabs>
     </div>

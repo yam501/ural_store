@@ -258,7 +258,7 @@ const OrderStages = () => {
                 <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
                 <div className='order_stages_downContent_right'>
                     <div className='order_stages_downContent_courierNumber'>
-                        Телефон курьера: +7(999)9990011
+                        Телефон курьера: {order.order.courierNumber}
                     </div>
                     <hr />
                     <div className='order_stages_downContent_order_details mt-2'>
