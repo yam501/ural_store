@@ -75,7 +75,7 @@
 }
 
 .products_bg {
-    background-color:  rgba(255, 255, 255, 0.9);
+    background-color:  rgba(255,255,255, .9);
     cursor: default !important;
 }
 
@@ -90,24 +90,34 @@
     height: 55%;
 }
 
+.card_btn_box {
+    padding: 0;
+    margin-bottom: 0.8vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
 .btn-minus {
+    margin: 0;
     background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
     font-size: 20px;
     font-family: 'Inter';
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
 }
 
 .btn-plus {
+    margin: 0;
     background-color: rgb(210, 210, 210);
     border: 0;
     color: black;
     font-size: 20px;
     font-family: 'Inter';
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
 }
 
 .btn-plus:active {

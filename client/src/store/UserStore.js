@@ -154,10 +154,10 @@ export default class UserStore {
         const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
         return response
     }
-    // get isAuth() {
-    //     return this._isAuth 
-    // }
-    // get user() {
-    //     return this._user
-    // }
+    get isAuth() {
+        return this._isAuth 
+    }
+    get user() {
+        return this._user
+    }
 }

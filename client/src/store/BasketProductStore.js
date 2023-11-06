@@ -21,6 +21,7 @@ export default class BasketProductStore {
     async getAllBasketProductsByBasketID(basketId) {
         const response = await BasketProductService.getAllBasketProductsByBasketID(basketId);
         this.setBasketProducts(response.data)
+        return true
     }
 
     async getBasketProductsWithAssortmentInfoByBasketID(basketId) {
