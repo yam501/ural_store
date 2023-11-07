@@ -102,6 +102,19 @@ const Courier = sequelize.define('courier', {
 })
 
 
+const Courier = sequelize.define('courier', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false },
+    number: { type: DataTypes.STRING, allowNull: false }
+})
+
+const Courier = sequelize.define('courier', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
+    number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
+    numberOfOrder: { type: DataTypes.STRING, allowNull: false, unique: true }
+})
+
 //Описание связей
 User.hasOne(Basket)
 Basket.belongsTo(User)
