@@ -49,7 +49,7 @@ const Order = sequelize.define('order', {
     orderProductsCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     comment: { type: DataTypes.TEXT, allowNull: false, defaultValue: 0 },
     number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
-    courierId: { type: DataTypes.STRING, allowNull: false, defaultValue: "Курьер ещё не назначен" }
+    courierId: { type: DataTypes.INTEGER, allowNull: true}
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {
@@ -130,8 +130,8 @@ ComplitedOrders.belongsTo(User)
 ComplitedOrders.hasMany(ComplitedOrderProduct)
 ComplitedOrderProduct.belongsTo(ComplitedOrders)
 
-Order.hasOne(Courier)
-Courier.belongsTo(Order)
+// Courier.hasMany(Order)
+// Order.belongsTo(Courier)
 
 
 module.exports = {
