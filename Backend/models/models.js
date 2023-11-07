@@ -49,7 +49,7 @@ const Order = sequelize.define('order', {
     orderProductsCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     comment: { type: DataTypes.TEXT, allowNull: false, defaultValue: 0 },
     number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
-    courierNumber: { type: DataTypes.STRING, allowNull: false, defaultValue: "Курьер ещё не назначен" }
+    courierId: { type: DataTypes.STRING, allowNull: false, defaultValue: "Курьер ещё не назначен" }
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {
@@ -95,6 +95,13 @@ const Feedback = sequelize.define('feedback', {
 })
 
 
+const Courier = sequelize.define('courier', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false },
+    number: { type: DataTypes.STRING, allowNull: false }
+})
+
+
 //Описание связей
 User.hasOne(Basket)
 Basket.belongsTo(User)
@@ -123,6 +130,14 @@ ComplitedOrders.belongsTo(User)
 ComplitedOrders.hasMany(ComplitedOrderProduct)
 ComplitedOrderProduct.belongsTo(ComplitedOrders)
 
+Order.hasOne(Courier)
+Courier.belongsTo(Order)
+
+
 module.exports = {
-    User, Token, Basket, BasketProduct, Order, OrderProduct, Assortment, ComplitedOrders, ComplitedOrderProduct, Feedback
+    User, Token, Basket, 
+    BasketProduct, Order, OrderProduct,
+    Assortment, ComplitedOrders, 
+    ComplitedOrderProduct, Feedback, 
+    Courier
 }
