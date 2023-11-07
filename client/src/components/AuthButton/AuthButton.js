@@ -1,14 +1,11 @@
 import React, { useContext } from 'react';
-import { useState } from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import Accept from './Accept';
 import { NavLink } from 'react-router-dom';
 import { ADMIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
-import AdminPanelBtnIcon from './AdminPanelBtnIcon';
 
 
 const AuthButton = observer(({show, handleShowControl, ...props}) => {
@@ -21,7 +18,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
 
 
 
-    if (user._isAuth && user._user.isActivated && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER')) {
+    if (user._isAuth && user._user.isActivated && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER' || user._user.role === 'COURIER')) {
         return <div className='d-flex align-items-center'>
             <Button
                 onClick={() => logout()}

@@ -10,16 +10,17 @@ import "./admin.css"
 import "./assortment.css"
 import { observer } from 'mobx-react-lite';
 import ConfirmOrders from './confirmOrders/ConfirmOrders';
-import ChangeCourier from "./couriers/ChangeCourier";
+import Courier from "./couriers/Courier";
 
 function Admin() {
   const { assortment, feedback, use, user } = useContext(Context)
   const [products, setProducts] = useState([])
   const [feedbackList, setFeedbackList] = useState([])
   const [usersList, setUsersList] = useState([])
-  const [adminShow, setAdminShow] = useState(false)
-  const [adminEditShow, setAdminEditShow] = useState(false)
-  const [cashierShow, setCashierShow] = useState(false)
+  const [adminShow, setAdminShow] = useState(false);
+  const [adminEditShow, setAdminEditShow] = useState(false);
+  const [cashierShow, setCashierShow] = useState(false);
+  const [courierShow, setCourierShow] = useState(false);
 
   const [operatorShow, setOperatorShow] = useState(false)
 
@@ -58,7 +59,9 @@ function Admin() {
       setCashierShow(true)
       getAllProducts();
     }
-
+    if (user._user.role === 'COURIER'){
+      setCourierShow(true)
+    }
   }, [])
 
 
@@ -118,10 +121,13 @@ function Admin() {
           :
           <div></div>
         }
-        <Tab eventKey="changeCourier" title="Курьеры">
-          <ChangeCourier/>
+        {courierShow || adminShow ?
+          <Tab eventKey="changeCourier" title="Заказы">
+          <Courier/>
         </Tab>
-
+          :
+          <div></div>
+        }
       </Tabs>
     </div>
   );
