@@ -106,7 +106,7 @@ function Order() {
                     <div className='form_check_order_section form_check_order_phone_section'>
                       {/* <label>Номер</label> */}
                       <input required type='tel'
-                        value={phoneMask.formatNumberToClient(dataOfOrder.tel)} onChange={e => setDataOfOrder({ ...dataOfOrder, tel: phoneMask.formatNumberToBackend(e.target.value) })}
+                        value={phoneMask.formatNumberToClient(dataOfOrder.tel)} onChange={e => setDataOfOrder({ ...dataOfOrder, tel: e.target.value })}
                         className='form-control form_check_order_section_input form_check_order_phone_section_input'
                         placeholder='+7 (999) 999-99-99' />
                     </div>

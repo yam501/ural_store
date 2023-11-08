@@ -3,6 +3,7 @@ import { IUser } from "../models/IUser";
 import AuthService from "../service/AuthService";
 import axios from "axios";
 import { $authHost, $host } from "../http";
+import PhoneInputMask from "../InputMasks/PhoneInputMask";
 
 
 export default class UserStore {
@@ -48,13 +49,10 @@ export default class UserStore {
     }
 
     async changeDefaultAddressByNumber(defaultAddress, number) {
-        const response = await AuthService.changeDefaultAddressByNumber(defaultAddress, number);
+        const phoneMask = new PhoneInputMask()
+        const response = await AuthService.changeDefaultAddressByNumber(defaultAddress,
+            phoneMask.formatNumberToBackend(number));
         this.setDefaultAdress(defaultAddress)
-    }
-
-    async changeIsActivatedByNumber(number, isActivated) {
-        const response = await AuthService.changeIsActivatedByNumber(number, isActivated);
-        this.setIsActivated(isActivated)
     }
 
     async changeDefaultAddressById(defaultAddress, id) {
@@ -63,7 +61,8 @@ export default class UserStore {
     }
 
     async changeNumberById(number, id) {
-        const response = await AuthService.changeNumberById(number, id)
+        const phoneMask = new PhoneInputMask();
+        const response = await AuthService.changeNumberById(phoneMask.formatNumberToBackend(number), id)
         this.setNumber(number)
     }
 
@@ -73,24 +72,29 @@ export default class UserStore {
     }
 
     async changeNumberAndNameById(number, name, id) {
-        const response = await AuthService.changeNumberAndNameById(number, name, id)
+        const phoneMask = new PhoneInputMask()
+        const response = await AuthService.changeNumberAndNameById(phoneMask.formatNumberToBackend(number), name, id)
         this.setNumber(number)
         this.setName(name)
     }
 
     async changeAllById(defaultAddress, number, name, id) {
-        const response = await AuthService.changeAllById(defaultAddress, number, name, id)
+        const phoneMask = new PhoneInputMask()
+        const response = await AuthService.changeAllById(defaultAddress,
+            phoneMask.formatNumberToBackend(number), name, id)
         this.setAll(defaultAddress, number, name)
     }
 
     async changePasswordByNumber(number, password) {
-        const response = await AuthService.changePasswordByNumber(number, password);
+        const phoneMask = new PhoneInputMask()
+        const response = await AuthService.changePasswordByNumber(phoneMask.formatNumberToBackend(number), password);
         this.setPassword(password)
     }
     
     async login(number, password) {
         try {
-            const response = await AuthService.login(number, password);
+            const phoneMask = new PhoneInputMask()
+            const response = await AuthService.login(phoneMask.formatNumberToBackend(number), password);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
@@ -102,7 +106,9 @@ export default class UserStore {
 
     async registration(number, password) {
         try {
-            const response = await AuthService.registration(number, password);
+            console.log(number)
+            const phoneMask = new PhoneInputMask()
+            const response = await AuthService.registration(phoneMask.formatNumberToBackend(number), password);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
@@ -135,7 +141,10 @@ export default class UserStore {
 
     async checkCode(number, code) {
         try {
-            const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/activate`, { number, code })
+            const phoneMask = new PhoneInputMask()
+            number = phoneMask.formatNumberToBackend(number)
+            const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/activate`,
+                { number, code })
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
@@ -146,11 +155,14 @@ export default class UserStore {
     }
 
     async checkCodeForRecovPassword(number, code) {
-        const response = await AuthService.cheackCode(number, code)
+        const phoneMask = new PhoneInputMask()
+        const response = await AuthService.cheackCode(phoneMask.formatNumberToBackend(number), code)
         return response;
     }
 
     async sendCode(number) {
+        const phoneMask = new PhoneInputMask()
+        number = phoneMask.formatNumberToBackend()
         const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
         return response
     }

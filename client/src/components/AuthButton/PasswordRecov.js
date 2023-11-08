@@ -8,6 +8,7 @@ import { NavLink} from 'react-router-dom';
 import { Context } from '../..';
 import BackArrow from './BackArrow';
 import Accept from './Accept';
+ import PhoneInputMask from "../../InputMasks/PhoneInputMask";
 
 const PasswordRecov = ({goBack, ...props}) => {
     const {user} = useContext(Context)
@@ -15,6 +16,7 @@ const PasswordRecov = ({goBack, ...props}) => {
     const [code, setCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [check, setCheck] = useState('number');
+    const phoneMask = new PhoneInputMask();
     const handlePhoneChange = (event) => {
         const input = event.target.value;
         const regex = /^[+]?[0-9]*$/; 
@@ -53,8 +55,10 @@ const PasswordRecov = ({goBack, ...props}) => {
                 <Form.Control
                 className='rounded-4 formPhone'
                 type="text"
-                placeholder="+78888888888"
-                value={phone}
+                maxLength={18}
+                minLength={18}
+                placeholder="+7 (999) 999-99-99"
+                value={phoneMask.formatNumberToClient(phone)}
                 // maxLength={12}
                 onChange={e => setPhone(e.target.value)}/>
             </Form.Group>

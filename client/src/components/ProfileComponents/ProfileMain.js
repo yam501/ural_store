@@ -54,11 +54,11 @@ const ProfileMain = () => {
                     className='profile-tel profile-input input'
                     type='tel'
                     placeholder={phoneMask.formatNumberToClient(user._user.number)}
-                    maxlength="16"
-                    minlength="16"
+                    maxlength="18"
+                    minlength="18"
                     value={phoneMask.formatNumberToClient(telephone)}
                     disabled={disabled}
-                    onChange={event => setTelephone(phoneMask.formatNumberToBackend(event.target.value))}
+                    onChange={event => setTelephone(event.target.value)}
                 >
                 </Form.Control>
             </Nav>

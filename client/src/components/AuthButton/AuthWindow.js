@@ -72,6 +72,7 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
     }
 
     if (isAccept) {
+        console.log(number)
         return <Accept number={number} password={password} show={isAccept} goBack={showRegistrationPage} />
     }
 
@@ -94,8 +95,10 @@ const AuthWindow = ({ show, handleClose, ...props }) => {
                         className='rounded-4 formPhone'
                         type="text"
                         placeholder="+7 (999) 999-99-99"
+                        minLength={18}
+                        maxLength={18}
                         value={phoneMask.formatNumberToClient(number)}
-                        onChange={e => setNumber(phoneMask.formatNumberToBackend(e.target.value))}
+                        onChange={e => setNumber(e.target.value)}
                     />
                 </Form.Group>
 
