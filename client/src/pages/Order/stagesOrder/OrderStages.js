@@ -5,6 +5,7 @@ import './orderStages.css'
 import { Context } from '../../..';
 import OrderProduct from '../OrderProduct';
 import { io } from 'socket.io-client'
+import OrderProductStage from "./OrderProductStage";
 const OrderStages = () => {
 
     const [orderConfirm, setOrderConfirm] = useState(false);
@@ -252,7 +253,7 @@ const OrderStages = () => {
                     orderProductsDinamic.length === 0 ?
                         <div>Загрузка товаров</div> :
                         orderProductsDinamic.map(orderProduct => {
-                            return <OrderProduct key={orderProduct.id} orderProduct={orderProduct}></OrderProduct>
+                            return <OrderProductStage key={orderProduct.id} orderProduct={orderProduct}></OrderProductStage>
                         })
                 }</div>
                 <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
