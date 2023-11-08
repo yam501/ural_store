@@ -22,6 +22,7 @@ const App = observer(() => {
   //     user.setIsAuth(true)
   //   }).finally(() => setLoading(false))
   // }, [])
+  //
 
   async function loadToContext() {
     await user.checkAuth()
