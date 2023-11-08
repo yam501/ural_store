@@ -5,7 +5,6 @@ export default class PhoneInputMask {
      * @returns {*}
      */
     getInputNumbersValue(number) {
-        console.log(number.replace(/\D/g, ''))
         return number.replace(/\D/g, '')
     }
 
@@ -91,7 +90,7 @@ export default class PhoneInputMask {
                 break
             }
         }
-
+        console.log(arrayNumber.join(''))
         return arrayNumber.join('')
     }
 
