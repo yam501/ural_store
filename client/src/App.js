@@ -31,7 +31,7 @@ const App = observer(() => {
     }
     product.getAllByAvailable(true)
   }
-
+// жыжка
   useEffect(() => {
     if (localStorage.getItem('token')) {
       loadToContext()
