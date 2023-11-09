@@ -5,8 +5,11 @@ export const STORE_ROUTE = '/'
 export const BASKET_ROUTE = '/basket'
 export const HISTORYORDER_ROUTE = '/historyOrder'
 export const USER_ROUTE = '/user'
-export const ORDER_ROUTE = '/order' 
-export const ABOUTUS_ROUTE = '/aboutUs' 
+export const ORDER_ROUTE = '/order'
+export const ABOUTUS_ROUTE = '/aboutUs'
 export const TERMS_ROUTE = '/deliveryTerms'
 export const PROFILE_ROUTE = '/profile'
 export const ORDERSTAGES_ROUTE = '/orderstages'
+
+export const typeOfFood = ['Мясо', 'Салаты', 'Овощи', 'Выпечка', 'Молочка']
+// export const roles = ['']

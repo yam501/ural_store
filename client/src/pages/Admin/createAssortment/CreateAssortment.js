@@ -3,6 +3,8 @@ import { Modal, Button, Dropdown, Form } from "react-bootstrap";
 import AssortmentService from "../../../service/AssortmentService";
 import { observer } from "mobx-react-lite";
 
+import { typeOfFood } from '../../../utils/consts'
+
 import '../assortment.css'
 
 function CreateAssortment() {
@@ -83,22 +85,15 @@ function CreateAssortment() {
 
       <div className="d-flex p-2 justify-content-center  flex-column ">
 
-        {/* <select className="dropdown-select" onChange={e => setType(e.target.value)} value={type} required id="types" name="types">
-          <option value="">Выберите тип</option>
-          <option value="Мясо">Мясо</option>
-          <option value="Салаты">Салаты</option>
-          <option value="Овощи">Овощи</option>
-          <option value="Выпечка">Выпечка</option>
-          <option value="Молочка">Молочка</option>
-        </select> */}
+
         <Dropdown onSelect={e => setType(e)}>
           <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item className="assortment-switch-item" eventKey={'Выберите тип'} >Выберите тип</Dropdown.Item>
-            <Dropdown.Item className="assortment-switch-item" eventKey={'Мясо'} >Мясо</Dropdown.Item>
-            <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
-            <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
-            <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
+            {
+              typeOfFood.map(item =>
+                <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+            }
           </Dropdown.Menu>
         </Dropdown>
 

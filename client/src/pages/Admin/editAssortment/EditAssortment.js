@@ -2,7 +2,7 @@ import React, { useContext, useMemo, useState } from "react";
 import { Modal, Button, Dropdown, Form, Row, Container, Col, Stack } from "react-bootstrap";
 
 import AssortmentItem from "./AssortmentItem";
-
+import { typeOfFood } from "../../../utils/consts";
 
 import "../assortment.css"
 import { Context } from "../../..";
@@ -42,16 +42,16 @@ function EditAssortment({ products, onClick }) {
                     <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Мясо'} >Мясо</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Выпечка'} >Выпечка</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
+                        {
+                            typeOfFood.map(item =>
+                                <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+                        }
+                     
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>
 
-            <hr/>
+            <hr />
             <Row className='p-1 m-1'>
                 <Col className="assortment-edit-header">Название</Col>
                 <Col className="assortment-edit-header">Отдел</Col>
@@ -59,16 +59,16 @@ function EditAssortment({ products, onClick }) {
                 <Col></Col>
                 <Col></Col>
             </Row>
-                <div className="max-size-window mt-2 mb-2 w-100">
-                    {
-                        searchedProducts.map(item =>
+            <div className="max-size-window mt-2 mb-2 w-100">
+                {
+                    searchedProducts.map(item =>
 
-                            <AssortmentItem key={item.name} assortment={item} onClick={onClick} />
-                        )
-                    }
+                        <AssortmentItem key={item.name} assortment={item} onClick={onClick} />
+                    )
+                }
 
-                </div>
-            <hr/>
+            </div>
+            <hr />
 
         </div>
 
