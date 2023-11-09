@@ -3,6 +3,8 @@ import { observer } from "mobx-react-lite";
 import { Modal, Button, Dropdown, Form, Row, Container, Col, Stack } from "react-bootstrap";
 import AvailableItem from "./AvailableItem";
 
+import { typeOfFood } from "../../../utils/consts";
+
 function ChangeAvailable({ products, onClick }) {
 
     const [type, setType] = useState('Любой тип')
@@ -39,11 +41,10 @@ function ChangeAvailable({ products, onClick }) {
                     <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'Любой тип'} >Любой тип</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Мясо'} >Мясо</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Салаты'} >Салаты</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Овощи'} >Овощи</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Выпечка'} >Выпечка</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'Молочка'} >Молочка</Dropdown.Item>
+                        {
+                            typeOfFood.map(item =>
+                                <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+                        }
                     </Dropdown.Menu>
                 </Dropdown>
 

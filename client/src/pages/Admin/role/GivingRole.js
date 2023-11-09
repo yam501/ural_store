@@ -5,6 +5,8 @@ import GivingRoleItem from './GivingRoleItem'
 import { Context } from "../../..";
 import { observer } from "mobx-react-lite";
 
+import { roles } from "../../../utils/consts";
+
 //  onSelect={e => setSelectSort(e)}{selectSort}sortedFeedback.length === 0 ? onChange={e => setName(e.target.value)}{type} 
 function GivingRole({ users }) {
     const [roleSearch, setRoleSeacrh] = useState('Любая роль')
@@ -32,15 +34,15 @@ function GivingRole({ users }) {
                 <Form.Control className="mt-2 textarea w-25" placeholder="Введите имя" value={name} onChange={e => setName(e.target.value)} />
 
                 <Dropdown className="mt-2" onSelect={e => setRoleSeacrh(e)}>
-                    <Dropdown.Toggle className="assortment-switch"  >{roleSearch} </Dropdown.Toggle>
+                    <Dropdown.Toggle className="assortment-switch"  >{roles[roleSearch] || "Любая роль"} </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item className="assortment-switch-item" eventKey={'Любая роль'} >Любая роль</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN'} >ADMIN</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN_EDIT'} >ADMIN_EDIT</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'OPERATOR'} >Оператор</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'CASHIER'} >Кассир</Dropdown.Item>
-                        <Dropdown.Item className="assortment-switch-item" eventKey={'USER'} >Пользователь</Dropdown.Item>
+                        {
+                            Object.entries(roles).map(([key, value]) =>{
 
+                              return  <Dropdown.Item className="assortment-switch-item" eventKey={key} > {value} </Dropdown.Item>
+                            })
+                        }
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>

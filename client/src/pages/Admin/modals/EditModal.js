@@ -3,6 +3,7 @@ import { Button, Modal, Image, Form, Dropdown } from 'react-bootstrap';
 import AssortmentService from '../../../service/AssortmentService';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../../..';
+import { typeOfFood } from "../../../utils/consts";
 
 const EditModal = (props) => {
     const assort = props.assortment
@@ -62,7 +63,7 @@ const EditModal = (props) => {
         if (compositionChanged) {
             await AssortmentService.changeCompositionByName(name, composition)
         }
-        if (image !== undefined){
+        if (image !== undefined) {
             const formData = new FormData()
             formData.append('name', name)
             formData.append('image', image)
@@ -94,11 +95,10 @@ const EditModal = (props) => {
                             <Dropdown onSelect={e => isTypeChanged(e)}>
                                 <Dropdown.Toggle className='assortment-switch' > {type} </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Мясо'}>Мясо</Dropdown.Item>
-                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Салаты'}>Салаты</Dropdown.Item>
-                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Овощи'}>Овощи</Dropdown.Item>
-                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Выпечка'}>Выпечка</Dropdown.Item>
-                                    <Dropdown.Item className='assortment-switch-item' eventKey={'Молочка'}>Молочка</Dropdown.Item>
+                                    {
+                                        typeOfFood.map(item =>
+                                            <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+                                    }
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
