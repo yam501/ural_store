@@ -59,7 +59,7 @@ function Admin() {
       setCashierShow(true)
       getAllProducts();
     }
-    if (user._user.role === 'COURIER'){
+    if (user._user.role === 'COURIER') {
       setCourierShow(true)
     }
   }, [])
@@ -123,11 +123,12 @@ function Admin() {
         }
         {courierShow || adminShow ?
           <Tab eventKey="changeCourier" title="Заказы">
-          <Courier/>
-        </Tab>
+            <Courier />
+          </Tab>
           :
           <div></div>
         }
+        
       </Tabs>
     </div>
   );

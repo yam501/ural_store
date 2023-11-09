@@ -4,7 +4,7 @@ import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import UseService from "../../../service/UseService";
 
-
+import { roles } from "../../../utils/consts";
 
 
 
@@ -33,13 +33,16 @@ const GivingRoleItem = ({ user }) => {
                 <Col className='border-1 p-2'>
                     <Stack direction="horizontal" gap={3}>
                         <Dropdown onSelect={e => setNewRole(e)}>
-                            <Dropdown.Toggle className="givingRole-dropdown" as={Button} variant='link'>{newRole || role}</Dropdown.Toggle>
+                            <Dropdown.Toggle className="givingRole-dropdown" as={Button} variant='link'>{roles[newRole] || role}</Dropdown.Toggle>
                             <Dropdown.Menu >
-                                <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN'}>ADMIN</Dropdown.Item>
-                                <Dropdown.Item className="assortment-switch-item" eventKey={'ADMIN_EDIT'}>ADMIN_EDIT</Dropdown.Item>
-                                <Dropdown.Item className="assortment-switch-item" eventKey={'OPERATOR'} >Оператор</Dropdown.Item>
-                                <Dropdown.Item className="assortment-switch-item" eventKey={'CASHIER'} >Кассир</Dropdown.Item>
-                                <Dropdown.Item className="assortment-switch-item" eventKey={'USER'} >Пользователь</Dropdown.Item>
+                                {
+                                    Object.entries(roles).map(([key, value]) => {
+
+                                        return <Dropdown.Item className="assortment-switch-item" eventKey={key} > {value} </Dropdown.Item>
+                                    })
+                                }
+
+
                             </Dropdown.Menu>
                         </Dropdown>
                         <div className="flex-row w-75" style={{ display: `${newRole === role ? 'none' : 'flex'}` }}  >

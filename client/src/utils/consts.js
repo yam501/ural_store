@@ -12,4 +12,11 @@ export const PROFILE_ROUTE = '/profile'
 export const ORDERSTAGES_ROUTE = '/orderstages'
 
 export const typeOfFood = ['Мясо', 'Салаты', 'Овощи', 'Выпечка', 'Молочка']
-// export const roles = ['']
+export const roles = {
+    'ADMIN' : "Админ",
+    'ADMIN_EDIT' : "Админ-Редактор",
+    'OPERATOR' : "Оператор",
+    'CASHIER' : "Кассир",
+    'COURIER' : "Курьер",
+    'USER' : "Пользователь"
+}
