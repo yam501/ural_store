@@ -14,7 +14,6 @@ function ConfirmOrderItem({ order, user, sendWS }) {
     const dateTime = new OurDateTime(order.updatedAt)
     const orderStore = new OrderStore()
     const orderProducts = new OrderProductsStore()
-    const assortmentStore = new AssortmentStore()
     const [products, setProducts] = useState([])
     const [onCreate, setOnCreate] = useState(order.onCreate)
     const [onDeliver, setOnDeliver] = useState(order.onDeliver)
@@ -22,13 +21,8 @@ function ConfirmOrderItem({ order, user, sendWS }) {
     const [courierNumber, setCourierNumber] = useState("Номер курьера");
 
     async function getOrderProducts() {
-        await orderProducts.getAllOrderProductsByOrderId(order.id)
-        let ids = []
-        orderProducts._orderProducts.map(orderProduct => {
-            ids.push(orderProduct.assortmentId)
-        })
-        await assortmentStore.getAssortmentByIds(ids.join(' '))
-        setProducts(assortmentStore._assortments ? assortmentStore._assortments : [])
+        await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.id)
+        setProducts(orderProducts._orderProducts ? orderProducts._orderProducts : [])
     }
 
     async function changeOnCreateState(state) {

@@ -7,8 +7,8 @@ class OrderController {
 
     async createOrderByBasketId(req, res, next) {
         try {
-            const { userId, address, aproxSum, basketId, comment } = req.body
-            const order = await Order.create({ userId, address, aproxSum, comment })
+            const { userId, address, aproxSum, onConfirm, basketId, comment, number } = req.body
+            const order = await Order.create({ userId, address, aproxSum, comment, number })
             const basketProducts = await BasketProduct.findAll({ where: { basketId: basketId } })
             basketProducts.forEach(basketProduct => {
                 OrderProduct.create({
@@ -17,7 +17,7 @@ class OrderController {
                 })
             })
             BasketProduct.destroy({ where: { basketId: basketId } })
-            return res.json({ "Результат": "Готово" })
+            return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

@@ -14,6 +14,13 @@ const ComplitedOrdersService = {
             userId, address, complitedSum,
             orderTime, complitedTime
         })))
+    },
+
+    async repeatOrder(complitedOrderId, basketId) {
+        return new Promise((resolve) => resolve($authHost.post(
+            'api/complitedOrder/repeatOrderByComplitedOrderIdAndBasketId',
+            {complitedOrderId, basketId}
+        )))
     }
 }
 

@@ -20,6 +20,11 @@ export default class ComplitedOrderProductsStore {
         this.setComplitedOrderProducts(response.data)
     }
 
+    async getComplitedOrderProductsWithAssortmentInfoByComplitedOrderId(complitedOrderId) {
+        const response = await ComplitedOrderProductsService.getComplitedOrderProductsWithAssortmentInfoByComplitedOrderId(complitedOrderId)
+        this.setComplitedOrderProducts(response.data)
+    }
+
     get complitedOrderProducts() {
         return this._complitedOrderProducts
     }

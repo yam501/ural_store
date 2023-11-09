@@ -22,7 +22,7 @@ class ComplitedOrderProductController {
                         complitedOrderProduct = JSON.parse(JSON.stringify(complitedOrderProduct))
                         product = JSON.parse(JSON.stringify(product))
                         delete product['id']
-                        delete complitedOrderProduct['assortmentId']
+                        // delete complitedOrderProduct['assortmentId']
                         complitedOrderProductsWithAssortment.push({...complitedOrderProduct, ...product})
                     }
                 })

@@ -30,6 +30,10 @@ export default class ComplitedOrdersStore {
         return responce.data
     }
 
+    async repeatOrder(complitedOrderId, basketId) {
+        await ComplitedOrdersService.repeatOrder(complitedOrderId, basketId)
+    }
+
     get complitedOrders() {
         return this._complitedOrders
     }

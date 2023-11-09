@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import OrderService from "../service/OrderService";
+import Order from "../pages/Order/Order";
 
 export default class OrderStore {
     constructor() {
@@ -12,13 +13,18 @@ export default class OrderStore {
     }
 
     async createOrder(userId, address, aproxSum, onConfirm, comment, number) {
-        const responce = await OrderService.createOrder(userId, address, aproxSum, onConfirm, comment, number)
-        this.setOrder(responce.data)
+        const response = await OrderService.createOrder(userId, address, aproxSum, onConfirm, comment, number)
+        this.setOrder(response.data)
+    }
+
+    async createOrderByBasketId(userId, address, aproxSum, onConfirm, basketId, comment, number) {
+        const response = await OrderService.createOrderByBasketId(userId, address, aproxSum, onConfirm, basketId, comment, number)
+        this.setOrder(response.data)
     }
 
     async getNotOnConfirmOrderByUserId(userId) {
-        const responce = await OrderService.getNotOnConfirmOrderByUserId(userId)
-        this.setOrder(responce.data)
+        const response = await OrderService.getNotOnConfirmOrderByUserId(userId)
+        this.setOrder(response.data)
     }
 
     async getOnConfirmOrderByUserId(userId) {
@@ -27,18 +33,18 @@ export default class OrderStore {
     }
 
     async getOrderByOrderId(id) {
-        const responce = await OrderService.getOrderByOrderId(id)
-        this.setOrder(responce.data)
+        const response = await OrderService.getOrderByOrderId(id)
+        this.setOrder(response.data)
     }
 
     async getOrderByUserId(userId) {
-        const responce = await OrderService.getOrderByUserId(userId)
-        this.setOrder(responce.data)
+        const response = await OrderService.getOrderByUserId(userId)
+        this.setOrder(response.data)
     }
 
     async getOneOrderByUserId(userId) {
-        const responce = await OrderService.getOneOrderByUserId(userId)
-        this.setOrder(responce.data)
+        const response = await OrderService.getOneOrderByUserId(userId)
+        this.setOrder(response.data)
     }
 
     async changeAddressByUserId(userId, address) {

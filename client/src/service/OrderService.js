@@ -5,6 +5,10 @@ const OrderService = {
         return new Promise((resolve) => resolve($authHost.post('api/order/createOrder', { userId, address, aproxSum, onConfirm, comment, number })))
     },
 
+    async createOrderByBasketId(userId, address, aproxSum, onConfirm, basketId, comment, number) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/createOrderByBasketId', {userId, address, aproxSum, onConfirm, basketId, comment, number})))
+    },
+
     async getNotOnConfirmOrderByUserId(userId) {
         return new Promise((resolve) => resolve($authHost.post('api/order/getNotOnConfirmOrderByUserID', { userId })))
     },

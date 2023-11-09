@@ -7,37 +7,26 @@ import OurDateTime from '../../dateTime/dateTime';
 import ComplitedOrderProductItem from './ComplitedOrderProductItem';
 import { Button } from 'react-bootstrap';
 import AssortmentStore from '../../store/AssortmentStore';
+import ComplitedOrdersStore from "../../store/ComplitedOrdersStore";
 
 function ComplitedOrderItem({ user, complitedOrder }) {
     const { basket } = useContext(Context)
     const { basketProduct } = useContext(Context)
+    const complitedOrderStore = new ComplitedOrdersStore()
     const assortmentStore = new AssortmentStore()
     const [complitedOrderProducts, setComplitedOrderProducs] = useState([])
     const complitedOrderProductsStore = new ComplitedOrderProductsStore()
 
     async function fetchComplitedOrderProducts() {
-        await complitedOrderProductsStore.getAllComplitedOrderProductsByComplitedOrderId(complitedOrder.id)
-        let ids = []
-        complitedOrderProductsStore._complitedOrderProducts.forEach(complitedOrderProduct => {
-            ids.push(complitedOrderProduct.assortmentId)
-        })
-        await assortmentStore.getAssortmentByIds(ids.join(' '))
-        let toComplitedOrderProducts = complitedOrderProductsStore._complitedOrderProducts.map(complitedOrderProduct => {
-            let product = assortmentStore._assortments.filter(item => item.id === complitedOrderProduct.assortmentId)[0]
-            return {...complitedOrderProduct, ...product}
-        })
-        setComplitedOrderProducs(toComplitedOrderProducts ?
-            toComplitedOrderProducts : [])
+        await complitedOrderProductsStore.getComplitedOrderProductsWithAssortmentInfoByComplitedOrderId(complitedOrder.id)
+        setComplitedOrderProducs(complitedOrderProductsStore.complitedOrderProducts ?
+            complitedOrderProductsStore.complitedOrderProducts : []
+        )
     }
 
     async function repeatOrder() {
         await basket.getBasketByUserID(user._user.id)
-        complitedOrderProducts.map(product => {
-            if (product.available) {
-                basketProduct.createBasketProduct(basket.basket.id, product.id, product.costPerOne, product.count, true)
-            }
-        }
-        )
+        await complitedOrderStore.repeatOrder(complitedOrder.id, basket.basket.id)
     }
 
     useEffect(() => {

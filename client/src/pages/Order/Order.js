@@ -47,11 +47,7 @@ function Order() {
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
-      await order.createOrder(user._user.id, getStringAddress(dataOfOrder), aproxSum, true, dataOfOrder.comment, dataOfOrder.tel)
-      orderProductsDinamic.map(orderProduct => {
-        orderProducts.createOrderProduct(order._order.id, orderProduct.assortmentId, orderProduct.count, orderProduct.moreOrLess)
-      })
-      basketProduct.deleteAllBasketProductsByBasketID(basket.basket.id)
+      await  order.createOrderByBasketId(user._user.id, getStringAddress(dataOfOrder), aproxSum, true, basket.basket.id, dataOfOrder.comment, dataOfOrder.tel)
       setOrderProductsDinamic([])
       tryGetOrder()
       return 0
@@ -106,6 +102,8 @@ function Order() {
                     <div className='form_check_order_section form_check_order_phone_section'>
                       {/* <label>Номер</label> */}
                       <input required type='tel'
+                        minLength={18}
+                        maxLength={18}
                         value={phoneMask.formatNumberToClient(dataOfOrder.tel)} onChange={e => setDataOfOrder({ ...dataOfOrder, tel: e.target.value })}
                         className='form-control form_check_order_section_input form_check_order_phone_section_input'
                         placeholder='+7 (999) 999-99-99' />
