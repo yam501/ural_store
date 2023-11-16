@@ -14,12 +14,9 @@ function Basket() {
   const [loading, setLoading] = useState(false)
   const { basketProduct } = useContext(Context)
   const [basketProducts, setBasketProducts] = useState([])
-  const { basket } = useContext(Context)
-  const { assortment } = useContext(Context)
+  const { basket, product } = useContext(Context)
   const { user } = useContext(Context)
-  const { order } = useContext(Context)
-  const { orderProducts } = useContext(Context)
-  const [typeOfProducts, setTypeOfProducts] = useState([])
+  const [assortmentList, setAssortmentList] = useState([])
   const [aproxSum, setAproxSum] = useState(0)
   const [show, setShow] = useState(false);
   const handleShowControl = () => setShow(!show)
@@ -39,7 +36,7 @@ function Basket() {
       await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id)
     }
     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
-  
+    setAssortmentList(product.products ? product.products : []);
   }
 
   const deleteBasketItems = (id) => {
@@ -61,7 +58,6 @@ function Basket() {
   }, [basketProducts])
 
   
-
   const countAproxSum = async () => {
     setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
   }
@@ -91,7 +87,13 @@ function Basket() {
               }
             </div>
           </div> : basketItems.map((basketItem) =>
-            <BasketItem key={basketItem.id} user={user._user}  countAproxSum={countAproxSum} deleteItem={deleteBasketItems} basket={basket} product={basketProduct} basketProduct={basketItem} />
+            <BasketItem key={basketItem.id} user={user._user}  
+            countAproxSum={countAproxSum} 
+            deleteItem={deleteBasketItems} 
+            basket={basket} 
+            type={assortmentList.filter(item => item.id === basketItem.assortmentId )[0].type}
+            basketProduct={basketProduct} 
+            basketItem={basketItem} />
           )}
       </Container>
 

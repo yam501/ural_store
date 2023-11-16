@@ -87,9 +87,13 @@ const ProductList = ({product, state, type, productShow}) => {
             responsive={options.responsive}
 
         >
-             
             {product.map(product =>
-                <ProductItem productShow={productShow} deleteBasketProductItem={deleteBasketItem} basketProductsList={basketProductsList} type={type} key={product.type} id={product.id} product={product} />)}
+                <ProductItem productShow={productShow} 
+                deleteBasketProductItem={deleteBasketItem} 
+                basketProductsList={basketProductsList} 
+                type={type} 
+                key={product.type} 
+                id={product.id} product={product}/>)}
         </OwlCarousel>
         </div>
     );
