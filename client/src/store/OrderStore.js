@@ -86,6 +86,21 @@ export default class OrderStore {
         await OrderService.changeCourierNumber(id, orderProductsCount)
         this.getOrderByOrderId(id)
     }
+
+    async changeCommentByOrderId(id, comment) {
+        await OrderService.changeCommentByOrderId(id, comment)
+        this.getOrderByOrderId(id)
+    }
+
+    async changeNumberByOrderId(id, number) {
+        await OrderService.changeNumberByOrderId(id, number)
+        this.getOrderByOrderId(id)
+    }
+
+    async changeCommentAndNumberByOrderId(id, comment, number) {
+        await OrderService.changeCommentAndNumberByOrderId(id, comment, number)
+        this.getOrderByOrderId(id)
+    }
     get order() {
         return this._order
     }

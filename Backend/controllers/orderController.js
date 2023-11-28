@@ -179,6 +179,36 @@ class OrderController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async changeCommentByOrderID(req, res, next) {
+        try {
+            const {id, comment} = req.body
+            const updated = await Order.update({comment: comment}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeNumberByOrderID(req, res, next) {
+        try {
+            const {id, number} = req.body
+            const updated = await Order.update({number: number}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async changeCommentAndNumberByOrderID(req, res, next) {
+        try {
+            const {id, comment, number} = req.body
+            const updated = await Order.update({comment: comment, number: number}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 module.exports = new OrderController()

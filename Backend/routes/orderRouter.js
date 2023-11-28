@@ -28,5 +28,8 @@ router.put('/changeOnDeliverByOrderID', authMiddleware, activatedMiddleware, ord
 router.put('/changeDeliveredByOrderID', authMiddleware, activatedMiddleware, orderController.changeDeliveredByOrderID)
 router.put('/changeOrderProductsCountByOrderID', authMiddleware, activatedMiddleware, orderController.changeOrderProductsCountByOrderID)
 router.put('/changeNumberOfCourier', authMiddleware, activatedMiddleware, orderController.changeCourierNumber)
+router.put('/changeCommentByOrderID', orderController.changeCommentByOrderID)
+router.put('/changeNumberByOrderID', orderController.changeNumberByOrderID)
+router.put('/changeCommentAndNumberByOrderID', orderController.changeCommentAndNumberByOrderID)
 
 module.exports = router
