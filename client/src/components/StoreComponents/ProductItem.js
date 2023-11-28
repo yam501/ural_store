@@ -1,14 +1,16 @@
 import { observer } from 'mobx-react-lite';
 import React, { lazy, useContext, useEffect, useMemo, useState } from 'react';
-import { Button, Card, Image, Nav } from 'react-bootstrap';
+import { Button, Card, Image, Nav, Spinner } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import './productItem.css'
 import { Context } from '../..';
 import AddProductToBasketBtn from './AddProductToBasketBtn';
+import DeleteButton from '../../pages/Basket/DeleteButton';
 
 const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsList, productShow }) => {
 
     const {user, basket, basketProduct} = useContext(Context)
+    const [loaded, setLoaded] = useState(false);
     const [show, setShow] = useState(false);
     const [cardState, setCardState] = useState(false)
     const [isDataSend, setIsDataSend] = useState(false);
@@ -49,30 +51,23 @@ const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsLis
         }
     }
     
-
-    const changeCountOfBasketProduct = (action) => {
-        if (action === 'minus') {
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
-        } else {
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
-        }
-    }
     useEffect(() => {
         if (isDataSend) {
+            
             const timerId = setTimeout(() => {
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct);
+            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
             setIsDataSend(false);
-          }, 2000);
+          }, 3000);
     
           return () => clearTimeout(timerId);
         }
-      }, [isDataSend, countProduct, basket.basket.id, product.id, basketProduct]);
+      }, [isDataSend, countProduct, basket.basket.id, product.id]);
 
     const plus = () => {
         setCountProduct(prevCount => {
             if (countProduct >= productType[type].displayValue) {
             const newCount = prevCount + productType[type].additionCount;
-            delaySend(newCount);
+            delaySend();
             return newCount;
             } else {
                 return prevCount;
@@ -84,7 +79,7 @@ const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsLis
         setCountProduct(prevCount => {
             if (countProduct > productType[type].displayValue) {
             const newCount = prevCount - productType[type].additionCount
-            delaySend(newCount)
+            delaySend()
             return newCount
             } else {
                 basketProductsList.map(item => {
@@ -126,9 +121,12 @@ const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsLis
         }
     },[productShow])
 
+
+
     return (
         <>
             <div className='card_wrapper products_bg'>
+
                 <Image className='product-img' onClick={handleShow} src={process.env.REACT_APP_API_URL + product.image} />
                 {cardState ?
                     <div className='card_wrapper_content'>
@@ -146,7 +144,7 @@ const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsLis
                     </div>
                     <div className='card_btn_box'>
                         <Button className='btn-minus rounded-circle' onClick={() => minus()}>
-                            -
+                        {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
                         </Button>
                         <span className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct > 999 ? countProduct/1000 : countProduct} {productType[type].value} </span>
                         <Button className='btn-plus rounded-circle' onClick={() => plus()}>
