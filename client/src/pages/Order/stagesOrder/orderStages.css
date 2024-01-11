@@ -619,12 +619,6 @@
     background-color: #9c3d58 !important;
 }
 
-.order_stages_downContent_comment_text {
-    display: flex;
-    max-width: 250px;
-    min-width: 120px;
-}
-
 .btn_cancel_order {
     font-size: calc(14px + 2 *(100vw/1903));
     margin-top: 20px;

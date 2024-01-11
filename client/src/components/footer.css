@@ -21,11 +21,16 @@
     margin-left: calc(100% - 85%);
     color: white;
     font-size: 36px;
+    background: url("../assets/uralskiy_text.svg") no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+    width: 200px;
+    height: 220px;
 }
 
 .footer-center-content{
     color: white;
-    margin: 170px 0px 0px 0px;
+    margin: 170px 0 0 0;
     font-size: 16px;
 }
 

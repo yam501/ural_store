@@ -6,7 +6,7 @@ const ShopLogo = () => {
 
     return (
         <div className='d-flex justify-content-start align-items-center logo'>
-          <NavLink to={STORE_ROUTE} className='text-white text-decoration-none' >Уральский</NavLink>
+          <NavLink to={STORE_ROUTE} className='shop_logo text-white text-decoration-none'></NavLink>
         </div>
     );
 };

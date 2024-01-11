@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { STORE_ROUTE } from '../../utils/consts';
 import { Container } from 'react-bootstrap';
 
@@ -11,14 +11,14 @@ const ErrorPage = () => {
 
 
     return (
-        <Container className='d-flex justify-content-center align-items-center basket-empty page_body error_body'>
+        <Container className='d-flex justify-content-center align-items-center page_body error_body'>
             {!user._isAuth ?
                 <div>
                     Зарегестрируйтесь, чтобы посмотреть страницу
                 </div>
                 :
-                <div>
-                    Похоже у нас нет такой страницы, вернитесь в магазин
+                <div className="text-center">
+                    Похоже у нас нет такой страницы😢 <br/> вернитесь в магазин
                 </div>
             }
             <div className='error_content'>

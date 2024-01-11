@@ -138,6 +138,16 @@ const OrderStages = () => {
         colorArray[2].style.backgroundColor = '#D9D9D9';
     }
 
+    const [commentChange, setCommentChange] = useState(true);
+    const [numberChange, setNumberChange] = useState(true);
+
+    const changeComment = () => {
+        setCommentChange(!commentChange);
+    }
+
+    const changeNumber = () => {
+        setNumberChange(!numberChange);
+    }
 
     return (
         <Container className='page_body mx-auto order_stages_wrapper mb-5'>
@@ -276,15 +286,15 @@ const OrderStages = () => {
                         <hr />
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <div className='order_stages_downContent_comment_text me-2'>{order.order.comment}</div>
-                                <Button className='btn_edit_order_comment'></Button>
+                                <input disabled={commentChange} placeholder={order.order.comment} className='textarea me-2'></input>
+                                <Button onClick={() => changeComment()} className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
                         <hr />
                         <label className='order_stages_downContent_tel mt-2'>Телефон:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <div className='order_stages_downContent_comment_text me-2'>{order.order.number}</div>
-                                <Button className='btn_edit_order_comment'></Button>
+                                <input disabled={numberChange} placeholder={order.order.number} className='textarea me-2'></input>
+                                <Button onClick={() => changeNumber()} className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
                         <Button className='btn_cancel_order w-100'>Отменить заказ</Button>
