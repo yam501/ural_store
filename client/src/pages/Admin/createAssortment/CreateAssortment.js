@@ -113,10 +113,9 @@ function CreateAssortment() {
 
         <Form.Control
           value={costPerOne}
-          min={0}
+          // min={0}
           className="mt-3 textarea"
           placeholder="Введите цену за штуку(кг)"
-
           type="number"
           required onChange={e => setCostPerOne(e.target.value)}
         />
