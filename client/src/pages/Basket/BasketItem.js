@@ -59,7 +59,7 @@ const BasketItem = ({ basketProduct, user, basketItem, basket, ...props }) => {
             console.log('gotovo')
             basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct)
             setIsDataSend(false);
-          }, 3000);
+          }, 1000);
           
     
           return () => clearTimeout(timerId);
