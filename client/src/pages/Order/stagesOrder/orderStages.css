@@ -609,9 +609,25 @@
     background-color: #BF486A !important;
 }
 
+.btn_confirm_edit_order_comment{
+    border: 0;
+    margin: 10px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    background: url("../../../assets/send.svg") 0 0 / 70% no-repeat;
+    background-position: center;
+    background-color: #BF486A !important;
+}
+
 
 .btn_edit_order_comment:active,
-.btn_edit_order_comment:hover {
+.btn_edit_order_comment:hover,
+.btn_confirm_edit_order_comment:active,
+.btn_confirm_edit_order_comment:hover{
     background-color: #9c3d58 !important;
 }
 
