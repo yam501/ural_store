@@ -6,6 +6,7 @@ import {Context} from '../../..';
 import OrderProduct from '../OrderProduct';
 import {io} from 'socket.io-client'
 import OrderProductStage from "./OrderProductStage";
+import {values} from "mobx";
 
 const OrderStages = () => {
 
@@ -13,6 +14,15 @@ const OrderStages = () => {
     const [orderPacking, setOrderPacking] = useState(false);
     const [orderDelivery, setOrderDelivery] = useState(false);
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
+    const [commentChange, setCommentChange] = useState(true);
+    const [numberChange, setNumberChange] = useState(true);
+    const [orderClose, setOrderClose] = useState(false);
+    const [saveComment, setSaveComment] = useState(false);
+    const [saveNumber, setSaveNumber] = useState(false);
+
+    const [comment, setComment] = useState('')
+    const [number, setNumber] = useState('')
+
     const {orderProducts} = useContext(Context)
     const {order} = useContext(Context)
     const {user} = useContext(Context)
@@ -133,15 +143,31 @@ const OrderStages = () => {
         colorArray[2].style.backgroundColor = '#D9D9D9';
     }
 
-    const [commentChange, setCommentChange] = useState(true);
-    const [numberChange, setNumberChange] = useState(true);
-    const [orderClose, setOrderClose] = useState(false);
+
     const changeComment = () => {
         setCommentChange(!commentChange);
+        setSaveComment(true)
+    }
+
+    const sendCom = () => {
+        order.changeCommentByOrderId(order._order.id, comment)
+        setSaveComment(false)
+        setCommentChange(!commentChange);
+    }
+
+    const sendNumber = () => {
+        order.changeNumberByOrderId(order._order.id, number)
+        setSaveNumber(false)
+        setNumberChange(!numberChange);
     }
 
     const changeNumber = () => {
         setNumberChange(!numberChange);
+        setSaveNumber(true)
+    }
+
+    const deleteOrder = () => {
+        order.delOrder(order._order.id)
     }
 
     return (
@@ -282,17 +308,32 @@ const OrderStages = () => {
                         <hr/>
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <textarea disabled={commentChange} placeholder={order.order.comment}
-                                          className='order_stages_downContent_textarea mt-2 me-2'></textarea>
-                                <Button onClick={() => changeComment()} className='btn_edit_order_comment'></Button>
+                                <textarea disabled={commentChange}
+                                          placeholder={order.order.comment}
+                                          className='order_stages_downContent_textarea mt-2 me-2'
+                                          value={comment}
+                                          onChange={e => setComment(e.target.value)}
+                                ></textarea>
+                                {saveComment ?
+                                    <Button onClick={() => sendCom()}> save </Button>
+                                    :
+                                    <Button onClick={() => changeComment()} className='btn_edit_order_comment'></Button>
+                                }
                             </div>
                         </label>
                         <hr/>
                         <label className='order_stages_downContent_tel mt-2'>Телефон:
                             <div className='d-flex order_stages_downContent_comment'>
                                 <input disabled={numberChange} placeholder={order.order.number}
-                                       className='order_stages_downContent_input mt-2 me-2'></input>
-                                <Button onClick={() => changeNumber()} className='btn_edit_order_comment'></Button>
+                                       className='order_stages_downContent_input mt-2 me-2'
+                                       value={number}
+                                       onChange={e => setNumber(e.target.value)}
+                                ></input>
+                                {saveNumber ?
+                                    <Button onClick={() => sendNumber()}> save </Button>
+                                    :
+                                    <Button onClick={() => changeNumber()} className='btn_edit_order_comment'></Button>
+                                }
                             </div>
                         </label>
                         {!orderClose &&
@@ -306,11 +347,12 @@ const OrderStages = () => {
                                 <hr/>
                                 <div>
                                     <span>Вы точно хотите отменить заказ?</span>
-                                    <div className="d-flex justify-content-around">
-                                        <Button className="btn_confirm_cancel_order"> Да</Button>
+                                    <form className="d-flex justify-content-around">
+                                        <Button onClick={() => deleteOrder()} type="submit"
+                                                className="btn_confirm_cancel_order"> Да</Button>
                                         <Button className="btn_cancel_order"
                                                 onClick={() => setOrderClose(false)}> Отмена</Button>
-                                    </div>
+                                    </form>
                                 </div>
                             </>
 

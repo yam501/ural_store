@@ -1,8 +1,8 @@
 import { makeAutoObservable } from "mobx";
-import UseService from "../service/UseService";
+import AdminService from "../service/AdminService";
 
 
-export default class UseStore {
+export default class AdminStore {
     constructor() {
         this._users = []
         makeAutoObservable(this)
@@ -13,7 +13,7 @@ export default class UseStore {
     }
 
     async getAll() {
-        const response = await UseService.fetchUsers()
+        const response = await AdminService.fetchUsers()
         this.setUsers(response.data)
     }
 

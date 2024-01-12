@@ -2,7 +2,7 @@ import { Col, Container, Row, Form, Button, Dropdown, Stack } from "react-bootst
 import OurDateTime from "../../../dateTime/dateTime";
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import UseService from "../../../service/UseService";
+import AdminService from "../../../service/AdminService";
 
 import { roles } from "../../../utils/consts";
 
@@ -46,7 +46,7 @@ const GivingRoleItem = ({ user }) => {
                             </Dropdown.Menu>
                         </Dropdown>
                         <div className="flex-row w-75" style={{ display: `${newRole === role ? 'none' : 'flex'}` }}  >
-                            <Button className="me-1" variant="success" onClick={() => UseService.changeRoleByNumber(user.number, newRole) & setRole(newRole)}>Подтвердить</Button>
+                            <Button className="me-1" variant="success" onClick={() => AdminService.changeRoleByNumber(user.number, newRole) & setRole(newRole)}>Подтвердить</Button>
                             <Button variant="danger" onClick={() => setNewRole(role)}>Отменить</Button>
                         </div>
                     </Stack>

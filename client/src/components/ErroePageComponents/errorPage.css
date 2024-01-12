@@ -1,13 +1,22 @@
 .error_body{
     display: flex;
     min-width: 100%;
-    /*background: url("../../assets/profile-bg.svg");*/
     flex-direction: column;
     justify-content: center;
     align-content: center;
     font-size: calc(18px + 4 * (100vw/1903));
     font-weight: 400;
 }
+
+.page404{
+    background: url("../../assets/page404.png") no-repeat;
+    background-position: center;
+    background-size: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
 
 .error_content{
     margin: 20px;

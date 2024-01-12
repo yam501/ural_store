@@ -11,7 +11,7 @@ import ComplitedOrderProductsStore from './store/ComplitedOrderProductsStore';
 import FeedbackStore from './store/FeedbackStore';
 import OrderStore from './store/OrderStore';
 import OrderProductsStore from './store/OrderProductsStore';
-import UseStore from './store/UseStore';
+import UseStore from './store/AdminStore';
 import AdminOrderStore from './store/AdminOrderStore'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
