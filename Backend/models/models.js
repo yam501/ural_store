@@ -27,7 +27,7 @@ const Basket = sequelize.define('basket', {
 })
 
 const BasketProduct = sequelize.define('basketProduct', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     basketId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
@@ -62,7 +62,7 @@ const ComplitedOrders = sequelize.define('complitedOrders', {
 })
 
 const OrderProduct = sequelize.define('orderProduct', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     orderId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false },
@@ -70,7 +70,7 @@ const OrderProduct = sequelize.define('orderProduct', {
 })
 
 const ComplitedOrderProduct = sequelize.define('complitedOrderProduct', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
     complitedOrderId: { type: DataTypes.INTEGER, allowNull: false },
     assortmentId: { type: DataTypes.INTEGER, allowNull: false },
     count: { type: DataTypes.DOUBLE, allowNull: false }

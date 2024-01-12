@@ -1,7 +1,7 @@
 .error_body{
     display: flex;
     min-width: 100%;
-    background: url("../../assets/profile-bg.svg");
+    /*background: url("../../assets/profile-bg.svg");*/
     flex-direction: column;
     justify-content: center;
     align-content: center;

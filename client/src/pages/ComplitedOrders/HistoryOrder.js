@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import './historyOrder.css'
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import OurDateTime from '../../dateTime/dateTime';
 import ComplitedOrderItem from './ComplitedOrderItem';
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
@@ -17,7 +16,7 @@ import ComplitedOrdersService from '../../service/ComplitedOrdersService';
 
 
 function HistoryOrder() {
-  const { complitedOrders } = useContext(Context)
+  // const { complitedOrders } = useContext(Context)
   const { user } = useContext(Context)
   const [complitedOrdersDinamic, setComplitedOrdersDinamic] = useState([])
   const [page, setPage] = useState(1)
@@ -61,11 +60,9 @@ function HistoryOrder() {
     <Container className='page_body'>
       {complitedOrdersDinamic.length === 0?
         <Container className='d-flex justify-content-center align-items-center history-empty'>
-          <div className='history-empty-text'>Ваша история заказов пока не написана</div>
+          <div className='history-empty-text'>Ваша история заказов пока не написана 🗒</div>
           <div className='history-empty-content'>
-
             <NavLink className='btn-returnToStore text-white text-decoration-none' to={STORE_ROUTE}>К отделам</NavLink>
-            <div className='history-icon'> </div>
           </div>
         </Container>
         :

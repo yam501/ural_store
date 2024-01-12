@@ -17,6 +17,6 @@ export const roles = {
     'ADMIN_EDIT' : "Админ-Редактор",
     'OPERATOR' : "Оператор",
     'CASHIER' : "Кассир",
-    'COURIER' : "Курьер",
+    // 'COURIER' : "Курьер",
     'USER' : "Пользователь"
 }
