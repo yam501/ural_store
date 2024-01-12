@@ -57,7 +57,7 @@ const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsLis
             const timerId = setTimeout(() => {
             basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
             setIsDataSend(false);
-          }, 3000);
+          }, 1000);
     
           return () => clearTimeout(timerId);
         }

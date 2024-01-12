@@ -15,7 +15,7 @@ const App = observer(() => {
   const { order } = useContext(Context)
   const { basketProduct } = useContext(Context)
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   // useEffect(() => {
   //   check().then(data => {
   //     user.setUser(true)
@@ -58,14 +58,23 @@ const App = observer(() => {
 
   // basket.getBasketByUserID(user._user.id)
 
-  // if (loading) {
-  //   return <Spinner animation={"grow"} />
-  // }
+  const turnOnLoading = () => {
+    setLoading(true)
+  }
+
+  const turnOffLoading = () => {
+    setLoading(false)
+  }
+  if (loading) {
+    return <Spinner className='ms-auto me-auto mt-auto mb-auto' animation={"grow"} />
+  }
+
+
 
   return (
     <BrowserRouter>
       <NavBar showHeader={showHeader} />
-      <AppRouter />
+      <AppRouter onLoading={turnOnLoading} offLoading={turnOffLoading}/>
       <Footer />
     </BrowserRouter>
   );

@@ -120,11 +120,11 @@
 }
 
 
-@media (max-width: 1299px) {
+/* @media (max-width: 1299px) {
     .adressBox {
         display: none !important;
     }
-}
+} */
 
 
 @media (max-width: 1499px) {
