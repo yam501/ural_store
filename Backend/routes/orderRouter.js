@@ -11,6 +11,8 @@ router.post('/createOrderByBasketId', authMiddleware, activatedMiddleware, order
 
 //
 
+router.post('/del', orderController.delOrder)
+
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 
 router.post('/getNotOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getNotOnConfirmOrderByUserID)

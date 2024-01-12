@@ -209,6 +209,18 @@ class OrderController {
             next(ApiError.badRequest(e.message))
         }
     }
+/// ИЗМЕНИТЬ ОТМЕНУ ЗАКАКЗА
+    async delOrder(req, res, next) {
+        try {
+            const {id} = req.body
+            const deleted = await Order.destroy({where: {id: id}})
+            return res.json(deleted)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+///
+
 }
 
 module.exports = new OrderController()

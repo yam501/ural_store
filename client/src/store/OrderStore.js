@@ -12,6 +12,11 @@ export default class OrderStore {
         this._order = order
     }
 
+    async delOrder(id){
+        await OrderService.delOrder(id)
+        this.setOrder({})
+    }
+
     async createOrder(userId, address, aproxSum, onConfirm, comment, number) {
         const response = await OrderService.createOrder(userId, address, aproxSum, onConfirm, comment, number)
         this.setOrder(response.data)

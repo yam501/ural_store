@@ -75,6 +75,10 @@ const OrderService = {
 
     async changeCommentAndNumberByOrderId(id, comment, number) {
         return new Promise((resolve) => resolve($authHost.put('api/order/changeCommentAndNumberByOrderID', {id, comment, number})))
+    },
+
+    async delOrder(id) {
+        return new Promise((resolve) => resolve($authHost.put('api/order/del', {id})))
     }
 }
 
