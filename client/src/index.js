@@ -13,6 +13,7 @@ import OrderStore from './store/OrderStore';
 import OrderProductsStore from './store/OrderProductsStore';
 import UseStore from './store/AdminStore';
 import AdminOrderStore from './store/AdminOrderStore'
+import CourierStore from './store/CourierStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const Context = createContext()
@@ -30,7 +31,8 @@ root.render(
     order: new OrderStore(),
     orderProducts: new OrderProductsStore(),
     use: new UseStore(),
-    adminOrders: new AdminOrderStore()
+    adminOrders: new AdminOrderStore(),
+    courier: new CourierStore()
   }}>
     <App />
   </Context.Provider>

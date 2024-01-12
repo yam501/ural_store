@@ -22,7 +22,7 @@ export default class CourierStore {
     }
 
     async createCourier( name, number) {
-        const response = await CourierService.getAllCourier( name, number)
+        const response = await CourierService.createCourier( name, number)
         this.appendCouriers(response.data)
     }
 

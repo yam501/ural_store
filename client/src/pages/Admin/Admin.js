@@ -20,7 +20,7 @@ function Admin() {
   const [adminShow, setAdminShow] = useState(false);
   const [adminEditShow, setAdminEditShow] = useState(false);
   const [cashierShow, setCashierShow] = useState(false);
-  const [courierShow, setCourierShow] = useState(false);
+
 
   const [operatorShow, setOperatorShow] = useState(false)
 
@@ -58,9 +58,6 @@ function Admin() {
     if (user._user.role === 'CASHIER') {
       setCashierShow(true)
       getAllProducts();
-    }
-    if (user._user.role === 'COURIER') {
-      setCourierShow(true)
     }
   }, [])
 
@@ -121,8 +118,8 @@ function Admin() {
           :
           <div></div>
         }
-        {courierShow || adminShow ?
-          <Tab eventKey="changeCourier" title="Заказы">
+        {adminShow ?
+          <Tab eventKey="CreateCourier" title="Назначение курьера">
             <Courier />
           </Tab>
           :
