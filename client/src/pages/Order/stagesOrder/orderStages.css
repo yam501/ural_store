@@ -23,7 +23,7 @@
 }
 
 .order_stages_breakpoint_text {
-    font-size: calc(14px + 4 *(100vw/1903));
+    font-size: calc(14px + 4 * (100vw / 1903));
     text-align: center;
 }
 
@@ -58,7 +58,6 @@
     background: url('../../../assets/orderStages-confirmed.svg') 0 0 / 90% no-repeat;
     background-position: center;
 }
-
 
 
 .order_stages_breakpoint_packingFalse {
@@ -99,7 +98,7 @@
     }
 
     .order_stages_breakpoint_text {
-        font-size: calc(14px + 4 *(100vw/1903));
+        font-size: calc(14px + 4 * (100vw / 1903));
         text-align: center;
     }
 
@@ -133,7 +132,6 @@
         background: url('../../../assets/orderStages-confirmed.svg') 0 0 / 90% no-repeat;
         background-position: center;
     }
-
 
 
     .order_stages_breakpoint_packingFalse {
@@ -227,7 +225,6 @@
         background: url('../../../assets/orderStages-confirmed.svg') 0 0 / 90% no-repeat;
         background-position: center;
     }
-
 
 
     .order_stages_breakpoint_packingFalse {
@@ -438,7 +435,7 @@
     }
 
     .order_stages_breakpoint_text {
-        font-size: calc(10px + 4 *(100vw/1903));
+        font-size: calc(10px + 4 * (100vw / 1903));
         text-align: center;
     }
 
@@ -506,7 +503,7 @@
     }
 
     .order_stages_breakpoint_text {
-        font-size: calc(12px + 4 *(100vw/1903));
+        font-size: calc(12px + 4 * (100vw / 1903));
         text-align: center;
     }
 
@@ -568,7 +565,7 @@
 }
 
 .order_stages_downContent_right {
-    font-size: calc(12px + 8 * (100vw/1903));
+    font-size: calc(12px + 8 * (100vw / 1903));
     margin: 10px;
     padding: 15px;
     border-radius: 0.375rem;
@@ -613,14 +610,58 @@
 }
 
 
-
 .btn_edit_order_comment:active,
 .btn_edit_order_comment:hover {
     background-color: #9c3d58 !important;
 }
 
+.order_stages_downContent_textarea {
+    border: 1px gray !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding-left: 10px;
+    border-radius: 7px;
+    max-width: 200px;
+    font-size: calc(14px + 2 * (100vw / 1903));
+    height: 200px;
+    resize: none;
+}
+
+.order_stages_downContent_input {
+    border: 1px gray !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding-left: 10px;
+    border-radius: 7px;
+    max-width: 200px;
+    font-size: calc(14px + 2 * (100vw / 1903));
+    height: calc(35px + 10 * (100vw / 1903));
+    display: inline-flex;
+
+}
+
+@media (max-width: 500px) {
+    .order_stages_downContent_input,
+    .order_stages_downContent_textarea {
+        max-width: 105px;
+    }
+
+    .order_stages_downContent_textarea {
+        height: 150px;
+    }
+
+    .order_stages_downContent_input {
+        padding-left: 1px;
+    }
+
+    .btn_edit_order_comment {
+        width: 25px;
+        height: 25px;
+    }
+}
+
 .btn_cancel_order {
-    font-size: calc(14px + 2 *(100vw/1903));
+    font-size: calc(14px + 2 * (100vw / 1903));
     margin-top: 20px;
     display: flex;
     justify-content: center;
@@ -631,13 +672,26 @@
     color: #2c3034;
 }
 
+.btn_confirm_cancel_order {
+    font-size: calc(14px + 2 * (100vw / 1903));
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    font-weight: 500;
+    background-color: #ff709a;
+    color: #ffffff;
+}
+
 @media (max-width: 768px) {
     .btn_cancel_order {
-        font-size: calc(10px + 2 *(100vw/1903));
+        font-size: calc(10px + 2 * (100vw / 1903));
     }
 }
 
 .btn_cancel_order:hover,
+.btn_confirm_cancel_order:hover,
 .btn_cancel_order:active {
     background-color: #9c3d58 !important;
 }
