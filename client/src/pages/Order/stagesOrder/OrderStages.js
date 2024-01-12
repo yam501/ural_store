@@ -1,20 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, {useContext, useEffect, useState} from 'react';
+import {Button} from 'react-bootstrap';
 import Container from 'react-bootstrap/esm/Container';
 import './orderStages.css'
-import { Context } from '../../..';
+import {Context} from '../../..';
 import OrderProduct from '../OrderProduct';
-import { io } from 'socket.io-client'
+import {io} from 'socket.io-client'
 import OrderProductStage from "./OrderProductStage";
+
 const OrderStages = () => {
 
     const [orderConfirm, setOrderConfirm] = useState(false);
     const [orderPacking, setOrderPacking] = useState(false);
     const [orderDelivery, setOrderDelivery] = useState(false);
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
-    const { orderProducts } = useContext(Context)
-    const { order } = useContext(Context)
-    const { user } = useContext(Context)
+    const {orderProducts} = useContext(Context)
+    const {order} = useContext(Context)
+    const {user} = useContext(Context)
     var colorArray = document.getElementsByClassName('order_stages_breakpoint_wrapper')
     var colorSmallDotsArray = document.getElementsByClassName('order_stage_small_dots')
     var colorDotsArray = document.getElementsByClassName('order_stage_dots')
@@ -28,22 +29,19 @@ const OrderStages = () => {
         setOrderDelivery(order.order.delivered)
         if (order.order.delivered) {
             delivery()
-        }
-        else {
+        } else {
             notDelivery()
         }
         setOrderPacking(order.order.onDeliver)
         if (order.order.onDeliver) {
             packing()
-        }
-        else {
+        } else {
             notPacking()
         }
         setOrderConfirm(order.order.onCreate)
         if (order.order.onCreate) {
             confirmed()
-        }
-        else {
+        } else {
             notConfirmed()
         }
     }
@@ -57,28 +55,25 @@ const OrderStages = () => {
         setOrderDelivery(order.order.delivered)
         if (order.order.delivered) {
             delivery()
-        }
-        else {
+        } else {
             notDelivery()
         }
         setOrderPacking(order.order.onDeliver)
         if (order.order.onDeliver) {
             packing()
-        }
-        else {
+        } else {
             notPacking()
         }
         setOrderConfirm(order.order.onCreate)
         if (order.order.onCreate) {
             confirmed()
-        }
-        else {
+        } else {
             notConfirmed()
         }
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.order.id)
         setOrderProductsDinamic(orderProducts.orderProducts ? orderProducts.orderProducts : [])
         console.log(order.order)
-        socket.emit("messageFromUser", { "orderId": order.order.id })
+        socket.emit("messageFromUser", {"orderId": order.order.id})
     }
 
     useEffect(() => {
@@ -140,7 +135,7 @@ const OrderStages = () => {
 
     const [commentChange, setCommentChange] = useState(true);
     const [numberChange, setNumberChange] = useState(true);
-
+    const [orderClose, setOrderClose] = useState(false);
     const changeComment = () => {
         setCommentChange(!commentChange);
     }
@@ -263,15 +258,16 @@ const OrderStages = () => {
                     orderProductsDinamic.length === 0 ?
                         <div>Загрузка товаров</div> :
                         orderProductsDinamic.map(orderProduct => {
-                            return <OrderProductStage key={orderProduct.id} orderProduct={orderProduct}></OrderProductStage>
+                            return <OrderProductStage key={orderProduct.id}
+                                                      orderProduct={orderProduct}></OrderProductStage>
                         })
                 }</div>
-                <div style={{ width: '3px', backgroundColor: '#f1f1f1' }}></div>
+                <div style={{width: '3px', backgroundColor: '#f1f1f1'}}></div>
                 <div className='order_stages_downContent_right'>
                     <div className='order_stages_downContent_courierNumber'>
                         Телефон курьера: {order.order.courierNumber}
                     </div>
-                    <hr />
+                    <hr/>
                     <div className='order_stages_downContent_order_details mt-2'>
                         <div className='order_stages_downContent_order_number'>
                             <div>
@@ -281,23 +277,44 @@ const OrderStages = () => {
                                 Заказ номер {order.order.id}
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <label className='order_stages_downContent_adres'>Адрес доставки: {order.order.address}</label>
-                        <hr />
+                        <hr/>
                         <label className='order_stages_downContent_comment mt-2'>Комментарий:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <input disabled={commentChange} placeholder={order.order.comment} className='textarea me-2'></input>
+                                <textarea disabled={commentChange} placeholder={order.order.comment}
+                                          className='order_stages_downContent_textarea mt-2 me-2'></textarea>
                                 <Button onClick={() => changeComment()} className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
-                        <hr />
+                        <hr/>
                         <label className='order_stages_downContent_tel mt-2'>Телефон:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <input disabled={numberChange} placeholder={order.order.number} className='textarea me-2'></input>
+                                <input disabled={numberChange} placeholder={order.order.number}
+                                       className='order_stages_downContent_input mt-2 me-2'></input>
                                 <Button onClick={() => changeNumber()} className='btn_edit_order_comment'></Button>
                             </div>
                         </label>
-                        <Button className='btn_cancel_order w-100'>Отменить заказ</Button>
+                        {!orderClose &&
+                            <>
+                                <Button onClick={() => setOrderClose(true)} className='btn_cancel_order w-100'>Отменить
+                                    заказ</Button>
+                            </>
+                        }
+                        {orderClose &&
+                            <>
+                                <hr/>
+                                <div>
+                                    <span>Вы точно хотите отменить заказ?</span>
+                                    <div className="d-flex justify-content-around">
+                                        <Button className="btn_confirm_cancel_order"> Да</Button>
+                                        <Button className="btn_cancel_order"
+                                                onClick={() => setOrderClose(false)}> Отмена</Button>
+                                    </div>
+                                </div>
+                            </>
+
+                        }
                     </div>
                 </div>
 
