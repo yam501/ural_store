@@ -609,6 +609,11 @@
     background-color: #BF486A !important;
 }
 
+.confirm_edit_order_label{
+    font-size: calc(12px + 2 * (100vw / 1903));
+    font-style: italic;
+}
+
 .btn_confirm_edit_order_comment{
     border: 0;
     margin: 10px;
@@ -635,12 +640,13 @@
     border: 1px gray !important;
     box-shadow: none !important;
     outline: none !important;
-    padding-left: 10px;
     border-radius: 7px;
     max-width: 200px;
     font-size: calc(14px + 2 * (100vw / 1903));
     height: 200px;
     resize: none;
+    background-color: #f1f1f1;
+    padding: 10px;
 }
 
 .order_stages_downContent_input {
@@ -653,7 +659,16 @@
     font-size: calc(14px + 2 * (100vw / 1903));
     height: calc(35px + 10 * (100vw / 1903));
     display: inline-flex;
+    background-color: #f0f0f0;
+}
 
+.order_stages_downContent_input:focus,
+.order_stages_downContent_textarea:focus{
+    border: #962a4a 1px solid !important;
+}
+.order_stages_downContent_input:disabled,
+.order_stages_downContent_textarea:disabled{
+    background-color: #e9ecef;
 }
 
 @media (max-width: 500px) {

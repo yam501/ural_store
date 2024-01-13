@@ -315,7 +315,12 @@ const OrderStages = () => {
                                           onChange={e => setComment(e.target.value)}
                                 ></textarea>
                                 {saveComment ?
-                                    <Button onClick={() => sendCom()} className="btn_confirm_edit_order_comment"></Button>
+                                    <>
+                                        <hr/>
+                                        <Button onClick={() => sendCom()}
+                                                className="btn_confirm_edit_order_comment"></Button>
+                                        <label className="confirm_edit_order_label">Не забудьте сохранить изменения</label>
+                                    </>
                                     :
                                     <Button onClick={() => changeComment()} className='btn_edit_order_comment'></Button>
                                 }
@@ -330,7 +335,12 @@ const OrderStages = () => {
                                        onChange={e => setNumber(e.target.value)}
                                 ></input>
                                 {saveNumber ?
-                                    <Button onClick={() => sendNumber()} className="btn_confirm_edit_order_comment"></Button>
+                                    <>
+                                        <hr/>
+                                        <Button onClick={() => sendNumber()}
+                                                className="btn_confirm_edit_order_comment"></Button>
+                                        <label className="confirm_edit_order_label">Не забудьте сохранить изменения</label>
+                                    </>
                                     :
                                     <Button onClick={() => changeNumber()} className='btn_edit_order_comment'></Button>
                                 }
