@@ -351,7 +351,7 @@ const OrderStages = () => {
                                         <Button onClick={() => deleteOrder()} type="submit"
                                                 className="btn_confirm_cancel_order"> Да</Button>
                                         <Button className="btn_cancel_order"
-                                                onClick={() => setOrderClose(false)}> Отмена</Button>
+                                                onClick={() => setOrderClose(false)}> Нет</Button>
                                     </form>
                                 </div>
                             </>
