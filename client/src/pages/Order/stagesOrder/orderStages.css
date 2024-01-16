@@ -556,6 +556,19 @@
     min-height: 500px;
 }
 
+@media (min-width: 376px) and (max-width: 776px) {
+    .order_stages_downContent{
+        margin: 0 !important;
+        padding: 0;
+        min-width: 100%;
+    }
+    .order-product-image{
+        width: 36px;
+        height: 36px;
+    }
+
+}
+
 .order_stages_downContent_left {
     margin: 10px;
     padding: 10px;
