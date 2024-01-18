@@ -46,6 +46,7 @@ const Order = sequelize.define('order', {
     onCreate: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     onDeliver: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     delivered: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    canceled: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     orderProductsCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     comment: { type: DataTypes.TEXT, allowNull: false, defaultValue: 0 },
     number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
@@ -82,6 +83,7 @@ const Assortment = sequelize.define('assortment', {
     name: { type: DataTypes.STRING, allowNull: false },
     available: { type: DataTypes.BOOLEAN, allowNull: false },
     costPerOne: { type: DataTypes.DOUBLE, allowNull: false },
+    unitsOfMeasurement: {type: DataTypes.STRING, allowNull: true},
     composition: { type: DataTypes.TEXT, allowNull: true },
     image: { type: DataTypes.STRING, allowNull: true }
 })
@@ -92,13 +94,6 @@ const Feedback = sequelize.define('feedback', {
     userEmail: { type: DataTypes.STRING, allowNull: false },
     userFIO: { type: DataTypes.STRING, allowNull: false },
     feedbackMessage: { type: DataTypes.TEXT, allowNull: false }
-})
-
-
-const Courier = sequelize.define('courier', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, allowNull: false },
-    number: { type: DataTypes.STRING, allowNull: false }
 })
 
 
@@ -130,14 +125,9 @@ ComplitedOrders.belongsTo(User)
 ComplitedOrders.hasMany(ComplitedOrderProduct)
 ComplitedOrderProduct.belongsTo(ComplitedOrders)
 
-// Courier.hasMany(Order)
-// Order.belongsTo(Courier)
-
-
 module.exports = {
     User, Token, Basket, 
     BasketProduct, Order, OrderProduct,
     Assortment, ComplitedOrders, 
-    ComplitedOrderProduct, Feedback, 
-    Courier
+    ComplitedOrderProduct, Feedback
 }

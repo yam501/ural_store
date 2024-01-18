@@ -9,7 +9,6 @@ const userRouter = require('./userRouter')
 const complitedOrdersRouter = require('./complitedOrdersRouter')
 const complitedOrderProductRouter = require('./complitedOrderProductRouter')
 const feedbackRouter = require('./feedbackRouter')
-const courierRouter = require('./courierRouter')
 
 router.use('/user', userRouter)
 router.use('/basket', basketRouter)
@@ -20,6 +19,5 @@ router.use('/assortment', assortmentRouter)
 router.use('/complitedOrder', complitedOrdersRouter)
 router.use('/complitedOrderProduct', complitedOrderProductRouter)
 router.use('/feedback', feedbackRouter)
-router.use('/courier', courierRouter)
 
 module.exports = router

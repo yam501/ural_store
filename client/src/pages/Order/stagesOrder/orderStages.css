@@ -557,12 +557,13 @@
 }
 
 @media (min-width: 376px) and (max-width: 776px) {
-    .order_stages_downContent{
+    .order_stages_downContent {
         margin: 0 !important;
         padding: 0;
         min-width: 100%;
     }
-    .order-product-image{
+
+    .order-product-image {
         width: 36px;
         height: 36px;
     }
@@ -622,12 +623,12 @@
     background-color: #BF486A !important;
 }
 
-.confirm_edit_order_label{
+.confirm_edit_order_label {
     font-size: calc(12px + 2 * (100vw / 1903));
     font-style: italic;
 }
 
-.btn_confirm_edit_order_comment{
+.btn_confirm_edit_order_comment {
     border: 0;
     margin: 10px;
     width: 35px;
@@ -645,7 +646,7 @@
 .btn_edit_order_comment:active,
 .btn_edit_order_comment:hover,
 .btn_confirm_edit_order_comment:active,
-.btn_confirm_edit_order_comment:hover{
+.btn_confirm_edit_order_comment:hover {
     background-color: #9c3d58 !important;
 }
 
@@ -676,11 +677,12 @@
 }
 
 .order_stages_downContent_input:focus,
-.order_stages_downContent_textarea:focus{
+.order_stages_downContent_textarea:focus {
     border: #962a4a 1px solid !important;
 }
+
 .order_stages_downContent_input:disabled,
-.order_stages_downContent_textarea:disabled{
+.order_stages_downContent_textarea:disabled {
     background-color: #e9ecef;
 }
 
