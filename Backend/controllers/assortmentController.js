@@ -8,11 +8,11 @@ const path = require('path')
 class AssortmentController {
     async create(req, res, next) {
         try {
-            const { type, name, available, costPerOne, description, composition } = req.body
+            const { type, name, available, costPerOne, unitsOfMeasurement, description, composition } = req.body
             const { image } = req.files
             let fileName = name + ".jpg"
             image.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const assortment = await Assortment.create({ type, name, available, costPerOne, description, composition, image: fileName })
+            const assortment = await Assortment.create({ type, name, available, costPerOne, unitsOfMeasurement, description, composition, image: fileName })
             return res.json(assortment)
         } catch (e) {
             next(ApiError.badRequest(e.message))

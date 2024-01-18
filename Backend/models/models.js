@@ -46,6 +46,7 @@ const Order = sequelize.define('order', {
     onCreate: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     onDeliver: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
     delivered: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+    canceled: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     orderProductsCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     comment: { type: DataTypes.TEXT, allowNull: false, defaultValue: 0 },
     number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
@@ -82,6 +83,7 @@ const Assortment = sequelize.define('assortment', {
     name: { type: DataTypes.STRING, allowNull: false },
     available: { type: DataTypes.BOOLEAN, allowNull: false },
     costPerOne: { type: DataTypes.DOUBLE, allowNull: false },
+    unitsOfMeasurement: {type: DataTypes.STRING, allowNull: true},
     composition: { type: DataTypes.TEXT, allowNull: true },
     image: { type: DataTypes.STRING, allowNull: true }
 })
