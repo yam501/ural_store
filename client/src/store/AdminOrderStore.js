@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import {getAtom, makeAutoObservable} from "mobx";
 import OrderService from "../service/OrderService";
 
 export default class AdminOrderStore {
@@ -11,8 +11,8 @@ export default class AdminOrderStore {
         this._orders = orders
     }
 
-    deleteOrder(id) {
-        this._orders = this._orders.filter((order) => order.id !== id)
+    async deleteOrder(id) {
+        await OrderService.delOrder(id)
     }
 
     async getAll() {

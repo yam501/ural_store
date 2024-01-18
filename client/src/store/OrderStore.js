@@ -27,8 +27,8 @@ export default class OrderStore {
         this.setOrder(response.data)
     }
 
-    async getNotOnConfirmOrderByUserId(userId) {
-        const response = await OrderService.getNotOnConfirmOrderByUserId(userId)
+    async getNotCanceledOrderByUserId(userId) {
+        const response = await OrderService.getNotCanceledOrderByUserId(userId)
         this.setOrder(response.data)
     }
 
@@ -64,22 +64,22 @@ export default class OrderStore {
 
     async changeOnConfirmByOrderId(id, onConfirm) {
         await OrderService.changeOnConfirmByOrderId(id, onConfirm)
-        this.getNotOnConfirmOrderByUserId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     async changeOnCreateByOrderId(id, onCreate) {
         await OrderService.changeOnCreateByOrderId(id, onCreate)
-        this.getNotOnConfirmOrderByUserId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     async changeOnDeliverByOrderId(id, onDeliver) {
         await OrderService.changeOnDeliverByOrderId(id, onDeliver)
-        this.getNotOnConfirmOrderByUserId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     async changeDeliveredByOrderId(id, delivered) {
         await OrderService.changeDeliveredByOrderId(id, delivered)
-        this.getNotOnConfirmOrderByUserId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     async changeOrderProductsCountByOrderId(id, orderProductsCount) {
@@ -94,12 +94,12 @@ export default class OrderStore {
 
     async changeCommentByOrderId(id, comment) {
         await OrderService.changeCommentByOrderId(id, comment)
-        this.getOrderByOrderId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     async changeNumberByOrderId(id, number) {
         await OrderService.changeNumberByOrderId(id, number)
-        this.getOrderByOrderId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     async changeCommentAndNumberByOrderId(id, comment, number) {
@@ -109,7 +109,7 @@ export default class OrderStore {
 
     async cancelOrderByIdFromUser(id) {
         await OrderService.cancelOrderByIdFromUser(id)
-        this.getOrderByOrderId(id)
+        this.getNotCanceledOrderByUserId(id)
     }
 
     get order() {

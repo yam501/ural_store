@@ -41,7 +41,7 @@ function ConfirmOrders() {
                     :
                     ordersDinamic.map(order => {
                         const user = usersDinamic.find((potUser) => potUser.id === order.userId)
-                        return <ConfirmOrderItem key={order.id} order={order} user={user} sendWS={sendWS}></ConfirmOrderItem>
+                        return <ConfirmOrderItem key={order.id} order={order} user={user} sendWS={sendWS} update={getOrders}></ConfirmOrderItem>
                     })
             }
         </div>
