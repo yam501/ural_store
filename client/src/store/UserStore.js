@@ -61,10 +61,6 @@ export default class UserStore {
         return this._user
     }
 
-    get isLoading() {
-        return this.isLoading
-    }
-
     async changeDefaultAddressByNumber(defaultAddress, number) {
         const phoneMask = new PhoneInputMask()
         const response = await AuthService.changeDefaultAddressByNumber(defaultAddress,
