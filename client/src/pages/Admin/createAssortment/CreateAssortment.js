@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Modal, Button, Dropdown, Form } from "react-bootstrap";
-import AssortmentService from "../../../service/AssortmentService";
+
 import { observer } from "mobx-react-lite";
 
-import { typeOfFood } from '../../../utils/consts'
+import { typeOfFood, unitsOfMeasurement } from '../../../utils/consts'
 
 import '../assortment.css'
+import { Context } from "../../..";
 
 function CreateAssortment() {
+
+
+  const { assortment } = useContext(Context)
 
   const [type, setType] = useState('Выберите тип')
   const [name, setName] = useState('')
@@ -15,6 +19,7 @@ function CreateAssortment() {
   const [costPerOne, setCostPerOne] = useState()
   const [composition, setComposition] = useState('')
   const [image, setImage] = useState('')
+  const [units, setUnits] = useState('Выберите единицы')
 
   const inputFile = useRef();
 
@@ -23,7 +28,7 @@ function CreateAssortment() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
-    if (form.checkValidity() === false || type.includes('Выберите тип')) {
+    if (form.checkValidity() === false || type.includes('Выберите тип') || units.includes('Выберите единицы')) {
       event.stopPropagation();
     } else {
       formDataCreate()
@@ -41,6 +46,7 @@ function CreateAssortment() {
     setName('')
     setComposition('')
     setCostPerOne('')
+    setUnits('Выберите единицы')
     inputFile.current.type = "text";
     inputFile.current.value = "";
     inputFile.current.type = "file";
@@ -61,11 +67,12 @@ function CreateAssortment() {
       formData.append('type', type)
       formData.append('name', name)
       formData.append('available', available)
-      formData.append('costPerOne', type == 'Выпечка' || type == 'Молочка' ? costPerOne : costPerOne/1000)
+      formData.append('costPerOne', costPerOne)
       formData.append('composition', composition)
       formData.append('image', image)
+      formData.append('unitsOfMeasurement', units)
 
-      AssortmentService.create(formData)
+      assortment.create(formData)
 
     } catch (e) {
       console.log(e.response?.data?.message)
@@ -115,10 +122,21 @@ function CreateAssortment() {
           value={costPerOne}
           // min={0}
           className="mt-3 textarea"
-          placeholder="Введите цену за штуку(кг)"
+          placeholder="Введите цену"
           type="number"
           required onChange={e => setCostPerOne(e.target.value)}
         />
+
+        <Dropdown onSelect={e => setUnits(e)}>
+          <Dropdown.Toggle className="assortment-switch" >{units}</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item className="assortment-switch-item" eventKey={"Выберите единицы"} >Выберите тип</Dropdown.Item>
+            {
+              unitsOfMeasurement.map(item =>
+                <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+            }
+          </Dropdown.Menu>
+        </Dropdown>
 
         <Form.Control
           value={composition}
@@ -146,26 +164,5 @@ function CreateAssortment() {
   );
 }
 
-
-
-
-
-
-
-
-
-{/* 
-    
-    
-
-sdisabled={isValid} sonClick={formDataCreate}
-Тип          String       notNull
-Название     String       notNull
-Есть/нет     Bool         notNull
-Ценазаштуку  Double       notNull
-Состав       String       NULL
-image        String(FILE) NULL
-
-      */}
 
 export default observer(CreateAssortment)

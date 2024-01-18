@@ -64,8 +64,8 @@ const App = observer(() => {
 
   return (
     <BrowserRouter>
-      {user.isLoading && <Loading/>}
       <NavBar showHeader={showHeader} />
+      {user.isLoading && <Loading/>}
       <AppRouter/>
       <Footer />
     </BrowserRouter>

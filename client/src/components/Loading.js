@@ -1,10 +1,15 @@
 import React from 'react';
 import { Spinner } from "react-bootstrap";
+import './loading.css'
 const Loading = () => {
 
 
     return (
-        <Spinner className='ms-auto me-auto mt-auto mb-auto' animation={"grow"}/>
+        <div className='loading_wrapper'>
+            <div className='loading_spinner'>
+
+            </div>
+        </div>
     );
 };
 
