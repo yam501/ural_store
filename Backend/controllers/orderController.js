@@ -8,7 +8,7 @@ class OrderController {
     async createOrderByBasketId(req, res, next) {
         try {
             const { userId, address, aproxSum, onConfirm, basketId, comment, number } = req.body
-            const order = await Order.create({ userId, address, aproxSum, comment, number })
+            const order = await Order.create({ userId, address, aproxSum, onConfirm, comment, number })
             const basketProducts = await BasketProduct.findAll({ where: { basketId: basketId } })
             basketProducts.forEach(basketProduct => {
                 OrderProduct.create({
@@ -169,7 +169,7 @@ class OrderController {
             next(ApiError.badRequest(e.message))
         }
     }
-    
+
     async changeCourierNumber(req, res, next) {
         try {
             const { id, courierNumber } = req.body
@@ -182,8 +182,8 @@ class OrderController {
 
     async changeCommentByOrderID(req, res, next) {
         try {
-            const {id, comment} = req.body
-            const updated = await Order.update({comment: comment}, {where: {id: id}})
+            const { id, comment } = req.body
+            const updated = await Order.update({ comment: comment }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -192,8 +192,8 @@ class OrderController {
 
     async changeNumberByOrderID(req, res, next) {
         try {
-            const {id, number} = req.body
-            const updated = await Order.update({number: number}, {where: {id: id}})
+            const { id, number } = req.body
+            const updated = await Order.update({ number: number }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -202,24 +202,24 @@ class OrderController {
 
     async changeCommentAndNumberByOrderID(req, res, next) {
         try {
-            const {id, comment, number} = req.body
-            const updated = await Order.update({comment: comment, number: number}, {where: {id: id}})
+            const { id, comment, number } = req.body
+            const updated = await Order.update({ comment: comment, number: number }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
-/// ИЗМЕНИТЬ ОТМЕНУ ЗАКАКЗА
+    /// ИЗМЕНИТЬ ОТМЕНУ ЗАКАКЗА
     async delOrder(req, res, next) {
         try {
-            const {id} = req.body
-            const deleted = await Order.destroy({where: {id: id}})
+            const { id } = req.body
+            const deleted = await Order.destroy({ where: { id: id } })
             return res.json(deleted)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
-///
+    ///
 
 }
 
