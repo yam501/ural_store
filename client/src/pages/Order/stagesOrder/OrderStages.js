@@ -7,6 +7,7 @@ import OrderProduct from '../OrderProduct';
 import {io} from 'socket.io-client'
 import OrderProductStage from "./OrderProductStage";
 import {values} from "mobx";
+import PhoneInputMask from "../../../InputMasks/PhoneInputMask";
 
 const OrderStages = () => {
 
@@ -19,6 +20,8 @@ const OrderStages = () => {
     const [orderClose, setOrderClose] = useState(false);
     const [saveComment, setSaveComment] = useState(false);
     const [saveNumber, setSaveNumber] = useState(false);
+
+    const phoneMask = new PhoneInputMask()
 
     const [comment, setComment] = useState('')
     const [number, setNumber] = useState('')
@@ -329,9 +332,9 @@ const OrderStages = () => {
                         <hr/>
                         <label className='order_stages_downContent_tel mt-2'>Телефон:
                             <div className='d-flex order_stages_downContent_comment'>
-                                <input disabled={numberChange} placeholder={order.order.number}
+                                <input disabled={numberChange} placeholder={phoneMask.formatNumberToClient(order.order.number)}
                                        className='order_stages_downContent_input mt-2 me-2'
-                                       value={number}
+                                       value={phoneMask.formatNumberToClient(number)}
                                        onChange={e => setNumber(e.target.value)}
                                 ></input>
                                 {saveNumber ?
