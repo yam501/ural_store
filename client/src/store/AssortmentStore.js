@@ -65,6 +65,11 @@ export default class AssortmentStore {
 
 
 
+    async create(formData){
+        await AssortmentService.create(formData)
+    }
+
+
 
 
     get assortments() {
