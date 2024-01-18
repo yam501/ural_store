@@ -1,13 +1,9 @@
 import { observer } from "mobx-react-lite";
 import OurDateTime from "../../../dateTime/dateTime";
-import AssortmentStore from "../../../store/AssortmentStore";
 import OrderProductsStore from "../../../store/OrderProductsStore";
 import { useState, useEffect } from "react";
 import OrderStore from "../../../store/OrderStore";
-import { Button, Dropdown } from 'react-bootstrap';
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
+import { Button } from 'react-bootstrap';
 
 
 function ConfirmOrderItem({ order, user, sendWS }) {
@@ -18,7 +14,6 @@ function ConfirmOrderItem({ order, user, sendWS }) {
     const [onCreate, setOnCreate] = useState(order.onCreate)
     const [onDeliver, setOnDeliver] = useState(order.onDeliver)
     const [delivered, setDelivered] = useState(order.delivered)
-    const [courierNumber, setCourierNumber] = useState("Номер курьера");
 
     async function getOrderProducts() {
         await orderProducts.getOrderProductsWithAssortmentInfoByOrderId(order.id)
@@ -47,13 +42,6 @@ function ConfirmOrderItem({ order, user, sendWS }) {
         getOrderProducts()
     }, [])
 
-    async function changeCourierNumber(number){
-        await orderStore.changeCourierNumber(order.id, number)
-        setCourierNumber(number)
-    }
-
-
-
     return (
         <div className="confirm_order_item_wrapper">
             <div>
@@ -62,18 +50,12 @@ function ConfirmOrderItem({ order, user, sendWS }) {
                 <div className="confir_order_item_info">Телефон: {user.number}</div>
                 <div className="confir_order_item_info">Адрес: {order.address}</div>
                 <div className="confir_order_item_info">Последнее обновление статуса: {dateTime.getStringDateTime()}</div>
-                <Dropdown onSelect={e => changeCourierNumber(e)}>
-                    <DropdownToggle className="assortment-switch"> {courierNumber}</DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem className="assortment-switch-item" eventKey={"+" + 1}>+1</DropdownItem>
-                        <DropdownItem className="assortment-switch-item" eventKey={"+" + 2}>+2</DropdownItem>
-                        <DropdownItem className="assortment-switch-item" eventKey={"+" + 3}>+3</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
                 <div className="confir_order_item_info">
                     Заказанные товары:
                     {products.map((product) => {
-                        return <div><b>{product.name}</b></div>
+                        return <div><b>{product.name} {product.count} {product.unitsOfMeasurement}</b></div>
+
+
                     })}
                 </div>
             </div>
