@@ -77,7 +77,7 @@ function Order() {
 
   async function tryGetOrder() {
     await order.getOneOrderByUserId(user._user.id)
-    setIsOrder(order.order !== null)
+    setIsOrder((order.order !== null) && !order._order.canceled )
   }
 
   return (

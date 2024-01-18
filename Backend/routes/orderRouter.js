@@ -16,7 +16,7 @@ router.post('/cancelOrderByIdFromUser', authMiddleware, activatedMiddleware, ord
 
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 
-router.post('/getNotOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getNotOnConfirmOrderByUserID)
+router.post('/getNotCanceledOrderByUserID', authMiddleware, activatedMiddleware, orderController.getNotCanceledOrderByUserID)
 router.post('/getOnConfirmOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOnConfirmOrderByUserID)
 router.post('/getOrderByOrderID', authMiddleware, activatedMiddleware, orderController.getOrderByOrderID)
 router.post('/getOrderByUserID', authMiddleware, activatedMiddleware, orderController.getOrderByUserID)

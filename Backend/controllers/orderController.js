@@ -45,10 +45,10 @@ class OrderController {
         }
     }
 
-    async getNotOnConfirmOrderByUserID(req, res, next) {
+    async getNotCanceledOrderByUserID(req, res, next) {
         try {
             const { userId } = req.body
-            const order = await Order.findOne({ where: { userId: userId, onConfirm: false } })
+            const order = await Order.findOne({ where: { userId: userId, canceled: false } })
             return res.json(order)
 
         } catch (e) {
@@ -221,7 +221,7 @@ class OrderController {
     }
     ///
 
-    async cancelOrderByIdFromUser(id) {
+    async cancelOrderByIdFromUser(req, res, next) {
         try {
             const {id} = req.body
             const canceled = await Order.update({canceled: true}, {where: {id: id}})

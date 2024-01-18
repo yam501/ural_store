@@ -63,7 +63,7 @@ const OrderStages = () => {
     })
 
     async function getOrderProducts() {
-        await order.getOneOrderByUserId(user._user.id)
+        await order.getNotCanceledOrderByUserId(user._user.id)
         setOrderDelivery(order.order.delivered)
         if (order.order.delivered) {
             delivery()
@@ -171,7 +171,8 @@ const OrderStages = () => {
     }
 
     const deleteOrder = () => {
-        order.delOrder(order._order.id)
+        order.cancelOrderByIdFromUser(order._order.id)
+        socket.emit("messageFromUser", {"orderId": order.order.id})
     }
 
     return (

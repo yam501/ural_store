@@ -9,8 +9,8 @@ const OrderService = {
         return new Promise((resolve) => resolve($authHost.post('api/order/createOrderByBasketId', {userId, address, aproxSum, onConfirm, basketId, comment, number})))
     },
 
-    async getNotOnConfirmOrderByUserId(userId) {
-        return new Promise((resolve) => resolve($authHost.post('api/order/getNotOnConfirmOrderByUserID', { userId })))
+    async getNotCanceledOrderByUserId(userId) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/getNotCanceledOrderByUserID', { userId })))
     },
 
     async getOnConfirmOrderByUserId(userId) {

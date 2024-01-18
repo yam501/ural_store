@@ -1,12 +1,14 @@
 import { observer } from "mobx-react-lite";
 import OurDateTime from "../../../dateTime/dateTime";
 import OrderProductsStore from "../../../store/OrderProductsStore";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useContext} from "react";
 import OrderStore from "../../../store/OrderStore";
 import { Button } from 'react-bootstrap';
+import {Context} from "../../../index";
 
 
-function ConfirmOrderItem({ order, user, sendWS }) {
+function ConfirmOrderItem({ order, user, sendWS, update }) {
+    const {adminOrders} = useContext(Context)
     const dateTime = new OurDateTime(order.updatedAt)
     const orderStore = new OrderStore()
     const orderProducts = new OrderProductsStore()
@@ -42,6 +44,11 @@ function ConfirmOrderItem({ order, user, sendWS }) {
         getOrderProducts()
     }, [])
 
+    async function deleteOrder() {
+        await adminOrders.deleteOrder(order.id)
+        update()
+    }
+
     return (
         <div className="confirm_order_item_wrapper">
             <div>
@@ -59,56 +66,64 @@ function ConfirmOrderItem({ order, user, sendWS }) {
                     })}
                 </div>
             </div>
-            <div className="confirm_order_item_stages">
-                <div className="confirm_order_item_stages_confirmed">
-                    {onCreate ? <div className="confirm_order_item_stages_ready">Подтвержден</div> : <div className="confirm_order_item_stages_wait">Ожидает подтверждения</div>}
-                    {
-                        onCreate ?
-                            <div className="btn_confirm_order_item_stages_wrapper">
-                                <Button className="btn_confirm_order_item_stages" disabled={onDeliver} onClick={() => changeOnCreateState(false)}>Отменить заказ</Button>
-                            </div>
-                            :
-                            <div className="btn_confirm_order_item_stages_wrapper">
-                                <Button className="btn_confirm_order_item_stages" onClick={() => changeOnCreateState(true)}>Подтвердить заказ</Button>
-                            </div>
-                    }
-                </div>
-                {
-                    onCreate ?
+            {
+                order.canceled ?
+                    <div>
+                        <div>Заказ отменен</div>
+                        <button onClick={deleteOrder}>Удалить заказ</button>
+                    </div>
+                    :
+                    <div className="confirm_order_item_stages">
                         <div className="confirm_order_item_stages_confirmed">
-                            {onDeliver ? <div className="confirm_order_item_stages_ready">Готов</div> : <div className="confirm_order_item_stages_wait">Готовится</div>}
+                            {onCreate ? <div className="confirm_order_item_stages_ready">Подтвержден</div> : <div className="confirm_order_item_stages_wait">Ожидает подтверждения</div>}
                             {
-                                onDeliver ?
+                                onCreate ?
                                     <div className="btn_confirm_order_item_stages_wrapper">
-                                        <Button className="btn_confirm_order_item_stages" disabled={delivered} onClick={() => changeOnDeliverState(false)}>Отменить доставку</Button>
+                                        <Button className="btn_confirm_order_item_stages" disabled={onDeliver} onClick={() => changeOnCreateState(false)}>Отменить заказ</Button>
                                     </div>
                                     :
                                     <div className="btn_confirm_order_item_stages_wrapper">
-                                        <Button className="btn_confirm_order_item_stages" onClick={() => changeOnDeliverState(true)}>Начать доставку</Button>
+                                        <Button className="btn_confirm_order_item_stages" onClick={() => changeOnCreateState(true)}>Подтвердить заказ</Button>
                                     </div>
                             }
-                        </div> :
-                        <div style={{ display: "none" }}></div>
-                }
+                        </div>
+                        {
+                            onCreate ?
+                                <div className="confirm_order_item_stages_confirmed">
+                                    {onDeliver ? <div className="confirm_order_item_stages_ready">Готов</div> : <div className="confirm_order_item_stages_wait">Готовится</div>}
+                                    {
+                                        onDeliver ?
+                                            <div className="btn_confirm_order_item_stages_wrapper">
+                                                <Button className="btn_confirm_order_item_stages" disabled={delivered} onClick={() => changeOnDeliverState(false)}>Отменить доставку</Button>
+                                            </div>
+                                            :
+                                            <div className="btn_confirm_order_item_stages_wrapper">
+                                                <Button className="btn_confirm_order_item_stages" onClick={() => changeOnDeliverState(true)}>Начать доставку</Button>
+                                            </div>
+                                    }
+                                </div> :
+                                <div style={{ display: "none" }}></div>
+                        }
 
-                {
-                    onDeliver ?
-                        <div className="confirm_order_item_stages_confirmed">
-                            {delivered ? <div className="confirm_order_item_stages_ready">Доставлен</div> : <div className="confirm_order_item_stages_wait">Доставляется</div>}
-                            {
-                                delivered ?
-                                    <div className="btn_confirm_order_item_stages_wrapper">
-                                        <Button className="btn_confirm_order_item_stages" onClick={() => changeDeliverState(false)}>Отменить готовность</Button>
-                                    </div>
-                                    :
-                                    <div className="btn_confirm_order_item_stages_wrapper">
-                                        <Button className="btn_confirm_order_item_stages" onClick={() => changeDeliverState(true)}>Завершить доставку</Button>
-                                    </div>
-                            }
-                        </div> :
-                        <div style={{ display: "none" }}></div>
-                }
-            </div>
+                        {
+                            onDeliver ?
+                                <div className="confirm_order_item_stages_confirmed">
+                                    {delivered ? <div className="confirm_order_item_stages_ready">Доставлен</div> : <div className="confirm_order_item_stages_wait">Доставляется</div>}
+                                    {
+                                        delivered ?
+                                            <div className="btn_confirm_order_item_stages_wrapper">
+                                                <Button className="btn_confirm_order_item_stages" onClick={() => changeDeliverState(false)}>Отменить готовность</Button>
+                                            </div>
+                                            :
+                                            <div className="btn_confirm_order_item_stages_wrapper">
+                                                <Button className="btn_confirm_order_item_stages" onClick={() => changeDeliverState(true)}>Завершить доставку</Button>
+                                            </div>
+                                    }
+                                </div> :
+                                <div style={{ display: "none" }}></div>
+                        }
+                    </div>
+            }
         </div>
     )
 }
