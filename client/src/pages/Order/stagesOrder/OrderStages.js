@@ -3,10 +3,8 @@ import {Button} from 'react-bootstrap';
 import Container from 'react-bootstrap/esm/Container';
 import './orderStages.css'
 import {Context} from '../../..';
-import OrderProduct from '../OrderProduct';
 import {io} from 'socket.io-client'
 import OrderProductStage from "./OrderProductStage";
-import {values} from "mobx";
 import PhoneInputMask from "../../../InputMasks/PhoneInputMask";
 
 const OrderStages = () => {
@@ -293,10 +291,6 @@ const OrderStages = () => {
                 }</div>
                 <div style={{width: '3px', backgroundColor: '#f1f1f1'}}></div>
                 <div className='order_stages_downContent_right'>
-                    <div className='order_stages_downContent_courierNumber'>
-                        Телефон курьера: {order.order.courierNumber}
-                    </div>
-                    <hr/>
                     <div className='order_stages_downContent_order_details mt-2'>
                         <div className='order_stages_downContent_order_number'>
                             <div>
