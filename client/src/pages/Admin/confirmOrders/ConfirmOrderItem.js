@@ -68,9 +68,9 @@ function ConfirmOrderItem({ order, user, sendWS, update }) {
             </div>
             {
                 order.canceled ?
-                    <div>
-                        <div>Заказ отменен</div>
-                        <button onClick={deleteOrder}>Удалить заказ</button>
+                    <div className="confirm_order_item_stages">
+                        <div className="confirm_order_item_deny">Заказ отменен</div>
+                        <button className="confirm_order_item_btn_deny" onClick={deleteOrder}>Удалить заказ</button>
                     </div>
                     :
                     <div className="confirm_order_item_stages">
