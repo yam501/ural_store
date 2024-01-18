@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Container } from 'react-bootstrap';
-import { Context } from '../..';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import AssortmentStore from '../../store/AssortmentStore';
 import { Image } from 'react-bootstrap';
 import Toggle from '../../components/Toggle';
 
@@ -35,7 +32,7 @@ function OrderProduct({  orderProduct, ...props }) {
 
                         <div className='order_product_card_inform'>
                             <div className='order_product_card_cost'>{orderProduct.costPerOne * orderProduct.count} ₽</div>
-                            <div className='order_product_card_count'>{orderProduct.count} шт</div>
+                            <div className='order_product_card_count'>{orderProduct.count} {orderProduct.unitsOfMeasurement}</div>
                         </div>
                     </div>
             }

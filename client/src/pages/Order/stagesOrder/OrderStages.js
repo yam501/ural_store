@@ -18,6 +18,7 @@ const OrderStages = () => {
     const [orderClose, setOrderClose] = useState(false);
     const [saveComment, setSaveComment] = useState(false);
     const [saveNumber, setSaveNumber] = useState(false);
+    const [canDelete, setCanDelete] = useState(false);
 
     const phoneMask = new PhoneInputMask()
 
@@ -115,6 +116,7 @@ const OrderStages = () => {
 
     const packing = () => {
         // setOrderPacking(!orderPacking)
+        setCanDelete(true)
         colorArray[1].style.backgroundColor = '#D6587B';
         colorDotsArray[3].style.backgroundColor = '#D6587B';
         colorDotsArray[4].style.backgroundColor = '#D6587B';
@@ -125,6 +127,7 @@ const OrderStages = () => {
 
     const notPacking = () => {
         // setOrderPacking(!orderPacking)
+        setCanDelete(false)
         colorArray[1].style.backgroundColor = '#D9D9D9';
         colorDotsArray[3].style.backgroundColor = '#D9D9D9';
         colorDotsArray[4].style.backgroundColor = '#D9D9D9';
@@ -343,13 +346,13 @@ const OrderStages = () => {
                                 }
                             </div>
                         </label>
-                        {!orderClose &&
+                        {!orderClose && !canDelete &&
                             <>
                                 <Button onClick={() => setOrderClose(true)} className='btn_cancel_order w-100'>Отменить
                                     заказ</Button>
                             </>
                         }
-                        {orderClose &&
+                        {orderClose && !canDelete &&
                             <>
                                 <hr/>
                                 <div>
