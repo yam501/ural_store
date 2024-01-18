@@ -4,7 +4,7 @@ import { adminRoutes, authRoutes, publicRoutes } from '../routes';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
 import ErrorPage from './ErroePageComponents/ErrorPage';
-function AppRouter({onLoading, offLoading}) {
+function AppRouter() {
     const {user} = useContext(Context)
 
     return (

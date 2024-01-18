@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from ".";
 import { Spinner } from "react-bootstrap";
 import GPS from "./components/YndexMaps/GPS";
+import Loading from "./components/Loading";
 
 const App = observer(() => {
   const { user } = useContext(Context)
@@ -15,7 +16,7 @@ const App = observer(() => {
   const { order } = useContext(Context)
   const { basketProduct } = useContext(Context)
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   // useEffect(() => {
   //   check().then(data => {
   //     user.setUser(true)
@@ -58,23 +59,14 @@ const App = observer(() => {
 
   // basket.getBasketByUserID(user._user.id)
 
-  const turnOnLoading = () => {
-    setLoading(true)
-  }
-
-  const turnOffLoading = () => {
-    setLoading(false)
-  }
-  if (loading) {
-    return <Spinner className='ms-auto me-auto mt-auto mb-auto' animation={"grow"} />
-  }
 
 
 
   return (
     <BrowserRouter>
+      {user.isLoading && <Loading/>}
       <NavBar showHeader={showHeader} />
-      <AppRouter onLoading={turnOnLoading} offLoading={turnOffLoading}/>
+      <AppRouter/>
       <Footer />
     </BrowserRouter>
   );
