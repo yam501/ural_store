@@ -4,41 +4,35 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import './basket.css'
 import DeleteButton from './DeleteButton';
-const BasketItem = ({ basketProduct, user, basketItem, basket, ...props }) => {
+const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props }) => {
     const {product} = useContext(Context)
     const [isDataSend, setIsDataSend] = useState(false);
     const [countProduct, setCountProduct] = useState(basketItem.count)
     const [deleteAccept, setDeleteAccept] = useState(false)
+    // const [type, setType] = useState(product.unitsOfMeasurement)
     const productType = {
-        "Мясо": {
-            value: countProduct > 999 ? 'кг' : 'гр',
+        "кг": {
+            value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 500,
             additionCount: 100,
+            cost: product.costPerOne * countProduct
         },
-        "Салаты": {
-            value: countProduct > 999 ? 'кг' : 'гр',
+        "г": {
+            value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 100,
             additionCount: 50,
+            cost: product.costPerOne * countProduct
         },
-        "Овощи": {
-            value: countProduct > 999 ? 'кг' : 'гр',
-            displayValue: 100,
-            additionCount: 100,
-        },
-        "Выпечка": {
+        "шт": {
             value: 'шт',
             displayValue: 1,
             additionCount: 1,
-        },
-        "Молочка": {
-            value: 'шт',
-            displayValue: 1,
-            additionCount: 1,
+            cost: product.costPerOne * countProduct
         }
     }
 
     // useEffect(() => {
-    //     assortmentList.map(productItem => productItem.id === basketItem.assortmentId && setbasketItem.type(productItem.basketItem.type))
+    //     assortmentList.map(productItem => productItem.id === basketItem.assortmentId && settype(productItem.type))
     // }, [basketItem.id])
 
     const changeCountProductByInput = (e) => {
@@ -72,8 +66,8 @@ const BasketItem = ({ basketProduct, user, basketItem, basket, ...props }) => {
     }
     const plus = async () => {
         setCountProduct(prevCount => {
-            const newCount = prevCount + productType[basketItem.type].additionCount;
-            basketItem.count = prevCount + productType[basketItem.type].additionCount;
+            const newCount = prevCount + productType[type].additionCount;
+            basketItem.count = prevCount + productType[type].additionCount;
             props.countAproxSum()
             delaySend();
             return newCount;
@@ -83,12 +77,12 @@ const BasketItem = ({ basketProduct, user, basketItem, basket, ...props }) => {
 
     const minus = () => {
         setCountProduct(prevCount => {
-            if (countProduct <= productType[basketItem.type].displayValue) {
+            if (countProduct <= productType[type].displayValue) {
                 basketProduct.deleteOneBasketProductByBasketIDAndAssortmentID(basketItem.basketId, basketItem.assortmentId)
                 props.deleteItem(basketItem.assortmentId)
             } else {
-                const newCount = prevCount - productType[basketItem.type].additionCount
-                basketItem.count = prevCount - productType[basketItem.type].additionCount;
+                const newCount = prevCount - productType[type].additionCount
+                basketItem.count = prevCount - productType[type].additionCount;
                 delaySend()
                 return newCount
             }
@@ -115,7 +109,7 @@ const BasketItem = ({ basketProduct, user, basketItem, basket, ...props }) => {
                 <div className='mt-1 d-flex justify-content-center'>
                     <Button type='submit' className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
                         onClick={minus}>
-                        {countProduct <=  productType[basketItem.type].displayValue ? <DeleteButton/> : '-'}
+                        {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
                     </Button>
                     <Form.Control value={countProduct > 999 ? countProduct/1000 : countProduct}  onChange={(e) => {
                      changeCountProductByInput(e)
