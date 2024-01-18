@@ -11,7 +11,12 @@ export default class UserStore {
     constructor() {
         this._isAuth = false
         this._user = new IUser()
+        this.isLoading = false
         makeAutoObservable(this)
+    }
+
+    setIsLoading(bool) {
+        this.isLoading = bool;
     }
 
     setIsActivated(bool) {
@@ -46,6 +51,18 @@ export default class UserStore {
 
     setUser(user) {
         this._user = user
+    }
+
+    get isAuth() {
+        return this._isAuth 
+    }
+
+    get user() {
+        return this._user
+    }
+
+    get isLoading() {
+        return this.isLoading
     }
 
     async changeDefaultAddressByNumber(defaultAddress, number) {
@@ -166,10 +183,5 @@ export default class UserStore {
         const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
         return response
     }
-    get isAuth() {
-        return this._isAuth 
-    }
-    get user() {
-        return this._user
-    }
+
 }
