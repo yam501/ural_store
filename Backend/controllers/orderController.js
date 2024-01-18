@@ -221,6 +221,16 @@ class OrderController {
     }
     ///
 
+    async cancelOrderByIdFromUser(id) {
+        try {
+            const {id} = req.body
+            const canceled = await Order.update({canceled: true}, {where: {id: id}})
+            return res.json(canceled)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
 }
 
 module.exports = new OrderController()

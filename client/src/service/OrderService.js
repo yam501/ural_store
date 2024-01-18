@@ -79,6 +79,10 @@ const OrderService = {
 
     async delOrder(id) {
         return new Promise((resolve) => resolve($authHost.post('api/order/del', {id})))
+    },
+
+    async cancelOrderByIdFromUser(id) {
+        return new Promise((resolve) => resolve($authHost.post('api/order/cancelOrderByIdFromUser', {id})))
     }
 }
 
