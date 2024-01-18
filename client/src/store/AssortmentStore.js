@@ -69,6 +69,10 @@ export default class AssortmentStore {
         await AssortmentService.create(formData)
     }
 
+    async changeAllById(formData){
+        await AssortmentService.changeAllById(formData)
+    }
+
 
 
 

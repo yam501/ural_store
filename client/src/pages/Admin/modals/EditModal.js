@@ -1,85 +1,62 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Modal, Image, Form, Dropdown } from 'react-bootstrap';
-import AssortmentService from '../../../service/AssortmentService';
-import { observer } from 'mobx-react-lite';
+
+import { typeOfFood, unitsOfMeasurement } from "../../../utils/consts";
 import { Context } from '../../..';
-import { typeOfFood } from "../../../utils/consts";
 
 const EditModal = (props) => {
     const assort = props.assortment
 
-
-    const [type, setType] = useState(assort.type)
-    const [typeChanged, setTypeChanged] = useState(false)
+    const { assortment } = useContext(Context)
 
     const [name, setName] = useState(assort.name)
-    const [nameChanged, setNameChanged] = useState(false)
-
+    const [type, setType] = useState(assort.type)
+    const [available, setAvailable] = useState(assort.available)
     const [costPerOne, setCostPerOne] = useState(assort.costPerOne)
-    const [costPerOneChanged, setCostPerOneChanged] = useState(false)
-
+    const [units, setUnits] = useState(assort.unitsOfMeasurement)
     const [composition, setComposition] = useState(assort.composition)
-    const [compositionChanged, setCompositionChanged] = useState(false)
+    const [image, setImage] = useState(assort.image)
 
-    const [image, setImage] = useState()
-
-
+    const [validated, setValidated] = useState(false);
 
 
-    const isTypeChanged = (inputType) => {
-        setType(inputType)
-        if (inputType === assort.type) setTypeChanged(false)
-        else setTypeChanged(true)
+    function createFormData() {
+        const formData = new FormData()
+
+        formData.append('id', assort.id)
+        formData.append('name', name)
+        formData.append('type', type)
+        formData.append('available', available)
+        formData.append('costPerOne', costPerOne)
+        formData.append('unitsOfMeasurement', units)
+        formData.append('composition', composition)
+        // formData.append('image', image) ДОДЕЛАТЬ КАРТИНКУ
+
+        assortment.changeAllById(formData)
+
     }
 
-    const isNameChanged = (inputName) => {
-        setName(inputName)
-        if (inputName === assort.name) setNameChanged(false)
-        else setNameChanged(true)
-    }
+    const confirmEdit = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        console.log(1)
+        if (!name || !costPerOne || !composition) {
+            console.log(2)
+            event.stopPropagation();
+        } else {
 
-    const isCostPerOneChanged = (inputCostPerOne) => {
-        setCostPerOne(inputCostPerOne)
-        if (inputCostPerOne == assort.costPerOne) setCostPerOneChanged(false)
-        else setCostPerOneChanged(true)
-    }
+            console.log(3)
 
-    const isCompositionChanged = (inputComposition) => {
-        setComposition(inputComposition)
-        if (inputComposition === assort.composition) setCompositionChanged(false)
-        else setCompositionChanged(true)
-    }
+            createFormData()
 
-    async function confirmEdit() {
-        if (nameChanged) {
-            await AssortmentService.changeNameByName(assort.name, name)
+            props.onClick()
+            props.onHide()
         }
-        if (typeChanged) {
-            await AssortmentService.changeTypeByName(name, type)
-        }
-        if (costPerOneChanged) {
-            await AssortmentService.changeCostPerOneByName(name, costPerOne)
-        }
-        if (compositionChanged) {
-            await AssortmentService.changeCompositionByName(name, composition)
-        }
-        if (image !== undefined) {
-            const formData = new FormData()
-            formData.append('name', name)
-            formData.append('image', image)
-            await AssortmentService.changeImageByName(formData)
-        }
-        props.onClick()
-        props.onHide()
-    }
-
-
-    const fuck = (e) => {
-
-        setImage(e.target.files[0])
-
+        console.log(5)
+        setValidated(true);
 
     }
+
     return (
         <Modal
             {...props}
@@ -88,54 +65,71 @@ const EditModal = (props) => {
             centered
         >
             <Modal.Body>
-                <Form>
+                <Form noValidate validated={validated} onSubmit={confirmEdit}>
                     <div>
-                        Тип:
-                        <div>
-                            <Dropdown onSelect={e => isTypeChanged(e)}>
-                                <Dropdown.Toggle className='assortment-switch' > {type} </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    {
-                                        typeOfFood.map(item =>
-                                            <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
-                                    }
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
-                    </div>
-                    <div>
-                        Название:
-                        <div>
-                            <input value={name} className='w-100 textarea' onChange={e => isNameChanged(e.target.value)} />
-                        </div>
-                    </div>
-                    <div>
-                        Цена за штуку:
-                        <div>
-                            <input value={costPerOne} className='w-100 textarea' type='number' onChange={e => isCostPerOneChanged(e.target.value)} />
-                        </div>
-                    </div>
-                    <div>
-                        Состав:
-                        <div>
-                            <textarea className='w-100 textarea' style={{ minHeight: '200px' }} value={composition} onChange={e => isCompositionChanged(e.target.value)} />
-                        </div>
-                    </div>
-                    <div>
-                        Картинка:
-                        <div className='d-flex flex-column'>
-                            <Image className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={process.env.REACT_APP_API_URL + assort.image} thumbnail />
-                            <label for="image_uploads">Текущая картинка: {image ? image.name === undefined ? 'не измениться' : image.name : 'не измениться'}</label>
-                            <input onChange={e => fuck(e)} id="image_uploads" accept="image/*" className="mt-3" type="file" />
-                        </div>
+                        Название
+                        <input required placeholder={name} onChange={e => setName(e.target.value)}></input>
                     </div>
 
+                    <div>
+                        Тип
+                        <Dropdown onSelect={e => setType(e)}>
+                            <Dropdown.Toggle className="assortment-switch" > {type} </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {
+                                    typeOfFood.map(item =>
+                                        <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+
+                    <div>
+                        Наличие
+                        <Dropdown>
+                            <Dropdown.Toggle className="mt-3 assortment-switch" >{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(true)} key={1}>Есть</Dropdown.Item>
+                                <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(false)} key={2}>Нет</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+
+                    <div>
+                        Единицы
+                        <Dropdown onSelect={e => setUnits(e)}>
+                            <Dropdown.Toggle className="assortment-switch" >{units}</Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {
+                                    unitsOfMeasurement.map(item =>
+                                        <Dropdown.Item className="assortment-switch-item" eventKey={item} > {item} </Dropdown.Item>)
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+
+                    <div>
+                        Цена
+                        <input required placeholder={costPerOne} onChange={e => setCostPerOne(e.target.value)}></input>
+                    </div>
+
+                    <div>
+                        Состав
+                        <input required placeholder={composition} type='text' onChange={e => setComposition(e.target.value)}></input>
+                    </div>
+
+                    <div>
+                        Картинка
+                        <div className='d-flex flex-column'>
+                            <Image className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={process.env.REACT_APP_API_URL + image} thumbnail />
+                            <input id="image_uploads" accept="image/*" className="mt-3" type="file" />
+                        </div>
+                    </div>
+                    <hr />
+                    <Button type={'submit'}> Нажми меня</Button>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button className='accept-change' type='submit' onClick={confirmEdit}>Подтвердить изменения</Button>
-                <Button className='btn-danger' onClick={props.onHide}>Закрыть</Button>
-            </Modal.Footer>
+
         </Modal>
     );
 }
