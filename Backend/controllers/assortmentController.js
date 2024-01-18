@@ -187,21 +187,23 @@ class AssortmentController {
         }
     }
 
-    async changeAssortment(req, res, next) {
+    async changeAllById(req, res, next) {
         try {
-            const { name, available, costPerOne, description, composition } = req.body
-            const { image } = req.files
-            let fileName = name + ".jpg"
-            image.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const { id, name, available, costPerOne, description, composition } = req.body
+            // const { image } = req.files
+            // let fileName = name + ".jpg"
+            // image.mv(path.resolve(__dirname, '..', 'static', fileName)) image: fileName ДОДЕЛАТЬ КАРТИНКУ
             const updated = await Assortment.update({
                 name: name, available: available, costPerOne: costPerOne,
-                description: description, composition: composition, image: fileName
+                description: description, composition: composition
             }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
+
+
 
 
     async getAssortmentByIds(req, res, next) {
