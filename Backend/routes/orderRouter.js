@@ -12,6 +12,7 @@ router.post('/createOrderByBasketId', authMiddleware, activatedMiddleware, order
 //
 
 router.post('/del', orderController.delOrder)
+router.post('/cancelOrderByIdFromUser', authMiddleware, activatedMiddleware, orderController.cancelOrderByIdFromUser)
 
 router.post('/createOrder', authMiddleware, activatedMiddleware, orderController.createOrder)
 

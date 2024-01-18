@@ -20,7 +20,7 @@ function OrderProductStage({ orderProduct }) {
 
                         <div className='order_product_card_inform'>
                             <div className='order_product_card_cost'>{orderProduct.costPerOne * orderProduct.count} ₽</div>
-                            <div className='order_product_card_count'>{orderProduct.count} шт</div>
+                            <div className='order_product_card_count'>{orderProduct.count} {orderProduct.unitsOfMeasurement}</div>
                         </div>
                     </div>
             }

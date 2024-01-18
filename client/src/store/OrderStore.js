@@ -106,6 +106,12 @@ export default class OrderStore {
         await OrderService.changeCommentAndNumberByOrderId(id, comment, number)
         this.getOrderByOrderId(id)
     }
+
+    async cancelOrderByIdFromUser(id) {
+        await OrderService.cancelOrderByIdFromUser(id)
+        this.getOrderByOrderId(id)
+    }
+
     get order() {
         return this._order
     }
