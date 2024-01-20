@@ -20,4 +20,4 @@ export const roles = {
     'USER' : "Пользователь"
 }
 
-export const unitsOfMeasurement = ['г', 'кг', 'шт', 'л', 'мл']
+export const unitsOfMeasurement = ['г', 'кг', 'шт']
