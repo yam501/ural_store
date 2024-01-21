@@ -67,7 +67,7 @@ function CreateAssortment() {
       formData.append('type', type)
       formData.append('name', name)
       formData.append('available', available)
-      formData.append('costPerOne', costPerOne)
+      formData.append('costPerOne', units === "шт" ? costPerOne : costPerOne / 1000)
       formData.append('composition', composition)
       formData.append('image', image)
       formData.append('unitsOfMeasurement', units)
