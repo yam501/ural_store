@@ -98,7 +98,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
             <div className='d-flex justify-content-center'>
                 <div className='d-flex align-items-center'>
                     <div className='info-text ms-3'>
-                        {basketItem.name}
+                        {basketItem.name}, {basketItem.unitsOfMeasurement}
                     </div>
                 </div>
             </div>
@@ -111,10 +111,11 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
                         onClick={minus}>
                         {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
                     </Button>
-                    <Form.Control value={countProduct > 999 ? countProduct/1000 : countProduct}  onChange={(e) => {
+                    <Form.Control value={countProduct > 999 ? countProduct/1000 : countProduct   }  onChange={(e) => {
                      changeCountProductByInput(e)
                     }
-                    } className='basket_item_cost' />
+                    } className='basket_item_cost'
+                    />
                     <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white'
                         onClick={plus}>
                         +
