@@ -15,19 +15,19 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
             value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 500,
             additionCount: 100,
-            cost: product.costPerOne * countProduct
+            cost: Math.round(product.costPerOne * countProduct)
         },
         "г": {
             value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 100,
             additionCount: 50,
-            cost: product.costPerOne * countProduct
+            cost: Math.round(product.costPerOne * countProduct)
         },
         "шт": {
             value: 'шт',
             displayValue: 1,
             additionCount: 1,
-            cost: product.costPerOne * countProduct
+            cost: Math.round(product.costPerOne * countProduct)
         }
     }
 
@@ -104,7 +104,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
             </div>
             <div className='text-center'>
                 <div className='info-text'>
-                {countProduct * basketItem.costPerOne} ₽
+                {Math.round(countProduct * basketItem.costPerOne)} ₽
                 </div>
                 <div className='mt-1 d-flex justify-content-center'>
                     <Button type='submit' className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
