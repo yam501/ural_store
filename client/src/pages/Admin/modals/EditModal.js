@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react';
-import { Button, Modal, Image, Form, Dropdown } from 'react-bootstrap';
-import { typeOfFood, unitsOfMeasurement } from "../../../utils/consts";
-import { Context } from '../../..';
+import {useContext, useState} from 'react';
+import {Button, Modal, Image, Form, Dropdown} from 'react-bootstrap';
+import {typeOfFood, unitsOfMeasurement} from "../../../utils/consts";
+import {Context} from '../../..';
 import "./modal_edit.css"
 
 const EditModal = (props) => {
     const assort = props.assortment
 
-    const { assortment } = useContext(Context)
+    const {assortment} = useContext(Context)
 
     const [name, setName] = useState(assort.name)
     const [type, setType] = useState(assort.type)
@@ -31,9 +31,9 @@ const EditModal = (props) => {
         formData.append('costPerOne', costPerOne)
         formData.append('unitsOfMeasurement', units)
         formData.append('composition', composition)
-        if (oldImage === assort.image){
+        if (oldImage === assort.image) {
             assortment.changeAllTextById(formData)
-        } else{
+        } else {
             formData.append('image', oldImage)
             assortment.changeAllById(formData)
         }
@@ -80,7 +80,7 @@ const EditModal = (props) => {
                     <div className="modal_edit_name mt-2">
                         <span className="modal_edit_span">Название</span>
                         <input className="textarea" required placeholder={name}
-                            onChange={e => setName(e.target.value)}></input>
+                               onChange={e => setName(e.target.value)}></input>
                     </div>
 
                     <div className="modal_edit_dropdown">
@@ -91,7 +91,7 @@ const EditModal = (props) => {
                                 {
                                     typeOfFood.map(item =>
                                         <Dropdown.Item className="assortment-switch-item"
-                                            eventKey={item}> {item} </Dropdown.Item>)
+                                                       eventKey={item}> {item} </Dropdown.Item>)
                                 }
                             </Dropdown.Menu>
                         </Dropdown>
@@ -145,12 +145,15 @@ const EditModal = (props) => {
                              src={image || process.env.REACT_APP_API_URL + oldImage} thumbnail/>
 
                     </div>
-                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file" onChange={selectFile} />
-                    <hr />
-                    <Button className="modal_edit_btn" type="submit"> Нажми меня</Button>
+                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file"
+                           onChange={selectFile}/>
+                    <hr/>
                 </Form>
+                <Modal.Footer>
+                    <Button className="modal_edit_btn" onClick={confirmEdit}> Подтвердить</Button>
+                    <Button className='btn-danger' onClick={props.onHide}>Закрыть</Button>
+                </Modal.Footer>
             </Modal.Body>
-
         </Modal>
     );
 }
