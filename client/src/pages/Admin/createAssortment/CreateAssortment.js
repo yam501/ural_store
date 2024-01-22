@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Modal, Button, Dropdown, Form } from "react-bootstrap";
+import React, { useContext, useRef, useState } from "react";
+import { Button, Dropdown, Form } from "react-bootstrap";
 
 import { observer } from "mobx-react-lite";
 
@@ -128,7 +128,7 @@ function CreateAssortment() {
         />
 
         <Dropdown onSelect={e => setUnits(e)}>
-          <Dropdown.Toggle className="assortment-switch" >{units}</Dropdown.Toggle>
+          <Dropdown.Toggle className="mt-3 assortment-switch" >{units}</Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item className="assortment-switch-item" eventKey={"Выберите единицы"} >Выберите тип</Dropdown.Item>
             {

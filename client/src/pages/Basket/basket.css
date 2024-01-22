@@ -26,7 +26,7 @@ body {
 
 .product_item {
     background-color: rgba(178, 178, 178, 0.2);
-    border-radius: 50px;
+    border-radius: 7px;
     font-weight: 500;
     font-size: calc(14px + 4 * (100vw/1903));
     height: 200px;
@@ -219,7 +219,7 @@ body {
     font-weight: 500;
     padding: 2vw;
     background-color: rgba(178, 178, 178, 0.2);
-    border-radius: 50px;
+    border-radius: 7px;
     margin-right: 5%;
     margin-left: 5%;
 }
@@ -247,3 +247,9 @@ body {
     margin-top: 20px;
 }
 
+.basket_warning{
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 7px;
+}

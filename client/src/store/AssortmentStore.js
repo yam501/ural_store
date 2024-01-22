@@ -73,6 +73,9 @@ export default class AssortmentStore {
         await AssortmentService.changeAllById(formData)
     }
 
+    async changeAllTextById(formData){
+        await AssortmentService.changeAllTextById(formData)
+    }
 
 
 

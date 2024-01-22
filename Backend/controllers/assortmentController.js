@@ -191,18 +191,40 @@ class AssortmentController {
         try {
             const { id, name, available, costPerOne, description, composition } = req.body
             const { image } = req.files
+
             let fileName = name + ".jpg"
             image.mv(path.resolve(__dirname, '..', 'static', fileName))
             const updated = await Assortment.update({
                 name: name, available: available, costPerOne: costPerOne,
                 description: description, composition: composition, image: fileName
             }, { where: { id: id } })
+
             return res.json(updated)
+
+
+
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
+    async changeAllTextById(req, res, next) {
+        try {
+            const { id, name, available, costPerOne, description, composition } = req.body
+
+            const updated = await Assortment.update({
+                name: name, available: available, costPerOne: costPerOne,
+                description: description, composition: composition
+            }, { where: { id: id } })
+
+            return res.json(updated)
+
+
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
 
 
