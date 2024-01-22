@@ -83,3 +83,29 @@
 .btn_confirm_order_item_stages:disabled {
     background-color: #bbbbbb !important;
 }
+
+.confirm_order_item_deny{
+    font-size: calc(12px + 4 * (100vw / 1903));
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    background-color: #832440;
+    padding: 5px;
+    border: 2px solid rgb(0,0,0,0%);
+}
+
+.confirm_order_item_btn_deny{
+    font-size: calc(12px + 4 * (100vw / 1903));
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    background-color: #ff709a;
+    padding: 5px;
+    border: 2px solid rgb(0,0,0,0%);
+    border-radius: 7px;
+}
+
+.confirm_order_item_btn_deny:hover,
+.confirm_order_item_btn_deny:active{
+    background-color: #BF486A;
+}

@@ -557,6 +557,18 @@
 }
 
 @media (min-width: 376px) and (max-width: 776px) {
+    .order_stages_downContent{
+        flex-direction: column !important;
+    }
+
+    .order_stages_downContent_left{
+        width: auto !important;
+    }
+
+    .order_stages_downContent_right{
+        width: auto !important;
+    }
+
     .order_stages_downContent {
         margin: 0 !important;
         padding: 0;

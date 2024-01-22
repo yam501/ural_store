@@ -91,7 +91,7 @@ function Basket() {
             countAproxSum={countAproxSum} 
             deleteItem={deleteBasketItems} 
             basket={basket} 
-            type={assortmentList.filter(item => item.id === basketItem.assortmentId )[0].type}
+            type={assortmentList.filter(item => item.id === basketItem.assortmentId )[0].unitsOfMeasurement}
             basketProduct={basketProduct} 
             basketItem={basketItem} />
           )}

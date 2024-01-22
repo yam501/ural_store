@@ -75,12 +75,11 @@
     }
 
     .order_pay_title {
-        font-weight: 600;
+        font-size: calc(18px + 6 * (100vw / 1903)) !important;
     }
 
-    .order_pay_foter {
-        font-size: calc(18px + 8 * (100vw / 1903)) !important;
-        font-weight: 600;
+    .order_pay_span{
+        font-size: calc(14px + 8 * (100vw / 1903));
     }
 
     .order_products_check {
@@ -291,12 +290,9 @@
     font-size: calc(10px + 8 * (100vw / 1903));
 }
 
-.order_pay_foter {
-    font-size: 20px;
-    font-weight: 600;
-}
 
 .order_pay_sum {
+    font-size: calc(12px + 8 * (100vw / 1903));
     font-weight: 600;
 }
 

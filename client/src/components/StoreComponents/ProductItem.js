@@ -7,7 +7,7 @@ import { Context } from '../..';
 import AddProductToBasketBtn from './AddProductToBasketBtn';
 import DeleteButton from '../../pages/Basket/DeleteButton';
 
-const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsList, productShow }) => {
+const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, productShow }) => {
 
     const {user, basket, basketProduct} = useContext(Context)
     const [loaded, setLoaded] = useState(false);
@@ -18,32 +18,21 @@ const ProductItem = ({ product, type, deleteBasketProductItem, basketProductsLis
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [countProduct, setCountProduct] = useState(0)
+    const [type, setType] = useState(product.unitsOfMeasurement)
     const productType = {
-        "Мясо": {
-            value: countProduct > 999 ? 'кг' : 'гр',
+        "кг": {
+            value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 500,
             additionCount: 100,
             cost: product.costPerOne * countProduct
         },
-        "Салаты": {
-            value: countProduct > 999 ? 'кг' : 'гр',
+        "г": {
+            value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 100,
             additionCount: 50,
             cost: product.costPerOne * countProduct
         },
-        "Овощи": {
-            value: countProduct > 999 ? 'кг' : 'гр',
-            displayValue: 100,
-            additionCount: 100,
-            cost: product.costPerOne * countProduct
-        },
-        "Выпечка": {
-            value: 'шт',
-            displayValue: 1,
-            additionCount: 1,
-            cost: product.costPerOne * countProduct
-        },
-        "Молочка": {
+        "шт": {
             value: 'шт',
             displayValue: 1,
             additionCount: 1,
