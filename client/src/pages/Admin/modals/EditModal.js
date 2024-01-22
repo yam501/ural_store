@@ -3,6 +3,7 @@ import { Button, Modal, Image, Form, Dropdown } from 'react-bootstrap';
 
 import { typeOfFood, unitsOfMeasurement } from "../../../utils/consts";
 import { Context } from '../../..';
+import { observer } from 'mobx-react-lite';
 
 const EditModal = (props) => {
     const assort = props.assortment
@@ -15,7 +16,8 @@ const EditModal = (props) => {
     const [costPerOne, setCostPerOne] = useState(assort.costPerOne)
     const [units, setUnits] = useState(assort.unitsOfMeasurement)
     const [composition, setComposition] = useState(assort.composition)
-    const [image, setImage] = useState(assort.image)
+    const [oldImage, setOldImage] = useState(assort.image)
+    const [image, setImage] = useState()
 
     const [validated, setValidated] = useState(false);
 
@@ -30,7 +32,7 @@ const EditModal = (props) => {
         formData.append('costPerOne', costPerOne)
         formData.append('unitsOfMeasurement', units)
         formData.append('composition', composition)
-        // formData.append('image', image) ДОДЕЛАТЬ КАРТИНКУ
+        formData.append('image', oldImage) 
 
         assortment.changeAllById(formData)
 
@@ -39,22 +41,29 @@ const EditModal = (props) => {
     const confirmEdit = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
-        console.log(1)
+
         if (!name || !costPerOne || !composition) {
-            console.log(2)
+
             event.stopPropagation();
         } else {
 
-            console.log(3)
 
             createFormData()
 
             props.onClick()
             props.onHide()
         }
-        console.log(5)
+
         setValidated(true);
 
+    }
+
+
+    const selectFile = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setImage(URL.createObjectURL(event.target.files[0]));
+            setOldImage(event.target.files[0]);
+        }
     }
 
     return (
@@ -121,16 +130,18 @@ const EditModal = (props) => {
                     <div>
                         Картинка
                         <div className='d-flex flex-column'>
-                            <Image className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={process.env.REACT_APP_API_URL + image} thumbnail />
-                            <input id="image_uploads" accept="image/*" className="mt-3" type="file" />
+                            <img className='w-100 h-100 product-img' alt={'Картинка не подгружается'} src={image || process.env.REACT_APP_API_URL + oldImage} thumbnail />
+                            <input accept="image/*" className="mt-3" type="file" onChange={selectFile} />
                         </div>
                     </div>
                     <hr />
                     <Button type={'submit'}> Нажми меня</Button>
+                    <Button onClick={() => console.log(image)}> Нажми меня</Button>
                 </Form>
             </Modal.Body>
 
         </Modal>
     );
 }
+// 
 export default EditModal;

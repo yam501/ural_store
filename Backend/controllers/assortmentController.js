@@ -190,12 +190,12 @@ class AssortmentController {
     async changeAllById(req, res, next) {
         try {
             const { id, name, available, costPerOne, description, composition } = req.body
-            // const { image } = req.files
-            // let fileName = name + ".jpg"
-            // image.mv(path.resolve(__dirname, '..', 'static', fileName)) image: fileName ДОДЕЛАТЬ КАРТИНКУ
+            const { image } = req.files
+            let fileName = name + ".jpg"
+            image.mv(path.resolve(__dirname, '..', 'static', fileName))
             const updated = await Assortment.update({
                 name: name, available: available, costPerOne: costPerOne,
-                description: description, composition: composition
+                description: description, composition: composition, image: fileName
             }, { where: { id: id } })
             return res.json(updated)
         } catch (e) {
@@ -224,7 +224,7 @@ class AssortmentController {
     }
 
     async getAssortmentByIdsFromBack(ids) {
-        return await Assortment.findAll({where: {id: ids}})
+        return await Assortment.findAll({ where: { id: ids } })
     }
 }
 
