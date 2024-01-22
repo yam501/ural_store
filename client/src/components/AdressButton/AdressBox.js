@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import AdressBoxIcon from './AdressBoxIcon';
 
@@ -9,7 +9,6 @@ const AdressBox = ({adress, ...props}) => {
         border-0
         p-1
         me-3
-        rounded-pill
         d-flex
         align-items-center
         ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`} 

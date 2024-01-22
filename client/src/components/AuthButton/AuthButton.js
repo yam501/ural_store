@@ -23,7 +23,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             <Button
                 onClick={() => logout()}
                 type='submit'
-                className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
+                className='ms-3 d-flex justify-content-around align-items-center btnAuth btnLogOut'
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
