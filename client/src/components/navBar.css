@@ -31,9 +31,13 @@
 
 .btnBasket {
     height: 50px;
-    width: 50px;
+    width: auto;
     background-color: #d6587b;
     border: 0;
+}
+
+.navbar_basket_aprsum{
+    font-size: calc(14px + 2 * (100vw / 1903));
 }
 
 
