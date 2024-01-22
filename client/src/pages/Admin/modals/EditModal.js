@@ -142,7 +142,7 @@ const EditModal = (props) => {
                                src={image || process.env.REACT_APP_API_URL + oldImage} thumbnail/>
 
                     </div>
-                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file"/>
+                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file" onChange={selectFile}/>
                     <hr/>
                     <Button className="modal_edit_btn" type={'submit'}> Нажми меня</Button>
                 </Form>
