@@ -24,27 +24,27 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
             value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 500,
             additionCount: 100,
-            cost: product.costPerOne * countProduct
+            cost: Math.round(product.costPerOne * countProduct)
         },
         "г": {
             value: countProduct > 999 ? 'кг' : 'г',
             displayValue: 100,
             additionCount: 50,
-            cost: product.costPerOne * countProduct
+            cost: Math.round(product.costPerOne * countProduct)
         },
         "шт": {
             value: 'шт',
             displayValue: 1,
             additionCount: 1,
-            cost: product.costPerOne * countProduct
+            cost: Math.round(product.costPerOne * countProduct)
         }
     }
     
     useEffect(() => {
         if (isDataSend) {
-            
             const timerId = setTimeout(() => {
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
+            setLoaded(true)
+            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct).then(res => setLoaded(false))
             setIsDataSend(false);
           }, 1000);
     
@@ -132,9 +132,9 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
                         </div>
                     </div>
                     <div className='card_btn_box'>
-                        <Button className='btn-minus rounded-circle' onClick={() => minus()}>
+                       {!loaded && <Button className='btn-minus rounded-circle' onClick={() => minus()}>
                         {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
-                        </Button>
+                        </Button>}
                         <span className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct > 999 ? countProduct/1000 : countProduct} {productType[type].value} </span>
                         <Button className='btn-plus rounded-circle' onClick={() => plus()}>
                             +
@@ -151,7 +151,7 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
                     
                     <div className='card_wraper_content_inform'>
                         <div className='mb-1 info-text'>
-                            {product.costPerOne * productType[type].displayValue} ₽ 
+                            {Math.round(product.costPerOne * productType[type].displayValue)} ₽ 
                         </div>
                         <div  className='info-text'>
                            {productType[type].displayValue + productType[type].value}
