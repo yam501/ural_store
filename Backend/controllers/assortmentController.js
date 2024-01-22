@@ -189,20 +189,42 @@ class AssortmentController {
 
     async changeAllById(req, res, next) {
         try {
-            const { id, name, available, costPerOne, description, composition } = req.body
-            // const { image } = req.files
-            // let fileName = name + ".jpg"
-            // image.mv(path.resolve(__dirname, '..', 'static', fileName)) image: fileName ДОДЕЛАТЬ КАРТИНКУ
+            const { id, name, type, available, costPerOne, description, composition, unitsOfMeasurement } = req.body
+            const { image } = req.files
+
+            let fileName = name + ".jpg"
+            image.mv(path.resolve(__dirname, '..', 'static', fileName))
             const updated = await Assortment.update({
-                name: name, available: available, costPerOne: costPerOne,
-                description: description, composition: composition
+                name: name, available: available, type: type, costPerOne: costPerOne,
+                description: description, composition: composition, unitsOfMeasurement: unitsOfMeasurement, image: fileName
             }, { where: { id: id } })
+
             return res.json(updated)
+
+
+
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
+    async changeAllTextById(req, res, next) {
+        try {
+            const { id, name, type, available, costPerOne, description, composition, unitsOfMeasurement } = req.body
+
+            const updated = await Assortment.update({
+                name: name, available: available, type: type, costPerOne: costPerOne,
+                description: description, composition: composition, unitsOfMeasurement: unitsOfMeasurement,
+            }, { where: { id: id } })
+
+            return res.json(updated)
+
+
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
 
 
@@ -224,7 +246,7 @@ class AssortmentController {
     }
 
     async getAssortmentByIdsFromBack(ids) {
-        return await Assortment.findAll({where: {id: ids}})
+        return await Assortment.findAll({ where: { id: ids } })
     }
 }
 

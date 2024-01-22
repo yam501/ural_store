@@ -15,7 +15,8 @@ const EditModal = (props) => {
     const [costPerOne, setCostPerOne] = useState(assort.costPerOne)
     const [units, setUnits] = useState(assort.unitsOfMeasurement)
     const [composition, setComposition] = useState(assort.composition)
-    const [image, setImage] = useState(assort.image)
+    const [oldImage, setOldImage] = useState(assort.image)
+    const [image, setImage] = useState()
 
     const [validated, setValidated] = useState(false);
 
@@ -30,31 +31,41 @@ const EditModal = (props) => {
         formData.append('costPerOne', costPerOne)
         formData.append('unitsOfMeasurement', units)
         formData.append('composition', composition)
-        // formData.append('image', image) ДОДЕЛАТЬ КАРТИНКУ
-
-        assortment.changeAllById(formData)
+        if (oldImage === assort.image) {
+            assortment.changeAllTextById(formData)
+        } else {
+            formData.append('image', oldImage)
+            assortment.changeAllById(formData)
+        }
 
     }
 
     const confirmEdit = (event) => {
         const form = event.currentTarget;
         event.preventDefault();
-        console.log(1)
+
         if (!name || !costPerOne || !composition) {
-            console.log(2)
+
             event.stopPropagation();
         } else {
 
-            console.log(3)
 
             createFormData()
 
             props.onClick()
             props.onHide()
         }
-        console.log(5)
+
         setValidated(true);
 
+    }
+
+
+    const selectFile = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setImage(URL.createObjectURL(event.target.files[0]));
+            setOldImage(event.target.files[0]);
+        }
     }
 
     return (
@@ -130,17 +141,21 @@ const EditModal = (props) => {
                     <div className="modal_edit_dropdown">
                         <span className="modal_edit_span">Картинка</span>
 
-                        <Image className='w-50 h-50 modal_edit_img product-img' alt={'Картинка не подгружается'}
-                               src={process.env.REACT_APP_API_URL + image} thumbnail/>
+                        <img className='w-50 h-50 modal_edit_img product-img' alt={'Картинка не подгружается'}
+                             src={image || process.env.REACT_APP_API_URL + oldImage} thumbnail/>
 
                     </div>
-                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file"/>
+                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file"
+                           onChange={selectFile}/>
                     <hr/>
-                    <Button className="modal_edit_btn" type={'submit'}> Нажми меня</Button>
                 </Form>
+                <Modal.Footer>
+                    <Button className="modal_edit_btn" onClick={confirmEdit}> Подтвердить</Button>
+                    <Button className='btn-danger' onClick={props.onHide}>Закрыть</Button>
+                </Modal.Footer>
             </Modal.Body>
-
         </Modal>
     );
 }
+// 
 export default EditModal;

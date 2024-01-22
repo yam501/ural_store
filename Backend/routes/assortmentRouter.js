@@ -25,6 +25,7 @@ router.put('/changeProductCompositionByName', checkRole(['ADMIN', 'ADMIN_EDIT'])
 router.put('/changeProductImageByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeImageByName)
 router.put('/changeTypeByName', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeTypeByName)
 
-router.put('/changeAllById', checkRole(['ADMIN', 'ADMIN_EDIT']), assortmentController.changeAllById)
+router.put('/changeAllById', assortmentController.changeAllById)
+router.put('/changeAllTextById', assortmentController.changeAllTextById)
 
 module.exports = router
