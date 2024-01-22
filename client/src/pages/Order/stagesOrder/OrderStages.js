@@ -172,7 +172,7 @@ const OrderStages = () => {
 
     const deleteOrder = () => {
         order.cancelOrderByIdFromUser(order._order.id)
-        socket.emit("messageFromUser", {"orderId": order.order.id})
+        socket.emit("messageFromUserCancel", {"orderId": order.order.id})
     }
 
     return (

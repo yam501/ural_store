@@ -4,6 +4,7 @@ import { Context } from "../../..";
 import ConfirmOrderItem from "./ConfirmOrderItem";
 import './confirmOrder.css'
 import { io } from 'socket.io-client'
+import order from "../../Order/Order";
 function ConfirmOrders() {
     const { adminOrders, use } = useContext(Context)
     const [ordersDinamic, setOrdersDinamic] = useState([])
@@ -12,7 +13,7 @@ function ConfirmOrders() {
     async function getOrders() {
         await adminOrders.getAll()
         await use.getAll()
-        setOrdersDinamic(adminOrders._orders ? adminOrders._orders : [])
+        setOrdersDinamic(adminOrders._orders ? adminOrders._orders.sort(order => order.id) : [])
         setUsersDinamic(use._users ? use._users : [])
     }
 
@@ -28,10 +29,27 @@ function ConfirmOrders() {
         getOrders()
     })
 
+    socket.on('cancel', message => {
+        console.log(message)
+        setOrdersDinamic(adminOrders._orders.map(order => {
+            console.log(order)
+            if (order.id === message) {
+                order.canceled = true
+            }
+            return order
+        }))
+    })
+
     useEffect(() => {
         getOrders()
         socket.emit("newAdmin", "")
     }, [])
+
+    // const [test, setTest] = useState(1)
+    // setTimeout(() => {
+    //     console.log(test)
+    //     setTest(test + 1)
+    // }, 2000)
 
     return (
         <div>
