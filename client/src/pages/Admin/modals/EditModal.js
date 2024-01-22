@@ -31,11 +31,11 @@ const EditModal = (props) => {
         formData.append('costPerOne', costPerOne)
         formData.append('unitsOfMeasurement', units)
         formData.append('composition', composition)
-        if (oldImage !== assort.image){
+        if (oldImage === assort.image){
+            assortment.changeAllTextById(formData)
+        } else{
             formData.append('image', oldImage)
             assortment.changeAllById(formData)
-        } else{
-            assortment.changeAllTextById(formData)
         }
 
     }
@@ -79,7 +79,7 @@ const EditModal = (props) => {
                 <Form noValidate validated={validated} onSubmit={confirmEdit}>
                     <div className="modal_edit_name mt-2">
                         <span className="modal_edit_span">Название</span>
-                        <input className="textarea" required placeholder={name}
+                        <input className="textarea" required placeholder={name} 
                             onChange={e => setName(e.target.value)}></input>
                     </div>
 
@@ -147,7 +147,7 @@ const EditModal = (props) => {
                     </div>
                     <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file" onChange={selectFile} />
                     <hr />
-                    <Button className="modal_edit_btn" type={'submit'}> Нажми меня</Button>
+                    <Button className="modal_edit_btn" type="submit"> Нажми меня</Button>
                 </Form>
             </Modal.Body>
 
