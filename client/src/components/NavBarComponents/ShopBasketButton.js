@@ -3,32 +3,21 @@ import Button from 'react-bootstrap/Button';
 import {BASKET_ROUTE} from '../../utils/consts';
 import {NavLink} from 'react-router-dom';
 import {Context} from '../..';
+import {observer} from "mobx-react-lite";
 
-const ShopBasketButton = ({...props}) => {
-    // const [aproxSum, setAproxSum] = useState(0)
+const ShopBasketButton = () => {
     const {user, basket} = useContext(Context)
-    // const {basketProduct} = useContext(Context)
-    // const [basketProducts, setBasketProducts] = useState([])
-    //
-    // async function renderBasketItems() {
-    //     if (JSON.stringify(basket._baskets) !== "{}") {
-    //         await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id)
-    //     }
-    //     setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
-    // }
-    //
-    // const countAproxSum = async () => {
-    //     setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
-    // }
-    //
-    // useEffect(() => {
-    //     if (user._isAuth) renderBasketItems()
-    // }, [basket._baskets.id])
-    //
-    // useEffect(() => {
-    //     if (user._isAuth) countAproxSum()
-    // }, [basketProducts])
+    const [aprSum, setAprSum] = useState(0)
+    async function getBasket(){
+        await basket.getBasketByUserID(user._user.id)
+        setAprSum(basket.basket.aproxSum)
+    }
 
+    useEffect(() => {
+        if (user._isAuth){
+            getBasket()
+        }
+    }, [basket.basket.aproxSum]);
     return (
         <NavLink className="text-decoration-none" to={BASKET_ROUTE}>
             <Button
@@ -50,10 +39,10 @@ const ShopBasketButton = ({...props}) => {
                               stroke-linecap="round"/>
                     </svg>
                 </div>
-                <span className="navbar_basket_aprsum"> {basket.basket.aproxSum}₽</span>
+                <span className="navbar_basket_aprsum"> {aprSum}₽</span>
             </Button>
         </NavLink>
     );
 };
 
-export default ShopBasketButton;
+export default observer(ShopBasketButton);
