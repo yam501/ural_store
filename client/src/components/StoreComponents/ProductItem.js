@@ -57,6 +57,7 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
             if (countProduct >= productType[type].displayValue) {
             const newCount = prevCount + productType[type].additionCount;
             delaySend();
+            basket._baskets.aproxSum += productType[type].additionCount * product.costPerOne
             return newCount;
             } else {
                 return prevCount;
@@ -69,6 +70,7 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
             if (countProduct > productType[type].displayValue) {
             const newCount = prevCount - productType[type].additionCount
             delaySend()
+                basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
             return newCount
             } else {
                 basketProductsList.map(item => {
@@ -78,6 +80,7 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
                 })
                 deleteBasketProductItem(product.id);
                 setCardState(false)
+                basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
                 return prevCount;
             }
         })

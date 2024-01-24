@@ -17,7 +17,11 @@ const ShopBasketButton = () => {
         if (user._isAuth){
             getBasket()
         }
-    }, [basket.basket.aproxSum]);
+    }, );
+
+    useEffect(() => {
+        setAprSum(basket._baskets.aproxSum)
+    }, [basket._baskets.aproxSum]);
     return (
         <NavLink className="text-decoration-none" to={BASKET_ROUTE}>
             <Button
