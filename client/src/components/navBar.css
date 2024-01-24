@@ -30,7 +30,7 @@
 }
 
 .btnBasket {
-    height: 50px;
+    height: 40px;
     width: auto;
     background-color: #d6587b;
     border: 0;
@@ -133,8 +133,8 @@
 
 @media (max-width: 1499px) {
     .btnBasket {
-        width: 50px;
-        height: 50px;
+        width: auto;
+        height: 40px;
         background-color: #962A4A;
         margin-left: 7px !important;
     }
