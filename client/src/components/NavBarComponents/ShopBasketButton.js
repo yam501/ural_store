@@ -17,7 +17,7 @@ const ShopBasketButton = () => {
         if (user._isAuth){
             getBasket()
         }
-    }, );
+    }, []);
 
     useEffect(() => {
         setAprSum(basket._baskets.aproxSum)
