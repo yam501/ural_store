@@ -41,10 +41,18 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
     }
     
     useEffect(() => {
+        if (loaded) {
+            const timerId = setTimeout(() => {
+                user.setIsLoading(false)
+            }, 2000)
+        }
+    }, [user.isLoading])
+
+    useEffect(() => {
         if (isDataSend) {
             const timerId = setTimeout(() => {
-            setLoaded(true)
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct).then(res => setLoaded(false))
+            user.setIsLoading(true)
+            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
             setIsDataSend(false);
           }, 1000);
     
@@ -132,9 +140,9 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
                         </div>
                     </div>
                     <div className='card_btn_box'>
-                       {!loaded && <Button className='btn-minus rounded-circle' onClick={() => minus()}>
+                        <Button className='btn-minus rounded-circle' onClick={() => minus()}>
                         {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
-                        </Button>}
+                        </Button>
                         <span className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct > 999 ? countProduct/1000 : countProduct} {productType[type].value} </span>
                         <Button className='btn-plus rounded-circle' onClick={() => plus()}>
                             +
