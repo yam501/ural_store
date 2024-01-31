@@ -41,7 +41,7 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
     }
     
     useEffect(() => {
-        if (loaded) {
+        if (user.isLoading) {
             const timerId = setTimeout(() => {
                 user.setIsLoading(false)
             }, 2000)
