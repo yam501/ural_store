@@ -51,7 +51,10 @@ export default class BasketProductStore {
         // console.log(this._products)
     }
 
-    
+    async changeMoreOrLessByBasketProductID(id, moreOrLess) {
+        const response = await BasketProductService.changeMoreOrLessByBasketProductID(id, moreOrLess)
+    }
+
     async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
         const response = await BasketProductService.changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count);
         //console.log(response.data[0])

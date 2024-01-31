@@ -20,5 +20,6 @@ router.post('/deleteOneBasketProductByBasketIDAndAssortmentID', authMiddleware, 
 
 router.put('/changeMoreOrLessByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.changeMoreOrLessByBasketIDAndAssortmentID)
 router.put('/changeCountByBasketIDAndAssortmentID', authMiddleware, activatedMiddleware, basketProductController.changeCountByBasketIDAndAssortmentID)
+router.put('/changeMoreOrLessByBasketProductID', authMiddleware, activatedMiddleware, basketProductController.changeMoreOrLessByBasketProductID)
 
 module.exports = router

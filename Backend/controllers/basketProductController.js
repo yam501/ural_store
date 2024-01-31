@@ -132,6 +132,16 @@ class BasketProductController {
         }
     }
 
+    async changeMoreOrLessByBasketProductID(req, res, next) {
+        try {
+            const {id, moreOrLess} = req.body
+            const updated = await BasketProduct.update({moreOrLess: moreOrLess}, {where: {id: id}})
+            return res.json(updated)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async changeCountByBasketIDAndAssortmentID(req, res, next) {
         try {
             const { basketId, assortmentId, count } = req.body

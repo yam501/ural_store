@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { observer } from 'mobx-react-lite';
 import { Image } from 'react-bootstrap';
 import Toggle from '../../components/Toggle';
+import order from "./Order";
+import {Context} from "../../index";
 
 function OrderProduct({  orderProduct, ...props }) {
-    const [toggleState, setToggleState] = useState(false)
-    const toggleSwitch = () => toggleState ? setToggleState(false) : setToggleState(true);
+    const {basketProduct} = useContext(Context)
+    const [toggleState, setToggleState] = useState(orderProduct === null ? false : orderProduct.moreOrLess)
+    const toggleSwitch = () => {
+        orderProduct.moreOrLess = !toggleState;
+        basketProduct.changeMoreOrLessByBasketProductID(orderProduct.id, !toggleState)
+        setToggleState(!toggleState)
+    }
 
     return (
         <div >

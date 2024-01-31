@@ -29,6 +29,9 @@ const BasketProductService = {
         return new Promise((resolve) => resolve($authHost.put('api/basketProduct/changeMoreOrLessByBasketIDAndAssortmentID', { basketId, assortmentId, moreOrLess })))
     },
 
+    async changeMoreOrLessByBasketProductID(id, moreOrLess) {
+        return new Promise((resolve) => resolve($authHost.put('api/basketProduct/changeMoreOrLessByBasketProductID', {id, moreOrLess})))
+    },
 
     async changeCountByBasketIDAndAssortmentID(basketId, assortmentId, count) {
         return new Promise((resolve) => resolve($authHost.put('api/basketProduct/changeCountByBasketIDAndAssortmentID', { basketId, assortmentId, count })))
