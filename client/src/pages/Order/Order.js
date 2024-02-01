@@ -151,7 +151,7 @@ function Order() {
                                         <div className='form_check_order_section_comment'>
                                             {/* <label>Комментарий</label> */}
                                             <input
-                                                required
+                                                
                                                 value={dataOfOrder.comment} onChange={e => setDataOfOrder({
                                                 ...dataOfOrder,
                                                 comment: e.target.value
