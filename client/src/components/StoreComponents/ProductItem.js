@@ -169,7 +169,7 @@ const ProductItem = ({ product, deleteBasketProductItem, basketProductsList, pro
                         </div>
                     </div>
                     </div>
-                    <AddProductToBasketBtn product={product} switchCardState={switchCardState} type={type} countProduct={countProduct} />
+                    <AddProductToBasketBtn product={product} cost={productType[type].cost} switchCardState={switchCardState} type={type} countProduct={countProduct} />
 
                     </div>
                 }

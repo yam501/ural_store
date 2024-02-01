@@ -8,6 +8,10 @@ const AddProductToBasketBtn = ({product, countProduct, switchCardState, cost}) =
     
     const addProductInBasket = () => {
         basket._baskets.aproxSum += cost * countProduct
+
+        console.log(cost)
+        console.log(countProduct)
+
         basketProduct.createBasketProduct(basket.basket.id, product.id, cost, countProduct, false)
         switchCardState()
     }

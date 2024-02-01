@@ -1,5 +1,6 @@
 const ApiError = require('../error/ApiError')
-const { Order, OrderProduct, BasketProduct, User } = require('../models/models')
+const { Order, OrderProduct, BasketProduct, User, Basket} = require('../models/models')
+const basketController = require('./basketController')
 
 class OrderController {
 
@@ -17,6 +18,7 @@ class OrderController {
                 })
             })
             BasketProduct.destroy({ where: { basketId: basketId } })
+            basketController.updateSum(basketId)
             return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))

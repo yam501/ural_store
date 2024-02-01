@@ -21,7 +21,7 @@ const EditModal = (props) => {
     const [validated, setValidated] = useState(false);
 
 
-    function createFormData() {
+    async function createFormData() {
         const formData = new FormData()
 
         formData.append('id', assort.id)
@@ -32,19 +32,19 @@ const EditModal = (props) => {
         formData.append('unitsOfMeasurement', units)
         formData.append('composition', composition)
         if (oldImage === assort.image) {
-            assortment.changeAllTextById(formData)
+            await assortment.changeAllTextById(formData)
         } else {
             formData.append('image', oldImage)
-            assortment.changeAllById(formData)
+            await assortment.changeAllById(formData)
         }
 
     }
 
-    const confirmEdit = () => {
+    const confirmEdit = async () => {
         setValidated(true);
 
         if (name && costPerOne && composition) {
-            createFormData()
+            await createFormData()
 
             props.getAllProd()
             props.onHide()

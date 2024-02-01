@@ -61,7 +61,7 @@ function ConfirmOrderItem({ order, user, sendWS, update }) {
                     Заказанные товары:
                     <p className="m-0">Общая сумма заказа: <b>{order.aproxSum}₽</b></p>
                     {products.map((product) => {
-                        return <div><b>{product.name} {product.count} {product.unitsOfMeasurement}</b></div>
+                        return <div><b>{product.name} {product.count} {product.moreOrLess === true ? "Больше" : "Меньше"}</b></div>
 
 
                     })}
