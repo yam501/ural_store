@@ -1,8 +1,2 @@
-/Backend/node_modules
-/Backend/static
-
-
-
-# /Backend/.env ->
-# git rm .env --cached
-# git commit -m "Stopped tracking .env File"
+/node_modules
+/static
