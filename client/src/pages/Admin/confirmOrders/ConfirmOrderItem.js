@@ -59,6 +59,7 @@ function ConfirmOrderItem({ order, user, sendWS, update }) {
                 <div className="confir_order_item_info">Последнее обновление статуса: {dateTime.getStringDateTime()}</div>
                 <div className="confir_order_item_info">
                     Заказанные товары:
+                    <p className="m-0">Общая сумма заказа: <b>{order.aproxSum}₽</b></p>
                     {products.map((product) => {
                         return <div><b>{product.name} {product.count} {product.unitsOfMeasurement}</b></div>
 
