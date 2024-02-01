@@ -79,7 +79,7 @@ function Admin() {
                 }
                 {adminEditShow || adminShow ?
                     <Tab eventKey="EditAssortment" title="Редактировать ассортимент">
-                        <EditAssortment products={products} onClick={getAllProducts}/>
+                        <EditAssortment products={products} getAllProd={getAllProducts}/>
                     </Tab>
                     :
                     <div></div>

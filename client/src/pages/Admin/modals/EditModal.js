@@ -52,7 +52,7 @@ const EditModal = (props) => {
 
             createFormData()
 
-            props.onClick()
+            props.getAllProd()
             props.onHide()
         }
 

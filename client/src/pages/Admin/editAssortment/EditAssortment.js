@@ -9,7 +9,7 @@ import { Context } from "../../..";
 import { observer } from "mobx-react-lite";
 
 
-function EditAssortment({ products, onClick }) {
+function EditAssortment({ products, getAllProd }) {
 
 
     const [type, setType] = useState('Любой тип')
@@ -63,7 +63,7 @@ function EditAssortment({ products, onClick }) {
                 {
                     searchedProducts.map(item =>
 
-                        <AssortmentItem key={item.name} assortment={item} onClick={onClick} />
+                        <AssortmentItem key={item.name} assortment={item} getAllProd={getAllProd} />
                     )
                 }
 

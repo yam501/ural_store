@@ -46,7 +46,7 @@ const AssortmentItem = (props) => {
       </Row>
 
       <>
-        <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} onClick={props.onClick} />
+        <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} getAllProd={props.getAllProd} />
       </>
     </Form>
   )
