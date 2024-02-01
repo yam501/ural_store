@@ -362,7 +362,7 @@
 }
 
 .form_check_order_section_input {
-    padding-left: 3%;
+    padding-left: 15px;
     border: 1px solid gray;
     border-radius: 15px;
     outline: none !important;
