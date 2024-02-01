@@ -69,6 +69,7 @@ function Basket() {
 
     const countAproxSum = async () => {
         setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
+        basket._baskets.aproxSum = basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0)
     }
 
     if (loading) {

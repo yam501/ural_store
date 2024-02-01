@@ -46,6 +46,7 @@ function Order() {
             event.stopPropagation();
         } else {
             await order.createOrderByBasketId(user._user.id, getStringAddress(dataOfOrder), aproxSum, true, basket.basket.id, dataOfOrder.comment, dataOfOrder.tel)
+            basket._baskets.aproxSum = 0
             setOrderProductsDinamic([])
             tryGetOrder()
             return 0

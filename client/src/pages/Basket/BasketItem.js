@@ -83,6 +83,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
             } else {
                 const newCount = prevCount - productType[type].additionCount
                 basketItem.count = prevCount - productType[type].additionCount;
+                props.countAproxSum()
                 delaySend()
                 return newCount
             }
