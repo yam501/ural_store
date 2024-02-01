@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { observer } from 'mobx-react-lite';
 import { Image } from 'react-bootstrap';
 import Toggle from '../../components/Toggle';
@@ -6,13 +6,34 @@ import order from "./Order";
 import {Context} from "../../index";
 
 function OrderProduct({  orderProduct, ...props }) {
-    const {basketProduct} = useContext(Context)
+    const {basketProduct, user} = useContext(Context)
     const [toggleState, setToggleState] = useState(orderProduct === null ? false : orderProduct.moreOrLess)
+    const [dataSend, setIsDataSend] = useState(false) 
     const toggleSwitch = () => {
         orderProduct.moreOrLess = !toggleState;
-        basketProduct.changeMoreOrLessByBasketProductID(orderProduct.id, !toggleState)
+        setIsDataSend(true)
         setToggleState(!toggleState)
     }
+
+    useEffect(() => {
+        if (user.isLoading) {
+            setTimeout(() => {
+                user.setIsLoading(false)
+            }, 2000)
+        }
+    }, [user.isLoading])
+
+    useEffect(() => {
+        if (dataSend) {
+            const timerId = setTimeout(() => {
+                user.setIsLoading(true)
+                basketProduct.changeMoreOrLessByBasketProductID(orderProduct.id, orderProduct.moreOrLess)
+                setIsDataSend(false)
+            }, 1000)
+            
+            return () => clearTimeout(timerId)
+        }
+    }, [dataSend, toggleState])
 
     return (
         <div >
