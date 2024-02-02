@@ -43,7 +43,7 @@ const ShopBasketButton = () => {
                               stroke-linecap="round"/>
                     </svg>
                 </div>
-                <span className="navbar_basket_aprsum"> {aprSum}₽</span>
+                {user._isAuth && <span className="navbar_basket_aprsum"> {aprSum}₽</span>}
             </Button>
         </NavLink>
     );

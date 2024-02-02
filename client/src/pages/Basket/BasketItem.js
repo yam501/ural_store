@@ -48,9 +48,15 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     }
 
     useEffect(() => {
+        if (user.isLoading) {
+            setTimeout(() => user.setIsLoading(false), 2000)
+        }
+    }, [user.isLoading])
+
+    useEffect(() => {
         if (isDataSend) {
             const timerId = setTimeout(() => {
-            console.log('gotovo')
+            user.setIsLoading(true)
             basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct)
             setIsDataSend(false);
           }, 1000);
