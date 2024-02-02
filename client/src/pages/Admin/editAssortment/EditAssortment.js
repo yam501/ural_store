@@ -63,7 +63,7 @@ function EditAssortment({ products, getAllProd }) {
                 {
                     searchedProducts.map(item =>
 
-                        <AssortmentItem key={item.name} assortment={item} getAllProd={getAllProd} />
+                        <AssortmentItem key={item.id} assort={item} getAllProd={getAllProd} />
                     )
                 }
 
