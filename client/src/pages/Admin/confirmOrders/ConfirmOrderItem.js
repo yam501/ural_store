@@ -26,19 +26,19 @@ function ConfirmOrderItem({order, user, sendWS, update}) {
     async function changeOnCreateState(state) {
         await orderStore.changeOnCreateByOrderId(order.id, state)
         setOnCreate(state)
-        sendWS(order.id)
+        sendWS(order.id, 'messageFromAdminUpdate')
     }
 
     async function changeOnDeliverState(state) {
         await orderStore.changeOnDeliverByOrderId(order.id, state)
         setOnDeliver(state)
-        sendWS(order.id)
+        sendWS(order.id, 'messageFromAdminUpdate')
     }
 
     async function changeDeliverState(state) {
         await orderStore.changeDeliveredByOrderId(order.id, state)
         setDelivered(state)
-        sendWS(order.id)
+        sendWS(order.id, 'messageFromAdminUpdate')
     }
 
     useEffect(() => {
@@ -47,6 +47,13 @@ function ConfirmOrderItem({order, user, sendWS, update}) {
 
     async function deleteOrder() {
         await adminOrders.deleteOrder(order.id)
+        sendWS(order.id, 'messageFromAdminDelete')
+        update()
+    }
+
+    async function cancelOrder() {
+        await adminOrders.createComplitedOrderByOrderId(order.id)
+        sendWS(order.id, 'messageFromAdminDelete')
         update()
     }
 
@@ -145,7 +152,7 @@ function ConfirmOrderItem({order, user, sendWS, update}) {
 
                                                     //
                                                 }
-                                                <button className="confirm_order_item_btn_deny" onClick={deleteOrder}>
+                                                <button className="confirm_order_item_btn_deny" onClick={cancelOrder}>
                                                     Завершить заказ
                                                 </button>
                                             </div>

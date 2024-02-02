@@ -7,6 +7,7 @@ const complitedOrdersController = require('../controllers/complitedOrdersControl
 //Объединенные
 
 router.post('/repeatOrderByComplitedOrderIdAndBasketId', authMiddleware, activatedMiddleware, complitedOrdersController.repeatOrderByComplitedOrderIdAndBasketId)
+router.post('/createComplitedOrderByOrderId', complitedOrdersController.createComplitedOrderByOrderId)
 
 //
 

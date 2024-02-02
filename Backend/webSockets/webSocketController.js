@@ -14,8 +14,12 @@ module.exports = async function(io) {
             console.log("Присоединился новый админ")
         })
 
-        socket.on('messageFromAdmin', message => {
+        socket.on('messageFromAdminUpdate', message => {
             socket.to(message['orderId']).emit('update', 'update')
+        })
+
+        socket.on('messageFromAdminDelete', message => {
+            socket.to(message['orderId']).emit('delete', 'delete')
         })
     })
 }

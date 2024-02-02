@@ -20,8 +20,8 @@ function ConfirmOrders() {
         path: "/webSocket/"
     })
 
-    function sendWS(orderId) {
-        socket.emit("messageFromAdmin", {"orderId": orderId})
+    function sendWS(orderId, topic) {
+        socket.emit(topic, {"orderId": orderId})
     }
 
     socket.on('update', message => {
