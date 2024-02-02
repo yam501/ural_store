@@ -15,6 +15,7 @@ body {
 Button:focus{
     background-color: #9c3d58 !important;
     box-shadow: 0 0 0 3px #c04c6f !important;
+    color: #f1f1f1 !important;
 }
 
 * {
@@ -91,6 +92,10 @@ Button:focus{
     opacity: 90%;
 }
 
+.button-section:focus{
+    background-color: #9c3d58 !important;
+    box-shadow: 0 0 0 3px #c04c6f !important;
+}
 
 .meat-section-content {
     background: url("../assets/meat-bg1.svg") 0 0 / 100% no-repeat;
