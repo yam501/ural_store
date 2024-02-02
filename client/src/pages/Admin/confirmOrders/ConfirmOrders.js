@@ -57,7 +57,7 @@ function ConfirmOrders() {
                 ordersDinamic.length === 0 ?
                     <div>Заказов нет, адыхаем</div>
                     :
-                    ordersDinamic.map(order => {
+                    ordersDinamic.slice().sort((a, b) => b.canceled - a.canceled).map(order => {
                         const user = usersDinamic.find((potUser) => potUser.id === order.userId)
                         return <ConfirmOrderItem key={order.id} order={order} user={user} sendWS={sendWS} update={getOrders}></ConfirmOrderItem>
                     })
