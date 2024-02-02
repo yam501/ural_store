@@ -42,6 +42,12 @@ const App = observer(() => {
   }, [user._user.id])
 
 
+  //ЗАГРУЖАЕТ ТОВАРЫ В ПЕРВУЮ ОЧЕРЕДЬ
+  // useEffect(() => {
+  //   product.getAllByAvailable(true)
+  // }, []);
+
+
   const [showHeader, setShowHeader] = useState(false)
   useEffect(() => {
     let prevScrollPos = window.scrollY;

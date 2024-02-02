@@ -9,15 +9,16 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import OwlCarousel from 'react-owl-carousel';
 
 const ProductList = ({product, state, type, productShow}) => {
-    const {basket, basketProduct} = useContext(Context)
+    const {basket, basketProduct, user} = useContext(Context)
     const [basketProductsList, setBasketProductsList] = useState([]);
     const deleteBasketItem = (id) => {
         setBasketProductsList(basketProductsList.filter(item => item.assortmentId !== id))
     }
     const fillBasketProductList = async () => {
+        if (user._isAuth){
             await basketProduct.getAllBasketProductsByBasketID(basket.basket.id).then(res => {
                 if (res) setBasketProductsList(basketProduct.basketProduct)
-            })
+            })}
           
     }
     useEffect(() => {

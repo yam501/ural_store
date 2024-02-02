@@ -82,9 +82,9 @@ function Basket() {
                 {basketItems.length === 0 ?
                     <div className='d-flex justify-content-center align-items-center basket-empty'>
                         {user._isAuth ?
-                            "Ваша корзина пока что пуста"
+                            <p>Ваша корзина пока что пуста</p>
                             :
-                            'Чтобы добавить товар зарегестрируйтесь на сайте'
+                            <p>Чтобы добавить товар зарегистрируйтесь на сайте</p>
                         }
                         <div className='basket-empty-content'>
                             {user._isAuth ?
@@ -95,7 +95,7 @@ function Basket() {
                                 </>
                                 :
                                 <button className='btn-returnToStore text-white'
-                                        onClick={handleShowControl}>Регестрация</button>
+                                        onClick={handleShowControl}>Регистрация</button>
                             }
                         </div>
                     </div> : basketItems.map((basketItem) =>
