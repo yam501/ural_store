@@ -88,12 +88,11 @@ class AssortmentController {
 
     }
 
-    async deleteOneByName(req, res, next) {
+    async deleteOneById(req, res, next) {
         try {
-            const { name } = req.body
-            const product = await Assortment.findOne({ where: { name: name } })
-            const deleted = await Assortment.destroy({ where: { name: name } })
-            await BasketProduct.destroy({ where: { assortmentId: product['id'] } })
+            const { id } = req.body
+            const deleted = await Assortment.destroy({ where: { id: id } })
+            await BasketProduct.destroy({ where: { assortmentId: id } })
             const updatedBaskets = await Basket.findAll()
             updatedBaskets.forEach(element => basketController.updateSum(element['id']))
             return res.json(deleted)

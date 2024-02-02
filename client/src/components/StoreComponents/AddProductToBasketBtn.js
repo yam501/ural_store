@@ -7,7 +7,7 @@ const AddProductToBasketBtn = ({product, countProduct, switchCardState, cost}) =
     const {basket} = useContext(Context)
     
     const addProductInBasket = () => {
-        basket._baskets.aproxSum += cost * countProduct
+        basket._baskets.aproxSum += cost
 
         console.log(cost)
         console.log(countProduct)

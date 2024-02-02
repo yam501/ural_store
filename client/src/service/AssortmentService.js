@@ -10,8 +10,8 @@ const AssortmentService = {
 
 
 
-    async deleteOneByName(name) {
-        return new Promise((resolve) => resolve($authHost.post('api/assortment/deleteProductByName', { name })))
+    async deleteOneById(id) {
+        return new Promise((resolve) => resolve($authHost.post('api/assortment/deleteProductById', { id })))
     },
 
 

@@ -13,11 +13,9 @@ const AssortmentItem = (props) => {
   const [showModal, setShowModal] = useState(false)
 
   async function delButton() {
-    await AssortmentService.deleteOneByName(props.assortment.name)
-    await props.onClick()
+    await assortment.deleteOneById(props.assort.id)
+    await props.getAllProd()
   }
-
-
 
   return (
     <Form>
@@ -25,15 +23,15 @@ const AssortmentItem = (props) => {
       <Row className='p-2 m-1'>
 
         <Col className='border-1 p-2'>
-          {props.assortment.name}
+          {props.assort.name}
         </Col>
 
         <Col className='border-2 p-2'>
-          {props.assortment.type}
+          {props.assort.type}
         </Col>
 
         <Col className='border-1 p-2'>
-          {props.assortment.costPerOne}
+          {props.assort.costPerOne}
         </Col>
 
         <Col className='p-2'>
@@ -46,12 +44,11 @@ const AssortmentItem = (props) => {
       </Row>
 
       <>
-        <EditModal show={showModal} onHide={() => setShowModal(false)} assortment={props.assortment} getAllProd={props.getAllProd} />
+        <EditModal show={showModal} onHide={() => setShowModal(false)} assort={props.assort} getAllProd={props.getAllProd} />
       </>
     </Form>
   )
 
 }
-// <Form.Check onChange={changeIsDel} type='checkbox'  ? true : false} />
 
 export default observer(AssortmentItem);

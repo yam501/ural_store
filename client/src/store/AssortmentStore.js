@@ -78,6 +78,10 @@ export default class AssortmentStore {
     }
 
 
+    async deleteOneById(id){
+        await AssortmentService.deleteOneById(id)
+    }
+
 
     get assortments() {
         return this._assortments

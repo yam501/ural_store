@@ -32,29 +32,37 @@ const FeedB = () => {
     setVariant('danger')
   }
 
-  const afterButton = event => {
+  const afterButton = async event => {
 
     const form = event.currentTarget;
     event.preventDefault();
     setValidated(true)
 
-    if (type.includes('Тип отзыва')) {
-      event.stopPropagation();
-      setVariant('danger')
-    }
     if (form.checkValidity() === false || type.includes('Тип отзыва')) {
       event.stopPropagation();
+      setVariant('danger')
 
     }
     else {
-      FeedbackService.sendFeedback(type, mail, name, comment)
-      setValidated(false)
-      setShow(false)
-      setVariant('secondary')
-      setType('Тип отзыва')
-      setName('')
-      setMail('')
-      setComment('')
+      try {
+        await FeedbackService.sendFeedback(type, mail, name, comment)
+        setValidated(false)
+        setShow(false)
+        setVariant('secondary')
+        setType('Тип отзыва')
+        setName('')
+        setMail('')
+        setComment('')
+      } catch (error) {
+        alert("Авторизируйтесь")
+      }
+
+
+
+     
+
+
+
     }
 
 
