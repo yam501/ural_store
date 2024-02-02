@@ -86,7 +86,7 @@ class AssortmentController {
             next(ApiError.badRequest(e.message))
         }
 
-    }
+    } 
 
     async deleteOneById(req, res, next) {
         try {
