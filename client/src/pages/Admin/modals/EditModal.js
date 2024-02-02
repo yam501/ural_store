@@ -5,7 +5,7 @@ import { Context } from '../../..';
 import "./modal_edit.css"
 
 const EditModal = (props) => {
-    const assort = props.assortment
+    const assort = props.assort
 
     const { assortment } = useContext(Context)
 
