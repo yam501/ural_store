@@ -175,7 +175,7 @@ export default class UserStore {
 
     async sendCode(number) {
         const phoneMask = new PhoneInputMask()
-        number = phoneMask.formatNumberToBackend()
+        number = phoneMask.formatNumberToBackend(number)
         const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/sendCode`, { number })
         return response
     }
