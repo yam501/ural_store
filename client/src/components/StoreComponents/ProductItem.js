@@ -65,7 +65,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
             if (countProduct >= productType[type].displayValue) {
                 const newCount = prevCount + productType[type].additionCount;
                 delaySend();
-                basket._baskets.aproxSum += productType[type].additionCount * product.costPerOne
+                basket._baskets.aproxSum += productType[type].additionCount
                 return newCount;
             } else {
                 return prevCount;
@@ -78,7 +78,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
             if (countProduct > productType[type].displayValue) {
                 const newCount = prevCount - productType[type].additionCount
                 delaySend()
-                basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
+                basket._baskets.aproxSum -= productType[type].additionCount
                 return newCount
             } else {
                 basketProductsList.map(item => {
@@ -88,7 +88,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 })
                 deleteBasketProductItem(product.id);
                 setCardState(false)
-                basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
+                basket._baskets.aproxSum -= productType[type].cost
                 return prevCount;
             }
         })
@@ -201,7 +201,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-
+                    {cardState ?
                     <div className='card_wrapper_content'>
                         <div className="card_btn_box">
                             <Button className='btn-minus rounded-circle justify-self-start' onClick={() => minus()}>
@@ -213,11 +213,13 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                                 +
                             </Button>
                         </div>
-                    </div>
+                    </div> :
                     <div className="card_wrapper_content">
                         <AddProductToBasketBtn product={product} cost={productType[type].cost}
+                                               switchCardState={switchCardState} type={type}
                                                countProduct={countProduct}/>
                     </div>
+                    }
                 </Modal.Footer>
             </Modal>
         </>
