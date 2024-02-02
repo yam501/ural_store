@@ -1,4 +1,5 @@
 import { $authHost, $host } from "../http";
+import order from "../pages/Order/Order";
 
 const ComplitedOrdersService = {
     async getAllComplitedOrdersByUserId(userId, limit, page) {
@@ -20,6 +21,13 @@ const ComplitedOrdersService = {
         return new Promise((resolve) => resolve($authHost.post(
             'api/complitedOrder/repeatOrderByComplitedOrderIdAndBasketId',
             {complitedOrderId, basketId}
+        )))
+    },
+
+    async createComplitedOrderByOrderId(orderId) {
+        return new Promise((resolve) => resolve($authHost.post(
+            'api/complitedOrder/createComplitedOrderByOrderId',
+            {orderId}
         )))
     }
 }

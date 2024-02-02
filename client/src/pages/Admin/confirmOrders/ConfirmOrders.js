@@ -4,7 +4,6 @@ import { Context } from "../../..";
 import ConfirmOrderItem from "./ConfirmOrderItem";
 import './confirmOrder.css'
 import { io } from 'socket.io-client'
-import order from "../../Order/Order";
 function ConfirmOrders() {
     const { adminOrders, use } = useContext(Context)
     const [ordersDinamic, setOrdersDinamic] = useState([])
@@ -21,8 +20,8 @@ function ConfirmOrders() {
         path: "/webSocket/"
     })
 
-    function sendWS(orderId) {
-        socket.emit("messageFromAdmin", {"orderId": orderId})
+    function sendWS(orderId, topic) {
+        socket.emit(topic, {"orderId": orderId})
     }
 
     socket.on('update', message => {
@@ -55,7 +54,7 @@ function ConfirmOrders() {
         <div>
             {
                 ordersDinamic.length === 0 ?
-                    <div>Заказов нет, адыхаем</div>
+                    <div className="confirm-order-empty">Заказов нет, адыхаем</div>
                     :
                     ordersDinamic.slice().sort((a, b) => b.canceled - a.canceled).map(order => {
                         const user = usersDinamic.find((potUser) => potUser.id === order.userId)

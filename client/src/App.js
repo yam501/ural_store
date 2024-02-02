@@ -43,9 +43,9 @@ const App = observer(() => {
 
 
   //ЗАГРУЖАЕТ ТОВАРЫ В ПЕРВУЮ ОЧЕРЕДЬ
-  // useEffect(() => {
-  //   product.getAllByAvailable(true)
-  // }, []);
+  useEffect(() => {
+    product.getAllByAvailable(true)
+  }, []);
 
 
   const [showHeader, setShowHeader] = useState(false)

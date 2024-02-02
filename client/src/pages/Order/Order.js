@@ -83,7 +83,7 @@ function Order() {
         <div className='page_body order_page_body'>
             {
                 isOrder ?
-                    <OrderStages></OrderStages> :
+                    <OrderStages tryGetOrder={tryGetOrder}></OrderStages> :
                     <div>
                         {/* <h1 className='page_title'> Текущий заказ</h1> */}
                         {orderProductsDinamic.length === 0 ?
