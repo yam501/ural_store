@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Spinner } from "react-bootstrap";
 import './loading.css'
+import { useEffect } from "react";
+import { Context } from '..';
 const Loading = () => {
-
+    const {user} = useContext(Context)
+   
 
     return (
         <div className='loading_wrapper'>

@@ -114,6 +114,14 @@ body {
     border: 0;
     font-size: calc(12px + 4 * (100vw/1903));
     font-weight: 500;
+    caret-color: transparent;
+}
+
+.basket_item_cost::-webkit-outer-spin-button,
+.basket_item_cost::-webkit-inner-spin-button {
+   
+    -webkit-appearance: none;
+    margin: 0; 
 }
 
 .basket_item_cost:disabled {

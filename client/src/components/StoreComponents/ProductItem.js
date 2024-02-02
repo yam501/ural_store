@@ -21,15 +21,15 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
     const [type, setType] = useState(product.unitsOfMeasurement)
     const productType = {
         "кг": {
-            value: countProduct > 999 ? 'кг' : 'г',
-            displayValue: 500,
-            additionCount: 100,
+            value: 'кг',
+            displayValue: 0.5,
+            additionCount: 0.5,
             cost: Math.round(product.costPerOne * countProduct)
         },
         "г": {
-            value: countProduct > 999 ? 'кг' : 'г',
-            displayValue: 100,
-            additionCount: 50,
+            value: 'кг',
+            displayValue: 0.1,
+            additionCount: 0.1,
             cost: Math.round(product.costPerOne * countProduct)
         },
         "шт": {
@@ -147,7 +147,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                                 {countProduct <= productType[type].displayValue ? <DeleteButton/> : '-'}
                             </Button>
                             <span
-                                className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct > 999 ? countProduct / 1000 : countProduct} {productType[type].value} </span>
+                                className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct.toFixed(1)} {productType[type].value} </span>
                             <Button className='btn-plus rounded-circle' onClick={() => plus()}>
                                 +
                             </Button>
@@ -163,7 +163,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
 
                             <div className='card_wraper_content_inform'>
                                 <div className='mb-1 info-text'>
-                                    {Math.round(product.costPerOne * productType[type].displayValue)} ₽
+                                    {productType[type].cost} ₽
                                 </div>
                                 <div className='info-text'>
                                     {productType[type].displayValue + productType[type].value}

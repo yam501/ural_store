@@ -12,15 +12,15 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     // const [type, setType] = useState(product.unitsOfMeasurement)
     const productType = {
         "кг": {
-            value: countProduct > 999 ? 'кг' : 'г',
-            displayValue: 500,
-            additionCount: 100,
+            value: 'кг',
+            displayValue: 0.5,
+            additionCount: 0.5,
             cost: Math.round(product.costPerOne * countProduct)
         },
         "г": {
-            value: countProduct > 999 ? 'кг' : 'г',
-            displayValue: 100,
-            additionCount: 50,
+            value: 'кг',
+            displayValue: 0.1,
+            additionCount: 0.1,
             cost: Math.round(product.costPerOne * countProduct)
         },
         "шт": {
@@ -35,17 +35,39 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     //     assortmentList.map(productItem => productItem.id === basketItem.assortmentId && settype(productItem.type))
     // }, [basketItem.id])
 
-    const changeCountProductByInput = (e) => {
-        if (e.target.value > 0) {
-            setCountProduct((prevCount) => {
-                const newCount =+e.target.value;
-                delaySend()
-                basketItem.count = newCount;
-                props.countAproxSum();
-                return newCount
-            });
-        }
-    }
+    // const changeCountProductByInput = (e) => {
+    //     // if (e.target.value > 0.5) {
+    //         setCountProduct((prevCount) => {
+    //             let newCount =+e.target.value;
+    //             if (newCount % 10 !== 0 && productType[type].displayValue === 0.5) {
+    //                 newCount = Math.round(newCount * 2)/2;
+    //             } else if (productType[type].displayValue === 1) {
+    //                 newCount = Math.round(newCount)
+    //             } else if (newCount % 10 !== 0 && productType[type].displayValue === 0.1) {
+    //                 newCount = newCount.toFixed(1)
+    //             }
+
+
+    //             if (newCount === 0 && productType[type].displayValue === 0.5) {
+    //                 newCount = 0.5
+    //             } else if (newCount === 0 && productType[type].displayValue === 1) {
+    //                 newCount = 1;
+    //             } else if (newCount === 0 && productType[type].displayValue === 0.1) {
+    //                 newCount = 0.1
+    //             }
+
+
+    //             if (newCount === prevCount) {
+    //                 return prevCount
+    //             }
+
+    //             delaySend()
+    //             basketItem.count = newCount;
+    //             props.countAproxSum();
+    //             return newCount
+    //         });
+    //     // }
+    // }
 
     useEffect(() => {
         if (user.isLoading) {
@@ -57,7 +79,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
         if (isDataSend) {
             const timerId = setTimeout(() => {
             user.setIsLoading(true)
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct)
+            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct.toFixed(1))
             setIsDataSend(false);
           }, 1000);
           
@@ -73,7 +95,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     const plus = async () => {
         setCountProduct(prevCount => {
             const newCount = prevCount + productType[type].additionCount;
-            basketItem.count = prevCount + productType[type].additionCount;
+            basketItem.count = (prevCount + productType[type].additionCount).toFixed(1);
             props.countAproxSum()
             delaySend();
             return newCount;
@@ -88,7 +110,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
                 props.deleteItem(basketItem.assortmentId)
             } else {
                 const newCount = prevCount - productType[type].additionCount
-                basketItem.count = prevCount - productType[type].additionCount;
+                basketItem.count = (prevCount - productType[type].additionCount).toFixed(1);
                 props.countAproxSum()
                 delaySend()
                 return newCount
@@ -118,10 +140,12 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
                         onClick={minus}>
                         {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
                     </Button>
-                    <Form.Control value={countProduct > 999 ? countProduct/1000 : countProduct   }  onChange={(e) => {
-                     changeCountProductByInput(e)
-                    }
-                    } className='basket_item_cost'
+                    <Form.Control type='number' value={countProduct.toFixed(1)}  
+                    // onChange={(e) => {
+                    //  changeCountProductByInput(e)
+                    // }
+                    // }
+                     className='basket_item_cost'
                     />
                     <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white'
                         onClick={plus}>
