@@ -1,10 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import { check } from '../../http/userAPI';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Accept from './Accept';
 import { ADMIN_ROUTE } from '../../utils/consts';
 
@@ -24,7 +23,7 @@ const LogOutButton = observer((props) => {
             <Button
             onClick={() => user.logout()}
             type='submit'
-            className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
+            className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnLogOut'
             >
             <span className='btnLogOutText'>Выйти</span>
             </Button>

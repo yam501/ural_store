@@ -63,7 +63,7 @@ const FeedB = () => {
 
     return (
         <>
-      <span onClick={handleShow} className="me-2 text-white feedb-link">
+      <span onClick={handleShow} className="me-2 text-white feedb-link menuItemText">
         Оставить отзыв
       </span>
             <Offcanvas className='border-0 feedb-wrapper' show={show} placement='end' onHide={handleClose}>

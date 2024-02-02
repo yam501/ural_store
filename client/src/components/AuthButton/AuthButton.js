@@ -6,6 +6,7 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 import { ADMIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
+import AdminIcon from "./AdminIcon";
 
 
 const AuthButton = observer(({show, handleShowControl, ...props}) => {
@@ -23,17 +24,18 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             <Button
                 onClick={() => logout()}
                 type='submit'
-                className='ms-3 d-flex justify-content-around align-items-center btnAuth btnLogOut'
+                className='ms-5 me-2 justify-content-center align-items-center btnLogOut'
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
             <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
-                <Button className='ms-2 container rounded-circle adminPanBtn'>
+                <Button className='adminPanBtn'>
                     <AuthIcon />
                 </Button>
             </NavLink>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
-                <Button className='ms-2 container rounded-circle admin-icon'>
+                <Button className='me-3 adminPanBtn d-flex justify-content-center align-items-center'>
+                    <AdminIcon/>
                 </Button>
             </NavLink>
         </div>
@@ -43,7 +45,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             <Button
                 onClick={() => logout()}
                 type='submit'
-                className='ms-3 d-flex justify-content-around align-items-center btnAuth btnLogOut'
+                className='ms-3 d-flex justify-content-center align-items-center btnLogOut'
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>

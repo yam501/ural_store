@@ -12,9 +12,10 @@ body {
     }
 }
 
+
 Button:focus-visible{
     background-color: #9c3d58 !important;
-    box-shadow: 0 0 0 3px #c04c6f !important;
+    box-shadow: 0 0 0 3px #e6688b !important;
     color: #f1f1f1 !important;
 }
 
@@ -80,9 +81,11 @@ Button:focus-visible{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.5s;
 }
 
 .button-section:hover {
+    transform: translateY(3px);
     background-color: #FF709A;
     color: #ffffff;
 }
@@ -94,7 +97,7 @@ Button:focus-visible{
 
 .button-section:focus-visible{
     background-color: #9c3d58 !important;
-    box-shadow: 0 0 0 3px #c04c6f !important;
+    box-shadow: 0 0 0 3px #e6688b !important;
 }
 
 .meat-section-content {

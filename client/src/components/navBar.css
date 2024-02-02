@@ -32,11 +32,19 @@
 .btnBasket {
     height: 40px;
     width: auto;
-    background-color: #d6587b;
+    background: linear-gradient(to right, #e6688b 50%, #BF486A 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
     border: 0;
+    transition: background-position 0.7s;
 }
 
-.navbar_basket_aprsum{
+.btnBasket:hover {
+    background-position: 0 0;
+}
+
+
+.navbar_basket_aprsum {
     font-size: calc(14px + 2 * (100vw / 1903));
 }
 
@@ -56,11 +64,14 @@
     }
 }
 
+
+
 .btnAuth:hover,
 .btnBasket:hover,
 .adminBtn:hover,
 .adminPanBtn:hover,
-.admin-icon:hover {
+.admin-icon:hover,
+.btnLogOut:hover {
     background-color: #e6688b !important;
 }
 
@@ -68,7 +79,8 @@
 .btnBasket:active,
 .adminBtn:active,
 .adminPanBtn:active,
-.admin-icon:active {
+.admin-icon:active,
+.btnLogOut:hover {
     background-color: #e6688b !important;
 }
 
@@ -83,10 +95,16 @@
     color: #ffdee7;
 }
 
+a:focus-visible {
+    background-color: #9c3d58 !important;
+    box-shadow: 0 0 0 3px #e6688b !important;
+    outline: none;
+}
+
 .adressBox,
 .adressBox:active {
     width: fit-content;
-    height: 2.6vw;
+    height: 40px;
     background-color: #d6587b !important;
     color: #FFCDDC;
     /* opacity: 70%; */
@@ -96,7 +114,7 @@
 .adressBox:hover {
     width: fit-content;
     height: 2.6vw;
-    background-color: #ff709a;
+    background-color: #e6688b !important;
     text-decoration: underline;
 }
 
@@ -154,22 +172,21 @@
 }
 
 .shop_logo {
-    background: url("../assets/uralskiy_logo.svg")  no-repeat;
-    background-position: left;
+    background: url("../assets/uralskiy_logo.svg") no-repeat left;
     background-size: 80%;
     width: 250px;
     height: 70px;
 }
 
 @media (max-width: 570px) {
-    .shop_logo{
+    .shop_logo {
         background-size: 50%;
     }
 }
 
-@media (max-width: 380px) {
-    .shop_logo{
-        background-size: 45%;
+@media (max-width: 420px) {
+    .shop_logo {
+        display: none;
     }
 }
 
@@ -286,10 +303,14 @@
     margin-bottom: 2.5vw;
 }
 
-.menuItemText:focus-visible{
+.menuItemText:focus-visible {
     background-color: #9c3d58 !important;
-    box-shadow: 0 0 0 3px #c04c6f !important;
+    box-shadow: 0 0 0 3px #e6688b !important;
     outline: none;
+}
+
+.menuItemText {
+    font-size: calc(14px + 4 * (100vw / 1903));
 }
 
 
@@ -332,10 +353,10 @@
 
 .btnLogOut {
     text-align: center;
-    min-height: 29px !important;
-    min-width: 60px !important;
-    width: 5vw !important;
-    height: 2.6vw !important;
+    background-color: #BF486A;
+    border: 0;
+    width: 100%;
+    height: 40px;
 }
 
 
@@ -361,8 +382,8 @@
 }
 
 .adminPanBtn {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: #962A4A;
     margin-left: 7px !important;
     border: 0;
@@ -548,18 +569,11 @@
 }
 
 .admin-icon {
-    background: url("../assets/admin-panel.svg") 0 0 / 60% no-repeat;
-    background-position: center;
-    background-color: #962A4A;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border: 0;
 }
 
-.admin-icon:hover {
-    background: url("../assets/admin-panel-hover.svg") 0 0 / 60% no-repeat;
-    background-position: center;
-}
 
 .resend_code_button {
     border: none;
@@ -586,5 +600,16 @@
 }
 
 .menuLogoutItem {
+    font-size: calc(18px + 4 * (100vw / 1903));
+    background-color: #832440 !important;
+    border: 0;
+    border-radius: 0;
     cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.menuLogoutItem:hover,
+.menuLogoutItem:focus-visible{
+    transform: translateX(10px);
+    text-decoration-thickness: 2px;
 }

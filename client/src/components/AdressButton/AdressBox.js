@@ -7,11 +7,14 @@ const AdressBox = ({adress, ...props}) => {
     return (
         <Button className={`
         border-0
+        rounded-pill
         p-1
         me-3
+        ms-3
         d-flex
+        justify-content-center
         align-items-center
-        ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`} 
+        ${props.width <= 1199 ? 'menuAdressBox' : 'adressBox'}`}
         {...props}
         
         >
