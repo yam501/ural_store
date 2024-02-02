@@ -12,7 +12,7 @@ body {
     }
 }
 
-Button:focus{
+Button:focus-visible{
     background-color: #9c3d58 !important;
     box-shadow: 0 0 0 3px #c04c6f !important;
     color: #f1f1f1 !important;
@@ -92,7 +92,7 @@ Button:focus{
     opacity: 90%;
 }
 
-.button-section:focus{
+.button-section:focus-visible{
     background-color: #9c3d58 !important;
     box-shadow: 0 0 0 3px #c04c6f !important;
 }
