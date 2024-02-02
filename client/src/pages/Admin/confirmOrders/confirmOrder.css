@@ -41,6 +41,17 @@
     font-size: calc(14px + 2 * (100vw/1903));
 }
 
+.confirm_order_item_stages_isConfirm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 220px;
+    .confirm_order_item_btn_deny{
+        width: 160px;
+        margin-inline: auto;
+    }
+}
+
 .confirm_order_item_stages_wait {
     display: flex;
     justify-content: center;
@@ -58,14 +69,29 @@
     align-items: center;
 }
 
+.btn_confirm_order_item_stages_wrapper_delivered{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .btn_confirm_order_item_stages{
+        margin-inline: auto;
+    }
+    .confirm_order_item_btn_deny{
+        margin-inline: auto;
+        width: 198px;
+    }
+}
+
 .btn_confirm_order_item_stages {
     height: 40px;
     border: 0;
     border-radius: 0.5rem;
     background-color: #979696;
     color: #fff;
-    font-size: calc(12px + 2 * (100vw/1903));
+    font-size: calc(14px + 2 * (100vw/1903));
 }
+
+
 
 @media (max-width: 768px) {
     .btn_confirm_order_item_stages {
@@ -85,8 +111,8 @@
 }
 
 .confirm_order_item_deny{
-    font-size: calc(12px + 4 * (100vw / 1903));
-    font-weight: 600;
+    font-size: calc(14px + 2 * (100vw/1903));
+    font-weight: 500;
     text-align: center;
     color: white;
     background-color: #832440;
@@ -95,8 +121,8 @@
 }
 
 .confirm_order_item_btn_deny{
-    font-size: calc(12px + 4 * (100vw / 1903));
-    font-weight: 600;
+    font-size: calc(14px + 2 * (100vw/1903));
+    font-weight: 500;
     text-align: center;
     color: white;
     background-color: #ff709a;
