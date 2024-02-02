@@ -48,7 +48,7 @@ function OrderProduct({  orderProduct, ...props }) {
                         </Image>
                         <div className='order-product-name'>
                             <h2 className='order-product-text'>{orderProduct.name}</h2>
-                            {orderProduct.type === 'Мясо' || orderProduct.type === 'Салаты' || orderProduct.type === 'Овощи' ?
+                            {orderProduct.unitsOfMeasurement !== 'шт'  ?
                             <div className='checkbox-content'>
                                 <Toggle toggleState={toggleState} toggleSwitch={toggleSwitch} />
                             </div>
@@ -59,7 +59,7 @@ function OrderProduct({  orderProduct, ...props }) {
                         </div>
 
                         <div className='order_product_card_inform'>
-                            <div className='order_product_card_cost'>{orderProduct.costPerOne * orderProduct.count} ₽</div>
+                            <div className='order_product_card_cost'>{Math.floor(orderProduct.costPerOne * orderProduct.count)} ₽</div>
                             <div className='order_product_card_count'>{orderProduct.count} {orderProduct.unitsOfMeasurement}</div>
                         </div>
                     </div>
