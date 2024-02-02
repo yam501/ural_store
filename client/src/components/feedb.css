@@ -9,7 +9,7 @@
     width: 25vw !important;
     min-width: 300px;
     background-color:#832440;  
-    border: 0cm;
+    border: 0;
     color: white; 
 }
 
@@ -76,7 +76,7 @@
 
 
 .feedb-button{
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', serif;
     color: black;
     font-size: 16px;
     font-weight: 600;
@@ -85,11 +85,16 @@
 }
 
 .feedb-button:hover{
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', serif;
     color: black;
     background-color: white;
 }
 .feedb-button:active{
     color: white;
     background-color:#FF709A !important;
+}
+
+.feedb-postscript{
+    font-size: calc(12px + 2 * (100vw / 1903));
+    font-style: italic;
 }
