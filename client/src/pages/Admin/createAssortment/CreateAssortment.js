@@ -19,6 +19,7 @@ function CreateAssortment() {
   const [costPerOne, setCostPerOne] = useState()
   const [composition, setComposition] = useState('')
   const [image, setImage] = useState('')
+  const [imageFront, setImageFront] = useState('')
   const [units, setUnits] = useState('Выберите единицы')
 
   const inputFile = useRef();
@@ -47,6 +48,7 @@ function CreateAssortment() {
     setComposition('')
     setCostPerOne('')
     setUnits('Выберите единицы')
+    setImageFront("")
     inputFile.current.type = "text";
     inputFile.current.value = "";
     inputFile.current.type = "file";
@@ -56,7 +58,9 @@ function CreateAssortment() {
 
   const selectFile = e => {
     setImage(e.target.files[0])
-
+    if (e.target.files && e.target.files[0]) {
+      setImageFront(URL.createObjectURL(e.target.files[0]));
+    }
   }
 
 
@@ -79,7 +83,7 @@ function CreateAssortment() {
     }
 
   }
-  // alert('Товар успешно добавлен'), onSubmit={handleSubmit}
+
 
   return (
 
@@ -147,10 +151,16 @@ function CreateAssortment() {
           required onChange={e => setComposition(e.target.value)}
         />
 
-
-        <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile} />
+        {/* <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile} /> */}
       </div>
 
+      <div className="modal_edit_content">
+        <span className="modal_edit_span">Картинка</span>
+        <img className='w-50 h-50 modal_edit_img product-img' alt={'Картинка не выбрана'} src={imageFront} thumbnail />
+      </div>
+
+      <input accept="image/*" className="mt-3 dropdown-select" placeholder="Фото" required type="file" onChange={selectFile} ref={inputFile} />
+      
       <div className="d-flex p-2 justify-content-center">
         {<Button className="addAssortment" type="submit" >Добавить</Button>}
       </div>
