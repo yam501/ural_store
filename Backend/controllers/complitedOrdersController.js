@@ -1,5 +1,5 @@
 const ApiError = require('../error/ApiError')
-const {ComplitedOrders, ComplitedOrderProduct} = require('../models/models')
+const {ComplitedOrders, ComplitedOrderProduct, Order, OrderProduct} = require('../models/models')
 const basketProductController = require('./basketProductController')
 
 class ComplitedOrdersController {
@@ -15,6 +15,28 @@ class ComplitedOrdersController {
                     complitedOrderProduct['count'], complitedOrderProduct['moreOrLess'], next)
             })
             return res.json({"Результат": "Готова"})
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async createComplitedOrderByOrderId(req, res, next) {
+        try {
+            const {orderId} = req.body
+            const order = await Order.findOne({where: {id: orderId}})
+            const orderProducts = await OrderProduct.findAll({where: {orderId: orderId}})
+            const complitedOrder= await ComplitedOrders.create(
+                {
+                    userId: order['userId'], address: order['address'], complitedSum: order['aproxSum'],
+                    orderTime: order['createdAt'], complitedTime: order['updatedAt']
+                }
+            )
+            orderProducts.forEach(orderProduct => {
+                ComplitedOrderProduct.create({complitedOrderId: complitedOrder['id'], assortmentId: orderProduct['assortmentId'],
+                                                count: orderProduct['count']})
+            })
+            await Order.destroy({where: {id: orderId}})
+            return res.json(complitedOrder)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

@@ -7,7 +7,7 @@ import {io} from 'socket.io-client'
 import OrderProductStage from "./OrderProductStage";
 import PhoneInputMask from "../../../InputMasks/PhoneInputMask";
 
-const OrderStages = () => {
+const OrderStages = ({tryGetOrder}) => {
 
     const [orderConfirm, setOrderConfirm] = useState(false);
     const [orderPacking, setOrderPacking] = useState(false);
@@ -60,6 +60,10 @@ const OrderStages = () => {
 
     socket.on('update', message => {
         updateOrder()
+    })
+
+    socket.on('delete', message => {
+        tryGetOrder()
     })
 
     async function getOrderProducts() {
