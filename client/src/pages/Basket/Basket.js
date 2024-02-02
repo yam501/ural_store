@@ -99,7 +99,7 @@ function Basket() {
                             }
                         </div>
                     </div> : basketItems.map((basketItem) =>
-                        <BasketItem key={basketItem.id} user={user._user}
+                        <BasketItem key={basketItem.id} user={user}
                                     countAproxSum={countAproxSum}
                                     deleteItem={deleteBasketItems}
                                     basket={basket}

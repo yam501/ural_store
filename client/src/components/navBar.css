@@ -577,3 +577,7 @@
     color: #c93c3c;
     font-size: calc(12px + 4 * (100vw / 1903));
 }
+
+.menuLogoutItem {
+    cursor: pointer;
+}
