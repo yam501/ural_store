@@ -1,3 +1,11 @@
+.confirm-order-empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    font-size: calc(18px + 4 * (100vw/1903));
+}
+
 .confirm_order_item_wrapper {
     display: flex;
     justify-content: space-between;

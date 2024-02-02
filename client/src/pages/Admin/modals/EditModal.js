@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react';
-import { Button, Modal, Form, Dropdown } from 'react-bootstrap';
-import { typeOfFood, unitsOfMeasurement } from "../../../utils/consts";
-import { Context } from '../../..';
+import {useContext, useState} from 'react';
+import {Button, Modal, Form, Dropdown} from 'react-bootstrap';
+import {typeOfFood, unitsOfMeasurement} from "../../../utils/consts";
+import {Context} from '../../..';
 import "./modal_edit.css"
 
 const EditModal = (props) => {
     const assort = props.assort
 
-    const { assortment } = useContext(Context)
+    const {assortment} = useContext(Context)
 
     const [name, setName] = useState(assort.name)
     const [type, setType] = useState(assort.type)
@@ -72,7 +72,7 @@ const EditModal = (props) => {
                     <div className="modal_edit_content mt-2">
                         <span className="modal_edit_span">Название</span>
                         <input className="modal_edit_input" placeholder={name}
-                            onChange={e => setName(e.target.value)}></input>
+                               onChange={e => setName(e.target.value)}></input>
                     </div>
 
                     <div className="modal_edit_content">
@@ -83,7 +83,7 @@ const EditModal = (props) => {
                                 {
                                     typeOfFood.map(item =>
                                         <Dropdown.Item className="assortment-switch-item"
-                                            eventKey={item}> {item} </Dropdown.Item>)
+                                                       eventKey={item}> {item} </Dropdown.Item>)
                                 }
                             </Dropdown.Menu>
                         </Dropdown>
@@ -96,9 +96,9 @@ const EditModal = (props) => {
                                 className="mt-3 assortment-switch">{(available ? 'Есть' : 'Нет')}  </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(true)}
-                                    key={1}>Есть</Dropdown.Item>
+                                               key={1}>Есть</Dropdown.Item>
                                 <Dropdown.Item className="assortment-switch-item" onClick={() => setAvailable(false)}
-                                    key={2}>Нет</Dropdown.Item>
+                                               key={2}>Нет</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -111,7 +111,7 @@ const EditModal = (props) => {
                                 {
                                     unitsOfMeasurement.map(item =>
                                         <Dropdown.Item className="assortment-switch-item"
-                                            eventKey={item}> {item} </Dropdown.Item>)
+                                                       eventKey={item}> {item} </Dropdown.Item>)
                                 }
                             </Dropdown.Menu>
                         </Dropdown>
@@ -121,25 +121,28 @@ const EditModal = (props) => {
                         <span className="modal_edit_span">Цена</span>
 
                         <input className="modal_edit_input" placeholder={costPerOne}
-                            onChange={e => setCostPerOne(e.target.value)}></input>
+                               onChange={e => setCostPerOne(e.target.value)}></input>
                     </div>
 
                     <div className="modal_edit_content">
                         <span className="modal_edit_span">Состав</span>
                         <input className="modal_edit_input" placeholder={composition} type='text'
-                            onChange={e => setComposition(e.target.value)}></input>
+                               onChange={e => setComposition(e.target.value)}></input>
                     </div>
 
                     <div className="modal_edit_content">
                         <span className="modal_edit_span">Картинка</span>
 
                         <img className='w-50 h-50 modal_edit_img product-img' alt={'Картинка не подгружается'}
-                            src={image || process.env.REACT_APP_API_URL + oldImage} thumbnail />
+                             src={image || process.env.REACT_APP_API_URL + oldImage}/>
 
                     </div>
-                    <input id="image_uploads" accept="image/*" className="mt-3 modal_edit_input_img" type="file"
-                        onChange={selectFile} />
-                    <hr />
+                    <label className="create-assortment-labelInput">
+                        <span className="create-assortment-labelSpan">Загрузите фото товара</span>
+                        <input id="image_uploads" accept="image/*" className="mt-3 create-assortment-input" type="file"
+                               onChange={selectFile}/>
+                    </label>
+                    <hr/>
                 </Form>
                 <Modal.Footer className="d-flex justify-content-between">
                     <div className="modal_edit_content">
