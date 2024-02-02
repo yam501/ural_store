@@ -43,7 +43,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             <Button
                 onClick={() => logout()}
                 type='submit'
-                className='ms-3 d-flex justify-content-around align-items-center rounded-pill btnAuth btnLogOut'
+                className='ms-3 d-flex justify-content-around align-items-center btnAuth btnLogOut'
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
@@ -54,7 +54,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             </NavLink>
             <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
                 <Button
-                    className='ms-2 d-flex justify-content-around align-items-center rounded-pill btnAuth btnAdmin'
+                    className='ms-2 d-flex justify-content-around align-items-center  btnAuth btnAdmin'
                 >
                     <span className='btnText'>Личный кабинет</span>
                 </Button>
@@ -64,7 +64,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
     return (
         <div >
             <Button
-                className='d-flex justify-content-around align-items-center rounded-pill btnAuth'
+                className='d-flex justify-content-around align-items-center btnAuth'
                 onClick={handleShowControl}
             ><div className='d-flex justify-content-around align-items-center w-100'>
                     <AuthIcon className='btnIcon' />
