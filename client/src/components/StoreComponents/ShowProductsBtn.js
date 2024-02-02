@@ -6,7 +6,7 @@ import { Transition } from 'react-transition-group';
 
 
 const ShowProductsBtn = ({ type }) => {
-    const { product} = useContext(Context)
+    const { product, user} = useContext(Context)
     const [productShow, setProductShow] = useState(false)
     const [productsList, setProductsList] = useState([])
     const fillProductList = () => {
@@ -19,8 +19,16 @@ const ShowProductsBtn = ({ type }) => {
 
     const click = () => {
         setProductShow(!productShow)
-
+        !productShow && user.setIsLoading(true)
     }
+
+    useEffect(() => {
+        if (user.isLoading) {
+            const timerId = setTimeout(() => {
+                user.setIsLoading(false)
+            }, 1000)
+        }
+    }, [user.isLoading, productShow])
     return (
         <Nav className='d-flex justify-content-center'>
             <Button className='btn-show-product meat' onClick={() => click()}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>
