@@ -28,13 +28,13 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             >
                 <span className='btnLogOutText'>Выйти</span>
             </Button>
-            <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
-                <Button className='adminPanBtn'>
+            <NavLink className='text-decoration-none ' to={PROFILE_ROUTE}>
+                <Button className='adminPanBtn rounded-circle'>
                     <AuthIcon />
                 </Button>
             </NavLink>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
-                <Button className='me-3 adminPanBtn d-flex justify-content-center align-items-center'>
+                <Button className='me-3 adminPanBtn d-flex rounded-circle justify-content-center align-items-center'>
                     <AdminIcon/>
                 </Button>
             </NavLink>
@@ -56,7 +56,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             </NavLink>
             <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
                 <Button
-                    className='ms-2 d-flex justify-content-around align-items-center  btnAuth btnAdmin'
+                    className='ms-2 me-2 d-flex justify-content-around rounded-4 align-items-center  btnAuth btnAdmin'
                 >
                     <span className='btnText'>Личный кабинет</span>
                 </Button>
