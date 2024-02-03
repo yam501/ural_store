@@ -17,10 +17,10 @@ const ErrorPage = () => {
             {!user._isAuth ?
                 <>
                     <div>
-                        Зарегистрируйтесь, чтобы посмотреть страницу
+                        Авторизируйтесь , чтобы посмотреть страницу
                     </div>
                     <button className='btn-returnToStore text-white mt-3'
-                            onClick={handleShowControl}>Регистрация
+                            onClick={handleShowControl}>Войти
                     </button>
                 </>
                 :

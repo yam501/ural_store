@@ -55,6 +55,16 @@ function CreateAssortment() {
 
     }
 
+    function handleKeyPress(target) {
+        if (target.charCode === 13) {
+            try {
+                handleSubmit("submit")
+            }
+            catch (e){
+            }
+        }
+    }
+
 
     const selectFile = e => {
         setImage(e.target.files[0])
@@ -87,7 +97,7 @@ function CreateAssortment() {
 
     return (
 
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form noValidate validated={validated} onKeyPress={handleKeyPress} onSubmit={handleSubmit}>
 
 
             <div className="d-flex p-2 justify-content-center assortment-text">
@@ -168,7 +178,7 @@ function CreateAssortment() {
 
             <label className="create-assortment-labelInput">
                 <span  className="create-assortment-labelSpan">загрузить фото товара</span>
-                <input accept="image/*" className="mt-3 create-assortment-input" placeholder="Фото" required type="file"
+                <input  accept="image/*" className="mt-3 create-assortment-input" placeholder="Фото" required type="file"
                        onChange={selectFile} ref={inputFile}/>
 
             </label>

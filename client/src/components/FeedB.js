@@ -34,7 +34,7 @@ const FeedB = () => {
         setVariant('danger')
     }
 
-    const afterButton = async event => {
+    const afterButton = async (event) => {
 
         const form = event.currentTarget;
         event.preventDefault();
@@ -60,6 +60,15 @@ const FeedB = () => {
         }
     }
 
+    async function handleKeyPress(target) {
+        if (target.charCode === 13) {
+            try {
+                await afterButton("submit")
+            } catch (e) {
+            }
+        }
+    }
+
 
     return (
         <>
@@ -74,7 +83,7 @@ const FeedB = () => {
                     <p className='mb-4'>Дорогой покупатель! Мы ценим вашу инициативу в выражении вашего мнения о наших
                         товарах и услугах, так как это помогает нам постоянно развиваться,
                         исправлять ошибки и укреплять наши преимущества.</p>
-                    <Form noValidate validated={validated} onSubmit={afterButton}>
+                    <Form noValidate validated={validated} onKeyPress={handleKeyPress} onSubmit={afterButton}>
                         <label style={{display: `${validated ? '' : 'none'}`}}>Не все поля заполнены</label>
                         <p>Выберите тип отзыва </p>
                         <Dropdown className='mb-4' onSelect={e => changed(e)}>
@@ -90,7 +99,7 @@ const FeedB = () => {
                         <Form.Group>
                             <Form.Label className='mb-3'>
                                 Почта
-                                <p className="feedb-postscript">для обратной связи</p>
+                                <p className="feedb-postscript">заполнять необязательно</p>
                             </Form.Label>
                             <Form.Control
                                 className='mb-4 input'
@@ -128,7 +137,7 @@ const FeedB = () => {
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
-            <ErrorModal show={showError} onHide={() => setShowError(false)} />
+            <ErrorModal show={showError} onHide={() => setShowError(false)}/>
         </>
 
     );

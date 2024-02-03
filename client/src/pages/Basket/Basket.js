@@ -5,10 +5,9 @@ import BasketItem from './BasketItem';
 import {Context} from '../..';
 import {observer} from 'mobx-react-lite';
 import {Container, Spinner} from 'react-bootstrap';
-import {NavLink, Navigate, redirect, useNavigate} from 'react-router-dom';
-import {BASKET_ROUTE, ORDER_ROUTE, REGISTRATION_ROUTE, STORE_ROUTE} from '../../utils/consts';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {ORDER_ROUTE, STORE_ROUTE} from '../../utils/consts';
 import AuthWindow from '../../components/AuthButton/AuthWindow';
-import order from "../Order/Order";
 
 // Страница корзины
 
@@ -84,7 +83,7 @@ function Basket() {
                         {user._isAuth ?
                             <p>Ваша корзина пока что пуста</p>
                             :
-                            <p>Чтобы добавить товар зарегистрируйтесь на сайте</p>
+                            <p>Чтобы добавить товар авторизируйтесь на сайте</p>
                         }
                         <div className='basket-empty-content'>
                             {user._isAuth ?
@@ -95,7 +94,7 @@ function Basket() {
                                 </>
                                 :
                                 <button className='btn-returnToStore text-white'
-                                        onClick={handleShowControl}>Регистрация</button>
+                                        onClick={handleShowControl}>Войти</button>
                             }
                         </div>
                     </div> : basketItems.map((basketItem) =>
