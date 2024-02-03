@@ -54,7 +54,7 @@ function ConfirmOrders() {
         <div>
             {
                 ordersDinamic.length === 0 ?
-                    <div className="confirm-order-empty">Заказов нет, адыхаем</div>
+                    <div className="confirm-order-empty">На текущий момент не зафиксировано поступление новых заказов</div>
                     :
                     ordersDinamic.slice().sort((a, b) => b.canceled - a.canceled).map(order => {
                         const user = usersDinamic.find((potUser) => potUser.id === order.userId)

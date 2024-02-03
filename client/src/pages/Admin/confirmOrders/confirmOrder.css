@@ -4,6 +4,7 @@
     align-items: center;
     margin-inline: auto;
     font-size: calc(18px + 4 * (100vw/1903));
+    margin-block: 150px;
 }
 
 .confirm_order_item_wrapper {
