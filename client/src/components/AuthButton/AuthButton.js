@@ -1,22 +1,21 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import AuthIcon from './AuthIcon';
 import Button from 'react-bootstrap/Button';
 import AuthWindow from './AuthWindow';
-import { Context } from '../..';
-import { observer } from 'mobx-react-lite';
-import { NavLink } from 'react-router-dom';
-import { ADMIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
+import {Context} from '../..';
+import {observer} from 'mobx-react-lite';
+import {NavLink} from 'react-router-dom';
+import {ADMIN_ROUTE, PROFILE_ROUTE} from '../../utils/consts';
 import AdminIcon from "./AdminIcon";
 
 
 const AuthButton = observer(({show, handleShowControl, ...props}) => {
-    const { user } = useContext(Context)
+    const {user} = useContext(Context)
 
 
     const logout = () => {
         user.logout()
     }
-
 
 
     if (user._isAuth && user._user.isActivated && (user._user.role === 'ADMIN' || user._user.role === 'ADMIN_EDIT' || user._user.role === 'OPERATOR' || user._user.role === 'CASHIER' || user._user.role === 'COURIER')) {
@@ -30,7 +29,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             </Button>
             <NavLink className='text-decoration-none ' to={PROFILE_ROUTE}>
                 <Button className='adminPanBtn rounded-circle'>
-                    <AuthIcon />
+                    <AuthIcon/>
                 </Button>
             </NavLink>
             <NavLink className='text-decoration-none' to={ADMIN_ROUTE}>
@@ -51,7 +50,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             </Button>
             <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
                 <Button className='ms-2 container rounded-circle adminBtn'>
-                    <AuthIcon />
+                    <AuthIcon/>
                 </Button>
             </NavLink>
             <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
@@ -64,12 +63,13 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
         </div>
     }
     return (
-        <div >
+        <div>
             <Button
-                className='d-flex justify-content-around align-items-center btnAuth'
+                className='d-flex justify-content-around align-items-center me-3 btnAuth'
                 onClick={handleShowControl}
-            ><div className='d-flex justify-content-around align-items-center w-100'>
-                    <AuthIcon className='btnIcon' />
+            >
+                <div className='d-flex justify-content-around align-items-center w-100'>
+                    <AuthIcon className='btnIcon'/>
                     <span className='btnText'>Войти</span>
                 </div>
             </Button>
