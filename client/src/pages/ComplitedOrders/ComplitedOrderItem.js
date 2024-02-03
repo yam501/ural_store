@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './historyOrder.css'
-import { Context } from '../..';
-import { observer } from 'mobx-react-lite';
+import {Context} from '../..';
+import {observer} from 'mobx-react-lite';
 import ComplitedOrderProductsStore from '../../store/ComplitedOrderProductsStore';
 import OurDateTime from '../../dateTime/dateTime';
 import ComplitedOrderProductItem from './ComplitedOrderProductItem';
-import { Button } from 'react-bootstrap';
-import AssortmentStore from '../../store/AssortmentStore';
+import {Button} from 'react-bootstrap';
 import ComplitedOrdersStore from "../../store/ComplitedOrdersStore";
+import {NavLink} from "react-router-dom";
+import {BASKET_ROUTE} from "../../utils/consts";
 
-function ComplitedOrderItem({ user, complitedOrder }) {
-    const { basket } = useContext(Context)
-    const { basketProduct } = useContext(Context)
+function ComplitedOrderItem({user, complitedOrder}) {
+    const {basket} = useContext(Context)
     const complitedOrderStore = new ComplitedOrdersStore()
-    const assortmentStore = new AssortmentStore()
     const [complitedOrderProducts, setComplitedOrderProducs] = useState([])
     const complitedOrderProductsStore = new ComplitedOrderProductsStore()
 
@@ -45,16 +44,16 @@ function ComplitedOrderItem({ user, complitedOrder }) {
                 Был доставлен: {new OurDateTime(complitedOrder.complitedTime).getStringDateTime()}
             </p>
             <p className='historyOrder-text'>
-                Итоговая стоимость заказа составила: {complitedOrder.complitedSum}
+                Итоговая стоимость заказа составила: <b>{complitedOrder.complitedSum}</b>
             </p>
             <div className='historyOrder-content'>
                 <div className='historyOrder-products'>
                     {complitedOrderProducts.map(item => {
-                        return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item} />
-                    }
+                            return <ComplitedOrderProductItem key={item.id} complitedOrderProduct={item}/>
+                        }
                     )}
                 </div>
-                <Button className='btn-repeat' onClick={repeatOrder}>Повторить заказ</Button>
+                <NavLink style={{textDecoration: "none"}} to={BASKET_ROUTE}><Button className='btn-repeat' onClick={repeatOrder}>Повторить заказ</Button></NavLink>
             </div>
         </div>
     )

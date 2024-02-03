@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import './historyOrder.css'
-import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
-import AssortmentStore from '../../store/AssortmentStore';
 import { Image } from 'react-bootstrap';
 
 
@@ -18,7 +16,7 @@ function ComplitedOrderProductItem({ complitedOrderProduct }) {
                     {complitedOrderProduct.name}
                 </h3>
                 <p className="complitedOrderProductItem--count">
-                    Количество: {complitedOrderProduct.count}
+                    Количество: {complitedOrderProduct.count} {complitedOrderProduct.unitsOfMeasurement}
                 </p>
             </div>
         </div>
