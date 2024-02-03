@@ -90,7 +90,6 @@ export default class PhoneInputMask {
                 break
             }
         }
-        console.log(arrayNumber.join(''))
         return arrayNumber.join('')
     }
 

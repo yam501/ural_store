@@ -70,7 +70,6 @@ const AuthWindow = ({show, handleClose, ...props}) => {
     }
 
     if (isAccept) {
-        console.log(number)
         return <Accept number={number} password={password} show={isAccept} goBack={showRegistrationPage}/>
     }
 
