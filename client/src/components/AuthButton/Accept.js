@@ -40,22 +40,25 @@ const Accept = observer(({number, password, goBack, ...props}) => {
 
     const resendTimer = (bool) => {
         if (bool && time > 0) {
-            let timeCount = time;
-            const timer = setInterval(() => {
-                if (timeCount <= 0) {
-                    clearInterval(timer)
-                    timeCount = 0;
-                    setTime(0)
+            // let timeCount = time;
+            const timer = setTimeout(() => {
+                if (time <= 0) {
+                    setTime(() => 0);
+                    return clearTimeout(timer)
                 }
-                timeCount = timeCount - 1;
-                setTime(timeCount)
-
+                setTime(prevCount => {
+                    const newTime = prevCount - 1;
+                    return newTime
+                })
             }, 1000)
+
+            return () => clearTimeout(timer)
         }
     }
+
     useEffect(() => {
        resendTimer(props.show)
-    }, [time])
+    }, [time, props.show])
 
     return (
         <Modal show={props.show}>
