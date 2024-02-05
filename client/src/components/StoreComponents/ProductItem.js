@@ -66,7 +66,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 const newCount = prevCount + productType[type].additionCount;
                 delaySend();
                 basket._baskets.aproxSum += productType[type].additionCount * product.costPerOne
-                return Math.round(newCount * 10) / 10;;
+                return newCount;
             } else {
                 return prevCount;
             }
@@ -79,7 +79,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 const newCount = prevCount - productType[type].additionCount
                 delaySend()
                 basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
-                return Math.round(newCount * 10) / 10;
+                return newCount
             } else {
                 basketProductsList.map(item => {
                     if (item.assortmentId === product.id) {
