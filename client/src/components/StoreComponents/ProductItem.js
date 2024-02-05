@@ -40,19 +40,19 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
         }
     }
 
-    useEffect(() => {
-        if (user.isLoading) {
-            const timerId = setTimeout(() => {
-                user.setIsLoading(false)
-            }, 2000)
-        }
-    }, [user.isLoading])
+    // useEffect(() => {
+    //     if (user.isLoading) {
+    //         const timerId = setTimeout(() => {
+    //             user.setIsLoading(false)
+    //         }, 2000)
+    //     }
+    // }, [user.isLoading])
 
     useEffect(() => {
         if (isDataSend) {
             const timerId = setTimeout(() => {
                 user.setIsLoading(true)
-                basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
+                basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct).then(res => res && user.setIsLoading(false))
                 setIsDataSend(false);
             }, 1000);
 
@@ -66,7 +66,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 const newCount = prevCount + productType[type].additionCount;
                 delaySend();
                 basket._baskets.aproxSum += productType[type].additionCount
-                return newCount;
+                return Math.round(newCount * 10) / 10;;
             } else {
                 return prevCount;
             }
@@ -79,7 +79,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 const newCount = prevCount - productType[type].additionCount
                 delaySend()
                 basket._baskets.aproxSum -= productType[type].additionCount
-                return newCount
+                return Math.round(newCount * 10) / 10;
             } else {
                 basketProductsList.map(item => {
                     if (item.assortmentId === product.id) {
@@ -147,7 +147,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                                 {countProduct <= productType[type].displayValue ? <DeleteButton/> : '-'}
                             </Button>
                             <span
-                                className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct.toFixed(1)} {productType[type].value} </span>
+                                className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct} {productType[type].value} </span>
                             <Button className='btn-plus rounded-circle' onClick={() => plus()}>
                                 +
                             </Button>

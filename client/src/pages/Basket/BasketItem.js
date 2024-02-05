@@ -79,7 +79,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
         if (isDataSend) {
             const timerId = setTimeout(() => {
             user.setIsLoading(true)
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct.toFixed(1))
+            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct)
             setIsDataSend(false);
           }, 1000);
           
@@ -95,10 +95,10 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     const plus = async () => {
         setCountProduct(prevCount => {
             const newCount = prevCount + productType[type].additionCount;
-            basketItem.count = (prevCount + productType[type].additionCount).toFixed(1);
+            basketItem.count = Math.round(newCount * 10) / 10;;
             props.countAproxSum()
             delaySend();
-            return newCount;
+            return Math.round(newCount * 10) / 10;
         })
     }
 
@@ -110,10 +110,10 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
                 props.deleteItem(basketItem.assortmentId)
             } else {
                 const newCount = prevCount - productType[type].additionCount
-                basketItem.count = (prevCount - productType[type].additionCount).toFixed(1);
+                basketItem.count = Math.round(newCount * 10) / 10;;
                 props.countAproxSum()
                 delaySend()
-                return newCount
+                return Math.round(newCount * 10) / 10;
             }
         })
     }
@@ -140,7 +140,7 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
                         onClick={minus}>
                         {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
                     </Button>
-                    <Form.Control type='number' value={countProduct.toFixed(1)}  
+                    <Form.Control type='number' value={countProduct}  
                     // onChange={(e) => {
                     //  changeCountProductByInput(e)
                     // }

@@ -12,7 +12,6 @@ import AuthWindow from '../../components/AuthButton/AuthWindow';
 // Страница корзины
 
 function Basket() {
-    const [loading, setLoading] = useState(false)
     const {basketProduct} = useContext(Context)
     const [basketProducts, setBasketProducts] = useState([])
     const {basket, product} = useContext(Context)
@@ -69,10 +68,6 @@ function Basket() {
     const countAproxSum = async () => {
         setAproxSum(basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0))
         basket._baskets.aproxSum = basketProducts.reduce((aproxSum, product) => aproxSum + product.count * product.costPerOne, 0)
-    }
-
-    if (loading) {
-        return <Spinner animation={'grow'}/>
     }
 
     return (
