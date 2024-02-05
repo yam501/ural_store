@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react-lite';
-import React, {lazy, useContext, useEffect, useMemo, useState} from 'react';
-import {Button, Card, Image, Nav, Spinner} from 'react-bootstrap';
+import React, { useContext, useEffect, useState} from 'react';
+import {Button, Image} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import './productItem.css'
 import {Context} from '../..';
@@ -65,7 +65,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
             if (countProduct >= productType[type].displayValue) {
                 const newCount = prevCount + productType[type].additionCount;
                 delaySend();
-                basket._baskets.aproxSum += productType[type].additionCount
+                basket._baskets.aproxSum += productType[type].additionCount * product.costPerOne
                 return newCount;
             } else {
                 return prevCount;
@@ -78,7 +78,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
             if (countProduct > productType[type].displayValue) {
                 const newCount = prevCount - productType[type].additionCount
                 delaySend()
-                basket._baskets.aproxSum -= productType[type].additionCount
+                basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
                 return newCount
             } else {
                 basketProductsList.map(item => {
