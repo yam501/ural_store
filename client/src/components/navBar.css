@@ -19,10 +19,9 @@
 
 
 .btnAuth {
-    min-height: 29px;
     min-width: 96px;
     width: 6vw;
-    height: 2.6vw;
+    height: 40px;
     background-color: #BF486A;
     color: #FFCDDC;
     /* opacity: 70%; */
