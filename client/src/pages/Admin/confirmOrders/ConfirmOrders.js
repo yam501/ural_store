@@ -4,6 +4,7 @@ import { Context } from "../../..";
 import ConfirmOrderItem from "./ConfirmOrderItem";
 import './confirmOrder.css'
 import { io } from 'socket.io-client'
+
 function ConfirmOrders() {
     const { adminOrders, use } = useContext(Context)
     const [ordersDinamic, setOrdersDinamic] = useState([])
@@ -11,9 +12,9 @@ function ConfirmOrders() {
 
     async function getOrders() {
         await adminOrders.getAll()
-        await use.getAll()
+        // await use.getAll()
         setOrdersDinamic(adminOrders._orders ? adminOrders._orders.sort(order => order.id) : [])
-        setUsersDinamic(use._users ? use._users : [])
+        // setUsersDinamic(use._users ? use._users : [])
     }
 
     const socket = io(process.env.REACT_APP_API_URL, {
@@ -48,7 +49,7 @@ function ConfirmOrders() {
     // setTimeout(() => {
     //     console.log(test)
     //     setTest(test + 1)
-    // }, 2000)
+    // }, 2000)user={user}
 
     return (
         <div>
@@ -58,7 +59,7 @@ function ConfirmOrders() {
                     :
                     ordersDinamic.slice().sort((a, b) => b.canceled - a.canceled).map(order => {
                         const user = usersDinamic.find((potUser) => potUser.id === order.userId)
-                        return <ConfirmOrderItem key={order.id} order={order} user={user} sendWS={sendWS} update={getOrders}></ConfirmOrderItem>
+                        return <ConfirmOrderItem key={order.id} order={order}  sendWS={sendWS} update={getOrders}></ConfirmOrderItem>
                     })
             }
         </div>

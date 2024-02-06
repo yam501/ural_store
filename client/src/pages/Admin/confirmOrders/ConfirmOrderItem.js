@@ -61,8 +61,8 @@ function ConfirmOrderItem({order, user, sendWS, update}) {
         <div className="confirm_order_item_wrapper">
             <div>
                 <h2 className="confir_order_item_info_h">Заказ №{order.id}</h2>
-                <div className="confir_order_item_info">Имя: {user.name}</div>
-                <div className="confir_order_item_info">Телефон: {user.number}</div>
+                {/* <div className="confir_order_item_info">Имя: {user.name}</div> */}
+                <div className="confir_order_item_info">Телефон: {order.number}</div>
                 <div className="confir_order_item_info">Адрес: {order.address}</div>
                 <div className="confir_order_item_info">Последнее обновление
                     статуса: {dateTime.getStringDateTime()}</div>
