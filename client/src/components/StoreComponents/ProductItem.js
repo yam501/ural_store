@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react-lite';
-import React, {lazy, useContext, useEffect, useMemo, useState} from 'react';
-import {Button, Card, Image, Nav, Spinner} from 'react-bootstrap';
+import React, { useContext, useEffect, useState} from 'react';
+import {Button, Image} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import './productItem.css'
 import {Context} from '../..';
@@ -40,19 +40,19 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
         }
     }
 
-    useEffect(() => {
-        if (user.isLoading) {
-            const timerId = setTimeout(() => {
-                user.setIsLoading(false)
-            }, 2000)
-        }
-    }, [user.isLoading])
+    // useEffect(() => {
+    //     if (user.isLoading) {
+    //         const timerId = setTimeout(() => {
+    //             user.setIsLoading(false)
+    //         }, 2000)
+    //     }
+    // }, [user.isLoading])
 
     useEffect(() => {
         if (isDataSend) {
             const timerId = setTimeout(() => {
                 user.setIsLoading(true)
-                basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct)
+                basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, product.id, countProduct).then(res => res && user.setIsLoading(false))
                 setIsDataSend(false);
             }, 1000);
 
@@ -65,8 +65,8 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
             if (countProduct >= productType[type].displayValue) {
                 const newCount = prevCount + productType[type].additionCount;
                 delaySend();
-                basket._baskets.aproxSum += productType[type].additionCount
-                return newCount;
+                basket._baskets.aproxSum += productType[type].additionCount * product.costPerOne
+                return Math.round(newCount * 10) / 10;;
             } else {
                 return prevCount;
             }
@@ -78,8 +78,8 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
             if (countProduct > productType[type].displayValue) {
                 const newCount = prevCount - productType[type].additionCount
                 delaySend()
-                basket._baskets.aproxSum -= productType[type].additionCount
-                return newCount
+                basket._baskets.aproxSum -= productType[type].additionCount * product.costPerOne
+                return Math.round(newCount * 10) / 10;
             } else {
                 basketProductsList.map(item => {
                     if (item.assortmentId === product.id) {
@@ -147,7 +147,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                                 {countProduct <= productType[type].displayValue ? <DeleteButton/> : '-'}
                             </Button>
                             <span
-                                className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct.toFixed(1)} {productType[type].value} </span>
+                                className='d-flex align-items-center text-center info-text justify-content-center'> {countProduct} {productType[type].value} </span>
                             <Button className='btn-plus rounded-circle' onClick={() => plus()}>
                                 +
                             </Button>

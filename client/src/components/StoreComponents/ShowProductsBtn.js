@@ -22,13 +22,7 @@ const ShowProductsBtn = ({ type }) => {
         !productShow && user.setIsLoading(true)
     }
 
-    useEffect(() => {
-        if (user.isLoading) {
-            const timerId = setTimeout(() => {
-                user.setIsLoading(false)
-            }, 1000)
-        }
-    }, [user.isLoading, productShow])
+
     return (
         <Nav className='d-flex justify-content-center'>
             <Button className='btn-show-product meat' onClick={() => click()}>{productShow ? 'Скрыть товары' : 'Показать товары'}</Button>

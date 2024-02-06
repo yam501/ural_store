@@ -44,7 +44,9 @@ class UserController {
         try {
             const { number } = req.body
 
-            if (!number) {
+            const user = await User.findOne({where:{number: number}})
+
+            if (!number || !user) {
                 return next(ApiError.badRequest('Некорректный номер телефона'))
             }
 
@@ -64,6 +66,9 @@ class UserController {
         try {
             const { number, code } = req.body
             const user = await User.findOne({ where: { number: number } })
+
+            if (!user) return  next(ApiError.badRequest('Некорректный номер телефона'))
+
             if (user['activatedCode'] == code) {
                 await User.update({ isActivated: true }, { where: { number: number } })
                 const updatedUser = await User.findOne({ where: { number: number } })
