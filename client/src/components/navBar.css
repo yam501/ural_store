@@ -173,18 +173,25 @@ a:focus-visible {
     background: url("../assets/uralskiy_logo.svg") no-repeat left;
     background-size: 80%;
     width: 250px;
-    height: 70px;
+    height: 55px;
+}
+
+@media (max-width: 800px) {
+    width: 200px;
 }
 
 @media (max-width: 570px) {
     .shop_logo {
-        background-size: 50%;
+        background-size: 100%;
+        width: 140px;
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 530px) {
     .shop_logo {
-        display: none;
+        background: url("../assets/uralskiy-icon.svg") no-repeat left;
+        background-size: 50%;
+        width: 70px;
     }
 }
 
