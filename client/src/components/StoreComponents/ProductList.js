@@ -31,6 +31,7 @@ const ProductList = ({product, state, type, productShow}) => {
     }, [user.isLoading])
 
     useEffect(() => {
+        setCheckRepeatLoad(false)
         fillBasketProductList()
     }, [basketProduct.basketProduct.length])
     const options = {
