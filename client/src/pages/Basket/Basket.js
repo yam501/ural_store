@@ -37,9 +37,10 @@ function Basket() {
 
     async function renderBasketItems() {
         if (JSON.stringify(basket._baskets) !== "{}") {
-            await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id)
+            await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id).then(res => res && user.setIsLoading(false))
         }
         setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
+        // user.setIsLoading(false)
         setAssortmentList(product.products ? product.products : []);
     }
 

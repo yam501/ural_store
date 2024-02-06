@@ -15,19 +15,12 @@ function OrderProduct({  orderProduct, ...props }) {
         setToggleState(!toggleState)
     }
 
-    useEffect(() => {
-        if (user.isLoading) {
-            setTimeout(() => {
-                user.setIsLoading(false)
-            }, 2000)
-        }
-    }, [user.isLoading])
 
     useEffect(() => {
         if (dataSend) {
             const timerId = setTimeout(() => {
                 user.setIsLoading(true)
-                basketProduct.changeMoreOrLessByBasketProductID(orderProduct.id, orderProduct.moreOrLess)
+                basketProduct.changeMoreOrLessByBasketProductID(orderProduct.id, orderProduct.moreOrLess).then(res => user.setIsLoading(false))
                 setIsDataSend(false)
             }, 1000)
             

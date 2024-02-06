@@ -8,16 +8,14 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import {BASKET_ROUTE} from '../../utils/consts';
 import OrderStages from './stagesOrder/OrderStages';
 import PhoneInputMask from "../../InputMasks/PhoneInputMask";
+import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
 
 // Страница заказа
 
 function Order() {
-    const {user} = useContext(Context)
-    const {order} = useContext(Context)
-    const {basket} = useContext(Context)
-    const {basketProduct} = useContext(Context)
-    const {orderProducts} = useContext(Context)
+    const {basketProduct, basket, order, user} = useContext(Context)
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
+    const [showMap, setShowMap] = useState(false)
     const [dataOfOrder, setDataOfOrder] = useState({address: '', enter: '', floor: '', flat: '', tel: '', comment: ''})
     const navigate = useNavigate()
     const [validated, setValidated] = useState(false);
@@ -31,6 +29,9 @@ function Order() {
         setOrderProductsDinamic(basketProduct.basketProduct ? basketProduct.basketProduct : [])
     }
 
+    const setAdress = (address) => {
+        setDataOfOrder({...dataOfOrder, address: dataOfOrder.address ? dataOfOrder.address.slice(29) : address})
+    }
     async function editOrder() {
         navigate(BASKET_ROUTE)
     }
@@ -79,6 +80,12 @@ function Order() {
         setIsOrder((order.order !== null) && !order._order.canceled)
     }
 
+  
+        if (showMap) {
+            return <ModalWindowYMaps show={showMap} findAdress={setAdress} width={800} onClick={() => setShowMap(false)} address={dataOfOrder.address}/>
+        }
+   
+
     return (
         <div className='page_body order_page_body'>
             {
@@ -99,11 +106,8 @@ function Order() {
                                         <div className='form_check_order_section form_check_order_adress_section'>
                                             {/* <label>Адрес</label> */}
                                             <input required type='text'
+                                                   onChange={() => setShowMap(true)}
                                                    value={dataOfOrder.address ? dataOfOrder.address.slice(29) : dataOfOrder.address}
-                                                   onChange={e => setDataOfOrder({
-                                                       ...dataOfOrder,
-                                                       address: e.target.value
-                                                   })}
                                                    className='form-control form_check_order_section_input form_check_order_adress_section_input'
                                                    placeholder='Выберите адрес на карте'/>
                                         </div>

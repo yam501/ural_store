@@ -26,6 +26,7 @@ const ShopBasketButton = () => {
         <NavLink className="text-decoration-none" to={BASKET_ROUTE}>
             <Button
                 className='d-flex justify-content-center text-decoration-none align-items-center btnBasket'
+                onClick={() => user.setIsLoading(true)}
             >
                 <div className='btnBasketIconBox'>
                     <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
