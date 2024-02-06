@@ -13,7 +13,14 @@ import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
 // Страница заказа
 
 function Order() {
+<<<<<<< HEAD
     const {basketProduct, basket, order, user} = useContext(Context)
+=======
+    const {user} = useContext(Context)
+    const {order} = useContext(Context)
+    const {basket} = useContext(Context)
+    const {basketProduct} = useContext(Context)
+>>>>>>> da1a942ad951ddf9d4616fb59370977e84027248
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const [showMap, setShowMap] = useState(false)
     const [dataOfOrder, setDataOfOrder] = useState({address: '', enter: '', floor: '', flat: '', tel: '', comment: ''})
@@ -156,7 +163,7 @@ function Order() {
                                         <div className='form_check_order_section_comment'>
                                             {/* <label>Комментарий</label> */}
                                             <input
-                                                
+
                                                 value={dataOfOrder.comment} onChange={e => setDataOfOrder({
                                                 ...dataOfOrder,
                                                 comment: e.target.value
@@ -203,9 +210,14 @@ function Order() {
                                         <span className="order_pay_title">К оплате</span> <span
                                         className="order_pay_sum">{aproxSum}</span>
                                     </div>
-                                    <button type='submit' onClick={confirmOrder} className='order_products_accept_btn'>
-                                        Заказать
-                                    </button>
+                                    {order.order != null ?
+                                        <div className="basket_warning"><p className="m-0">предыдущий заказ еще обрабатывается, попробуйте повторить заказ позже</p></div>
+                                        :
+                                        <button type='submit' onClick={confirmOrder}
+                                                className='order_products_accept_btn'>
+                                            Заказать
+                                        </button>
+                                    }
                                 </div>
                             </div>}
                     </div>

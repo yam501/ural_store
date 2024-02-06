@@ -112,7 +112,6 @@ a:focus-visible {
 
 .adressBox:hover {
     width: fit-content;
-    height: 2.6vw;
     background-color: #e6688b !important;
     text-decoration: underline;
 }

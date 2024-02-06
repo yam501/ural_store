@@ -79,7 +79,7 @@ function Basket() {
                         {user._isAuth ?
                             <p>Ваша корзина пока что пуста</p>
                             :
-                            <p>Чтобы добавить товар авторизируйтесь на сайте</p>
+                            <p>Чтобы добавить товар в корзину авторизируйтесь на сайте</p>
                         }
                         <div className='basket-empty-content'>
                             {user._isAuth ?

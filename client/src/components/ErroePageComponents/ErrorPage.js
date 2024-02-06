@@ -26,13 +26,15 @@ const ErrorPage = () => {
                 :
                 <>
                     <Container className="page404 page_body text-center">
-                        <div>
-                            Похоже у нас нет такой страницы😢 <br/> вернитесь в магазин
-                        </div>
-                        <div className='error_content'>
-                            <NavLink to={STORE_ROUTE} className='text-decoration-none'>
-                                <button className='btn-returnToStore text-white'>К отделам</button>
-                            </NavLink>
+                        <div className='error_content mb-5'>
+                            <div>
+                                Похоже у нас нет такой страницы😢 <br/> вернитесь в магазин
+                            </div>
+                            <div className="d-flex justify-content-center mt-2">
+                                <NavLink to={STORE_ROUTE} className='text-decoration-none '>
+                                    <button className='btn-returnToStore text-white'>К отделам</button>
+                                </NavLink>
+                            </div>
                         </div>
                     </Container>
                 </>

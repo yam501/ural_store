@@ -49,8 +49,7 @@ const Order = sequelize.define('order', {
     canceled: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
     orderProductsCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     comment: { type: DataTypes.TEXT, allowNull: false, defaultValue: 0 },
-    number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 },
-    courierId: { type: DataTypes.INTEGER, allowNull: true}
+    number: { type: DataTypes.STRING, allowNull: false, defaultValue: 0 }
 })
 
 const ComplitedOrders = sequelize.define('complitedOrders', {
