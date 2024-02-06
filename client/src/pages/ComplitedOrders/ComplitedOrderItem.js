@@ -5,10 +5,8 @@ import {observer} from 'mobx-react-lite';
 import ComplitedOrderProductsStore from '../../store/ComplitedOrderProductsStore';
 import OurDateTime from '../../dateTime/dateTime';
 import ComplitedOrderProductItem from './ComplitedOrderProductItem';
-import {Button} from 'react-bootstrap';
 import ComplitedOrdersStore from "../../store/ComplitedOrdersStore";
-import {NavLink} from "react-router-dom";
-import {BASKET_ROUTE} from "../../utils/consts";
+
 
 function ComplitedOrderItem({user, complitedOrder}) {
     const {basket} = useContext(Context)
@@ -23,10 +21,11 @@ function ComplitedOrderItem({user, complitedOrder}) {
         )
     }
 
-    async function repeatOrder() {
+    const repeatOrder = async () => {
         await basket.getBasketByUserID(user._user.id)
         await complitedOrderStore.repeatOrder(complitedOrder.id, basket.basket.id)
     }
+
 
     useEffect(() => {
         fetchComplitedOrderProducts()
@@ -53,7 +52,6 @@ function ComplitedOrderItem({user, complitedOrder}) {
                         }
                     )}
                 </div>
-                <NavLink style={{textDecoration: "none"}} to={BASKET_ROUTE}><Button className='btn-repeat' onClick={repeatOrder}>Повторить заказ</Button></NavLink>
             </div>
         </div>
     )

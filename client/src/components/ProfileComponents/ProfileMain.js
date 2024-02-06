@@ -1,21 +1,21 @@
-import React, { useContext, useState } from 'react';
-import { Button, Container, Nav, Form } from 'react-bootstrap'
+import React, {useContext, useState} from 'react';
+import {Button, Container, Nav, Form} from 'react-bootstrap'
 
 
-import { Context } from '../..';
+import {Context} from '../..';
 
 import './profile.css'
 import PhoneInputMask from "../../InputMasks/PhoneInputMask";
 
 const ProfileMain = () => {
 
-    const { user } = useContext(Context)
+    const {user} = useContext(Context)
 
 
     const [profileName, setProfileName] = useState('')
     const [telephone, setTelephone] = useState('');
     const [password, setPassword] = useState('')
-
+    const [showError, setShowError] = useState(false)
 
     const [save, setSave] = useState(false)
 
@@ -27,7 +27,12 @@ const ProfileMain = () => {
         if (save) {
             const numberToUser = telephone === '' ? user._user.number : telephone
             const nameToUser = profileName === '' ? user._user.name : profileName
-            await user.changeNumberAndNameById(numberToUser, nameToUser, user._user.id)
+            try {
+                await user.changeNumberAndNameById(numberToUser, nameToUser, user._user.id)
+                setShowError(false)
+            } catch (e) {
+                setShowError(true)
+            }
         }
         setDisable(!disabled)
         setSave(!save)
@@ -42,14 +47,14 @@ const ProfileMain = () => {
                 <Form.Control
                     className='profile-info profile-input input'
                     type='text'
-                    placeholder={user._user.name ? user._user.name : "Ваше погоняло"}
+                    placeholder={user._user.name ? user._user.name : "Ваше имя"}
                     value={profileName}
                     disabled={disabled}
                     onChange={event => setProfileName(event.target.value)}
                 >
                 </Form.Control>
             </Nav>
-            <Nav className='mb-4'>
+            <Nav  className={!showError ? "mb-4" : "mb-2"}>
                 <Form.Control
                     className='profile-tel profile-input input'
                     type='tel'
@@ -61,7 +66,14 @@ const ProfileMain = () => {
                     onChange={event => setTelephone(event.target.value)}
                 >
                 </Form.Control>
+
             </Nav>
+            {!showError ?
+                <></>
+                :
+                <div className="mb-2 error-login">аккаунт с таким номером существует</div>
+
+            }
             <Nav className='mb-5'>
                 <Form.Control
                     className='profile-info profile-input input'
