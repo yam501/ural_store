@@ -37,7 +37,7 @@
 	width: 39px;
 	height: 39px;
 	border-radius: 56px;
-	background: rgb(251,211,1);
+	background: #BF486A;
 	position: absolute;
 	left: 50%;
 	transform: translateY(0);
@@ -105,7 +105,7 @@
 		-moz-animation: cssload-dot-rotate-3 3.5s 2.3s linear infinite;
 }
 .cssload-dot:nth-child(3):before {
-	background-color: rgb(175,225,2);
+	background-color: #ED789A;
 	animation: cssload-dot-move 3.5s 2.3s ease infinite;
 		-o-animation: cssload-dot-move 3.5s 2.3s ease infinite;
 		-ms-animation: cssload-dot-move 3.5s 2.3s ease infinite;
@@ -121,7 +121,7 @@
 		-moz-animation: cssload-dot-rotate-4 3.5s 3.45s linear infinite;
 }
 .cssload-dot:nth-child(4):before {
-	background-color: rgb(251,211,1);
+	background-color: #BF486A;
 	animation: cssload-dot-move 3.5s 3.45s ease infinite;
 		-o-animation: cssload-dot-move 3.5s 3.45s ease infinite;
 		-ms-animation: cssload-dot-move 3.5s 3.45s ease infinite;
@@ -191,7 +191,7 @@
 
 @keyframes cssload-dot-colors {
 	0% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 	25% {
 		background-color: rgb(255,50,112);
@@ -200,16 +200,16 @@
 		background-color: #832440;
 	}
 	75% {
-		background-color: rgb(175,225,2);
+		background-color: #ED789A;
 	}
 	100% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 }
 
 @-o-keyframes cssload-dot-colors {
 	0% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 	25% {
 		background-color: rgb(255,50,112);
@@ -218,16 +218,16 @@
 		background-color: #832440;
 	}
 	75% {
-		background-color: rgb(175,225,2);
+		background-color: #ED789A;
 	}
 	100% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 }
 
 @-ms-keyframes cssload-dot-colors {
 	0% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 	25% {
 		background-color: rgb(255,50,112);
@@ -236,16 +236,16 @@
 		background-color: #832440;
 	}
 	75% {
-		background-color: rgb(175,225,2);
+		background-color: #ED789A;
 	}
 	100% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 }
 
 @-webkit-keyframes cssload-dot-colors {
 	0% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 	25% {
 		background-color: rgb(255,50,112);
@@ -254,16 +254,16 @@
 		background-color: #832440;
 	}
 	75% {
-		background-color: rgb(175,225,2);
+		background-color: #ED789A;
 	}
 	100% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 }
 
 @-moz-keyframes cssload-dot-colors {
 	0% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 	25% {
 		background-color: rgb(255,50,112);
@@ -272,10 +272,10 @@
 		background-color: #832440;
 	}
 	75% {
-		background-color: rgb(175,225,2);
+		background-color: #ED789A;
 	}
 	100% {
-		background-color: rgb(251,211,1);
+		background-color: #BF486A;
 	}
 }
 

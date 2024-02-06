@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 
 * {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -185,7 +185,6 @@ body {
 }
 
 .basket-icon {
-    background: url("../../assets/basketEmpty.svg") 0 0 / 100% no-repeat;
     width: 150px;
     height: 300px;
     margin-right: 25px;

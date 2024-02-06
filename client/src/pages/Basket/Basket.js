@@ -4,10 +4,11 @@ import './basket.css'
 import BasketItem from './BasketItem';
 import {Context} from '../..';
 import {observer} from 'mobx-react-lite';
-import {Container, Spinner} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import {NavLink, useNavigate} from 'react-router-dom';
 import {ORDER_ROUTE, STORE_ROUTE} from '../../utils/consts';
 import AuthWindow from '../../components/AuthButton/AuthWindow';
+import BasketIcon from "./BasketIcon";
 
 // Страница корзины
 
@@ -30,7 +31,7 @@ function Basket() {
         return (a, b) => a[id] > b[id] ? 1 : -1;
     }
 
-    async function getOrder(){
+    async function getOrder() {
         await order.getOneOrderByUserId(user._user.id)
     }
 
@@ -84,7 +85,7 @@ function Basket() {
                         <div className='basket-empty-content'>
                             {user._isAuth ?
                                 <>
-                                    <div className='basket-icon'></div>
+                                    <BasketIcon/>
                                     <NavLink className='btn-returnToStore text-white text-decoration-none'
                                              to={STORE_ROUTE}>К отделам</NavLink>
                                 </>
@@ -111,7 +112,8 @@ function Basket() {
                     </div>
                     <div className='w-25'>
                         {order.order != null ?
-                            <div className="basket_warning">Заказ уже создан, если нет <p className="m-0">подождите 5-10 минут и обновте страницу</p></div>
+                            <div className="basket_warning">Заказ уже создан, если нет <p className="m-0">подождите 5-10
+                                минут и обновте страницу</p></div>
                             :
                             <Button
                                 className='w-100 d-flex align-items-center justify-content-center order_delive_form_btn'
