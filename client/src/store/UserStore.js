@@ -108,7 +108,7 @@ export default class UserStore {
         try {
             const phoneMask = new PhoneInputMask()
             const response = await AuthService.login(phoneMask.formatNumberToBackend(number), password);
-            localStorage.setItem('token', response.data.accessToken);
+            //localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
             return true
@@ -122,7 +122,7 @@ export default class UserStore {
             console.log(number)
             const phoneMask = new PhoneInputMask()
             const response = await AuthService.registration(phoneMask.formatNumberToBackend(number), password);
-            localStorage.setItem('token', response.data.accessToken);
+            //localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
         } catch (e) {
@@ -133,7 +133,7 @@ export default class UserStore {
     async logout() {
         try {
             const response = await AuthService.logout();
-            localStorage.removeItem('token');
+            //localStorage.removeItem('token');
             this.setIsAuth(false)
             this.setUser(new IUser())
         } catch (e) {
@@ -144,7 +144,7 @@ export default class UserStore {
     async checkAuth() {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/refresh`, { withCredentials: true })
-            localStorage.setItem('token', response.data.accessToken);
+            //localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
         } catch (e) {
@@ -158,7 +158,7 @@ export default class UserStore {
             number = phoneMask.formatNumberToBackend(number)
             const response = await $host.put(`${process.env.REACT_APP_API_URL}api/user/activate`,
                 { number, code })
-            localStorage.setItem('token', response.data.accessToken);
+            //localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true)
             this.setUser(response.data.user)
             return response

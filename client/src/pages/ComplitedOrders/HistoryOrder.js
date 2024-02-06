@@ -7,13 +7,6 @@ import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { STORE_ROUTE } from '../../utils/consts';
 import ComplitedOrdersService from '../../service/ComplitedOrdersService';
-// Страница истории заказов
-
-
-
-
-//ПЕРЕПИСАТЬ ИСТОРИЮ ЗАКАЗОВ НА МАССИВЫ, А НЕ ПОСТОЯННОЕ ОБРАЩЕНИЕ К БД
-
 
 function HistoryOrder() {
   // const { complitedOrders } = useContext(Context)

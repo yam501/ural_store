@@ -10,6 +10,7 @@ import OwlCarousel from 'react-owl-carousel';
 
 const ProductList = ({product, state, type, productShow}) => {
     const {basket, basketProduct, user} = useContext(Context)
+    const [checkRepeatLoad, setCheckRepeatLoad] = useState(false)
     const [basketProductsList, setBasketProductsList] = useState([]);
     const deleteBasketItem = (id) => {
         setBasketProductsList(basketProductsList.filter(item => item.assortmentId !== id))
@@ -17,11 +18,20 @@ const ProductList = ({product, state, type, productShow}) => {
     const fillBasketProductList = async () => {
         if (user._isAuth){
             await basketProduct.getAllBasketProductsByBasketID(basket.basket.id).then(res => {
-                if (res) setBasketProductsList(basketProduct.basketProduct)
+                if (res) {
+                    setBasketProductsList(basketProduct.basketProduct)
+                    user.setIsLoading(false)
+                    setCheckRepeatLoad(true)
+                }
             })}
-          
     }
+
     useEffect(() => {
+        checkRepeatLoad && user.setIsLoading(false)
+    }, [user.isLoading])
+
+    useEffect(() => {
+        setCheckRepeatLoad(false)
         fillBasketProductList()
     }, [basketProduct.basketProduct.length])
     const options = {

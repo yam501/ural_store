@@ -16,7 +16,6 @@ function Order() {
     const {order} = useContext(Context)
     const {basket} = useContext(Context)
     const {basketProduct} = useContext(Context)
-    const {orderProducts} = useContext(Context)
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const [dataOfOrder, setDataOfOrder] = useState({address: '', enter: '', floor: '', flat: '', tel: '', comment: ''})
     const navigate = useNavigate()
@@ -152,7 +151,7 @@ function Order() {
                                         <div className='form_check_order_section_comment'>
                                             {/* <label>Комментарий</label> */}
                                             <input
-                                                
+
                                                 value={dataOfOrder.comment} onChange={e => setDataOfOrder({
                                                 ...dataOfOrder,
                                                 comment: e.target.value
@@ -199,9 +198,14 @@ function Order() {
                                         <span className="order_pay_title">К оплате</span> <span
                                         className="order_pay_sum">{aproxSum}</span>
                                     </div>
-                                    <button type='submit' onClick={confirmOrder} className='order_products_accept_btn'>
-                                        Заказать
-                                    </button>
+                                    {order.order != null ?
+                                        <div className="basket_warning"><p className="m-0">предыдущий заказ еще обрабатывается, попробуйте повторить заказ позже</p></div>
+                                        :
+                                        <button type='submit' onClick={confirmOrder}
+                                                className='order_products_accept_btn'>
+                                            Заказать
+                                        </button>
+                                    }
                                 </div>
                             </div>}
                     </div>

@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {Button, Dropdown, Form, Offcanvas} from "react-bootstrap";
 import FeedbackService from '../service/FeedbackService';
 import './feedb.css';
-import ErrorModal from "./ErroePageComponents/ErrorModal/ErrorModal";
+import ErrorAuthModal from "./ErroePageComponents/ErrorModal/ErrorAuthModal";
 
 const FeedB = () => {
     const [show, setShow] = useState(false);
@@ -137,7 +137,7 @@ const FeedB = () => {
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
-            <ErrorModal show={showError} onHide={() => setShowError(false)}/>
+            <ErrorAuthModal show={showError} onHide={() => setShowError(false)}/>
         </>
 
     );
