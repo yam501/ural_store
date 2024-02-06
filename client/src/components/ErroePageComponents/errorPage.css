@@ -16,7 +16,12 @@
     align-items: end;
 }
 
+@media (min-width: 340px) and (max-width: 977px) {
+    .page404{
+        background-size: 100%;
+    }
+}
+
 
 .error_content{
-    margin: 20px;
 }

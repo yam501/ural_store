@@ -1,20 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Modal} from "react-bootstrap";
 
-import "./errorModal.css"
-
-const ErrorModal = (props) => {
-
-
+const ErrorModal = () => {
+    const [show, setShow] = useState(false)
     return (
-        <Modal{...props}>
-
+        <Modal show={show}>
             <Modal.Body>
                 <p className="error-modal-text">
-                    Авторизируйтесь, чтобы продолжить
+                    Ошибка
                 </p>
                 <div className="d-flex align-items-center justify-content-center">
-                    <Button className="error-modal-btn-close" onClick={props.onHide}> закрыть</Button>
+                    <Button className="error-modal-btn-close" onClick={() => setShow(!show)}> закрыть</Button>
                 </div>
             </Modal.Body>
         </Modal>

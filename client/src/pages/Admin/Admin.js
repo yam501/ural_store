@@ -52,7 +52,7 @@ function Admin() {
         }
         if (user._user.role === 'OPERATOR') {
             setOperatorShow(true)
-            ///ТУТ ДЛЯ ПОДТВЕРЖДЕНИЯ ЗАКАЗА
+            getAllProducts();
         }
         if (user._user.role === 'CASHIER') {
             setCashierShow(true)
