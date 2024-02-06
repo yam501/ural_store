@@ -28,6 +28,10 @@ const NavBar = observer(({showHeader, ...props}) => {
     }
 
     useEffect(() => {
+        findAdress(user._user.defaultAddress)
+    }, [user._user.defaultAddress])
+
+    useEffect(() => {
         if (show) {
             document.body.style.overflow = "hidden";
         } else {
@@ -57,10 +61,10 @@ const NavBar = observer(({showHeader, ...props}) => {
                 <Nav className="d-flex justify-content-center align-items-center">
                     {user._isAuth && user._user.isActivated && width >= 1199 ?
                         <AdressBox adress={adress.adressString} onClick={() => setShow(true)} width={width}/> : ''}
-                    <ModalWindowYMaps width={width} findAdress={findAdress} adress={adress.adressString}
+                    <ModalWindowYMaps width={width} findAdress={findAdress} 
                                       onClick={() => setShow(false)} show={show}/>
                     <AuthButton show={showAuth} handleShowControl={handleShowControl}/>
-                    <ShopBasketButton/>
+                    <ShopBasketButton showMap={() => setShow(true)}/>
                 </Nav>
             </div>
         </Navbar>

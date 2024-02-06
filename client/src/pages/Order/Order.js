@@ -16,6 +16,7 @@ function Order() {
     const {basketProduct, basket, order, user} = useContext(Context)
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const [showMap, setShowMap] = useState(false)
+    const [width, setWidth] = useState(window.innerWidth)
     const [dataOfOrder, setDataOfOrder] = useState({address: '', enter: '', floor: '', flat: '', tel: '', comment: ''})
     const navigate = useNavigate()
     const [validated, setValidated] = useState(false);
@@ -29,9 +30,16 @@ function Order() {
         setOrderProductsDinamic(basketProduct.basketProduct ? basketProduct.basketProduct : [])
     }
 
-    const setAdress = (address) => {
-        setDataOfOrder({...dataOfOrder, address: dataOfOrder.address ? dataOfOrder.address.slice(29) : address})
-    }
+    useEffect(() => {
+        const handleResize = (event) => {
+            setWidth(event.target.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    })
+
     async function editOrder() {
         navigate(BASKET_ROUTE)
     }
@@ -80,11 +88,11 @@ function Order() {
         setIsOrder((order.order !== null) && !order._order.canceled)
     }
 
-  
-        if (showMap) {
-            return <ModalWindowYMaps show={showMap} findAdress={setAdress} width={800} onClick={() => setShowMap(false)} address={dataOfOrder.address}/>
-        }
-   
+    const findAdress = async (address) => {
+        setDataOfOrder({
+            ...dataOfOrder, address: address ? address.slice(29).replace('улица', 'ул.') : 'Выберите адрес'
+        })
+    }
 
     return (
         <div className='page_body order_page_body'>
@@ -106,10 +114,16 @@ function Order() {
                                         <div className='form_check_order_section form_check_order_adress_section'>
                                             {/* <label>Адрес</label> */}
                                             <input required type='text'
-                                                   onChange={() => setShowMap(true)}
+                                            onChange={() => setShowMap(true)}
+                                            // onFocus={() => setShowMap(true)}
                                                    value={dataOfOrder.address ? dataOfOrder.address.slice(29) : dataOfOrder.address}
                                                    className='form-control form_check_order_section_input form_check_order_adress_section_input'
                                                    placeholder='Выберите адрес на карте'/>
+                                                   {/* <button onClick={() => setShowMap(true)}>
+                                                    Открыть карту
+                                                   </button> */}
+                                            <ModalWindowYMaps width={width} findAdress={findAdress} 
+                                            onClick={() => setShowMap(false)} show={showMap}/>
                                         </div>
                                         <div className='form_check_order_section form_check_order_phone_section'>
                                             {/* <label>Номер</label> */}
