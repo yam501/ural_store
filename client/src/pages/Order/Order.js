@@ -13,14 +13,7 @@ import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
 // Страница заказа
 
 function Order() {
-<<<<<<< HEAD
     const {basketProduct, basket, order, user} = useContext(Context)
-=======
-    const {user} = useContext(Context)
-    const {order} = useContext(Context)
-    const {basket} = useContext(Context)
-    const {basketProduct} = useContext(Context)
->>>>>>> da1a942ad951ddf9d4616fb59370977e84027248
     const [orderProductsDinamic, setOrderProductsDinamic] = useState([])
     const [showMap, setShowMap] = useState(false)
     const [dataOfOrder, setDataOfOrder] = useState({address: '', enter: '', floor: '', flat: '', tel: '', comment: ''})
