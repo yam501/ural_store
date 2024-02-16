@@ -5,8 +5,8 @@ import BasketItem from './BasketItem';
 import {Context} from '../..';
 import {observer} from 'mobx-react-lite';
 import {Container} from 'react-bootstrap';
-import {NavLink, useNavigate} from 'react-router-dom';
-import {ORDER_ROUTE, STORE_ROUTE} from '../../utils/consts';
+import {NavLink, useNavigate, useLocation} from 'react-router-dom';
+import {BASKET_ROUTE, ORDER_ROUTE, STORE_ROUTE} from '../../utils/consts';
 import AuthWindow from '../../components/AuthButton/AuthWindow';
 import BasketIcon from "./BasketIcon";
 
@@ -33,15 +33,17 @@ function Basket() {
 
     async function getOrder() {
         await order.getOneOrderByUserId(user._user.id)
-    }
+    }    
 
 
     async function renderBasketItems() {
         if (JSON.stringify(basket._baskets) !== "{}") {
             await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id).then(res => res && user.setIsLoading(false))
-        }
+         } 
+         if (basketProduct.basketProduct.length < 1) {
+            user.setIsLoading(false)
+         }
         setBasketProducts(basketProduct.basketProduct ? basketProduct.basketProduct : [])
-        // user.setIsLoading(false)
         setAssortmentList(product.products ? product.products : []);
     }
 

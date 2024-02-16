@@ -25,8 +25,9 @@ function Order() {
 
     async function createOrderProductsFromBasketProducts() {
         if (JSON.stringify(basket._baskets) !== "{}") {
-            await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id)
+            await basketProduct.getBasketProductsWithAssortmentInfoByBasketID(basket._baskets.id).then(res => user.setIsLoading(false))
         }
+        // if ()
         setOrderProductsDinamic(basketProduct.basketProduct ? basketProduct.basketProduct : [])
     }
 
