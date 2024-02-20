@@ -42,6 +42,8 @@ const ProductList = ({product, state, type, productShow}) => {
                 stagePadding: 20,
                 margin: 50,
                 center: true,
+                touchDrag: true,
+                mouseDrag: true
             },
             350: {
                 items: 1,
@@ -49,12 +51,16 @@ const ProductList = ({product, state, type, productShow}) => {
                 stagePadding: 50,
                 margin: 20,
                 center: true,
+                touchDrag: true,
+                mouseDrag: true
             },
             450: {
                 items: 1,
                 nav: false,
                 stagePadding: 80,
-                margin: 10, 
+                margin: 10,
+                touchDrag: true,
+                mouseDrag: true
             },
             700: {
                 items: 1,
@@ -62,6 +68,8 @@ const ProductList = ({product, state, type, productShow}) => {
                 stagePadding: 150,
                 margin: 120,
                 center: true,
+                touchDrag: true,
+                mouseDrag: true
             },
 
             800: {
@@ -69,6 +77,8 @@ const ProductList = ({product, state, type, productShow}) => {
                 nav: false,
                 stagePadding: 50,
                 margin: 80,
+                touchDrag: true,
+                mouseDrag: true
             },
             1000: {
                 items: 2,   
@@ -90,6 +100,8 @@ const ProductList = ({product, state, type, productShow}) => {
             <OwlCarousel
             className="owl-theme mt-5"
             dots={false}
+            mouseDrag={false}
+            touchDrag={false}
             nav
             navText={[
                 '<span class="arrow prev">‹</span>',
