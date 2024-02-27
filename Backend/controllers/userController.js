@@ -33,8 +33,9 @@ class UserController {
             await Basket.create({ userId: user.id, aproxSum: 0 })
 
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
-            res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
-            return res.json({ user: { ...userDto } })
+            return res.json({...tokens, user: {...userDto}})
+            // res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
+            // return res.json({ user: { ...userDto } })
 
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -77,8 +78,9 @@ class UserController {
                 const tokens = tokenController.generateTokens({ ...userDto })
                 await tokenController.saveToken(userDto.id, tokens.refreshToken)
                 res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
-                res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
-                return res.json({ user: { ...userDto } })
+                return res.json({...tokens, user: {...userDto}})
+                // res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
+                // return res.json({ user: { ...userDto } })
             }
             throw ApiError.badRequest('Введен неверный активационный код')
 
@@ -104,8 +106,9 @@ class UserController {
 
 
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
-            res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
-            return res.json({ user: { ...userDto } })
+            return res.json({...tokens, user: {...userDto}})
+            // res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
+            // return res.json({ user: { ...userDto } })
 
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -117,7 +120,7 @@ class UserController {
             const { refreshToken } = req.cookies
             const deletedToken = await tokenController.removeToken(refreshToken)
             res.clearCookie('refreshToken')
-            res.clearCookie('accessToken')
+            //res.clearCookie('accessToken')
             return res.json(deletedToken)
 
         } catch (e) {
@@ -143,10 +146,10 @@ class UserController {
             await tokenController.saveToken(userDto.id, tokens.refreshToken)
 
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 10 * 24 * 60 * 60 * 1000, httpOnly: true })
-            res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
+            //res.cookie('accessToken', tokens.accessToken, {maxAge: 60 * 60 * 1000, httpOnly: true})
 
-            return res.json({ user: userDto })
-
+            //return res.json({ user: userDto })
+            return res.json({...tokens, user: {...userDto}})
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

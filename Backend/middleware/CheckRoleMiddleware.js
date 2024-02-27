@@ -8,9 +8,9 @@ module.exports = function (role) {
             next()
         }
         try {
-            const {accessToken} = req.cookies
-            const token = accessToken
-            //const token = req.headers.authorization.split(' ')[1] // Bearer asdfdsgksld
+            //const {accessToken} = req.cookies
+            //const token = accessToken
+            const token = req.headers.authorization.split(' ')[1] // Bearer asdfdsgksld
             let roleCheacked = false
             if (!token) {
                 return next(ApiError.unauthorized())
