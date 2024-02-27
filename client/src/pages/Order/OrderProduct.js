@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import { observer } from 'mobx-react-lite';
 import { Image } from 'react-bootstrap';
 import Toggle from '../../components/Toggle';
-import order from "./Order";
 import {Context} from "../../index";
 
 function OrderProduct({  orderProduct, ...props }) {
@@ -43,7 +42,7 @@ function OrderProduct({  orderProduct, ...props }) {
                             <h2 className='order-product-text'>{orderProduct.name}</h2>
                             {orderProduct.unitsOfMeasurement !== 'шт'  ?
                             <div className='checkbox-content'>
-                                <Toggle toggleState={toggleState} toggleSwitch={toggleSwitch} />
+                                <Toggle toggleState={toggleState} toggleSwitch={toggleSwitch}  />
                             </div>
                             :
                             <div className=' w-100'>
