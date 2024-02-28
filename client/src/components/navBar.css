@@ -54,7 +54,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
-    color: rgba(255, 255, 255);
+    color: #ffdee7;
 }
 
 @media (max-width: 1199px) {
@@ -83,9 +83,6 @@
     background-color: #e6688b !important;
 }
 
-.btnAuth:hover .btnText {
-    color: #ffdee7;
-}
 
 .btnAuth:hover .btnIconFill,
 .adminBtn:hover .btnIconFill,

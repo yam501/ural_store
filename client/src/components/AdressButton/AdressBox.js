@@ -7,7 +7,6 @@ const AdressBox = ({adress, ...props}) => {
     return (
         <Button className={`
         border-0
-        rounded-pill
         p-1
         me-3
         ms-3

@@ -55,7 +55,7 @@ const AuthButton = observer(({show, handleShowControl, ...props}) => {
             </NavLink>
             <NavLink className='text-decoration-none' to={PROFILE_ROUTE}>
                 <Button
-                    className='ms-2 me-2 d-flex justify-content-around rounded-4 align-items-center  btnAuth btnAdmin'
+                    className='ms-2 me-2 d-flex justify-content-around align-items-center  btnAuth btnAdmin'
                 >
                     <span className='btnText'>Личный кабинет</span>
                 </Button>
