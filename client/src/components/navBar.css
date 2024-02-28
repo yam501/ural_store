@@ -180,18 +180,18 @@ a:focus-visible {
     width: 200px;
 }
 
-@media (max-width: 570px) {
+@media (max-width: 600px) {
     .shop_logo {
         background-size: 100%;
-        width: 140px;
+        width: 160px;
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 560px) {
     .shop_logo {
         background: url("../assets/uralskiy-icon.svg") no-repeat left;
-        background-size: 50%;
-        width: 70px;
+        background-size: 70%;
+        width: 60px;
     }
 }
 

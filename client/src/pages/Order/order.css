@@ -201,12 +201,12 @@
     align-items: flex-start;
     text-align: left;
     margin-left: 2%;
-    width: 100%;
+    width: 70%;
     height: 100%;
 }
 
 .order-product-text {
-    width: 100%;
+    width: auto;
     font-size: 16px;
 }
 

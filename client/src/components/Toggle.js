@@ -13,7 +13,7 @@ const Toggle = ({toggleState, toggleSwitch, ...props}) => {
                 </div>
             </div>
             <div className="toggle_i me-3 ms-2">?</div>
-            <div className="toggle_box_information w-50">положить больше или меньше вес</div>
+            <div className="toggle_box_information">положить больше или меньше вес</div>
         </div>
     );
 };

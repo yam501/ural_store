@@ -63,18 +63,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
+    width: 25px;
     height: 25px;
     color: white;
+    padding: 12px;
     user-select: none;
     border-radius: 50%;
     background-color: #acacac;
 }
 
-.toggle_i:hover::after{
-    .toggle_box_information {
+.toggle_i:hover + .toggle_box_information {
+    animation: fadeIn 0.5s ease forwards;
+    visibility: visible;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
+
 
 .toggle_box_information {
     display: flex;
@@ -82,8 +92,18 @@
     font-size: calc(10px + 2 * (100vw / 1903));
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
+    width: fit-content;
     border-radius: 7px;
     padding: 15px;
     height: max-content;
     color: white;
 }
+
+@media (min-width: 400px) and (max-width: 1200px) {
+    .toggle_box_information{
+        position: absolute;
+        center: 0;
+        margin-block: 25px;
+    }
+}
+
