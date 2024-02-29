@@ -1,5 +1,5 @@
 import {observer} from 'mobx-react-lite';
-import React, { useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Button, Image} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import './productItem.css'
@@ -66,7 +66,8 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 const newCount = prevCount + productType[type].additionCount;
                 delaySend();
                 basket._baskets.aproxSum += productType[type].additionCount * product.costPerOne
-                return Math.round(newCount * 10) / 10;;
+                return Math.round(newCount * 10) / 10;
+                ;
             } else {
                 return prevCount;
             }
@@ -126,8 +127,11 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
         <>
             <div className='card_wrapper products_bg'>
 
-                <Image className='product-img' onClick={handleShow}
-                       src={process.env.REACT_APP_API_URL + product.image}/>
+                <div  onClick={handleShow} className="image-container w-100 h-50">
+                    <Image className='product-img h-100'
+                           src={process.env.REACT_APP_API_URL + product.image}/>
+                    <div className="image-text">{product.composition}</div>
+                </div>
                 {cardState ?
                     <div className='card_wrapper_content'>
                         <div className='mt-1 d-flex justify-content-center'>
@@ -190,7 +194,8 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                     </div>
                     <div className="mt-2">
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="w-100"> <p className="info-text">Состав</p> <p className='info-text'>{product.composition}</p>
+                            <div className="w-100"><p className="info-text">Состав</p> <p
+                                className='info-text'>{product.composition}</p>
                             </div>
                         </div>
                     </div>
@@ -202,23 +207,23 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                 </Modal.Body>
                 <Modal.Footer>
                     {cardState ?
-                    <div className='card_wrapper_content'>
-                        <div className="card_btn_box">
-                            <Button className='btn-minus rounded-circle justify-self-start' onClick={() => minus()}>
-                                -
-                            </Button>
-                            <span
-                                className='d-flex align-items-center justify-self-center productItem_text info-text'>{countProduct} {productType[type].value}</span>
-                            <Button className='btn-plus rounded-circle justify-self-end' onClick={() => plus()}>
-                                +
-                            </Button>
+                        <div className='card_wrapper_content'>
+                            <div className="card_btn_box">
+                                <Button className='btn-minus rounded-circle justify-self-start' onClick={() => minus()}>
+                                    -
+                                </Button>
+                                <span
+                                    className='d-flex align-items-center justify-self-center productItem_text info-text'>{countProduct} {productType[type].value}</span>
+                                <Button className='btn-plus rounded-circle justify-self-end' onClick={() => plus()}>
+                                    +
+                                </Button>
+                            </div>
+                        </div> :
+                        <div className="card_wrapper_content">
+                            <AddProductToBasketBtn product={product} cost={productType[type].cost}
+                                                   switchCardState={switchCardState} type={type}
+                                                   countProduct={countProduct}/>
                         </div>
-                    </div> :
-                    <div className="card_wrapper_content">
-                        <AddProductToBasketBtn product={product} cost={productType[type].cost}
-                                               switchCardState={switchCardState} type={type}
-                                               countProduct={countProduct}/>
-                    </div>
                     }
                 </Modal.Footer>
             </Modal>
