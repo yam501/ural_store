@@ -16,7 +16,9 @@ export default class UserStore {
     }
 
     setIsLoading(bool) {
-        this.isLoading = bool;
+        if (this._isAuth) {
+            this.isLoading = bool;
+        } 
     }
 
     setIsActivated(bool) {
