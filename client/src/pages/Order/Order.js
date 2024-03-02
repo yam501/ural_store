@@ -113,12 +113,12 @@ function Order() {
                                         <h2 className='form_check_title'>Детали заказа</h2>
                                         <div className='form_check_order_section form_check_order_adress_section'>
                                             {/* <label>Адрес</label> */}
-                                            <input required type='text'
-                                            onChange={() => setShowMap(true)}
+                                            <button required type='text'
+                                            onClick={() => setShowMap(true)}
                                             // onFocus={() => setShowMap(true)}
                                                    value={dataOfOrder.address ? dataOfOrder.address.slice(29) : dataOfOrder.address}
                                                    className='form-control form_check_order_section_input form_check_order_adress_section_input'
-                                                   placeholder='Выберите адрес на карте'/>
+                                                    placeholder='Выберите адрес на карте'>{dataOfOrder.address}</button>
                                                    {/* <button onClick={() => setShowMap(true)}>
                                                     Открыть карту
                                                    </button> */}
