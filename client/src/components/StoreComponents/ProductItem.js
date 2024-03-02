@@ -127,7 +127,7 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
         <>
             <div className='card_wrapper products_bg'>
 
-                <div  onClick={handleShow} className="image-container w-100 h-50">
+                <div onClick={handleShow} className="image-container w-100 h-50">
                     <Image className='product-img h-100'
                            src={process.env.REACT_APP_API_URL + product.image}/>
                     <div className="image-text">{product.composition}</div>
@@ -194,8 +194,10 @@ const ProductItem = ({product, deleteBasketProductItem, basketProductsList, prod
                     </div>
                     <div className="mt-2">
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                            <div className="w-100"><p className="info-text">Состав</p> <p
-                                className='info-text'>{product.composition}</p>
+                            <div className="w-100">
+                                <p className="info-text">Состав</p>
+                                <p className='info-text'>{product.composition}</p>
+                                {/*<p className='info-text'>{product.}</p>*/}
                             </div>
                         </div>
                     </div>

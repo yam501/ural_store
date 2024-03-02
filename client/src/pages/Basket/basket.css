@@ -202,7 +202,7 @@ body {
     font-size: calc(12px + 4 * (100vw/1903));
     border: 0;
     width: calc(150px + 8 * (100vw/1903));
-    height: calc(40px + 8 * (100vw/1903));
+    height: calc(40px + 2 * (100vw/1903));
     border-radius: 17px;
     display: flex;
     justify-content: center;

@@ -12,7 +12,7 @@
 
 .history-empty-text {
     text-align: center;
-    font-size: calc(24px + 4 * (100vw/1903));
+    font-size: calc(18px + 4 * (100vw/1903));
 }
 
 .history-icon {

@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite';
 import OrderProduct from './OrderProduct'
 import './order.css'
 import {NavLink, useNavigate} from 'react-router-dom';
-import {BASKET_ROUTE} from '../../utils/consts';
+import {BASKET_ROUTE, STORE_ROUTE} from '../../utils/consts';
 import OrderStages from './stagesOrder/OrderStages';
 import PhoneInputMask from "../../InputMasks/PhoneInputMask";
 import ModalWindowYMaps from '../../components/YndexMaps/ModalWindowYMaps';
@@ -104,8 +104,7 @@ function Order() {
                         {/* <h1 className='page_title'> Текущий заказ</h1> */}
                         {orderProductsDinamic.length === 0 ?
                             <div className='order-empty-content'>Вы еще не сформировали свой заказ
-                                <NavLink className='btn-returnToBasket text-white text-decoration-none'
-                                         to={BASKET_ROUTE}>В корзину</NavLink>
+                                <NavLink className='btn-returnToStore text-white text-decoration-none mt-5' to={STORE_ROUTE}>К отделам</NavLink>
                             </div> :
                             <div className='order_page_content'>
                                 <div className='page_form_check_box'>

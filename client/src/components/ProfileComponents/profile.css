@@ -22,11 +22,16 @@
     font-size: calc(20px + 4 * (100vw/1903));
     margin-left: calc(2px + 4 * (100vw/1903));
     margin-top: calc(100px + 4 * (100vw/1903));;
+    caret-color: transparent;
 }
 
 .profile-input{
     width: calc(250px + 4 * (100vw/1903)) !important;
     font-size: calc(16px + 4 * (100vw/1903));
+}
+
+.profile-input:disabled{
+    caret-color: transparent;
 }
 
 .profile-info {
