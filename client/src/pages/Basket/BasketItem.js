@@ -1,10 +1,11 @@
-import React, { useContext, useState, Suspense, useEffect } from 'react';
-import { Image, Button, Form, Spinner } from 'react-bootstrap';
-import { Context } from '../..';
-import { observer } from 'mobx-react-lite';
+import React, {useContext, useState, Suspense, useEffect} from 'react';
+import {Image, Button, Form, Spinner} from 'react-bootstrap';
+import {Context} from '../..';
+import {observer} from 'mobx-react-lite';
 import './basket.css'
 import DeleteButton from './DeleteButton';
-const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props }) => {
+
+const BasketItem = ({basketProduct, user, type, basketItem, basket, ...props}) => {
     const {product} = useContext(Context)
     const [isDataSend, setIsDataSend] = useState(false);
     const [countProduct, setCountProduct] = useState(basketItem.count)
@@ -78,15 +79,15 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     useEffect(() => {
         if (isDataSend) {
             const timerId = setTimeout(() => {
-            user.setIsLoading(true)
-            basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct)
-            setIsDataSend(false);
-          }, 1000);
-          
-    
-          return () => clearTimeout(timerId);
+                user.setIsLoading(true)
+                basketProduct.changeCountByBasketIDAndAssortmentID(basket.basket.id, basketItem.assortmentId, countProduct)
+                setIsDataSend(false);
+            }, 1000);
+
+
+            return () => clearTimeout(timerId);
         }
-      }, [isDataSend, countProduct, basket.basket.id, basketItem.assortmentId, basketItem]);
+    }, [isDataSend, countProduct, basket.basket.id, basketItem.assortmentId, basketItem]);
 
 
     const delaySend = () => {
@@ -95,7 +96,8 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
     const plus = async () => {
         setCountProduct(prevCount => {
             const newCount = prevCount + productType[type].additionCount;
-            basketItem.count = Math.round(newCount * 10) / 10;;
+            basketItem.count = Math.round(newCount * 10) / 10;
+            ;
             props.countAproxSum()
             delaySend();
             return Math.round(newCount * 10) / 10;
@@ -110,7 +112,8 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
                 props.deleteItem(basketItem.assortmentId)
             } else {
                 const newCount = prevCount - productType[type].additionCount
-                basketItem.count = Math.round(newCount * 10) / 10;;
+                basketItem.count = Math.round(newCount * 10) / 10;
+                ;
                 props.countAproxSum()
                 delaySend()
                 return Math.round(newCount * 10) / 10;
@@ -118,12 +121,11 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
         })
     }
 
-    
 
     return (
 
         <div className='d-flex align-items-center justify-content-between mt-3 mb-3 container product_item'>
-            <Image className='basket-img' alt='картинка' src={process.env.REACT_APP_API_URL + basketItem.image} />
+            <Image className='basket-img' alt='картинка' src={process.env.REACT_APP_API_URL + basketItem.image}/>
             <div className='d-flex justify-content-center'>
                 <div className='d-flex align-items-center'>
                     <div className='info-text ms-3'>
@@ -133,21 +135,17 @@ const BasketItem = ({ basketProduct, user, type, basketItem, basket, ...props })
             </div>
             <div className='text-center'>
                 <div className='info-text'>
-                {Math.round(countProduct * basketItem.costPerOne)} ₽
+                    {Math.round(countProduct * basketItem.costPerOne)} ₽
                 </div>
-                <div className='mt-1 d-flex justify-content-center'>
-                    <Button type='submit' className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
-                        onClick={minus}>
-                        {countProduct <=  productType[type].displayValue ? <DeleteButton/> : '-'}
+                <div className='mt-1 d-flex'>
+                    <Button type='submit'
+                            className=' d-flex justify-content-center align-items-center btn-plus basket_item_btn rounded-circle me-4 ms-4 bg-white'
+                            onClick={minus}>
+                        {countProduct <= productType[type].displayValue ? <DeleteButton/> : '-'}
                     </Button>
-                    <Form.Control type='number' value={countProduct}  
-                    // onChange={(e) => {
-                    //  changeCountProductByInput(e)
-                    // }
-                    // }
-                     className='basket_item_cost'
-                    />
-                    <Button className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white'
+                    <div className='basket_item_cost'>{countProduct}</div>
+                    <Button
+                        className='d-flex justify-content-center align-items-center btn-plus basket_item_btn  rounded-circle ms-4 me-4 bg-white'
                         onClick={plus}>
                         +
                     </Button>

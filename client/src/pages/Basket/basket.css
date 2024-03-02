@@ -108,13 +108,21 @@ body {
 }
 
 .basket_item_cost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    width: 15%;
+    margin-block: auto;
+    width: 42px;
+    height: 42px;
     padding: 0;
     border: 0;
     font-size: calc(12px + 4 * (100vw/1903));
     font-weight: 500;
     caret-color: transparent;
+    background-color: #d3d3d3;
+    border-radius: 7px;
+    user-select: none;
 }
 
 .basket_item_cost::-webkit-outer-spin-button,
